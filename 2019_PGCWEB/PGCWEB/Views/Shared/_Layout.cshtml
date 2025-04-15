@@ -1,0 +1,77 @@
+﻿
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>PGESCOM Web</title>
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="bootstrap/css/font-awesome.min.css">
+        <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+        <link href="~/Content/mySite.css" rel="stylesheet" />
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+
+    </head>
+
+<body style=" height: 100%; width: 100%; background-color: #B0E0E6 ; " >
+   
+        <div class=" navbar  navbar-default navbar-fixed-top " style="background-color:white;">
+            <a class="navbar-brand " href="#"> <img src="~/Images/primax22.png" style="max-width:170px;margin-top:-7px;"></a>
+            <span class="navbar-text" style="color:darkgreen">
+                @if (HttpContext.Current.Session["usrFnmLnm"] != null)
+                {
+                    @HttpContext.Current.Session["usrFnmLnm"]
+
+                }
+            </span>
+            <div class="float-right" >
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar">---</span>
+                        <span class="icon-bar">---</span>
+                        <span class="icon-bar">---</span>
+                    </button>
+
+                </div>
+
+                <div class="navbar-collapse collapse" id=".navbar-collapse">
+                    <ul id="menu"  style="font-size:17px">
+
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Home")</li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid " style="margin-top:30px; ">
+            @RenderBody()
+        </div>
+
+
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+
+    <script>
+        $(document).ready(function () {
+
+            $(this).bind("contextmenu", function (e) {
+
+                e.preventDefault();
+               
+            });
+
+
+        });
+      
+    </script>
+</body>
+</html>
+

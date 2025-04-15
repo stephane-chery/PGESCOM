@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Orig_PSM_FDB" Class="DC_PGCdbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=ERPSERVER\PSM_DB2K5K;Initial Catalog=Orig_PSM_FDB;Persist Security Info=True;User ID=sa" SettingsObjectName="PGESCOM.Properties.Settings" SettingsPropertyName="Orig_PSM_FDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.HK_Overages_Sales" Member="HK_Overages_Sales">
+    <Type Name="HK_Overages_Sale">
+      <Column Name="LID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="YY_fscl" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MM_fscl" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="QuoteID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="DateLastInvPrt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="RID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CustomerID" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="InvID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Currncy" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="SO" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="SOLine" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="STKCode" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="UserDef" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Salesperson" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="IntSalesperson" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="Old_Overage" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Old_Overage_CAD" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="New_Overage" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="New_Overage_CAD" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="PRIMAX_OLD" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="PRIMAX" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="[Mona Dimassi OLD]" Member="Mona_Dimassi_OLD" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="[Mona Dimassi]" Member="Mona_Dimassi" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="[Claude Fouche OLD]" Member="Claude_Fouche_OLD" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="[Claude Fouche]" Member="Claude_Fouche" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="[Benoit Cimon OLD]" Member="Benoit_Cimon_OLD" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="[Benoit Cimon]" Member="Benoit_Cimon" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="[Yves Lavoie OLD]" Member="Yves_Lavoie_OLD" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="[Yves Lavoie]" Member="Yves_Lavoie" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="[Steven Monk OLD]" Member="Steven_Monk_OLD" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="[Steven Monk]" Member="Steven_Monk" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Cmnt" Type="System.String" DbType="NVarChar(555)" CanBeNull="true" />
+      <Column Name="Xrate" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

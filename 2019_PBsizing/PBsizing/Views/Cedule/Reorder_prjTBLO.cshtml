@@ -1,0 +1,425 @@
+﻿@model IEnumerable<PBsizing.Models.V_cedulotrs_jobs>
+
+@{
+    ViewBag.Title = "AgenciesCMS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+<style>
+    .container {
+        width:950px;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+        color: black;
+        background-color: #fcd900;
+    }
+
+    .buttonload {
+        background-color: #4CAF50; /* Green background */
+        border: none; /* Remove borders */
+        color: white; /* White text */
+        padding: 12px 24px; /* Some padding */
+        font-size: 16px; /* Set a font-size */
+    }
+
+    /* Add a right margin to each icon */
+    .fa {
+        margin-left: -12px;
+        margin-right: 8px;
+    }
+
+
+    .table-fixed tbody {
+        float: left;
+        height: 500px;
+        overflow-y: auto;
+        width: 1100px;
+        font-family: Verdana;
+    }
+
+    thead, tbody {
+        display: block;
+    }
+
+
+
+
+    body {
+        font-family: arial, sans-serif;
+        font-size: 14px;
+    }
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        table-layout: fixed;
+        width: 100%;
+    }
+    .table img {
+        /*height: 80px;*/
+        width: 100%;
+        /*cursor: pointer;
+            display: block;*/
+        /*  width: 100%;*/
+        height: 100%;
+        object-fit: contain;
+    }
+
+
+    td,
+    th {
+       /* // border: 1px solid #dddddd;*/
+        white-space: nowrap;
+        text-align: left;
+        padding: 8px;
+    }
+
+    th {
+        background-color: #ccd;
+    }
+
+    tr:nth-child(even) {
+        background-color: #ecf6fc;
+        width: 25%;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #ecf6fc;    /*    #ddeedd;*/
+        width: 25%;
+    }
+</style>
+
+
+
+<div class="container">
+    <div id="loader" style="margin: 0px; padding: 0px; position: fixed; right: 0px; top: 0px; width: 100%; height: 100%; background-color: rgb(102, 102, 102); z-index: 30001; opacity: 0.4;display: none;display: none; ">
+        <p style="position: absolute; color: White; top: 50%; left: 45%;">
+            <img src="~/Images/reload3.gif">
+        </p>
+    </div>
+    <table class="table table-fixed" id="table-style">
+        <thead>
+            <tr>
+                <th style=" width: 700px;background-color: #f7ffe6;text-align:center">Jobs List</th>
+                <th style=" width: 90px;background-color: #f7ffe6;text-align:center"></th>
+                <th style=" width: 90px;background-color: #f7ffe6;text-align:center"></th>
+                <th style=" width: 90px;background-color: #f7ffe6;text-align:center"></th>
+                <th style=" width: 90px;background-color: #f7ffe6;text-align:center"></th>
+                @*<th style=" width: 30px;background-color: #f7ffe6;text-align:center"></th>
+                <th style=" width: 50px;background-color: #f7ffe6;text-align:center"></th>*@
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var itm in Model)
+            {
+            <tr>
+                <td>  <input type="checkbox" id="checkbox1" class="styled" onclick="chkbxBC(this)">     </td>
+                <td style="border: 1px solid black;width: 660px;vertical-align:middle">@itm.pgc_prj --- @itm.StockCode --- @itm.customer.Replace(",", " ")</td>
+                <td style="border: 1px solid black;width: 90px;vertical-align:middle">@itm.JobDD.ToString().Substring(0, 10)</td>
+                <td style="border: 1px solid black;width: 90px;vertical-align:middle">@itm.prd </td>
+                <td style="border: 1px solid black;width: 90px;vertical-align:middle;text-align:center">@itm.joblid </td>
+                @*<td style="border: 1px solid black;width: 50px;vertical-align:middle"> <button class='up'><img src="~/Images/up_bleu.png" /></button></td>
+                <td style="border: 1px solid black;width: 50px;vertical-align:middle"> <button class='down'><img src="~/Images/dwn_green.png" /></button></td>*@
+                @*<td><button id="close-image"><img src="http://thinkingstiff.com/images/matt.jpg"></button></td>*@
+
+            </tr>
+            }
+
+        </tbody>
+    </table>
+    <table class=" table "  >
+        <tr>
+            <td>    <button id="btnsearch" class="btn btn-primary btn-block"><i class="fa fa-search"></i>Search</button>   </td>
+            <td>            <input type="text" id="search" placeholder="Project# " />       </td>
+    
+            <td> <button id="btn_copy" type="button" class="btn btn-info btn-sm " style="width:60px;">COPY</button> </td>
+            <td> <button id="btn_pstbfr" type="button" class="btn btn-danger btn-sm " style="width:100px;">PAST Before</button> </td>
+            <td> <button id="btn_pstafter" type="button" class="btn btn-danger btn-sm " style="width:100px;">PAST After</button> </td>
+            @*<td> <button id="btn_savprio" type="button" class="btn btn-danger btn-sm " style="width:300px;">Save priorities</button> </td>*@
+        </tr>
+    </table>
+
+</div>
+
+<script>
+    var g_arr = [];
+
+    $('#chkall').click(function () {
+        var isChecked = $(this).prop("checked");
+        $('#table-style tr:has(td)').find('input[type="checkbox"]').prop('checked', isChecked);
+    });
+
+    $('#table-style tr:has(td)').find('input[type="checkbox"]').click(function () {
+        var isChecked = $(this).prop("checked");
+        var isHeaderChecked = $("#chkParent").prop("checked");
+        if (isChecked == false && isHeaderChecked)
+            $("#chkParent").prop('checked', isChecked);
+        else {
+            $('#table-style tr:has(td)').find('input[type="checkbox"]').each(function () {
+                if ($(this).prop("checked") == false)
+                    isChecked = false;
+            });
+         //   console.log(isChecked);
+            $("#chkall").prop('checked', isChecked);
+        }
+    });
+
+    $(".up,.down").click(function () {
+
+        var $element = this;
+        var row = $($element).parents("tr:first");
+
+        if ($(this).is('.up')) {
+            row.insertBefore(row.prev());
+            row.css("background-color", "#48dbfb");
+        }
+
+        else {
+            row.insertAfter(row.next());
+            row.css("background-color", "#1dd1a1");
+        }
+
+    });
+
+
+    $('#btn_copy').click(function () {
+
+    //     var arr = [];
+     g_arr = $('#table-style').find('[type="checkbox"]:checked').map(function () {
+          return $(this).closest('tr').find('td:nth-child(5)').text();
+      }).get();
+
+        $('#table-style tr:has(td)').find('input[type="checkbox"]').prop('checked', false);
+        $('#table-style tr:has(td)').css('background', '#ecf6fc');
+        $("#search").css('background', 'white'); 
+    });
+
+
+    $('#btn_pstafter').click(function () {
+
+
+              var mdl_jobs = [];
+         var list = @Html.Raw(Json.Encode(Model));
+        for (var i = 0; i < list.length; i++) {
+            var st = list[i];
+            mdl_jobs.push(st.joblid + "|" + st.prio)
+        }
+
+        var arr_pst = [];
+        arr_pst = $('#table-style').find('[type="checkbox"]:checked').map(function () {
+            return $(this).closest('tr').find('td:nth-child(5)').text();
+        }).get();
+        if (arr_pst.length > 0) {
+          //  alert("g_arr...*" + g_arr + "*" + "      past_arr...*" + arr_pst + "*" + "      mdl_arr...*" + mdl_jobs + "*");
+
+            var msg_al = "????";
+            $.ajax({
+                url: "../Cedule/prio_jobs_blk",
+                type: "POST",
+                data: { mdl_arr: mdl_jobs.toString(),  cpyblk: g_arr.toString(), linpst: arr_pst.toString(),ab:'A'},
+                cache: false,
+                dataType: "json",
+                //contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    msg_al = "ok";
+                  //  alert("New Projects Priorities were Saved......");
+                    location.reload();
+                    $('#table-style tr:has(td)').find('input[type="checkbox"]').prop('checked', false);
+                    //alert('succ='+msg_al);
+                    //$('#table-style :checked').each(function () {
+                    //    $('#table-style :checkbox:checked').closest('tr').remove();
+
+                    //});
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert("xhr.status: " + xhr.status);
+                    alert("thrownError: " + thrownError);
+                }
+
+            });
+
+
+
+        }
+        else Alert("please select a row to past ..... ");
+
+
+    });
+
+    $('#btnsearch').on('click', function (e) {
+        var value = $("#search").val();
+        var found = 0;
+        $("#table-style tr").each(function (index) {
+            if (index !== 0) {
+
+                $row = $(this);
+
+                var id = $row.find("td:eq(1)").text();
+
+                if (id.indexOf(value) !== 0) {
+                    //$row.hide();
+                    $(this).css('background', '#ecf6fc');
+                 
+                }
+                else {
+                    $(this).css('background', '#fcd900'); 
+                    found = 1;
+                //    $row.show();
+                }
+            }
+        });
+
+        if (found == 0) alert("not found.....");
+        else $("#search").css('background', '#fcd900'); 
+    });
+
+
+
+
+
+
+
+    $('#btn_pstbfr').click(function () {
+
+              var mdl_jobs = [];
+         var list = @Html.Raw(Json.Encode(Model));
+        for (var i = 0; i < list.length; i++) {
+            var st = list[i];
+            mdl_jobs.push(st.joblid + "|" + st.prio)
+        }
+
+        var arr_pst = [];
+        arr_pst = $('#table-style').find('[type="checkbox"]:checked').map(function () {
+            return $(this).closest('tr').find('td:nth-child(5)').text();
+        }).get();
+        if (arr_pst.length > 0) {
+          //  alert("g_arr...*" + g_arr + "*" + "      past_arr...*" + arr_pst + "*" + "      mdl_arr...*" + mdl_jobs + "*");
+
+            var msg_al = "????";
+            $.ajax({
+                url: "../Cedule/prio_jobs_blk",
+                type: "POST",
+                data: { mdl_arr: mdl_jobs.toString(),  cpyblk: g_arr.toString(), linpst: arr_pst.toString(),ab:'B'},
+                cache: false,
+                dataType: "json",
+                //contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    msg_al = "ok";
+                //    alert("New Projects Priorities were Saved......");
+                    location.reload();
+                    $('#table-style tr:has(td)').find('input[type="checkbox"]').prop('checked', false);
+                    //alert('succ='+msg_al);
+                    //$('#table-style :checked').each(function () {
+                    //    $('#table-style :checkbox:checked').closest('tr').remove();
+
+                    //});
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert("xhr.status: " + xhr.status);
+                    alert("thrownError: " + thrownError);
+                }
+
+            });
+
+
+
+        }
+        else Alert("please select a row to past ..... ");
+
+
+    });
+    $('#btn_savprio').click(function () {
+
+        var mdl_jobs = [];
+         var list = @Html.Raw(Json.Encode(Model));
+        for (var i = 0; i < list.length; i++) {
+            var st = list[i];
+           // alert('prd ' + st.prd + ' prio:' + st.prio);
+            mdl_jobs.push(st.prd + "|" + st.prio)
+        }
+
+
+        //alert("avant.....c...*" );
+        var Joblst = [];// new Array();
+        $("#table-style TBODY TR").each(function () {
+            var row = $(this);
+            var tt = row.find("TD").eq(2).html() + '|' + row.find("TD").eq(3).html();
+            Joblst.push(tt);
+
+        });
+   //     alert("Joblst...*" + Joblst + "*");
+  //      alert("mdl_jobs...*" + mdl_jobs + "*");
+
+        if (Joblst.length > 0 && Joblst != "") {
+            //  alert("rec...*" + arr+"*");
+
+
+            $.ajaxSetup({
+                async: false,
+                beforeSend: function () {
+                    $("#loader").show();
+                },
+                complete: function (data) {
+                    $("#loader").hide();
+                }
+
+            });
+
+            var msg_al = "????";
+            $.ajax({
+                url: "../Cedule/prio_jobs",
+                type: "POST",
+                data: { myArr: Joblst.toString(), mdl_arr: mdl_jobs.toString() },
+                cache: false,
+                dataType: "json",
+                //contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    msg_al = "ok";
+                    alert("New Projects Priorities were Saved......");
+                    location.reload();
+                    //alert('succ='+msg_al);
+                    //$('#table-style :checked').each(function () {
+                    //    $('#table-style :checkbox:checked').closest('tr').remove();
+
+                    //});
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert("xhr.status: " + xhr.status);
+                    alert("thrownError: " + thrownError);
+                }
+
+            });
+
+            //$('#table-style :checked').each(function () {
+            //    $('#table-style :checkbox:checked').closest('tr').remove();
+            //});
+            //alert('succ=' + msg_al);
+
+
+
+        }
+        else alert("No Projects Priorities Saved...." + Joblst.length.toString());
+
+    });
+
+
+</script>
+
+<script src="http://code.jquery.com/jquery-1.8.3.js"></script>

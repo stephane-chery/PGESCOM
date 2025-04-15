@@ -1,0 +1,45 @@
+SELECT DISTINCT  PSM_R_Rev.IRRevID,PSM_COMPANY.Cpny_ID, PSM_COMPANY.Cpny_Name1, PSM_R_Rev.Custm_PO, PSM_R_Detail.PrimaxSN
+FROM         PSM_R_Rev INNER JOIN
+                      PSM_COMPANY ON PSM_COMPANY.Cpny_ID = PSM_R_Rev.cpnyID INNER JOIN
+                      PSM_R_Detail ON PSM_R_Detail.IRRev_LID = PSM_R_Rev.IRRevID
+ORDER BY PSM_COMPANY.Cpny_ID, PSM_R_Rev.IRRevID
+
+
+
+above + item-desc
+======================
+SELECT DISTINCT 
+                      PSM_R_Rev.IRRevID, PSM_COMPANY.Cpny_ID, PSM_COMPANY.Cpny_Name1, PSM_R_Rev.Custm_PO, PSM_R_Detail.PrimaxSN, 
+                      PSM_Q_Details.[Desc]
+FROM         PSM_R_Rev INNER JOIN
+                      PSM_COMPANY ON PSM_COMPANY.Cpny_ID = PSM_R_Rev.cpnyID INNER JOIN
+                      PSM_R_Detail ON PSM_R_Detail.IRRev_LID = PSM_R_Rev.IRRevID INNER JOIN
+                      PSM_Q_Details ON PSM_R_Detail.Qdet_LID = PSM_Q_Details.Detail_LID
+ORDER BY PSM_COMPANY.Cpny_ID, PSM_R_Rev.IRRev
+
+//liste de diff. FRMLs des cpts
+SELECT     COMPNT_LIST.COMPONENT_REF, COMPUTE_VCS.VCS_NAME AS VCS1_Name, COMPUTE_VCS.[CONTENT] AS VCS1_HowTo, 
+                      COMPUTE_VCS_1.VCS_NAME AS VCS2_Name, COMPUTE_VCS_1.[CONTENT] AS VCS2_HowTo, COMPUTE_VCS_2.VCS_NAME AS VCS3_Name, 
+                      COMPUTE_VCS_2.[CONTENT] AS VCS3_HowTo
+FROM         COMPUTE_VCS INNER JOIN
+                      COMPUTE_MODELS ON COMPUTE_VCS.VCS_ID = COMPUTE_MODELS.VCS1 INNER JOIN
+                      COMPUTE_VCS AS COMPUTE_VCS_1 ON COMPUTE_MODELS.VCS2 = COMPUTE_VCS_1.VCS_ID INNER JOIN
+                      COMPUTE_VCS AS COMPUTE_VCS_2 ON COMPUTE_MODELS.VCS3 = COMPUTE_VCS_2.VCS_ID INNER JOIN
+                      COMPNT_LIST ON COMPUTE_MODELS.CM_ID = COMPNT_LIST.Value_Type
+WHERE     (COMPNT_LIST.Compnt_Type = 'C') OR
+                      (COMPNT_LIST.Compnt_Type = 'E')
+ORDER BY COMPNT_LIST.COMPONENT_REF
+
+
+
+
+quoteID,alter,alias
+========================
+
+SELECT     PSM_Q_IGen.i_Quoteid, PSM_Q_SOL.Sol_LID, PSM_Q_SOL.Sol_Name, PSM_Q_SPCS.SPC_LID, PSM_Q_SPCS.SPC_Name, PSM_Q_ALS.ALS_LID, 
+                      PSM_Q_ALS.ALS_Name, PSM_Q_IGen.Quote_ID, PSM_Q_IGen.CPNY_ID
+FROM         PSM_Q_IGen INNER JOIN
+                      PSM_Q_SOL ON PSM_Q_IGen.i_Quoteid = PSM_Q_SOL.I_Quoteid INNER JOIN
+                      PSM_Q_SPCS ON PSM_Q_SOL.Sol_LID = PSM_Q_SPCS.Sol_LID INNER JOIN
+                      PSM_Q_ALS ON PSM_Q_SPCS.SPC_LID = PSM_Q_ALS.SPC_LID
+WHERE     (PSM_Q_IGen.Quote_ID = 14431)

@@ -1,0 +1,151 @@
+﻿@model IEnumerable<PGCWEB.Models.Options>
+
+@{
+    ViewBag.Title = "options";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesome-bootstrap-checkbox/0.3.7/awesome-bootstrap-checkbox.css">
+  
+
+      <style type="text/css">
+
+.table-fixed tbody {
+
+
+ float:left;
+    height:630px;
+    overflow-y:auto ;
+    width:auto;
+    font-family:Verdana;
+}
+thead, tbody { display: block; }
+
+
+ 
+
+</style>
+
+
+</head>
+<body>
+
+    <br />
+    <br />
+    @*<h2 style="color:red">Other options</h2>*@
+    <button type="button" class="btn btn-danger btn-lg "> Other options </button>
+    <br />
+    @if (Model != null)
+    {
+        <div class="col-md-6" style="line-height: 0.5">
+            @*<table class="table table-bordered" id="table-style">*@
+             <table class="table table-fixed" id="table-style">
+                <thead>
+                    <tr>
+
+                    <th style=" width: 69px;border: 1px solid black;background-color: #fff34d;">Select</th>
+                    <th style=" width: 50px;border: 1px solid black;background-color: #fff34d;">ID</th>
+                    <th style=" width: 635px;border: 1px solid black;background-color: #fff34d;">Option Name</th>
+                    <th style=" width: 87px;border: 1px solid black;background-color: #fff34d;">Price</th>
+                   </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var itm in Model)
+                    {
+                        <tr>
+                            <td style="border: 1px solid black;width: 70px;">
+                                @if (itm.price == "99999999")
+                                {
+                                    @:<div class="checkbox checkbox-success"><input type="checkbox" id="checkbox1" checked="checked" class="styled"><label></label></div>
+                    }
+                                else
+                                {
+                                    @:<div class="checkbox checkbox-success"><input type="checkbox" id="checkbox1" class="styled"><label></label></div>
+                    }
+                            </td>
+
+                            <td style="border: 1px solid black;width: 50px;vertical-align:middle"> @itm.opt_lid</td>
+                            <td style="border: 1px solid black;width: 651px;vertical-align:middle">@itm.opt_eng_desc</td>
+                            <td style="border: 1px solid black;width: 70px;vertical-align:middle">@itm.price</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <table>
+                <tr>
+                    <td>
+                        @*<input id="btn" class="button button3" value="Save selected Options" />*@
+                        <button type="button" class="btn btn-success" id="btn"> Save selected Options</button>
+                    </td>
+                    <td>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td>
+                        @*<input id="btnnxt" class="button button3" value="Display final Charger" />*@
+                        <button type="button" class="btn btn-success" id="btnnxt"> Charger Final Configuration </button>
+                    </td>
+                </tr>
+            </table>
+
+            @Html.Hidden("savopt_url", Url.Action("Save_ch_options", "Options"))
+            <br />
+            <br />
+            <br />
+            <br />
+        </div>
+
+    }
+</body>
+</html>
+
+<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+<script>
+    var arr=[];
+    $('#btn').click(function () {
+        arr = $('#table-style').find('[type="checkbox"]:checked').map(function () {
+            return $(this).closest('tr').find('td:nth-child(2)').text();
+        }).get();
+          //debugger;
+        if (!jQuery.isEmptyObject( arr)) {
+            var urlo = $("#savopt_url").val();
+
+            $.ajax({
+                url: "../Options/Save_ch_options",
+                type: "GET",
+                data: { c_opt_list: arr.toString() },
+                cache: false,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+
+                }
+
+            });
+            alert("Saving Options DONE......");
+        }
+        else alert("No Option was selected......");
+
+ //       window.location.href = "@Url.Action("bfrQuote", "BfrQuote")";
+
+        //    alert(arr);
+        //     $.getJSON("../Alarms/Save_ch_alarms", { c_al_list: arr });
+    });
+
+
+
+    $('#btnnxt').click(function () {
+
+             window.location.href = "@Url.Action("bfrQuote", "BfrQuote")";
+    });
+
+</script>
+
+
+

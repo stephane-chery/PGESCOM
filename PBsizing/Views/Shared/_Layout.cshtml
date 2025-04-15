@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>PGESCOM Web</title>
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="bootstrap/css/font-awesome.min.css">
+        <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+        <link href="~/Content/mySite.css" rel="stylesheet" />
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+
+    </head>
+    <body>
+        <br />
+        <div class="container-fluid">
+            <div class="float-left">
+                <img src="~/Images/primax22.png" height="42" width="120" />
+
+                <span>
+                    @if (HttpContext.Current.Session["usr"] != null)
+                    {
+                        @HttpContext.Current.Session["usr"]
+
+                    }
+                </span>
+            </div>
+            <div class="float-right">
+                <nav>
+                    <ul id="menu" style="font-size:17px">
+
+                        <li>@Html.ActionLink("Home", "index", "Home")</li>
+                        @*<li>@Html.ActionLink("Battery Sizing", "Sizing", "Sizing")</li>*@
+
+                        @*<li>@Html.ActionLink("Tests Report", "TestsReport", "TestsReport")</li>*@
+                        <li>@Html.ActionLink("UPS", "P850U", "ALLUPS")</li>
+                        @*<li>@Html.ActionLink("Primax CMS", "PrimaxCMS", "PXCMS")</li>
+                          <li>@Html.ActionLink("Agencies CMS", "AgenciesCMS", "AGCMS")</li>*@
+
+
+                        <li>@Html.ActionLink("Schedule", "Cedulemgr", "cedule")</li>
+                        <!--<li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Schedule <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Schedule Menu", "Cedulemgr", "cedule")</li>
+                                <li>@Html.ActionLink("Add Systems", "Cdl_addprj", "Cedule")</li>
+                                <li>@Html.ActionLink("Schedule List", "Disp_Steps", "Cedule")</li>-->
+                                @*<li>@Html.ActionLink("Statistics", "Cdl_statistics", "cedule")</li>*@
+                            <!--</ul>
+                        </li>-->
+
+                        <li>@Html.ActionLink("Sign out", "Logout", "Home")</li>
+                        @* <li>@Html.ActionLink("Statistics", "Statistics", "Statistics")</li>*@
+
+                    </ul>
+                </nav>
+            </div>
+        </div>
+            @*<div id="body" style="height: auto;width:auto; background-color: #d1f2eb ; ">*@
+            <div id="body" style="height: auto;width:auto; background-color: #f7ffe6 ; ">
+                    
+                    @*@RenderSection("featured", required: false)*@
+                    @RenderBody()
+
+                </div>
+                <footer style="height:auto">
+                    <div class="content-wrapper">
+                        <div class="float-left">
+                            <p>&copy; @DateTime.Now.Year - Primax Technologies Inc.</p>
+                        </div>
+                    </div>
+                </footer>
+</body>
+</html>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="DC_PGCdb">
+  <DataContextMoniker Name="/DC_PGCdbDataContext" />
+  <nestedChildShapes>
+    <classShape Id="b1cd2236-d56f-4303-aeb1-b5d9604d9d3e" absoluteBounds="1.125, 0.625, 2, 7.1553369140625">
+      <DataClassMoniker Name="/DC_PGCdbDataContext/HK_Overages_Sale" />
+      <nestedChildShapes>
+        <elementListCompartment Id="188ae8c9-68dd-4e92-b6e2-5d0426809480" absoluteBounds="1.1400000000000001, 1.085, 1.9700000000000002, 6.5953369140625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

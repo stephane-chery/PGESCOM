@@ -1,0 +1,425 @@
+﻿@model PBsizing.Models.Orig_PSM_FDBEntities2
+
+@{
+    ViewBag.Title = "TestsReport";
+    
+}
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.2.1.min.js"></script>
+<script src="~/Scripts/moment.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+<link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-iso.css" rel="stylesheet" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<style>
+    .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+        color: black;
+        background-color: #fcd900;
+    }
+</style>
+
+
+<table style="border:solid ;font-size:smaller">
+    <tr>
+
+        <td>Project# :</td>
+        <td>@ViewBag.RID </td>
+        <td class="left">
+            @Html.DropDownListFor(Model => Model.PSM_R_TRInfo, new SelectList(ViewBag.mylist as System.Collections.IEnumerable, "tr_LID", "tr_TRName"), "Select Test-Report", new { id = "ddTRid", style = "width: 200px" })
+
+        </td>
+        <td>&nbsp;&nbsp;&nbsp;</td>
+        <td>Charger IP adress:</td>
+        <td>  <input style="width: 200px" id="h_ipadrs" type="text" value="192.168.1.137" />   </td>
+        <td><a role="button" class="btn btn-warning btn-xs " id="charger_connect">Connect charger</a></td>
+        <td align="left" valign="middle"><img src="/Images/Close.png" id="pic_con" style="width:18%" /></td>
+    </tr>
+</table>
+<div class="container-fluid " id="div_next" style=" Display:none ">
+
+    <br />
+
+    <ul class="nav nav-pills red">
+        <li class="active"><a data-toggle="pill" href="#gen">PGESCOM Charger Setting</a></li>
+        <li><a data-toggle="pill" href="#equ">Live Charger Setting</a></li>
+        <li><a data-toggle="pill" href="#alm">Setting Reports</a></li>
+
+        @*<li><a data-toggle="pill" href="#brd">Boards / Manuals</a></li>
+            <li><a data-toggle="pill" href="#chk">CHECK List</a></li>
+            <li><a data-toggle="pill" href="#stp">Step By Step</a></li>
+            <li><a data-toggle="pill" href="#msr">Mesure Instruments</a></li>*@
+    </ul>
+
+    <div class="tab-content">
+        <div id="gen" class="tab-pane fade in active">
+            <table>
+                <tr>
+
+                    <td><a role="button" class="btn btn-success btn-xs " id="charger_Disp_Set">Display PGESCOM Setting</a></td>
+                    <td><a role="button" class="btn btn-success btn-xs " id="charger_sendSet">Send Setting to Live Charger</a></td>
+
+                </tr>
+            </table>
+            <div>
+                <table style="  color: brown ;font-weight:bold">
+                    <tr>
+                        <td class="right">
+                            @Html.Label("Float: ", new { style = "font-weight:bold" })
+                        </td>
+                        <td class="left">
+                            @Html.TextBox("FLT", "", new { style = "width:120px ; background:aliceblue;font-weight:bold ;color:brown; ", @readonly = "readonly" })
+                        </td>
+                        <td class="BatDim">
+                            @Html.Label("Current: ", new { style = "font-weight:bold" })
+                        </td>
+                        <td class="left">
+                            @Html.TextBox("Fcurnt", "", new { style = "width:120px; background : aliceblue;font-weight:bold ;color:brown ", @readonly = "readonly" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="right">
+                            @Html.Label("Equalize: ", new { style = "font-weight:bold" })
+                        </td>
+                        <td class="left">
+                            @Html.TextBox("EQU", "", new { style = "width:120px ; background:aliceblue;font-weight:bold ;color:brown ", @readonly = "readonly" })
+                        </td>
+                        <td class="BatDim">
+                            @Html.Label("Current: ", new { style = "font-weight:bold" })
+                        </td>
+                        <td class="left">
+                            @Html.TextBox("Ecurnt", "", new { style = "width:120px; background : aliceblue;font-weight:bold ;color:brown ", @readonly = "readonly" })
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="divtable">
+                <table class="table table-striped " style="border: 1px solid black;" id="prj">
+                    <tr style="border: 1px solid black; background-color: #fabe29;">
+                        <th style="border: 1px solid black;">    Alarm Name     </th>
+                        <th style="border: 1px solid black;">   adjustment   </th>
+                        <th class="not_mapped_style" style="text-align: center; border: 1px solid black;">Diffirential</th>
+                        <th class="not_mapped_style" style="text-align: center; border: 1px solid black;">Delay</th>
+                        <th class="not_mapped_style" style="text-align: center; border: 1px solid black;">Relay</th>
+                        <th class="not_mapped_style" style="text-align: center; border: 1px solid black;">Led</th>
+                        <th class="not_mapped_style" style="text-align: center; border: 1px solid black; white-space: nowrap;">Msg latch</th>
+                        <th class="not_mapped_style" style="text-align: center; border: 1px solid black; white-space: nowrap;">Relay latch</th>
+                        <th class="not_mapped_style" style="text-align: center; border: 1px solid black;">Logic</th>
+                        <th class="not_mapped_style" style="text-align: center; border: 1px solid black;">Priority</th>
+                        <th class="not_mapped_style" style="text-align: center; border: 1px solid black;">Common</th>
+                        <th class="not_mapped_style" style="text-align: center; border: 1px solid black; white-space: nowrap;">Enabled</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div id="equ" class="tab-pane fade">
+            <table>
+                <tr>
+                    <td><a role="button" class="btn btn-success btn-xs " id="charger_allSet">ALL Setting</a></td>
+
+                </tr>
+            </table>
+            <p id="cref" style="display:none">Charger Reference ............</p>
+            <p id="al_list" style="display:none">Alarms ............</p>
+            <p id="ss_eqlz" style="display:none">Start/Stop Equalize ............</p>
+            <p id="formation" style="display:none">Formation ............</p>
+            <p id="amperHM" style="display:none">Amper Hour Meter ............</p>   
+            <p id="switchM" style="display:none">Switch Setting & Message ............</p>
+            <p id="CompLSH" style="display:none">Compensation & Load Sharing ............</p>
+            <div>
+                @*<table class="table table-responsive tab-pane " style="border: 1px solid black;" id="Alrm_tbl">
+                        <tr style="border: 1px solid black; background-color: #fabe29;">
+                            <th style="border: 1px solid black;">    Alarm Name     </th>
+                            <th style="border: 1px solid black;">   adjustment   </th>
+                            <th class="not_mapped_style" style="text-align: center; border: 1px solid black;">Diffirential</th>
+                            <th class="not_mapped_style" style="text-align: center; border: 1px solid black;">Delay</th>
+                            <th class="not_mapped_style" style="text-align: center; border: 1px solid black;">Relay</th>
+                            <th class="not_mapped_style" style="text-align: center; border: 1px solid black;">Led</th>
+                            <th class="not_mapped_style" style="text-align: center; border: 1px solid black; white-space: nowrap;">Msg latch</th>
+                            <th class="not_mapped_style" style="text-align: center; border: 1px solid black; white-space: nowrap;">Relay latch</th>
+                            <th class="not_mapped_style" style="text-align: center; border: 1px solid black;">Logic</th>
+                            <th class="not_mapped_style" style="text-align: center; border: 1px solid black;">Priority</th>
+                            <th class="not_mapped_style" style="text-align: center; border: 1px solid black;">Common</th>
+                            <th class="not_mapped_style" style="text-align: center; border: 1px solid black;">ShutDown</th>
+                            <th class="not_mapped_style" style="text-align: center; border: 1px solid black; white-space: nowrap;">Enabled</th>
+                        </tr>
+                    </table>*@
+            </div>
+        </div>
+
+        <div id="alm" class="tab-pane fade">
+            <table>
+                <tr>
+                    <td><a role="button" class="btn btn-success btn-xs " id="fire3">Project Alarms</a></td>
+                    <td><a role="button" class="btn btn-success btn-xs " id="fire">ALL Alarms</a></td>
+                    <td><a role="button" class="btn btn-success btn-xs " id="only_enabled">Enabled Alarms</a></td>
+
+                </tr>
+            </table>
+
+            <div>
+                <table class="table table-responsive tab-pane " style="border: 1px solid black;" id="Alrm_tbl">
+                    <tr style="border: 1px solid black; background-color: #fabe29;">
+                        <th style="border: 1px solid black;">    Alarm Name     </th>
+                        <th style="border: 1px solid black;">   adjustment   </th>
+                        <th class="not_mapped_style" style="text-align: center; border: 1px solid black;">Diffirential</th>
+                        <th class="not_mapped_style" style="text-align: center; border: 1px solid black;">Delay</th>
+                        <th class="not_mapped_style" style="text-align: center; border: 1px solid black;">Relay</th>
+                        <th class="not_mapped_style" style="text-align: center; border: 1px solid black;">Led</th>
+                        <th class="not_mapped_style" style="text-align: center; border: 1px solid black; white-space: nowrap;">Msg latch</th>
+                        <th class="not_mapped_style" style="text-align: center; border: 1px solid black; white-space: nowrap;">Relay latch</th>
+                        <th class="not_mapped_style" style="text-align: center; border: 1px solid black;">Logic</th>
+                        <th class="not_mapped_style" style="text-align: center; border: 1px solid black;">Priority</th>
+                        <th class="not_mapped_style" style="text-align: center; border: 1px solid black;">Common</th>
+                        <th class="not_mapped_style" style="text-align: center; border: 1px solid black;">ShutDown</th>
+                        <th class="not_mapped_style" style="text-align: center; border: 1px solid black; white-space: nowrap;">Enabled</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div id="brd" class="tab-pane fade">
+            <h3>Boards / Manuals</h3>
+            <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        </div>
+
+        <div id="chk" class="tab-pane fade">
+            <h3>CHECK List</h3>
+            <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        </div>
+
+        <div id="stp" class="tab-pane fade">
+            <h3>Step By Step</h3>
+            <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        </div>
+
+        <div id="msr" class="tab-pane fade">
+            <h3>Mesure Instruments</h3>
+            <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+<script>
+  
+ 
+    $('#charger_connect').on('click', function (e) {
+        var js_ipadrs = $("#h_ipadrs").val();
+        var js_opc = "CMDD";
+
+     //   $("body").css("cursor", "progress");
+        $("*").css("cursor", "progress");
+      //  debugger;
+        //  if ($("#charger_connect").html() != 'Connect charger')  $("#btnTest").text()
+         var txt = $("#charger_connect").text();
+       //  debugger;
+        if (txt == 'Connect charger')
+        {
+            
+            $.ajax({
+                url: "../TestsReport/Get_CHRGR_Alarms",
+                type: "GET",
+                data: { c_opc: js_opc, C_ipadrs: js_ipadrs },
+                cache: false,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                timeout: 30000,
+                success:    function (CMDlist) {
+                   // debugger;
+                    var items_data = '';
+                    $.each(CMDlist, function (index, itemData) {
+                        //debugger;
+                        if (index == 0) {
+                            if (itemData.Float == 'OK') {
+                                $("#charger_connect").html('Disconnect');
+                                $('#pic_con').attr('src', '/Images/Tick.png');
+                                $("*").css("cursor", "default");
+                              //  $("body").css("cursor", "default");
+                            }
+                            else {
+                                alert(itemData.Equalize);
+
+                                $("#charger_connect").html('Connect charger');
+                                $('#pic_con').attr('src', '/Images/Close.png');
+                                // $("body").css("cursor", "default");
+                                $("*").css("cursor", "default");
+                            }
+                        }
+                    });
+             
+
+                }
+               
+            });
+        
+        }
+        else {
+            $("#charger_connect").html('Connect charger');
+            $('#pic_con').attr('src', '/Images/Close.png');
+        }
+
+
+    });
+
+
+
+
+    $('#charger_allSet').on('click', function (e) {
+
+        var js_ipadrs = $("#h_ipadrs").val();
+        var js_opc = "ALRM";
+        $.getJSON("../TestsReport/Get_n_save_chargerset", { c_opc: js_opc, C_ipadrs: js_ipadrs },
+        function (errors_list) {
+            var items_data = 'Charger Reference ............';
+            $.each(errors_list, function (index, itemData) {
+                debugger;
+                 if (index == 0)
+                 {
+              
+                     items_data = itemData.message;
+                 }
+         
+            });
+            
+            $("#cref").val(items_data);
+            $("cref").show();
+
+        });
+    });
+
+
+
+
+
+    $('#fire').on('click', function (e) {
+  
+      //  alert("#####fire");
+        var js_ipadrs = $("#h_ipadrs").val();
+        var js_opc = "ALRM";
+        //alert(js_ipadrs + "----" + js_txcgi);
+        $.getJSON("../TestsReport/Get_CHRGR_Alarms", { c_opc: js_opc, C_ipadrs: js_ipadrs },
+        function (allALRMlist_report) {
+            $("#Alrm_tbl tr>td").remove();
+            var items_data='';
+            $.each(allALRMlist_report, function (index, itemData) {
+                //debugger;
+                items_data += '<tr>';
+                items_data += itemData.Alarm_Name;
+                items_data += itemData.ADF;
+                items_data +=  itemData.AV ;
+                items_data +=  itemData.AD ;
+                items_data +=  itemData.AR ;
+                items_data +=  itemData.AL ;
+                items_data +=  itemData.AML ;
+                items_data +=  itemData.ARL ;
+                items_data +=  itemData.ALG ;
+                items_data +=  itemData.APR;
+                items_data += itemData.ACR;
+                items_data += itemData.ASD;
+                items_data += itemData.AEN;
+                items_data += '</tr>';
+            });
+            $('#Alrm_tbl').append(items_data);
+
+        });
+    });
+
+    $('#only_enabled').on('click', function (e) {
+        alert("#####only_enabled");
+        var js_ipadrs = $("#h_ipadrs").val();
+        var js_opc = "ALRM";
+        //alert(js_ipadrs + "----" + js_txcgi);
+        $.getJSON("../TestsReport/Get_CHRGR_Alarms", { c_opc: js_opc, C_ipadrs: js_ipadrs },
+        function (allALRMlist_report) {
+            $("#Alrm_tbl tr>td").remove();
+            var items_data = '';
+            $.each(allALRMlist_report, function (index, itemData) {
+                if (itemData.AEN.indexOf("yes.png") != -1) {
+                    items_data += '<tr>';
+                    items_data += itemData.Alarm_Name;
+                    items_data += itemData.ADF;
+                    items_data += itemData.AV;
+                    items_data += itemData.AD;
+                    items_data += itemData.AR;
+                    items_data += itemData.AL;
+                    items_data += itemData.AML;
+                    items_data += itemData.ARL;
+                    items_data += itemData.ALG;
+                    items_data += itemData.APR;
+                    items_data += itemData.ACR;
+                    items_data += itemData.ASD;
+                    items_data += itemData.AEN;
+                    items_data += '</tr>';
+                }
+            });
+            $('#Alrm_tbl').append(items_data);
+
+        });
+    });
+
+    $("#ddTRid").change(function () {
+    
+        var js_trid = $(this).val();
+      
+        $.getJSON("../TestsReport/Get_prj_Alarms", { c_TRid: js_trid },
+        function (allALRMlist_report) {
+            $("#prjAlrm_tbl tr>td").remove();
+            //var tt=ViewBag.FLT;
+            //alert("TR= " +tt );
+            var items_data = '',i=0;
+            $.each(allALRMlist_report, function (index, itemData) {
+             //   debugger;
+                if (i == 0) {
+                 //   var F = itemData.AV;
+                    $("#FLT").val(itemData.AV);
+                    $("#EQU").val(itemData.ADF);
+                    $("#Fcurnt").val(itemData.AD);
+                    $("#Ecurnt").val(itemData.AR);
+                    i++;
+                }
+                else {
+                    items_data += '<tr>';
+                    items_data += itemData.Alarm_Name;
+                    items_data += itemData.ADF;
+                    items_data += itemData.AV;
+                    items_data += itemData.AD;
+                    items_data += itemData.AR;
+                    items_data += itemData.AL;
+                    items_data += itemData.AML;
+                    items_data += itemData.ARL;
+                    items_data += itemData.ALG;
+                    items_data += itemData.APR;
+                    items_data += itemData.ACR;
+                    items_data += itemData.ASD;
+                    items_data += itemData.AEN;
+                    items_data += '</tr>';
+                  
+                }
+              //  alert(items_data);
+         
+               
+            });
+            $('#prj').append(items_data);
+            $("#div_next").show();
+          //  $("#divtable").html(items_data);
+        });
+    });
+
+</script>
+
+

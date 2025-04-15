@@ -1,0 +1,1672 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A6E727A9-0C8A-4CEF-A5D1-7CC5A6B6F882}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>App.ico</ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>PGESCOM</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>PGESCOM</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <PublishUrl>C:\dell\PGC00\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE;OFFICEXP</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Win32Resource>
+    </Win32Resource>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>PGESCOM.exe.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>15F3C37144441AB6A6227276A31F75ED8CAD3A34</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>PGESCOM_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <ItemGroup>
+    <COMReference Include="LCC11">
+      <Guid>{EDCD5812-6A06-43C3-AFAC-46EF5D14E22C}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Outlook">
+      <Guid>{00062FFF-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>9</VersionMajor>
+      <VersionMinor>6</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <Reference Include="adodb1">
+      <HintPath>..\..\Program Files (x86)\Microsoft.NET\Primary Interop Assemblies\adodb.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="DYMO.DLS.Runtime, Version=8.3.0.1242, Culture=neutral, PublicKeyToken=5426002a38745af9, processorArchitecture=MSIL" />
+    <Reference Include="EAHLibs">
+      <Name>EAHLibs</Name>
+      <HintPath>EAHLibs.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.pdfa">
+      <HintPath>.\itextsharp.pdfa.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.xtra">
+      <HintPath>.\itextsharp.xtra.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Web">
+      <Name>System.Web</Name>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services">
+      <Name>System.Web.Services</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Alarms_EQ_Oth.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="CF_PrintSetup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CF_PrintSetup.Designer.cs">
+      <DependentUpon>CF_PrintSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Charger.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ChargerCOST.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChargerCOST_P45xx.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Chargerdlg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Chargerdlg_RREV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Chargerdlg_P5500.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMS_fromSYSPRO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMS_fromSYSPRO.Designer.cs">
+      <DependentUpon>CMS_fromSYSPRO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMS_fromSYSPRO_OVRG.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMS_fromSYSPRO_OVRG.Designer.cs">
+      <DependentUpon>CMS_fromSYSPRO_OVRG.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMS_invLIST.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMS_invLIST.Designer.cs">
+      <DependentUpon>CMS_invLIST.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMS_Re_stat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMS_Re_stat.Designer.cs">
+      <DependentUpon>CMS_Re_stat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GenConfigi_Quotes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenConfigi_Quotes.Designer.cs">
+      <DependentUpon>GenConfigi_Quotes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GenConfigipwd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenConfigipwd.Designer.cs">
+      <DependentUpon>GenConfigipwd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Genpwd.cs" />
+    <Compile Include="ListViewEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="NL_Item_Option_NEW_2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="P600_SwitchMD_EZ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="P600_SwitchMD_FP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Q_service.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NL_Item_Option_NEW.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Orders_TR_STPbSTP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Orders_TR_STPbSTP.Designer.cs">
+      <DependentUpon>Orders_TR_STPbSTP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Order_ItemsBrkDown _NEW.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Order_Sched_RP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Order_Sched_RP.Designer.cs">
+      <DependentUpon>Order_Sched_RP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMS_Repair_manu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMS_Repair_manu.Designer.cs">
+      <DependentUpon>CMS_Repair_manu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMS_Repair.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMS_Repair.Designer.cs">
+      <DependentUpon>CMS_Repair.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dlg_Seq_RSA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlg_Seq_RSA.Designer.cs">
+      <DependentUpon>dlg_Seq_RSA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dlg_SYSP_Agencies_agents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlg_SYSP_Agencies_agents.Designer.cs">
+      <DependentUpon>dlg_SYSP_Agencies_agents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dlg_SYSP_Agencies.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlg_SYSP_Agencies.Designer.cs">
+      <DependentUpon>dlg_SYSP_Agencies.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dlg_addBatt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlg_addBatt.Designer.cs">
+      <DependentUpon>dlg_addBatt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMS_TOTALS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMS_TOTALS.Designer.cs">
+      <DependentUpon>CMS_TOTALS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMS_fromSYSPRO_Rates.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMS_fromSYSPRO_Rates.Designer.cs">
+      <DependentUpon>CMS_fromSYSPRO_Rates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMS_Agents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMS_Agents.Designer.cs">
+      <DependentUpon>CMS_Agents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dlg_Vaca_Events_View.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlg_Vaca_Events_View.Designer.cs">
+      <DependentUpon>dlg_Vaca_Events_View.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Order_SysPro_XML_V7.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OR_ToSched_Sel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OR_ToSched_Sel.Designer.cs">
+      <DependentUpon>OR_ToSched_Sel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dlg_Mod_TR_AlrmEQ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlg_Mod_TR_AlrmEQ.Designer.cs">
+      <DependentUpon>dlg_Mod_TR_AlrmEQ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dlg_Vaca_EvSELECT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlg_Vaca_EvSELECT.Designer.cs">
+      <DependentUpon>dlg_Vaca_EvSELECT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OR_Sched_Vacations_Z.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OR_Sched_Vacations_Z.Designer.cs">
+      <DependentUpon>OR_Sched_Vacations_Z.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dlg_Vaca_Events.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlg_Vaca_Events.Designer.cs">
+      <DependentUpon>dlg_Vaca_Events.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dlg_Vaca_Conges.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlg_Vaca_Conges.Designer.cs">
+      <DependentUpon>dlg_Vaca_Conges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dlg_Vaca_Emp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlg_Vaca_Emp.Designer.cs">
+      <DependentUpon>dlg_Vaca_Emp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Orders_Boards_New.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Orders_Boards_New.Designer.cs">
+      <DependentUpon>Orders_Boards_New.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OR_Sched_Vacations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OR_Sched_Vacations.Designer.cs">
+      <DependentUpon>OR_Sched_Vacations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="P600_SwitchMD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Print_labeV4.cs" />
+    <Compile Include="PXLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PXLogin.Designer.cs">
+      <DependentUpon>PXLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Qimport_duplicat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Qimport_duplicat.Designer.cs">
+      <DependentUpon>Qimport_duplicat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OR_ToSched_Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrintinWord.cs" />
+    <Compile Include="Q_System.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Q_System.Designer.cs">
+      <DependentUpon>Q_System.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QuoteV4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuoteV4.Designer.cs">
+      <DependentUpon>QuoteV4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QuoteV3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuoteV3.Designer.cs">
+      <DependentUpon>QuoteV3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QuoteV2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuoteV2.Designer.cs">
+      <DependentUpon>QuoteV2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Q_Single.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Q_Single.Designer.cs">
+      <DependentUpon>Q_Single.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Stati_NEW.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SYSPRO_QuerCPT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SYSPRO_QuerCPT.Designer.cs">
+      <DependentUpon>SYSPRO_QuerCPT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SYSPRO_Queries.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SYSPRO_Queries.Designer.cs">
+      <DependentUpon>SYSPRO_Queries.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SYSPRO_Reps.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SYSPRO_Reps.Designer.cs">
+      <DependentUpon>SYSPRO_Reps.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Orders_TR_New_Alarms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Orders_TR_New_Alarms.Designer.cs">
+      <DependentUpon>Orders_TR_New_Alarms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DC_PGCdb.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DC_PGCdb.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Order_SysPro_XML.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlg_SYSP_Views.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlg_SYSP_Views.Designer.cs">
+      <DependentUpon>dlg_SYSP_Views.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRMLS_P4500XX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMLS_P4500XX.Designer.cs">
+      <DependentUpon>FRMLS_P4500XX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CR_Reports\crstl_Config.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crstl_Config.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CR_Reports\CrystalReport1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CR_Reports\CR_Invoice.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CR_Invoice.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Order_TR_XLPrint.cs" />
+    <Compile Include="Quote.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Resources.Designer.cs" />
+    <Compile Include="Setng_006_XLcpts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setng_006_XLcpts.Designer.cs">
+      <DependentUpon>Setng_006_XLcpts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dlg_SA_cmsRates.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlg_SA_cmsRates.Designer.cs">
+      <DependentUpon>dlg_SA_cmsRates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dlg_CMS_Accounts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlg_CMS_Accounts.Designer.cs">
+      <DependentUpon>dlg_CMS_Accounts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dlg_Sales_Agencies.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlg_Sales_Agencies.Designer.cs">
+      <DependentUpon>dlg_Sales_Agencies.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dlg_NoteCredit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlg_NoteCredit.Designer.cs">
+      <DependentUpon>dlg_NoteCredit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FichWord_aNEW.cs" />
+    <Compile Include="Form4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form4.Designer.cs">
+      <DependentUpon>Form4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Print_label_NEW.cs" />
+    <Compile Include="Quote_NEW.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlg_CopyCPT_Avail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlg_Avail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlg_VDC_IDC_Disable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RW_data.cs" />
+    <Compile Include="Setng_003_Avail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setng_003_Avail.Designer.cs">
+      <DependentUpon>Setng_003_Avail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dlg_Admin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Orders_Carriers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Orders_Carriers.Designer.cs">
+      <DependentUpon>Orders_Carriers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Options_Admin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Options_Cpt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Options_Cpt.Designer.cs">
+      <DependentUpon>Options_Cpt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setng_005.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setng_005.Designer.cs">
+      <DependentUpon>Setng_005.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setng_004.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setng_004.Designer.cs">
+      <DependentUpon>Setng_004.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setng_003.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setng_003.Designer.cs">
+      <DependentUpon>Setng_003.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setng_002.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setng_002.Designer.cs">
+      <DependentUpon>Setng_002.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setng_001.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setng_001.Designer.cs">
+      <DependentUpon>Setng_001.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Orders_Boards_Mac.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PXMS_group.cs" />
+    <Compile Include="PXMS_Charger_Setting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PXMS_Charger_Setting.Designer.cs">
+      <DependentUpon>PXMS_Charger_Setting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CMS_xlBills.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMS_xlBills.Designer.cs">
+      <DependentUpon>CMS_xlBills.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CmySoc_Station.cs" />
+    <Compile Include="Company.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Component.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Contacts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="disp_RPT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="disp_RPT.Designer.cs">
+      <DependentUpon>disp_RPT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OR_Sched_projects_n00.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Orders_BoardLots.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Orders_BoardLots.Designer.cs">
+      <DependentUpon>Orders_BoardLots.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dlg_XChng_RAT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlg_CFTR_restore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Order_TR_SPT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Order_TR_SPT.Designer.cs">
+      <DependentUpon>Order_TR_SPT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OR_Sched_projects_NEW.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Orders_Boards.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Orders_Boards.Designer.cs">
+      <DependentUpon>Orders_Boards.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Rectif_TR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Copy_of Order_TRPrint.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="dlgAdrs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgCreditCrds.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ed_LVmodif.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FichOutlook.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FichWord.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FichWord_Config.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fill_BigFile13.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Company_Ges.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ges_Cont_Sal_Ag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InfoBoard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListViewColumnSorter.cs">
+    </Compile>
+    <Compile Include="MainMDI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Misc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modified_EditListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="NL_Item_Option.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Options.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Options_look.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Order.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Orders_Look.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Orders_paidBills.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Orders_TREP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Orders_XQR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Order_ItemsBrkDown.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Order_TRPrint.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order_TRPrint_FINAL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OR_ToSched.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="P5500.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Passwd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PbsInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Print_label.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PSM_About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QimportRxx.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Quotes_Look.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CR_Reports\P_Config.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>P_Config.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="settingMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="settingMenu.Designer.cs">
+      <DependentUpon>settingMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Stati.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestEQA.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UPS_maker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UPS_maker.Designer.cs">
+      <DependentUpon>UPS_maker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XPRT_XLS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="X_Serial.cs" />
+    <Content Include="PGESCOM.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\bgd.jpg" />
+    <Content Include="Resources\bullet_ball_glass_red.png" />
+    <Content Include="Resources\bullet_ball_green.png" />
+    <Content Include="Resources\Control Panel.png" />
+    <Content Include="Resources\Minesweeper.png" />
+    <Content Include="Resources\Pad Lock.png" />
+    <Content Include="Resources\Performance and Maintenance.png" />
+    <Content Include="Resources\Save-icon.png" />
+    <Content Include="Resources\Search1.png" />
+    <Content Include="Resources\System Configurations.png" />
+    <EmbeddedResource Include="UPS_maker.resx">
+      <DependentUpon>UPS_maker.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="PGESCOM_TemporaryKey.pfx" />
+    <None Include="Resources\Button-Next-icon.png" />
+    <EmbeddedResource Include="Alarms_EQ_Oth.resx">
+      <DependentUpon>Alarms_EQ_Oth.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CF_PrintSetup.resx">
+      <DependentUpon>CF_PrintSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChargerCOST.resx">
+      <DependentUpon>ChargerCOST.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Chargerdlg.resx">
+      <DependentUpon>Chargerdlg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Chargerdlg_RREV.resx">
+      <DependentUpon>Chargerdlg_RREV.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Chargerdlg_P5500.resx">
+      <DependentUpon>Chargerdlg_P5500.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMS_fromSYSPRO.resx">
+      <DependentUpon>CMS_fromSYSPRO.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMS_fromSYSPRO_OVRG.resx">
+      <DependentUpon>CMS_fromSYSPRO_OVRG.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMS_invLIST.resx">
+      <DependentUpon>CMS_invLIST.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMS_Re_stat.resx">
+      <DependentUpon>CMS_Re_stat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenConfigi_Quotes.resx">
+      <DependentUpon>GenConfigi_Quotes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenConfigipwd.resx">
+      <DependentUpon>GenConfigipwd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NL_Item_Option_NEW_2.resx">
+      <DependentUpon>NL_Item_Option_NEW_2.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="P600_SwitchMD_EZ.resx">
+      <DependentUpon>P600_SwitchMD_EZ.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="P600_SwitchMD_FP.resx">
+      <DependentUpon>P600_SwitchMD_FP.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Q_service.resx">
+      <DependentUpon>Q_service.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NL_Item_Option_NEW.resx">
+      <DependentUpon>NL_Item_Option_NEW.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Orders_TR_STPbSTP.resx">
+      <DependentUpon>Orders_TR_STPbSTP.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Order_ItemsBrkDown _NEW.resx">
+      <DependentUpon>Order_ItemsBrkDown _NEW.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Order_Sched_RP.resx">
+      <DependentUpon>Order_Sched_RP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMS_Repair_manu.resx">
+      <DependentUpon>CMS_Repair_manu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMS_Repair.resx">
+      <DependentUpon>CMS_Repair.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlg_Seq_RSA.resx">
+      <DependentUpon>dlg_Seq_RSA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlg_SYSP_Agencies_agents.resx">
+      <DependentUpon>dlg_SYSP_Agencies_agents.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlg_SYSP_Agencies.resx">
+      <DependentUpon>dlg_SYSP_Agencies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlg_addBatt.resx">
+      <DependentUpon>dlg_addBatt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMS_TOTALS.resx">
+      <DependentUpon>CMS_TOTALS.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="DC_PGCdb.dbml.layout">
+      <DependentUpon>DC_PGCdb.dbml</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <EmbeddedResource Include="CMS_fromSYSPRO_Rates.resx">
+      <DependentUpon>CMS_fromSYSPRO_Rates.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMS_Agents.resx">
+      <DependentUpon>CMS_Agents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlg_Vaca_Events_View.resx">
+      <DependentUpon>dlg_Vaca_Events_View.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Order_SysPro_XML_V7.resx">
+      <DependentUpon>Order_SysPro_XML_V7.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OR_ToSched_Sel.resx">
+      <DependentUpon>OR_ToSched_Sel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlg_Mod_TR_AlrmEQ.resx">
+      <DependentUpon>dlg_Mod_TR_AlrmEQ.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlg_Vaca_EvSELECT.resx">
+      <DependentUpon>dlg_Vaca_EvSELECT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OR_Sched_Vacations_Z.resx">
+      <DependentUpon>OR_Sched_Vacations_Z.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlg_Vaca_Events.resx">
+      <DependentUpon>dlg_Vaca_Events.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlg_Vaca_Conges.resx">
+      <DependentUpon>dlg_Vaca_Conges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlg_Vaca_Emp.resx">
+      <DependentUpon>dlg_Vaca_Emp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Orders_Boards_New.resx">
+      <DependentUpon>Orders_Boards_New.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OR_Sched_Vacations.resx">
+      <DependentUpon>OR_Sched_Vacations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="P600_SwitchMD.resx">
+      <DependentUpon>P600_SwitchMD.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PXLogin.resx">
+      <DependentUpon>PXLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Qimport_duplicat.resx">
+      <DependentUpon>Qimport_duplicat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OR_ToSched_Edit.resx">
+      <DependentUpon>OR_ToSched_Edit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Q_System.resx">
+      <DependentUpon>Q_System.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuoteV4.resx">
+      <DependentUpon>QuoteV4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuoteV3.resx">
+      <DependentUpon>QuoteV3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuoteV2.resx">
+      <DependentUpon>QuoteV2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Q_Single.resx">
+      <DependentUpon>Q_Single.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stati_NEW.resx">
+      <DependentUpon>Stati_NEW.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SYSPRO_QuerCPT.resx">
+      <DependentUpon>SYSPRO_QuerCPT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SYSPRO_Queries.resx">
+      <DependentUpon>SYSPRO_Queries.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SYSPRO_Reps.resx">
+      <DependentUpon>SYSPRO_Reps.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Orders_TR_New_Alarms.resx">
+      <DependentUpon>Orders_TR_New_Alarms.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Order_SysPro_XML.resx">
+      <DependentUpon>Order_SysPro_XML.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlg_SYSP_Views.resx">
+      <DependentUpon>dlg_SYSP_Views.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMLS_P4500XX.resx">
+      <DependentUpon>FRMLS_P4500XX.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CR_Reports\crstl_Config.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crstl_Config.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CR_Reports\CrystalReport1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CR_Reports\CR_Invoice.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CR_Invoice.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Resource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+    </Resource>
+    <EmbeddedResource Include="Quote.resx">
+      <DependentUpon>Quote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setng_006_XLcpts.resx">
+      <DependentUpon>Setng_006_XLcpts.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlg_SA_cmsRates.resx">
+      <DependentUpon>dlg_SA_cmsRates.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlg_CMS_Accounts.resx">
+      <DependentUpon>dlg_CMS_Accounts.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlg_Sales_Agencies.resx">
+      <DependentUpon>dlg_Sales_Agencies.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlg_NoteCredit.resx">
+      <DependentUpon>dlg_NoteCredit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form4.resx">
+      <DependentUpon>Form4.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quote_NEW.resx">
+      <DependentUpon>Quote_NEW.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlg_CopyCPT_Avail.resx">
+      <DependentUpon>dlg_CopyCPT_Avail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlg_Avail.resx">
+      <DependentUpon>dlg_Avail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlg_VDC_IDC_Disable.resx">
+      <DependentUpon>dlg_VDC_IDC_Disable.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setng_003_Avail.resx">
+      <DependentUpon>Setng_003_Avail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlg_Admin.resx">
+      <DependentUpon>dlg_Admin.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Orders_Carriers.resx">
+      <DependentUpon>Orders_Carriers.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Options_Admin.resx">
+      <DependentUpon>Options_Admin.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Options_Cpt.resx">
+      <DependentUpon>Options_Cpt.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setng_005.resx">
+      <DependentUpon>Setng_005.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setng_004.resx">
+      <DependentUpon>Setng_004.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setng_003.resx">
+      <DependentUpon>Setng_003.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setng_002.resx">
+      <DependentUpon>Setng_002.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setng_001.resx">
+      <DependentUpon>Setng_001.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Orders_Boards_Mac.resx">
+      <DependentUpon>Orders_Boards_Mac.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PXMS_Charger_Setting.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>PXMS_Charger_Setting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMS_xlBills.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>CMS_xlBills.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Company.resx">
+      <DependentUpon>Company.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contacts.resx">
+      <DependentUpon>Contacts.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="disp_RPT.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>disp_RPT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OR_Sched_projects_n00.resx">
+      <DependentUpon>OR_Sched_projects_n00.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Orders_BoardLots.resx">
+      <DependentUpon>Orders_BoardLots.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlg_CFTR_restore.resx">
+      <DependentUpon>dlg_CFTR_restore.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlg_XChng_RAT.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>dlg_XChng_RAT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Order_TR_SPT.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Order_TR_SPT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OR_Sched_projects_NEW.resx">
+      <DependentUpon>OR_Sched_projects_NEW.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Orders_Boards.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Orders_Boards.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rectif_TR.resx">
+      <DependentUpon>Rectif_TR.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgAdrs.resx">
+      <DependentUpon>dlgAdrs.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgCreditCrds.resx">
+      <DependentUpon>dlgCreditCrds.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FichWord_Config.resx">
+      <DependentUpon>FichWord_Config.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fill_BigFile13.resx">
+      <DependentUpon>Fill_BigFile13.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Company_Ges.resx">
+      <DependentUpon>Company_Ges.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ges_Cont_Sal_Ag.resx">
+      <DependentUpon>Ges_Cont_Sal_Ag.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InfoBoard.resx">
+      <DependentUpon>InfoBoard.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainMDI.resx">
+      <DependentUpon>MainMDI.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Misc.resx">
+      <DependentUpon>Misc.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modified_EditListView.resx">
+      <DependentUpon>Modified_EditListView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NL_Item_Option.resx">
+      <DependentUpon>NL_Item_Option.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Options.resx">
+      <DependentUpon>Options.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Options_look.resx">
+      <DependentUpon>Options_look.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Order.resx">
+      <DependentUpon>Order.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Orders_Look.resx">
+      <DependentUpon>Orders_Look.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Orders_paidBills.resx">
+      <DependentUpon>Orders_paidBills.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Orders_TREP.resx">
+      <DependentUpon>Orders_TREP.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Orders_XQR.resx">
+      <DependentUpon>Orders_XQR.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Order_ItemsBrkDown.resx">
+      <DependentUpon>Order_ItemsBrkDown.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OR_ToSched.resx">
+      <DependentUpon>OR_ToSched.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="P5500.resx">
+      <DependentUpon>P5500.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Passwd.resx">
+      <DependentUpon>Passwd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PbsInfo.resx">
+      <DependentUpon>PbsInfo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PSM_About.resx">
+      <DependentUpon>PSM_About.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QimportRxx.resx">
+      <DependentUpon>QimportRxx.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quotes_Look.resx">
+      <DependentUpon>Quotes_Look.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CR_Reports\P_Config.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>P_Config.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="settingMenu.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>settingMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stati.resx">
+      <DependentUpon>Stati.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
+    <None Include="ClassDiagram3.cd" />
+    <None Include="DC_PGCdb.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>DC_PGCdb.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="PGESCOM.exe.manifest" />
+    <Content Include="App.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\syspro.PNG" />
+    <None Include="Resources\Refresh-icon32.png" />
+    <None Include="Resources\Refresh-icon.png" />
+    <None Include="Resources\Forward-icon48.png" />
+    <None Include="Resources\Font-icon.png" />
+    <None Include="Resources\Font-Open-Type-icon.png" />
+    <None Include="Resources\cut-icon2.png" />
+    <None Include="Resources\copy-icon.png" />
+    <None Include="Resources\paste-icon.png" />
+    <None Include="Resources\cut-icon222.png" />
+    <None Include="Resources\Network-Remote-Connexion-icon.png" />
+    <None Include="Resources\x-icon.png" />
+    <None Include="Resources\vija.gif" />
+    <None Include="Resources\red_left_arrow_10333.jpg" />
+    <None Include="Resources\red_left_arrow_1032.jpg" />
+    <None Include="Resources\red_left_arrow_1031.jpg" />
+    <None Include="Resources\red_left_arrow_103.jpg" />
+    <None Include="Resources\red_left_arrow_100.JPG" />
+    <None Include="Resources\cheques1.jpg" />
+    <None Include="Resources\Refresh_256x256.png" />
+    <None Include="Resources\Document-48x481.png" />
+    <None Include="Resources\gear-48x48.png" />
+    <None Include="Resources\folder-48x48.png" />
+    <None Include="Resources\Document-48x48.png" />
+    <None Include="Resources\file_edit1.ico" />
+    <None Include="Resources\Log Off1.ico" />
+    <None Include="Resources\widget1.png" />
+    <None Include="Resources\vltag21.jpg" />
+    <None Include="Resources\users1.png" />
+    <None Include="Resources\up1.png" />
+    <None Include="Resources\Undo1.png" />
+    <None Include="Resources\Tick1.png" />
+    <None Include="Resources\System-Security-Warning-48x481.png" />
+    <None Include="Resources\System-Security-Question-48x481.png" />
+    <None Include="Resources\System-Package-48x481.png" />
+    <None Include="Resources\System Configurations1.png" />
+    <None Include="Resources\Settings-48x4811.png" />
+    <None Include="Resources\settings-48x482.png" />
+    <None Include="Resources\search2.png" />
+    <None Include="Resources\search-48x481.png" />
+    <None Include="Resources\Search-2-48x481.png" />
+    <None Include="Resources\Search11.png" />
+    <None Include="Resources\search00011.png" />
+    <None Include="Resources\safe1.png" />
+    <None Include="Resources\remove2.png" />
+    <None Include="Resources\remove11.png" />
+    <None Include="Resources\RATRACE1.gif" />
+    <None Include="Resources\RADAR1.gif" />
+    <None Include="Resources\process_add1.png" />
+    <None Include="Resources\printer-128x1281.png" />
+    <None Include="Resources\printer-48x481.png" />
+    <None Include="Resources\printer-1-48x481.png" />
+    <None Include="Resources\Preview2.jpg" />
+    <None Include="Resources\Preview11.jpg" />
+    <None Include="Resources\postscript-128x1281.png" />
+    <None Include="Resources\Pgescom_logo1.JPG" />
+    <None Include="Resources\Performance and Maintenance1.png" />
+    <None Include="Resources\Pad Lock1.png" />
+    <None Include="Resources\oprinter-128x1281.png" />
+    <None Include="Resources\note_accept1.png" />
+    <None Include="Resources\new-48x481.png" />
+    <None Include="Resources\motherboard1.png" />
+    <None Include="Resources\monitor-Vista-48x481.png" />
+    <None Include="Resources\Minesweeper1.png" />
+    <None Include="Resources\Magnifying-Glass-2-48x481.png" />
+    <None Include="Resources\mac1.jpg" />
+    <None Include="Resources\login-48x481.png" />
+    <None Include="Resources\K0131.png" />
+    <None Include="Resources\internet-48x481.png" />
+    <None Include="Resources\insert_link1.png" />
+    <None Include="Resources\information-21.png" />
+    <None Include="Resources\images2.jpg" />
+    <None Include="Resources\images11.jpg" />
+    <None Include="Resources\hub1.jpg" />
+    <None Include="Resources\HPIM35951.jpg" />
+    <None Include="Resources\hammer1.png" />
+    <None Include="Resources\glass_numbers_31.png" />
+    <None Include="Resources\glass_numbers_11.png" />
+    <None Include="Resources\forward1.png" />
+    <None Include="Resources\folder_full_delete1.png" />
+    <None Include="Resources\folder_full_accept1.png" />
+    <None Include="Resources\folder_black_explorer1.png" />
+    <None Include="Resources\Floppy1.png" />
+    <None Include="Resources\FillLeftHS1.BMP" />
+    <None Include="Resources\excel1.png" />
+    <None Include="Resources\Excel 20071.png" />
+    <None Include="Resources\Error1.png" />
+    <None Include="Resources\email_18_animated1.gif" />
+    <None Include="Resources\eee1.jpg" />
+    <None Include="Resources\Edit1.png" />
+    <None Include="Resources\date-48x481.png" />
+    <None Include="Resources\cpt1.jpg" />
+    <None Include="Resources\Copy File1.png" />
+    <None Include="Resources\Control Panel1.png" />
+    <None Include="Resources\computer_remove1.png" />
+    <None Include="Resources\computer_accept1.png" />
+    <None Include="Resources\coins1.png" />
+    <None Include="Resources\clock1.png" />
+    <None Include="Resources\CARD 0071.jpg" />
+    <None Include="Resources\calculator_add1.png" />
+    <None Include="Resources\Calculator1.png" />
+    <None Include="Resources\bullet_ball_green1.png" />
+    <None Include="Resources\bullet_ball_glass_red2.png" />
+    <None Include="Resources\bullet_ball_glass_red11.png" />
+    <None Include="Resources\bullet_ball_glass_green1.png" />
+    <None Include="Resources\bg_blue_2222221.GIF" />
+    <None Include="Resources\bg_b1.gif" />
+    <None Include="Resources\bg1.gif" />
+    <None Include="Resources\bg333331.GIF" />
+    <None Include="Resources\bg31.gif" />
+    <None Include="Resources\BannerTileBackground1.gif" />
+    <None Include="Resources\back1.png" />
+    <None Include="Resources\Arrow-Down1.png" />
+    <None Include="Resources\Arrow Right1.png" />
+    <None Include="Resources\Arrow Left1.png" />
+    <None Include="Resources\Arrow Down1.png" />
+    <None Include="Resources\application_add1.png" />
+    <None Include="Resources\anim0006-1_e01.gif" />
+    <None Include="Resources\anchor1.png" />
+    <None Include="Resources\anbird1_e01.gif" />
+    <None Include="Resources\accept2.png" />
+    <None Include="Resources\accept11.png" />
+    <None Include="Resources\120px-Electronic_component_germanium_diode1.jpg" />
+    <None Include="Resources\3H2CTCA0H5YQOCANAI3FXCAWWW25WCAF570XVCAPQVZ3PCAHB3C8VCAHHGO49CAIV7FO3CAM80V23CAVZTHD4CADXG4HCCA5M1D9ECA4PTL5ZCAG0FCGPCAE7IMIQCAZBUNICCAWX01SLCA7VCRRJ1.jpg" />
+    <None Include="Resources\1 %28500%291.png" />
+    <None Include="Resources\1 %28480%291.png" />
+    <None Include="Resources\1 %28217%292.png" />
+    <None Include="Resources\1 %28203%291.png" />
+    <None Include="Resources\1 %28118%291.png" />
+    <None Include="Resources\1 %28116%291.png" />
+    <None Include="Resources\1 %28107%291.png" />
+    <None Include="Resources\1 %28106%291.png" />
+    <None Include="Resources\1 %2876%291.png" />
+    <None Include="Resources\1 %2834%291.png" />
+    <None Include="Resources\1 %2827%291.png" />
+    <None Include="Resources\1 %287%291.png" />
+    <None Include="Resources\1 %285%291.png" />
+    <None Include="Resources\Windows Defender1.png" />
+    <None Include="Resources\1 %28217%291.png" />
+    <None Include="Resources\Settings-48x481.png" />
+    <None Include="Resources\anim0006-1_e0.gif" />
+    <None Include="Resources\anbird1_e0.gif" />
+    <None Include="Resources\email_18_animated.gif" />
+    <None Include="Resources\1 %28203%29.png" />
+    <None Include="Resources\coins.png" />
+    <None Include="Resources\safe.png" />
+    <None Include="Resources\1 %2876%29.png" />
+    <None Include="Resources\Windows Defender.png" />
+    <None Include="Resources\bullet_ball_glass_red1.png" />
+    <None Include="Resources\bullet_ball_glass_green.png" />
+    <None Include="Resources\Calculator.png" />
+    <None Include="Resources\Preview1.jpg" />
+    <None Include="Resources\1 %287%29.png" />
+    <None Include="Resources\Arrow Right.png" />
+    <None Include="Resources\Arrow Left.png" />
+    <None Include="Resources\Copy File.png" />
+    <None Include="Resources\Error.png" />
+    <None Include="Resources\Tick.png" />
+    <None Include="Resources\Preview.jpg" />
+    <None Include="Resources\glass_numbers_3.png" />
+    <None Include="Resources\glass_numbers_1.png" />
+    <None Include="Resources\anchor.png" />
+    <None Include="Resources\insert_link.png" />
+    <None Include="Resources\3H2CTCA0H5YQOCANAI3FXCAWWW25WCAF570XVCAPQVZ3PCAHB3C8VCAHHGO49CAIV7FO3CAM80V23CAVZTHD4CADXG4HCCA5M1D9ECA4PTL5ZCAG0FCGPCAE7IMIQCAZBUNICCAWX01SLCA7VCRRJ.jpg" />
+    <None Include="Resources\images1.jpg" />
+    <None Include="Resources\HPIM3595.jpg" />
+    <None Include="Resources\CARD 007.jpg" />
+    <None Include="Resources\1 %28106%29.png" />
+    <None Include="Resources\1 %28480%29.png" />
+    <None Include="Resources\1 %28217%29.png" />
+    <None Include="Resources\1 %28118%29.png" />
+    <None Include="Resources\1 %28116%29.png" />
+    <None Include="Resources\1 %28500%29.png" />
+    <None Include="Resources\120px-Electronic_component_germanium_diode.jpg" />
+    <None Include="Resources\cpt.jpg" />
+    <None Include="Resources\Undo.png" />
+    <None Include="Resources\Edit.png" />
+    <None Include="Resources\1 %2827%29.png" />
+    <None Include="Resources\1 %2834%29.png" />
+    <None Include="Resources\bg_blue_222222.GIF" />
+    <None Include="Resources\bg33333.GIF" />
+    <None Include="Resources\bg3.gif" />
+    <None Include="Resources\RADAR.gif" />
+    <None Include="Resources\RATRACE.gif" />
+    <None Include="Resources\eee.jpg" />
+    <None Include="Resources\vltag2.jpg" />
+    <None Include="Resources\1 %28107%29.png" />
+    <None Include="Resources\Excel 2007.png" />
+    <None Include="Resources\excel.png" />
+    <None Include="Resources\1 %285%29.png" />
+    <None Include="Resources\K013.png" />
+    <None Include="PGC25_config.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Resources\System-Package-48x48.png" />
+    <None Include="Resources\forward.png" />
+    <None Include="Resources\information-2.png" />
+    <None Include="Resources\Arrow Down.png" />
+    <None Include="Resources\Arrow-Down.png" />
+    <None Include="Resources\bg.gif" />
+    <None Include="Resources\login-48x48.png" />
+    <None Include="Resources\hammer.png" />
+    <None Include="Resources\widget.png" />
+    <None Include="Resources\System-Security-Warning-48x48.png" />
+    <None Include="Resources\Search-2-48x48.png" />
+    <None Include="Resources\motherboard.png" />
+    <None Include="Resources\settings-48x48.png" />
+    <None Include="Resources\back.png" />
+    <None Include="Resources\up.png" />
+    <None Include="Resources\users.png" />
+    <None Include="Resources\internet-48x48.png" />
+    <None Include="Resources\mac.jpg" />
+    <None Include="Resources\hub.jpg" />
+    <None Include="Resources\images.jpg" />
+    <None Include="Resources\monitor-Vista-48x48.png" />
+    <None Include="Resources\search-48x48.png" />
+    <None Include="Resources\date-48x48.png" />
+    <None Include="Resources\Magnifying-Glass-2-48x48.png" />
+    <None Include="Resources\new-48x48.png" />
+    <None Include="Resources\System-Security-Question-48x48.png" />
+    <None Include="Resources\note_accept.png" />
+    <None Include="Resources\clock.png" />
+    <None Include="Resources\search.png" />
+    <None Include="Resources\search0001.png" />
+    <None Include="Resources\FillLeftHS.BMP" />
+    <None Include="Resources\computer_remove.png" />
+    <None Include="Resources\computer_accept.png" />
+    <None Include="Resources\Log Off.ico" />
+    <None Include="Resources\calculator_add.png" />
+    <None Include="Resources\folder_black_explorer.png" />
+    <None Include="Resources\Floppy.png" />
+    <None Include="Properties\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Resources\process_add.png" />
+    <None Include="Resources\folder_full_delete.png" />
+    <None Include="Resources\folder_full_accept.png" />
+    <None Include="Resources\remove1.png" />
+    <None Include="Resources\accept1.png" />
+    <None Include="Resources\remove.png" />
+    <None Include="Resources\accept.png" />
+    <None Include="Resources\application_add.png" />
+    <None Include="Resources\oprinter-128x128.png" />
+    <None Include="Resources\printer-1-48x48.png" />
+    <None Include="Resources\postscript-128x128.png" />
+    <None Include="Resources\Printer 1.ico" />
+    <None Include="Resources\printer-48x48.png" />
+    <None Include="Resources\printer-128x128.png" />
+    <None Include="Resources\Pgescom_logo.JPG" />
+    <None Include="Resources\bg_b.gif" />
+    <None Include="Resources\BannerTileBackground.gif" />
+    <None Include="Resources\file_edit.ico" />
+    <None Include="Resources\021.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+    <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>copy C:\00-primx\2016_ERP_PGESCOM\CR_Reports\crstl_Config.rpt  C:\00-primx\2016_ERP_PGESCOM\bin\Debug\CR_Reports\
+copy C:\00-primx\2016_ERP_PGESCOM\CR_Reports\crstl_Config.rpt  C:\00-primx\2016_ERP_PGESCOM\bin\release\CR_Reports\</PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

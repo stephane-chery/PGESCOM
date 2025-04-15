@@ -1,0 +1,1021 @@
+﻿@model PBsizing.Models.V_cedulotrs_jobs
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<style>
+    .container {
+        /*width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: 10px;*/
+        margin-left: 10px;
+    }
+
+    .table .thead-light th {
+        color: #401500;
+ 
+        background-color: khaki; /*// #FFDDCC;*/
+        /*border-color: #792700;*/
+    }
+   
+</style>
+
+<link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<div class="container-fluid">
+    @using (Html.BeginForm())
+    {
+
+    <div class="row">
+        <div class="col-sm-4" style=" height:auto;width:auto">
+            <table id="tbljob" style="color:red ;">
+                <tr>
+                    <td colspan="2" style="border: 1px solid">  <button type="button" class="btn btn-primary btn-block">PROJECT Info.</button></td>
+                </tr>
+                <tr>
+                    <td align="right" nowrap style="color:black; border: 1px solid">
+                        Customer
+                    </td>
+                    <td align="left" style="width:250px; text-align:left; border: 3px solid">
+                        @Html.DisplayFor(model => model.customer, new { @class = "form-control  ", style = "width:100px; text-align:left; " })
+                        @*@Html.TextBoxFor(model => model.customer, new { @class = "form-control  ", style = "width:250px; text-align:left; ", @readonly = "readonly" })*@
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" nowrap style="color:black; border: 1px solid">
+                        Project# :
+                    </td>
+                    <td align="left" style="border: 3px solid">
+                        @Html.DisplayFor(model => model.pgc_prj, new { @class = "form-control  ", style = "width:100px; text-align:left; " })
+                        @*@Html.TextBoxFor(model => model.pgc_prj, new { @class = "form-control  ", style = "width:100px; text-align:left; ", @readonly = "readonly" })*@
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" nowrap style="color:black ; border: 1px solid ">
+                        System :
+                    </td>
+                    <td align="left" style="border: 3px solid">
+                        @Html.DisplayFor(model => model.StockCode, new { @class = "form-control  ", style = "width:100px; text-align:left; " })
+                        @*@Html.TextBoxFor(model => model.StockCode, new { @class = "form-control  ", style = "width:250px; text-align:left; ", @readonly = "readonly" })*@
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" nowrap style="color:black; border: 1px solid">
+                        Delivery Date :
+                    </td>
+                    <td align="left" style="border: 3px solid">
+                        @*@Html.DisplayFor(model => model.JobDD, "{0:MM/dd/yyyy}", new { maxlength = 10, @class = "form-control  ", style = "width:150px; text-align:left; " })*@
+                        @ViewBag.dtjob
+                        @*@Html.TextBoxFor(model => model.JobDD, "{0:MM/dd/yyyy}", new { maxlength = 10, @class = "form-control  ", style = "width:150px; text-align:left; ", @readonly = "readonly" })*@
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>   @Html.TextBoxFor(model => model.trslid, new { @class = "hidden", id = "trslid", style = "width:50px; ", @readonly = "readonly" })</td>
+                </tr>
+            </table>
+            @*<div id="dv_errsql">
+
+            </div>
+            @Html.TextBox("errsql", null, new { @class = "form-control", style = "width:400px; background-color: #cee3e3; ", @readonly = "readonly" })*@
+        </div>
+        <div class="col-sm-8" style=" height:auto;width:auto">
+
+            <table class=" table-condensed">
+                <thead class="thead-light">
+
+                    <tr>
+                        <th style="text-align:center; background-color:khaki;border: 1px solid ">Step</th>
+                        <th style="text-align:center; background-color:khaki;border: 1px solid ">Current Status</th>
+                        <th style="text-align:center; background-color:khaki;border: 1px solid ">New Status</th>
+                        <th style="text-align:center; background-color:khaki;border: 1px solid ">Current Resp.</th>
+                        <th style="text-align:center; background-color:khaki;border: 1px solid ">New Resp.</th>
+                        <th></th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row" style="text-align:right ;border: 1px solid">Customer Approbation</th>
+                        <td align="center" style="background-color:white;border: 1px solid"> <img src="@Url.Content(Model.pato_af)" /> </td>
+                        <td class="left" style="border: 1px solid ">
+                            @{
+                                if (ViewBag.af == 1)
+                                {
+                                                        <select id="cbst_af" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 150px; ">
+                                                                                        <option value="Select">Select Status</option>
+                                                            <option value="1">En attente</option>
+                                                            <option value="2">En cours</option>
+                                                            <option value="3">En retard</option>
+                                                            <option value="4">Terminé</option>
+                                                            <option value="5">En cours-Terminé</option>
+                                                        </select>
+                                }
+                                else
+                                {
+                                    <select id="cbst_af" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 120px; display: none ">
+                                        <option value="Select">Select </option>
+                                    </select>
+                                }
+                            }
+
+                        </td>
+                        @*<td>  <button id="btn_sav_af" type="button" class="btn btn-primary btn-sm" style="display: none;">Save </button> </td>*@
+                        <td class="left" style="border: 1px solid ;text-align:center">
+                            @Html.DisplayFor(model => model.emp_af, new { @class = "form-control  ", style = "color:green; text-align:center; " })
+                        </td>
+                        <td class="left" style="border: 1px solid ">
+                            @{
+                                if (ViewBag.af == 1)
+                                {
+                                    @Html.DropDownList("cbemp_af", new SelectList(ViewBag.conclst as System.Collections.IEnumerable, "emplid", "empName"), "Select Employee", new { @class = "selectpicker form-control", id = "cbaf", style = "background-color: #cefa29; color: black;width: 150px" })
+                                }
+                                else
+                                {
+                                    <select id="cbaf" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 120px; display: none ">
+                                        <option value="Select">Select </option>
+                                    </select>
+                                }
+                            }
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="row" style="text-align:left;border: 1px solid ">Conception éléctrique</th>
+                        <td align="center" style="background-color:white;  ;border: 1px solid   "> <img src="@Url.Content(Model.pato_ce)" /> </td>
+
+                        <td class="left" style="border: 1px solid ">
+                            @{
+                                if (ViewBag.ce == 1)
+                                {
+                                                        <select id="cbst_ce" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 150px; ">
+                                                                                        <option value="Select">Select Status</option>
+                                                            <option value="1">En attente</option>
+                                                            <option value="2">En cours</option>
+                                                            <option value="3">En retard</option>
+                                                            <option value="4">Terminé</option>
+                                                            <option value="5">En cours-Terminé</option>
+                                                        </select>
+                                }
+                                else
+                                {
+                                    <select id="cbst_ce" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 120px; display: none ">
+                                        <option value="Select">Select </option>
+                                    </select>
+                                }
+                            }
+                        </td>
+                        @*<td>  <button id="btn_sav_ce" type="button" class="btn btn-primary btn-sm" style="display: none;">Save </button> </td>*@
+                        <td class="left" style="border: 1px solid ;text-align:center">
+                            @Html.DisplayFor(model => model.emp_ce, new { @class = "form-control  ", style = "color:green; text-align:center; " })
+                        </td>
+                        <td class="left" style="border: 1px solid ">
+                            @{
+                                if (ViewBag.ce == 1)
+                                {
+
+                                    @Html.DropDownList("cbemp_ce", new SelectList(ViewBag.conclst as System.Collections.IEnumerable, "emplid", "empName"), "Select Employee", new { @class = "selectpicker form-control", id = "cbce", style = "background-color: #cefa29; color: black;width: 150px" })
+                                }
+                                else
+                                {
+                                    <select id="cbce" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 120px; display: none ">
+                                        <option value="Select">Select </option>
+                                    </select>
+                                }
+                            }
+                        </td>
+                        <td></td>
+
+
+                    </tr>
+                    <tr>
+                        <th scope="row" style="text-align:left;border: 1px solid ">Conception mécanique</th>
+                        <td align="center" style="background-color:white;;border: 1px solid"> <img src="@Url.Content(Model.pato_cm)" /> </td>
+                        <td class="left" style="border: 1px solid ">
+                            @{
+                                if (ViewBag.cm == 1)
+                                {
+                                                        <select id="cbst_cm" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 150px; ">
+                                                                                        <option value="Select">Select Status </option>
+                                                            <option value="1">En attente</option>
+                                                            <option value="2">En cours</option>
+                                                            <option value="3">En retard</option>
+                                                            <option value="4">Terminé</option>
+                                                            <option value="5">En cours-Terminé</option>
+                                                        </select>
+                                }
+                                else
+                                {
+                                    <select id="cbst_cm" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 120px; display: none ">
+                                        <option value="Select">Select </option>
+                                    </select>
+                                }
+                            }
+                        </td>
+                        @*<td>  <button id="btn_sav_cm" type="button" class="btn btn-primary btn-sm" style="display: none;"  >Save </button> </td>*@
+                        <td class="left" style="border: 1px solid ;text-align:center">
+                            @Html.DisplayFor(model => model.emp_cm, new { @class = "form-control  ", style = "color:green; text-align:center; " })
+                        </td>
+                        <td class="left" style="border: 1px solid ">
+                            @{
+                                if (ViewBag.cm == 1)
+                                {
+                                    @Html.DropDownList("cbemp_cm", new SelectList(ViewBag.conclst as System.Collections.IEnumerable, "emplid", "empName"), "Select Employee", new { @class = "selectpicker form-control", id = "cbcm", style = "background-color: #cefa29; color: black;width: 150px" })
+                                }
+                                else
+                                {
+                                    <select id="cbcm" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 120px; display: none ">
+                                        <option value="Select">Select </option>
+                                    </select>
+                                }
+                            }
+                        </td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row" style="text-align:right;border: 1px solid">Achats</th>
+                        <td align="center" style="background-color:white;border: 1px solid"> <img src="@Url.Content(Model.pato_ach)" /> </td>
+                        <td class="left" style="border: 1px solid ">
+                            @{
+                                if (ViewBag.ach == 1)
+                                {
+                                                        <select id="cbst_ach" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 150px;" readonly="readonly">
+                                                                                        <option value="Select">Select Status </option>
+                                                            <option value="1">En attente</option>
+                                                            <option value="2">En cours</option>
+                                                            <option value="3">En retard</option>
+                                                            <option value="4">Terminé</option>
+                                                            <option value="5">En cours-Terminé</option>
+                                                        </select>
+                                }
+                                else
+                                {
+                                    <select id="cbst_ach" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 120px; display: none ">
+                                        <option value="Select">Select </option>
+                                    </select>
+                                }
+                            }
+                        </td>
+                        <td class="left" style="border: 1px solid ;text-align:center">
+                            @Html.DisplayFor(model => model.emp_ach, new { @class = "form-control  ", style = "color:green; text-align:center; " })
+                        </td>
+
+                        <td class="left" style="border: 1px solid ">
+                            @{
+                                if (ViewBag.ach == 1)
+                                {
+                                    @Html.DropDownList("cbemp_ach", new SelectList(ViewBag.achinvlst as System.Collections.IEnumerable, "emplid", "empName"), "Select Employee", new { @class = "selectpicker form-control", id = "cbach", style = "background-color: #cefa29; color: black;width: 150px" })
+                                }
+                                else
+                                {
+                                    <select id="cbach" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 120px; display: none ">
+                                        <option value="Select">Select </option>
+                                    </select>
+                                }
+                            }
+                        </td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row" style="text-align:right;border: 1px solid">Prêt à la production</th>
+                        <td align="center" style="background-color:white;border: 1px solid"> <img src="@Url.Content(Model.pato_rtp)" /> </td>
+                        <td class="left" style="border: 1px solid ">
+                            @{
+                                if (ViewBag.rtp == 1)
+                                {
+                                                        <select id="cbst_rtp" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 150px; ">
+                                                                                        <option value="Select">Select Status</option>
+                                                            <option value="1">En attente</option>
+                                                            <option value="2">En cours</option>
+                                                            <option value="3">En retard</option>
+                                                            <option value="4">Terminé</option>
+                                                            <option value="5">En cours-Terminé</option>
+                                                        </select>
+                                }
+                                else
+                                {
+                                    <select id="cbst_rtp" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 120px; display: none ">
+                                        <option value="Select">Select </option>
+                                    </select>
+                                }
+                            }
+                        </td>
+                        <td class="left" style="border: 1px solid ;text-align:center">
+                            @Html.DisplayFor(model => model.emp_rtp, new { @class = "form-control  ", style = "color:green; text-align:center; " })
+                        </td>
+
+                        <td class="left" style="border: 1px solid ">
+                            @{
+                                if (ViewBag.rtp == 1)
+                                {
+                                    @Html.DropDownList("cbemp_rtp", new SelectList(ViewBag.achinvlst as System.Collections.IEnumerable, "emplid", "empName"), "Select Employee", new { @class = "selectpicker form-control", id = "cbrtp", style = "background-color: #cefa29; color: black;width: 150px" })
+                                }
+                                else
+                                {
+                                    <select id="cbrtp" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 120px; display: none ">
+                                        <option value="Select">Select </option>
+                                    </select>
+                                }
+                            }
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="row" style="text-align:right;border: 1px solid">Mécanique Plaques</th>
+                        <td align="center" style="background-color:white;border: 1px solid"> <img src="@Url.Content(Model.pato_mp)" /> </td>
+                        <td class="left" style="border: 1px solid ">
+                            @{
+                                if (ViewBag.mp == 1)
+                                {
+                                    <select id="cbst_mp" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 150px; ">
+                                                                    <option value="Select">Select Status</option>
+                                        <option value="1">En attente</option>
+                                        <option value="2">En cours</option>
+                                        <option value="3">En retard</option>
+                                        <option value="4">Terminé</option>
+                                    </select>
+                                }
+                                else
+                                {
+                                    <select id="cbst_mp" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 120px; display: none ">
+                                        <option value="Select">Select </option>
+                                    </select>
+                                }
+                            }
+                        </td>
+                        <td class="left" style="border: 1px solid ;text-align:center">
+                            @Html.DisplayFor(model => model.emp_mp, new { @class = "form-control  ", style = "color:green; text-align:center; " })
+                        </td>
+                        <td class="left" style="border: 1px solid ">
+                            @{
+                                if (ViewBag.mp == 1)
+                                {
+                                    @Html.DropDownList("cbemp_mp", new SelectList(ViewBag.mecanlst as System.Collections.IEnumerable, "emplid", "empName"), "Select Employee", new { @class = "selectpicker form-control", id = "cbmp", style = "background-color: #cefa29; color: black;width: 150px" })
+                                }
+                                else
+                                {
+                                    <select id="cbmp" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 120px; display: none ">
+                                        <option value="Select">Select </option>
+                                    </select>
+                                }
+                            }
+                        </td>
+                        <td style="width:105px;"><button id="btn_sav_stp_status" type="button" class="btn btn-danger  btn-block " style="width: 150px; ">Save Status</button> </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row" style="text-align:right;border: 1px solid">Filage Plaques</th>
+                        <td align="center" style="background-color:white;border: 1px solid"> <img src="@Url.Content(Model.pato_fp)" /> </td>
+                        <td class="left" style="border: 1px solid ">
+                            @{
+                                if (ViewBag.fp == 1)
+                                {
+                                    <select id="cbst_fp" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 150px; ">
+                                                                    <option value="Select">Select Status </option>
+                                        <option value="1">En attente</option>
+                                        <option value="2">En cours</option>
+                                        <option value="3">En retard</option>
+                                        <option value="4">Terminé</option>
+                                    </select>
+                                }
+                                else
+                                {
+                                    <select id="cbst_fp" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 120px; display: none ">
+                                        <option value="Select">Select </option>
+                                    </select>
+                                }
+                            }
+                        </td>
+                        <td class="left" style="border: 1px solid ;text-align:center">
+                            @Html.DisplayFor(model => model.emp_fp, new { @class = "form-control  ", style = "color:green; text-align:center; " })
+                        </td>
+                        <td class="left" style="border: 1px solid ">
+                            @{
+                                if (ViewBag.fp == 1)
+                                {
+                                    @Html.DropDownList("cbemp_fp", new SelectList(ViewBag.filalst as System.Collections.IEnumerable, "emplid", "empName"), "Select Employee", new { @class = "selectpicker form-control", id = "cbfp", style = "background-color: #cefa29; color: black;width: 150px" })
+                                }
+                                else
+                                {
+                                    <select id="cbfp" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 120px; display: none ">
+                                        <option value="Select">Select </option>
+                                    </select>
+                                }
+                            }
+                        </td>
+                        <td style="width:105px;">@*<button id="btn_sav_missing" type="button" class="btn btn-danger  btn-block " style="width: 150px; ">Show Missing</button>*@ </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" style="text-align:right;border: 1px solid">Mécanique Cabinet</th>
+                        <td align="center" style="background-color:white;border: 1px solid"> <img src="@Url.Content(Model.pato_mc)" /> </td>
+                        <td class="left" style="border: 1px solid ">
+                            @{
+                                if (ViewBag.mc == 1)
+                                {
+                                    <select id="cbst_mc" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 150px; ">
+                                                                    <option value="Select">Select Status</option>
+                                        <option value="1">En attente</option>
+                                        <option value="2">En cours</option>
+                                        <option value="3">En retard</option>
+                                        <option value="4">Terminé</option>
+                                    </select>
+                                }
+                                else
+                                {
+                                    <select id="cbst_mc" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 120px; display: none ">
+                                        <option value="Select">Select </option>
+                                    </select>
+                                }
+                            }
+                        </td>
+                        <td class="left" style="border: 1px solid ;text-align:center">
+                            @Html.DisplayFor(model => model.emp_mc, new { @class = "form-control  ", style = "color:green; text-align:center; " })
+                        </td>
+                        <td class="left" style="border: 1px solid ">
+                            @{
+                                if (ViewBag.mc == 1)
+                                {
+                                    @Html.DropDownList("cbemp_mc", new SelectList(ViewBag.mecanlst as System.Collections.IEnumerable, "emplid", "empName"), "Select Employee", new { @class = "selectpicker form-control", id = "cbmc", style = "background-color: #cefa29; color: black;width: 150px" })
+                                }
+                                else
+                                {
+                                    <select id="cbmc" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 120px; display: none ">
+                                        <option value="Select">Select </option>
+                                    </select>
+                                }
+                            }
+                        </td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row" style="text-align:right;border: 1px solid">Filage Cabinet</th>
+                        <td align="center" style="background-color:white;border: 1px solid"> <img src="@Url.Content(Model.pato_fc)" /> </td>
+                        <td class="left" style="border: 1px solid ">
+                            @{
+                                if (ViewBag.fc == 1)
+                                {
+                                    <select id="cbst_fc" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 150px; ">
+                                                                    <option value="Select">Select Status </option>
+                                        <option value="1">En attente</option>
+                                        <option value="2">En cours</option>
+                                        <option value="3">En retard</option>
+                                        <option value="4">Terminé</option>
+                                    </select>
+                                }
+                                else
+                                {
+                                    <select id="cbst_fc" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 120px; display: none ">
+                                        <option value="Select">Select </option>
+                                    </select>
+                                }
+                            }
+                        </td>
+                        <td class="left" style="border: 1px solid ;text-align:center">
+                            @Html.DisplayFor(model => model.emp_fc, new { @class = "form-control  ", style = "color:green; text-align:center; " })
+                        </td>
+                        <td class="left" style="border: 1px solid ">
+                            @{
+                                if (ViewBag.fc == 1)
+                                {
+                                    @Html.DropDownList("cbemp_fc", new SelectList(ViewBag.filalst as System.Collections.IEnumerable, "emplid", "empName"), "Select Employee", new { @class = "selectpicker form-control", id = "cbfc", style = "background-color: #cefa29; color: black;width: 150px" })
+                                }
+                                else
+                                {
+                                    <select id="cbfc" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 120px; display: none ">
+                                        <option value="Select">Select </option>
+                                    </select>
+                                }
+                            }
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="row" style="text-align:right;border: 1px solid">Test</th>
+                        <td align="center" style="background-color:white;border: 1px solid"> <img src="@Url.Content(Model.pato_tst)" /> </td>
+                        <td class="left" style="border: 1px solid ">
+                            @{
+                                if (ViewBag.tst == 1)
+                                {
+                                    <select id="cbst_tst" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 150px; ">
+                                                                    <option value="Select">Select Status</option>
+                                        <option value="1">En attente</option>
+                                        <option value="2">En cours</option>
+                                        <option value="3">En retard</option>
+                                        <option value="4">Terminé</option>
+                                    </select>
+                                }
+                                else
+                                {
+                                    <select id="cbst_tst" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 120px; display: none ">
+                                        <option value="Select">Select </option>
+                                    </select>
+                                }
+                            }
+                        </td>
+                        <td class="left" style="border: 1px solid ;text-align:center">
+                            @Html.DisplayFor(model => model.emp_tst, new { @class = "form-control  ", style = "color:green; text-align:center; " })
+                        </td>
+                        <td class="left" style="border: 1px solid ">
+                            @{
+                                if (ViewBag.tst == 1)
+                                {
+                                    @Html.DropDownList("cbemp_tst", new SelectList(ViewBag.tstlst as System.Collections.IEnumerable, "emplid", "empName"), "Select Employee", new { @class = "selectpicker form-control", id = "cbtst", style = "background-color: #cefa29; color: black;width: 150px" })
+                                }
+                                else
+                                {
+                                    <select id="cbtst" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 120px; display: none ">
+                                        <option value="Select">Select </option>
+                                    </select>
+                                }
+                            }
+                        </td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row" style="text-align:right;border: 1px solid">Inspection Finale</th>
+                        <td align="center" style="background-color:white;border: 1px solid"> <img src="@Url.Content(Model.pato_if)" /> </td>
+                        <td class="left" style="border: 1px solid ">
+                            @{
+                                if (ViewBag.iif == 1)
+                                {
+                                                        <select id="cbst_if" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 150px; ">
+                                                                                        <option value="Select">Select Status</option>
+                                                            <option value="1">En attente</option>
+                                                            <option value="2">En cours</option>
+                                                            <option value="3">En retard</option>
+                                                            <option value="4">Terminé</option>
+                                                            <option value="5">En cours-Terminé</option>
+                                                        </select>
+                                }
+                                else
+                                {
+                                    <select id="cbst_if" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 120px; display: none ">
+                                        <option value="Select">Select </option>
+                                    </select>
+                                }
+                            }
+                        </td>
+                        <td class="left" style="border: 1px solid ;text-align:center">
+                            @Html.DisplayFor(model => model.emp_if, new { @class = "form-control  ", style = "color:green; text-align:center; " })
+                        </td>
+                        <td class="left" style="border: 1px solid ">
+                            @{
+                                if (ViewBag.iif == 1)
+                                {
+                                    @Html.DropDownList("cbemp_iif ", new SelectList(ViewBag.tstlst as System.Collections.IEnumerable, "emplid", "empName"), "Select Employee", new { @class = "selectpicker form-control", id = "cbiif", style = "background-color: #cefa29; color: black;width: 150px" })
+                                }
+                                else
+                                {
+                                    <select id="cbiif" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 120px; display: none ">
+                                        <option value="Select">Select </option>
+                                    </select>
+                                }
+                            }
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="row" style="text-align:right;border: 1px solid">Shipping</th>
+                        <td align="center" style="background-color:white;;border: 1px solid"> <img src="@Url.Content(Model.pato_shp)" /> </td>
+                        <td class="left" style="border: 1px solid ">
+                            @{
+                                if (ViewBag.shp == 1)
+                                {
+                                                        <select id="cbst_shp" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 150px; ">
+                                                                                        <option value="Select">Select Status</option>
+                                                            <option value="1">En attente</option>
+                                                            <option value="2">En cours</option>
+                                                            <option value="3">En retard</option>
+                                                            <option value="4">Terminé</option>
+                                                            <option value="5">En cours-Terminé</option>
+                                                        </select>
+                                }
+                                else
+                                {
+                                    <select id="cbst_shp" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 120px; display: none ">
+                                        <option value="Select">Select </option>
+                                    </select>
+                                }
+                            }
+                        </td>
+                        @*<td>  <button id="btn_sav_shp" type="button" class="btn btn-primary btn-sm" style="display: none;">Save </button> </td>*@
+                        <td class="left" style="border: 1px solid ;text-align:center">
+                            @Html.DisplayFor(model => model.emp_shp, new { @class = "form-control  ", style = "color:green; text-align:center; " })
+                        </td>
+                        <td class="left" style="border: 1px solid ">
+                            @{
+                                if (ViewBag.shp == 1)
+                                {
+                                    @Html.DropDownList("cbemp_shp", new SelectList(ViewBag.shplst as System.Collections.IEnumerable, "emplid", "empName"), "Select Employee", new { @class = "selectpicker form-control", id = "cbshp", style = "background-color: #cefa29; color: black;width: 150px" })
+                                }
+                                else
+                                {
+                                    <select id="cbshp" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 120px; display: none ">
+                                        <option value="Select">Select </option>
+                                    </select>
+                                }
+                            }
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="row" style="text-align:right;border: 1px solid">Facturation</th>
+                        <td align="center" style="background-color:white;border: 1px solid"> <img src="@Url.Content(Model.pato_inv)" /> </td>
+                        <td class="left" style="border: 1px solid ">
+                            @{
+                                if (ViewBag.inv == 1)
+                                {
+                                                        <select id="cbst_inv" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 150px; ">
+                                                                                        <option value="Select">Select Status</option>
+                                                            <option value="1">En attente</option>
+                                                            <option value="2">En cours</option>
+                                                            <option value="3">En retard</option>
+                                                            <option value="4">Terminé</option>
+                                                            <option value="5">En cours-Terminé</option>
+                                                        </select>
+                                }
+                                else
+                                {
+                                    <select id="cbst_inv" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 120px; display: none ">
+                                        <option value="Select">Select </option>
+                                    </select>
+                                }
+                            }
+                        </td>
+                        @*<td>  <button id="btn_sav_inv" type="button" class="btn btn-primary btn-sm" style="display: none;">Save </button> </td>*@
+                        <td class="left" style="border: 1px solid ;text-align:center">
+                            @Html.DisplayFor(model => model.emp_inv, new { @class = "form-control  ", style = "color:green; text-align:center; " })
+                        </td>
+                        <td class="left" style="border: 1px solid ">
+                            @{
+                                if (ViewBag.inv == 1)
+                                {
+                                    @Html.DropDownList("cbemp_inv", new SelectList(ViewBag.invlst as System.Collections.IEnumerable, "emplid", "empName"), "Select Employee", new { @class = "selectpicker form-control", id = "cbinv", style = "background-color: #cefa29; color: black;width: 150px" })
+                                }
+                                else
+                                {
+                                    <select id="cbinv" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 120px; display: none ">
+                                        <option value="Select">Select </option>
+                                    </select>
+                                }
+                            }
+                        </td>
+                        <td></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        </div>
+
+    }
+        </div>
+<script>
+
+
+
+    function init_Select() {
+
+        var v_init = "Select";
+        $("#cbst_ce").val(v_init); $("#cbst_cm").val(v_init); $("#cbst_af").val(v_init); $("#cbst_ach").val(v_init); $("#cbst_rtp").val(v_init);
+        $("#cbst_mp").val(v_init); $("#cbst_fp").val(v_init); $("#cbst_mc").val(v_init); $("#cbst_fc").val(v_init); $("#cbst_tst").val(v_init);
+        $("#cbst_if").val(v_init); $("#cbst_shp").val(v_init); $("#cbst_inv").val(v_init);
+        v_init = "Select Employee"; 
+        $("#cbce").val(v_init); $("#cbcm").val(v_init); $("#cbaf").val(v_init); $("#cbach").val(v_init); $("#cbrtp").val(v_init);
+        $("#cbmp").val(v_init); $("#cbfp").val(v_init); $("#cbmc").val(v_init); $("#cbfc").val(v_init); $("#cbstst").val(v_init);
+        $("#cbif").val(v_init); $("#cbshp").val(v_init); $("#cbinv").val(v_init);
+          
+    }
+
+            //$('#btn_savgrp').on('click', function (e) {
+            //    var myagid = $("#aglid").val(), mygrp = $("#cbgrp").val(), oldgrp = $("#oldgrp").val();
+            //    if (mygrp != "Select" && oldgrp != mygrp) {
+            //        $("#msgerr").val("");
+            //        //alert("lid= " + myagid + "old grp= " + oldgrp + "  new grp= " + mygrp);
+            //        $.ajax({
+            //            url: "../AGCMS/sav_newgrp",
+            //            type: "GET",
+            //            data: { _lid: myagid, _grp: mygrp },
+            //            cache: false,
+            //            contentType: "application/json; charset=utf-8",
+            //            dataType: "json",
+            //            async: false,
+            //            success: function (msgLst) {
+
+            //                $.each(msgLst, function (index, itemData) {
+            //                    $("#msgerr").val(itemData.msg);//+"   nb= "+itemData.recnb);
+            //                });
+            //                $("#msgerr").show();
+            //            }
+            //        });
+            //        location.reload();
+            //    }
+
+
+
+            //    //$("#btnwait").hide();
+            //    //$("#msgerr").show();
+
+            //});
+
+
+            $('#btn_sav_stp_statusoldddddddd').on('click', function (e) {
+                var mytrslid = $("#trslid").val(), cbst_ce = $("#cbst_ce").val(), cbst_cm = $("#cbst_cm").val(), cbst_af = $("#cbst_af").val(), cbst_ach = $("#cbst_ach").val(), cbst_rtp = $("#cbst_rtp").val(),
+                    cbst_mp = $("#cbst_mp").val(), cbst_fp = $("#cbst_fp").val(), cbst_mc = $("#cbst_mc").val(), cbst_fc = $("#cbst_fc").val(),
+                    cbst_tst = $("#cbst_tst").val(), cbst_if = $("#cbst_if").val(), cbst_shp = $("#cbst_shp").val(), cbst_inv = $("#cbst_inv").val();
+                var my_ce = $("#cbce").val(), my_cm = $("#cbcm").val(), my_af = $("#cbaf").val(), my_ach = $("#cbach").val(), my_rtp = $("#cbrtp").val(), my_mp = $("#cbmp").val(), my_fp = $("#cbfp").val(),
+                    my_mc = $("#cbmc").val(), my_fc = $("#cbfc").val(), my_tst = $("#cbtst").val(), my_iif = $("#cbiif").val(), my_shp = $("#cbshp").val(), my_inv = $("#cbinv").val();
+                //debugger;
+                if (my_ce.length > 0) alert("CE goooooooooood");
+               else  alert("CE baddddddddd");
+                if (my_inv.length > 0) alert("INV goooooooooood");
+                else alert("INV baddddddddd");
+
+
+
+          //      alert("screen.width=" + screen.width + "   height="+screen.height);
+
+                // if (mygrp != "Select" && oldgrp != mygrp) {
+                $("#msg_ce").val("");
+                $.ajax({
+                    url: "../Cedule/sav_Newstat",
+                    type: "GET",
+                    data: {
+                        _trslid: mytrslid, _cbst_ce: cbst_ce, _cbst_cm: cbst_cm, _cbst_af: cbst_af, _cbst_ach: cbst_ach, _cbst_rtp: cbst_rtp,
+                        _cbst_mp: cbst_mp, _cbst_fp: cbst_fp, _cbst_mc: cbst_mc, _cbst_fc: cbst_fc, _cbst_tst: cbst_tst,
+                        _cbst_if: cbst_if, _cbst_shp: cbst_shp, _cbst_inv: cbst_inv
+                    },
+                    cache: false,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    async: false,
+                    success: function (msgLst) {
+
+                        $.each(msgLst, function (index, itemData) {
+                            $('#dv_errsql').html(itemData.sqlmsg);
+                            switch (itemData.recnb) {
+                                case "ce":
+                                    $('#msg_ce').html(itemData.msg);
+                                    break;
+                                case "cm":
+                                    $('#msg_cm').html(itemData.msg);
+                                    break;
+                                case "af":
+                                    $('#msg_af').html(itemData.msg);
+                                    break;
+                                case "ach":
+                                    $('#msg_ach').html(itemData.msg);
+                                    break;
+                                case "rtp":
+                                    $('#msg_rtp').html(itemData.msg);
+                                    break;
+                                case "mp":
+                                    $('#msg_mp').html(itemData.msg);
+                                    break;
+                                case "fp":
+                                    $('#msg_fp').html(itemData.msg);
+                                    break;
+                                case "mc":
+                                    $('#msg_mc').html(itemData.msg);
+                                    break;
+                                case "fc":
+                                    $('#msg_fc').html(itemData.msg);
+                                    break;
+                                case "tst":
+                                    $('#msg_tst').html(itemData.msg);
+                                    break;
+                                case "if":
+                                    $('#msg_if').html(itemData.msg);
+                                    break;
+                                case "shp":
+                                    $('#msg_shp').html(itemData.msg);
+                                    break;
+                                case "inv":
+                                    $('#msg_inv').html(itemData.msg);
+                                    break;
+
+
+                            }
+                            //debugger;
+                            @*var stmsg = '@HttpContext.Current.Session["errsql"]';
+                            $('#msg_af').html(stmsg);*@
+            
+                            //alert("msg= " + itemData.msg + " stp= " + itemData.recnb + "    sql= " + itemData.sqlmsg);
+                            //var msg = "msg= " + itemData.msg + " stp= " + itemData.recnb + "    sql= " + itemData.sqlmsg;
+                            //console.log(msg);
+                            if (itemData.recnb == "0") location.reload();
+
+                            // $("#msg_ce").val(itemData.msg);//+"   nb= "+itemData.recnb);
+
+                        });
+                        //  $("#msg_ce").show();
+                    }
+                });
+                //  location.reload();
+                //  window.location.reload();
+
+
+              //  alert("ERROR= " + stmsg);
+
+            });
+
+    $('#btn_sav_stp_status').on('click', function (e) {
+        var mytrslid = $("#trslid").val(), cbst_ce = $("#cbst_ce").val(), cbst_cm = $("#cbst_cm").val(), cbst_af = $("#cbst_af").val(), cbst_ach = $("#cbst_ach").val(), cbst_rtp = $("#cbst_rtp").val(),
+            cbst_mp = $("#cbst_mp").val(), cbst_fp = $("#cbst_fp").val(), cbst_mc = $("#cbst_mc").val(), cbst_fc = $("#cbst_fc").val(),
+            cbst_tst = $("#cbst_tst").val(), cbst_if = $("#cbst_if").val(), cbst_shp = $("#cbst_shp").val(), cbst_inv = $("#cbst_inv").val();
+        var my_ce = $("#cbce").val(), my_cm = $("#cbcm").val(), my_af = $("#cbaf").val(), my_ach = $("#cbach").val(), my_rtp = $("#cbrtp").val(), my_mp = $("#cbmp").val(), my_fp = $("#cbfp").val(),
+            my_mc = $("#cbmc").val(), my_fc = $("#cbfc").val(), my_tst = $("#cbtst").val(), my_iif = $("#cbiif").val(), my_shp = $("#cbshp").val(), my_inv = $("#cbinv").val();
+        //debugger;
+        //if (my_ce.length > 0) alert("CE goooooooooood");
+        //else alert("CE baddddddddd");
+        //if (my_inv.length > 0) alert("INV goooooooooood");
+        //else alert("INV baddddddddd");
+
+
+
+        //      alert("screen.width=" + screen.width + "   height="+screen.height);
+
+        // if (mygrp != "Select" && oldgrp != mygrp) {
+        $("#msg_ce").val("");
+        $.ajax({
+            url: "../Cedule/sav_Newstat",
+            type: "GET",
+            data: {
+                _trslid: mytrslid, _cbst_ce: cbst_ce, _cbst_cm: cbst_cm, _cbst_af: cbst_af, _cbst_ach: cbst_ach, _cbst_rtp: cbst_rtp,
+                _cbst_mp: cbst_mp, _cbst_fp: cbst_fp, _cbst_mc: cbst_mc, _cbst_fc: cbst_fc, _cbst_tst: cbst_tst,
+                _cbst_if: cbst_if, _cbst_shp: cbst_shp, _cbst_inv: cbst_inv,
+                _emp_ce: my_ce, _emp_cm: my_cm, _emp_af: my_af, _emp_ach: my_ach, _emp_rtp: my_rtp,
+                _emp_mp: my_mp, _emp_fp: my_fp, _emp_mc: my_mc, _emp_fc: my_fc, _emp_tst: my_tst,
+                _emp_if: my_iif, _emp_shp: my_shp, _emp_inv: my_inv
+            },
+            cache: false,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: false,
+            success: function (msgLst) {
+
+                $.each(msgLst, function (index, itemData) {
+                    $('#dv_errsql').html(itemData.sqlmsg);
+                    if (itemData.msg.length > 0)   alert("ERROR msg:  " + itemData.msg + "   err=" + itemData.recnb);
+                  //  if (itemData.recnb == "0") location.reload();
+                    location.reload();
+                    t =init_Select();
+                });
+                
+            }
+        });
+        //  location.reload();
+        //  window.location.reload();
+
+
+        //  alert("ERROR= " + stmsg);
+
+    });
+
+
+
+
+            $('#btn_missingggggg').on('click', function (e) {
+                var mytrslid = $("#trslid").val(), cbst_ce = $("#cbst_ce").val(), cbst_cm = $("#cbst_cm").val(), cbst_af = $("#cbst_af").val(), cbst_ach = $("#cbst_ach").val(), cbst_rtp = $("#cbst_rtp").val(),
+                    cbst_mp = $("#cbst_mp").val(), cbst_fp = $("#cbst_fp").val(), cbst_mc = $("#cbst_mc").val(), cbst_fc = $("#cbst_fc").val(),
+                    cbst_tst = $("#cbst_tst").val(), cbst_if = $("#cbst_if").val(), cbst_shp = $("#cbst_shp").val(), cbst_inv = $("#cbst_inv").val();
+
+                //      alert("screen.width=" + screen.width + "   height="+screen.height);
+
+                // if (mygrp != "Select" && oldgrp != mygrp) {
+                $("#msg_ce").val("");
+                $.ajax({
+                    url: "../Cedule/showmissing",
+                    type: "GET",
+                    data: {
+                        _trslid: mytrslid, _cbst_ce: cbst_ce, _cbst_cm: cbst_cm, _cbst_af: cbst_af, _cbst_ach: cbst_ach, _cbst_rtp: cbst_rtp,
+                        _cbst_mp: cbst_mp, _cbst_fp: cbst_fp, _cbst_mc: cbst_mc, _cbst_fc: cbst_fc, _cbst_tst: cbst_tst,
+                        _cbst_if: cbst_if, _cbst_shp: cbst_shp, _cbst_inv: cbst_inv
+                    },
+                    cache: false,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    async: false,
+                    success: function (msgLst) {
+
+                        $.each(msgLst, function (index, itemData) {
+                            switch (itemData.recnb) {
+                                case "ce":
+                                    $('#msg_ce').html(itemData.msg);
+                                    break;
+                                case "cm":
+                                    $('#msg_cm').html(itemData.msg);
+                                    break;
+                                case "af":
+                                    $('#msg_af').html(itemData.msg);
+                                    break;
+                                case "ach":
+                                    $('#msg_ach').html(itemData.msg);
+                                    break;
+                                case "rtp":
+                                    $('#msg_rtp').html(itemData.msg);
+                                    break;
+                                case "mp":
+                                    $('#msg_mp').html(itemData.msg);
+                                    break;
+                                case "fp":
+                                    $('#msg_fp').html(itemData.msg);
+                                    break;
+                                case "mc":
+                                    $('#msg_mc').html(itemData.msg);
+                                    break;
+                                case "fc":
+                                    $('#msg_fc').html(itemData.msg);
+                                    break;
+                                case "tst":
+                                    $('#msg_tst').html(itemData.msg);
+                                    break;
+                                case "if":
+                                    $('#msg_if').html(itemData.msg);
+                                    break;
+                                case "shp":
+                                    $('#msg_shp').html(itemData.msg);
+                                    break;
+                                case "inv":
+                                    $('#msg_inv').html(itemData.msg);
+                                    break;
+
+
+                            }
+                            //        alert("msg= " + itemData.msg + " stp= " + itemData.recnb);
+                            if (itemData.recnb == "0") location.reload();
+                            // $("#msg_ce").val(itemData.msg);//+"   nb= "+itemData.recnb);
+
+                        });
+                        //  $("#msg_ce").show();
+                    }
+                });
+                //  location.reload();
+                //  window.location.reload();
+
+            });
+
+
+
+
+
+
+
+
+            $("#cbst_ce").change(function () {
+                if ($("#cbst_ce").val() != 'Select') $("#btn_sav_ce").show();
+                else $("#btn_sav_ce").hide();
+            });
+
+
+
+
+
+
+
+            //$('#btn_sav_Rates').on('click', function (e) {
+            //    var myagid = $("#aglid").val(), mydesti = $("#newRT_dst").val(), myinf = $("#newRT_inf").val(), mying = $("#newRT_eng").val(), mypo = $("#newRT_po").val();
+
+            //    // if (mygrp != "Select" && oldgrp != mygrp) {
+            //    $("#msgerr").val("");
+            //    alert("lid= " + myagid + "mydesti= " + mydesti + " myinf= " + myinf + "  mying= " + mying + "  mypo= " + mypo);
+            //    $.ajax({
+            //        url: "../AGCMS/sav_new_rates",
+            //        type: "GET",
+            //        data: { _lid: myagid, _desti: mydesti, _inf: myinf, _ing: mying, _po: mypo },
+            //        cache: false,
+            //        contentType: "application/json; charset=utf-8",
+            //        dataType: "json",
+            //        async: false,
+            //        success: function (msgLst) {
+
+            //            $.each(msgLst, function (index, itemData) {
+            //                $("#msgerr").val(itemData.msg);//+"   nb= "+itemData.recnb);
+            //            });
+            //            $("#msgerr").show();
+            //        }
+            //    });
+            //    location.reload();
+
+
+
+            //    //$("#btnwait").hide();
+            //    //$("#msgerr").show();
+
+            //});
+
+</script>

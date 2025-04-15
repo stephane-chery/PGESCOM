@@ -1,0 +1,1317 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SysproCompanyPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="SalCommission">
+          <Key>
+            <PropertyRef Name="TrnYear" />
+            <PropertyRef Name="TrnMonth" />
+            <PropertyRef Name="Branch" />
+            <PropertyRef Name="Salesperson" />
+            <PropertyRef Name="InvDate" />
+            <PropertyRef Name="Customer" />
+            <PropertyRef Name="Invoice" />
+            <PropertyRef Name="Line" />
+          </Key>
+          <Property Name="TrnYear" Type="decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="TrnMonth" Type="decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="Branch" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Salesperson" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="InvDate" Type="datetime" Nullable="false" />
+          <Property Name="Customer" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Invoice" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Line" Type="decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="CustomerPoNumber" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="MerchandiseValue" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="InvoiceValue" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="CommissionValue" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="OrderType" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="PrintedFlag" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'SysproCompanyP.dbo.SalCommissionDefaultRates' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="SalCommissionDefaultRates">
+          <Property Name="RateCode" Type="nvarchar" MaxLength="1" />
+          <Property Name="RateDescription" Type="nvarchar" MaxLength="50" />
+          <Property Name="Rate" Type="decimal" Precision="5" Scale="4" />
+        </EntityType>-->
+        <EntityType Name="SalCommissionInsideSales">
+          <Key>
+            <PropertyRef Name="Lid" />
+          </Key>
+          <Property Name="Lid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Branch" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="ExtSalesperson" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="IntSalesperson" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="IntRate" Type="decimal" Precision="6" Scale="5" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="RateEffectiveDate" Type="datetime" Nullable="false" />
+          <Property Name="PreviousIntRate" Type="decimal" Precision="6" Scale="5" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SysproCompanyP.dbo.SalCommissionInsideSales_25022015' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SalCommissionInsideSales_25022015">
+          <Key>
+            <PropertyRef Name="Branch" />
+            <PropertyRef Name="ExtSalesperson" />
+            <PropertyRef Name="IntSalesperson" />
+            <PropertyRef Name="IntRate" />
+            <PropertyRef Name="Active" />
+            <PropertyRef Name="RateEffectiveDate" />
+            <PropertyRef Name="PreviousIntRate" />
+          </Key>
+          <Property Name="Branch" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="ExtSalesperson" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="IntSalesperson" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="IntRate" Type="decimal" Precision="6" Scale="5" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="RateEffectiveDate" Type="datetime" Nullable="false" />
+          <Property Name="PreviousIntRate" Type="decimal" Precision="6" Scale="5" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SysproCompanyP.dbo.SalCommissionInsideSales_25092018' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SalCommissionInsideSales_25092018">
+          <Key>
+            <PropertyRef Name="Lid" />
+            <PropertyRef Name="Branch" />
+            <PropertyRef Name="ExtSalesperson" />
+            <PropertyRef Name="IntSalesperson" />
+            <PropertyRef Name="IntRate" />
+            <PropertyRef Name="Active" />
+            <PropertyRef Name="RateEffectiveDate" />
+            <PropertyRef Name="PreviousIntRate" />
+          </Key>
+          <Property Name="Lid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Branch" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="ExtSalesperson" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="IntSalesperson" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="IntRate" Type="decimal" Precision="6" Scale="5" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="RateEffectiveDate" Type="datetime" Nullable="false" />
+          <Property Name="PreviousIntRate" Type="decimal" Precision="6" Scale="5" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SysproCompanyP.dbo.SalCommissionInsideSales_30012016' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SalCommissionInsideSales_30012016">
+          <Key>
+            <PropertyRef Name="Lid" />
+            <PropertyRef Name="Branch" />
+            <PropertyRef Name="ExtSalesperson" />
+            <PropertyRef Name="IntSalesperson" />
+            <PropertyRef Name="IntRate" />
+            <PropertyRef Name="Active" />
+            <PropertyRef Name="RateEffectiveDate" />
+            <PropertyRef Name="PreviousIntRate" />
+          </Key>
+          <Property Name="Lid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Branch" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="ExtSalesperson" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="IntSalesperson" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="IntRate" Type="decimal" Precision="6" Scale="5" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="RateEffectiveDate" Type="datetime" Nullable="false" />
+          <Property Name="PreviousIntRate" Type="decimal" Precision="6" Scale="5" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SysproCompanyP.dbo.SalCommissionInsideSales_30072015' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SalCommissionInsideSales_30072015">
+          <Key>
+            <PropertyRef Name="Branch" />
+            <PropertyRef Name="ExtSalesperson" />
+            <PropertyRef Name="IntSalesperson" />
+            <PropertyRef Name="IntRate" />
+            <PropertyRef Name="Active" />
+            <PropertyRef Name="RateEffectiveDate" />
+            <PropertyRef Name="PreviousIntRate" />
+          </Key>
+          <Property Name="Branch" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="ExtSalesperson" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="IntSalesperson" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="IntRate" Type="decimal" Precision="6" Scale="5" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="RateEffectiveDate" Type="datetime" Nullable="false" />
+          <Property Name="PreviousIntRate" Type="decimal" Precision="6" Scale="5" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SysproCompanyP.dbo.SalCommissionInsideSales_Hakim' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SalCommissionInsideSales_Hakim">
+          <Key>
+            <PropertyRef Name="Branch" />
+            <PropertyRef Name="ExtSalesperson" />
+            <PropertyRef Name="IntSalesperson" />
+            <PropertyRef Name="IntRate" />
+            <PropertyRef Name="Active" />
+            <PropertyRef Name="RateEffectiveDate" />
+            <PropertyRef Name="PreviousIntRate" />
+          </Key>
+          <Property Name="Branch" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="ExtSalesperson" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="IntSalesperson" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="IntRate" Type="decimal" Precision="6" Scale="5" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="RateEffectiveDate" Type="datetime" Nullable="false" />
+          <Property Name="PreviousIntRate" Type="decimal" Precision="6" Scale="5" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SysproCompanyP.dbo.SalCommissionOverage' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SalCommissionOverage">
+          <Key>
+            <PropertyRef Name="Branch" />
+            <PropertyRef Name="Customer" />
+            <PropertyRef Name="ExtSalesperson" />
+            <PropertyRef Name="IntSalesperson" />
+          </Key>
+          <Property Name="Branch" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="Customer" Type="nvarchar" MaxLength="7" Nullable="false" />
+          <Property Name="ExtSalesperson" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="IntSalesperson" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="IntRate" Type="decimal" Precision="5" Scale="4" />
+          <Property Name="OverageActive" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'SysproCompanyP.dbo.SalCommissionProductCategory' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="SalCommissionProductCategory">
+          <Property Name="ProductCategory" Type="nvarchar" MaxLength="1" />
+          <Property Name="CategoryDescription" Type="nvarchar" MaxLength="50" />
+          <Property Name="Rate" Type="decimal" Precision="5" Scale="4" />
+        </EntityType>-->
+        <EntityType Name="SalCommissionSalesThreshold">
+          <Key>
+            <PropertyRef Name="Branch" />
+            <PropertyRef Name="ExtSalesperson" />
+          </Key>
+          <Property Name="Branch" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="ExtSalesperson" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Threshold" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SalSalesperson">
+          <Key>
+            <PropertyRef Name="Branch" />
+            <PropertyRef Name="Salesperson" />
+          </Key>
+          <Property Name="Branch" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Salesperson" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SalesBudget1" Type="decimal" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="SalesBudget2" Type="decimal" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="SalesBudget3" Type="decimal" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="SalesBudget4" Type="decimal" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="SalesBudget5" Type="decimal" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="SalesBudget6" Type="decimal" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="SalesBudget7" Type="decimal" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="SalesBudget8" Type="decimal" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="SalesBudget9" Type="decimal" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="SalesBudget10" Type="decimal" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="SalesBudget11" Type="decimal" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="SalesBudget12" Type="decimal" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="SalesBudget13" Type="decimal" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="SalesActual1" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="SalesActual2" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="SalesActual3" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="SalesActual4" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="SalesActual5" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="SalesActual6" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="SalesActual7" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="SalesActual8" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="SalesActual9" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="SalesActual10" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="SalesActual11" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="SalesActual12" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="SalesActual13" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="CommissionPct" Type="decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="SalespersonColl" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="SalSalespersonSum">
+          <Key>
+            <PropertyRef Name="Branch" />
+            <PropertyRef Name="Salesperson" />
+            <PropertyRef Name="ProductClass" />
+            <PropertyRef Name="OrderType" />
+          </Key>
+          <Property Name="Branch" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Salesperson" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ProductClass" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="OrderType" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="PtdSales" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="PtdCost" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="PtdQty" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="PtdMass" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="MtdSales1" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="MtdSales2" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="MtdSales3" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="MtdCost1" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="MtdCost2" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="MtdCost3" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="MtdQty1" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="MtdQty2" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="MtdQty3" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="MtdMass1" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="MtdMass2" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="MtdMass3" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="YtdSales" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="YtdCost" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="YtdQty" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="YtdMass" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="PrvYearSales" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="PrvYearCost" Type="decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="PrvYearQty" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="PrvYearMass" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="TimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="u_SalCommissionsInsideSales">
+          <Key>
+            <PropertyRef Name="Invoice" />
+            <PropertyRef Name="SalesOrder" />
+            <PropertyRef Name="SalesOrderLine" />
+            <PropertyRef Name="Salesperson" />
+            <PropertyRef Name="IntSalesperson" />
+          </Key>
+          <Property Name="DateLastInvPrt" Type="datetime" />
+          <Property Name="FiscalYear" Type="decimal" Precision="4" Scale="0" />
+          <Property Name="FiscalMonth" Type="decimal" Precision="2" Scale="0" />
+          <Property Name="Project" Type="char" MaxLength="30" />
+          <Property Name="Customer" Type="nvarchar" MaxLength="65" />
+          <Property Name="Currency" Type="char" MaxLength="3" />
+          <Property Name="Branch" Type="char" MaxLength="10" />
+          <Property Name="Invoice" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="SalesOrder" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="SalesOrderLine" Type="decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="StockCode" Type="char" MaxLength="30" />
+          <Property Name="StockDescription" Type="char" MaxLength="50" />
+          <Property Name="OrderQty" Type="decimal" Precision="10" Scale="3" />
+          <Property Name="ShipQty" Type="decimal" Precision="10" Scale="3" />
+          <Property Name="BackOrderQty" Type="decimal" Precision="10" Scale="3" />
+          <Property Name="Price" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="ExchangeRate" Type="decimal" Precision="12" Scale="6" />
+          <Property Name="PriceCAD" Type="decimal" Precision="28" Scale="11" />
+          <Property Name="ProductClass" Type="char" MaxLength="4" />
+          <Property Name="Salesperson" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="IntSalesperson" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="IntRate" Type="decimal" Precision="8" Scale="5" />
+          <Property Name="Amt" Type="decimal" Precision="10" Scale="4" />
+          <Property Name="AgentCount" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="SalespersonCount" Type="nvarchar" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="u_SalCommissionsPrimax">
+          <Key>
+            <PropertyRef Name="Invoice" />
+            <PropertyRef Name="SalesOrder" />
+            <PropertyRef Name="SalesOrderLine" />
+          </Key>
+          <Property Name="DateLastInvPrt" Type="datetime" />
+          <Property Name="FiscalYear" Type="decimal" Precision="4" Scale="0" />
+          <Property Name="FiscalMonth" Type="decimal" Precision="2" Scale="0" />
+          <Property Name="Project" Type="char" MaxLength="30" />
+          <Property Name="Customer" Type="nvarchar" MaxLength="65" />
+          <Property Name="Currency" Type="char" MaxLength="3" />
+          <Property Name="Branch" Type="char" MaxLength="10" />
+          <Property Name="Invoice" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="SalesOrder" Type="char" MaxLength="15" Nullable="false" />
+          <Property Name="SalesOrderLine" Type="decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="StockCode" Type="char" MaxLength="30" />
+          <Property Name="StockDescription" Type="char" MaxLength="50" />
+          <Property Name="OrderQty" Type="decimal" Precision="10" Scale="3" />
+          <Property Name="ShipQty" Type="decimal" Precision="10" Scale="3" />
+          <Property Name="BackOrderQty" Type="decimal" Precision="10" Scale="3" />
+          <Property Name="Price" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="ExchangeRate" Type="decimal" Precision="12" Scale="6" />
+          <Property Name="PriceCAD" Type="decimal" Precision="28" Scale="11" />
+          <Property Name="ProductClass" Type="char" MaxLength="4" />
+          <Property Name="Salesperson" Type="char" MaxLength="3" />
+          <Property Name="CommissionSales1" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="CommissionAmt1" Type="decimal" Precision="38" Scale="10" />
+          <Property Name="Salesperson2" Type="char" MaxLength="3" />
+          <Property Name="CommissionSales2" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="CommissionAmt2" Type="decimal" Precision="38" Scale="10" Nullable="false" />
+          <Property Name="Salesperson3" Type="char" MaxLength="3" />
+          <Property Name="CommissionSales3" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="CommissionAmt3" Type="decimal" Precision="38" Scale="10" />
+          <Property Name="Salesperson4" Type="char" MaxLength="3" />
+          <Property Name="CommissionSales4" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="CommissionAmt4" Type="decimal" Precision="38" Scale="10" />
+          <Property Name="UserDef" Type="char" MaxLength="4" />
+          <Property Name="Rate" Type="decimal" Precision="5" Scale="4" />
+          <Property Name="AgentCount" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="SalespersonCount" Type="nvarchar" MaxLength="2" />
+          <Property Name="LID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SysproCompanyP.dbo.u_SalCommissionsPrimax_TST' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="u_SalCommissionsPrimax_TST">
+          <Key>
+            <PropertyRef Name="Invoice" />
+            <PropertyRef Name="SalesOrder" />
+            <PropertyRef Name="SalesOrderLine" />
+            <PropertyRef Name="CommissionAmt2" />
+            <PropertyRef Name="AgentCount" />
+            <PropertyRef Name="LID" />
+          </Key>
+          <Property Name="DateLastInvPrt" Type="datetime" />
+          <Property Name="FiscalYear" Type="decimal" Precision="4" Scale="0" />
+          <Property Name="FiscalMonth" Type="decimal" Precision="2" Scale="0" />
+          <Property Name="Project" Type="char" MaxLength="30" />
+          <Property Name="Customer" Type="nvarchar" MaxLength="40" />
+          <Property Name="Currency" Type="char" MaxLength="3" />
+          <Property Name="Branch" Type="char" MaxLength="2" />
+          <Property Name="Invoice" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="SalesOrder" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="SalesOrderLine" Type="decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="StockCode" Type="char" MaxLength="30" />
+          <Property Name="StockDescription" Type="char" MaxLength="30" />
+          <Property Name="OrderQty" Type="decimal" Precision="10" Scale="3" />
+          <Property Name="ShipQty" Type="decimal" Precision="10" Scale="3" />
+          <Property Name="BackOrderQty" Type="decimal" Precision="10" Scale="3" />
+          <Property Name="Price" Type="decimal" Precision="15" Scale="5" />
+          <Property Name="ExchangeRate" Type="decimal" Precision="12" Scale="6" />
+          <Property Name="PriceCAD" Type="decimal" Precision="28" Scale="11" />
+          <Property Name="ProductClass" Type="char" MaxLength="4" />
+          <Property Name="Salesperson" Type="char" MaxLength="3" />
+          <Property Name="CommissionSales1" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="CommissionAmt1" Type="decimal" Precision="38" Scale="10" />
+          <Property Name="Salesperson2" Type="char" MaxLength="3" />
+          <Property Name="CommissionSales2" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="CommissionAmt2" Type="decimal" Precision="38" Scale="10" Nullable="false" />
+          <Property Name="Salesperson3" Type="char" MaxLength="3" />
+          <Property Name="CommissionSales3" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="CommissionAmt3" Type="decimal" Precision="38" Scale="10" />
+          <Property Name="Salesperson4" Type="char" MaxLength="3" />
+          <Property Name="CommissionSales4" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="CommissionAmt4" Type="decimal" Precision="38" Scale="10" />
+          <Property Name="UserDef" Type="char" MaxLength="4" />
+          <Property Name="Rate" Type="decimal" Precision="5" Scale="4" />
+          <Property Name="AgentCount" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="SalespersonCount" Type="nvarchar" MaxLength="2" />
+          <Property Name="LID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'SysproCompanyP.dbo.u_SalFiscalMonthMap' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="u_SalFiscalMonthMap">
+          <Property Name="Month" Type="nvarchar" MaxLength="2" />
+          <Property Name="FiscalMonth" Type="nvarchar" MaxLength="2" />
+          <Property Name="MonthDescription" Type="nvarchar" MaxLength="15" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'SysproCompanyP.dbo.u_StockCode' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="u_StockCode">
+          <Property Name="StockCode" Type="nvarchar" MaxLength="30" />
+        </EntityType>-->
+        <Association Name="Syspro_FK_SalCommission_SalSalesperson">
+          <End Role="SalSalesperson" Type="Self.SalSalesperson" Multiplicity="1" />
+          <End Role="SalCommission" Type="Self.SalCommission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SalSalesperson">
+              <PropertyRef Name="Branch" />
+              <PropertyRef Name="Salesperson" />
+            </Principal>
+            <Dependent Role="SalCommission">
+              <PropertyRef Name="Branch" />
+              <PropertyRef Name="Salesperson" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Syspro_FK_SalSalespersonSum_SalSalesperson">
+          <End Role="SalSalesperson" Type="Self.SalSalesperson" Multiplicity="1" />
+          <End Role="SalSalespersonSum" Type="Self.SalSalespersonSum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SalSalesperson">
+              <PropertyRef Name="Branch" />
+              <PropertyRef Name="Salesperson" />
+            </Principal>
+            <Dependent Role="SalSalespersonSum">
+              <PropertyRef Name="Branch" />
+              <PropertyRef Name="Salesperson" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sp_UPDATE_Commissions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="SysproCompanyPModelStoreContainer">
+          <EntitySet Name="SalCommission" EntityType="Self.SalCommission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SalCommissionInsideSales" EntityType="Self.SalCommissionInsideSales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SalCommissionSalesThreshold" EntityType="Self.SalCommissionSalesThreshold" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SalSalesperson" EntityType="Self.SalSalesperson" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SalSalespersonSum" EntityType="Self.SalSalespersonSum" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="u_SalCommissionsInsideSales" EntityType="Self.u_SalCommissionsInsideSales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="u_SalCommissionsPrimax" EntityType="Self.u_SalCommissionsPrimax" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SalCommissionInsideSales_25022015" EntityType="Self.SalCommissionInsideSales_25022015" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[SalCommissionInsideSales_25022015].[Branch] AS [Branch], 
+[SalCommissionInsideSales_25022015].[ExtSalesperson] AS [ExtSalesperson], 
+[SalCommissionInsideSales_25022015].[IntSalesperson] AS [IntSalesperson], 
+[SalCommissionInsideSales_25022015].[IntRate] AS [IntRate], 
+[SalCommissionInsideSales_25022015].[Active] AS [Active], 
+[SalCommissionInsideSales_25022015].[RateEffectiveDate] AS [RateEffectiveDate], 
+[SalCommissionInsideSales_25022015].[PreviousIntRate] AS [PreviousIntRate]
+FROM [dbo].[SalCommissionInsideSales_25022015] AS [SalCommissionInsideSales_25022015]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SalCommissionInsideSales_25092018" EntityType="Self.SalCommissionInsideSales_25092018" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[SalCommissionInsideSales_25092018].[Lid] AS [Lid], 
+[SalCommissionInsideSales_25092018].[Branch] AS [Branch], 
+[SalCommissionInsideSales_25092018].[ExtSalesperson] AS [ExtSalesperson], 
+[SalCommissionInsideSales_25092018].[IntSalesperson] AS [IntSalesperson], 
+[SalCommissionInsideSales_25092018].[IntRate] AS [IntRate], 
+[SalCommissionInsideSales_25092018].[Active] AS [Active], 
+[SalCommissionInsideSales_25092018].[RateEffectiveDate] AS [RateEffectiveDate], 
+[SalCommissionInsideSales_25092018].[PreviousIntRate] AS [PreviousIntRate]
+FROM [dbo].[SalCommissionInsideSales_25092018] AS [SalCommissionInsideSales_25092018]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SalCommissionInsideSales_30012016" EntityType="Self.SalCommissionInsideSales_30012016" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[SalCommissionInsideSales_30012016].[Lid] AS [Lid], 
+[SalCommissionInsideSales_30012016].[Branch] AS [Branch], 
+[SalCommissionInsideSales_30012016].[ExtSalesperson] AS [ExtSalesperson], 
+[SalCommissionInsideSales_30012016].[IntSalesperson] AS [IntSalesperson], 
+[SalCommissionInsideSales_30012016].[IntRate] AS [IntRate], 
+[SalCommissionInsideSales_30012016].[Active] AS [Active], 
+[SalCommissionInsideSales_30012016].[RateEffectiveDate] AS [RateEffectiveDate], 
+[SalCommissionInsideSales_30012016].[PreviousIntRate] AS [PreviousIntRate]
+FROM [dbo].[SalCommissionInsideSales_30012016] AS [SalCommissionInsideSales_30012016]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SalCommissionInsideSales_30072015" EntityType="Self.SalCommissionInsideSales_30072015" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[SalCommissionInsideSales_30072015].[Branch] AS [Branch], 
+[SalCommissionInsideSales_30072015].[ExtSalesperson] AS [ExtSalesperson], 
+[SalCommissionInsideSales_30072015].[IntSalesperson] AS [IntSalesperson], 
+[SalCommissionInsideSales_30072015].[IntRate] AS [IntRate], 
+[SalCommissionInsideSales_30072015].[Active] AS [Active], 
+[SalCommissionInsideSales_30072015].[RateEffectiveDate] AS [RateEffectiveDate], 
+[SalCommissionInsideSales_30072015].[PreviousIntRate] AS [PreviousIntRate]
+FROM [dbo].[SalCommissionInsideSales_30072015] AS [SalCommissionInsideSales_30072015]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SalCommissionInsideSales_Hakim" EntityType="Self.SalCommissionInsideSales_Hakim" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[SalCommissionInsideSales_Hakim].[Branch] AS [Branch], 
+[SalCommissionInsideSales_Hakim].[ExtSalesperson] AS [ExtSalesperson], 
+[SalCommissionInsideSales_Hakim].[IntSalesperson] AS [IntSalesperson], 
+[SalCommissionInsideSales_Hakim].[IntRate] AS [IntRate], 
+[SalCommissionInsideSales_Hakim].[Active] AS [Active], 
+[SalCommissionInsideSales_Hakim].[RateEffectiveDate] AS [RateEffectiveDate], 
+[SalCommissionInsideSales_Hakim].[PreviousIntRate] AS [PreviousIntRate]
+FROM [dbo].[SalCommissionInsideSales_Hakim] AS [SalCommissionInsideSales_Hakim]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SalCommissionOverage" EntityType="Self.SalCommissionOverage" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[SalCommissionOverage].[Branch] AS [Branch], 
+[SalCommissionOverage].[Customer] AS [Customer], 
+[SalCommissionOverage].[ExtSalesperson] AS [ExtSalesperson], 
+[SalCommissionOverage].[IntSalesperson] AS [IntSalesperson], 
+[SalCommissionOverage].[IntRate] AS [IntRate], 
+[SalCommissionOverage].[OverageActive] AS [OverageActive]
+FROM [dbo].[SalCommissionOverage] AS [SalCommissionOverage]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="u_SalCommissionsPrimax_TST" EntityType="Self.u_SalCommissionsPrimax_TST" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[u_SalCommissionsPrimax_TST].[DateLastInvPrt] AS [DateLastInvPrt], 
+[u_SalCommissionsPrimax_TST].[FiscalYear] AS [FiscalYear], 
+[u_SalCommissionsPrimax_TST].[FiscalMonth] AS [FiscalMonth], 
+[u_SalCommissionsPrimax_TST].[Project] AS [Project], 
+[u_SalCommissionsPrimax_TST].[Customer] AS [Customer], 
+[u_SalCommissionsPrimax_TST].[Currency] AS [Currency], 
+[u_SalCommissionsPrimax_TST].[Branch] AS [Branch], 
+[u_SalCommissionsPrimax_TST].[Invoice] AS [Invoice], 
+[u_SalCommissionsPrimax_TST].[SalesOrder] AS [SalesOrder], 
+[u_SalCommissionsPrimax_TST].[SalesOrderLine] AS [SalesOrderLine], 
+[u_SalCommissionsPrimax_TST].[StockCode] AS [StockCode], 
+[u_SalCommissionsPrimax_TST].[StockDescription] AS [StockDescription], 
+[u_SalCommissionsPrimax_TST].[OrderQty] AS [OrderQty], 
+[u_SalCommissionsPrimax_TST].[ShipQty] AS [ShipQty], 
+[u_SalCommissionsPrimax_TST].[BackOrderQty] AS [BackOrderQty], 
+[u_SalCommissionsPrimax_TST].[Price] AS [Price], 
+[u_SalCommissionsPrimax_TST].[ExchangeRate] AS [ExchangeRate], 
+[u_SalCommissionsPrimax_TST].[PriceCAD] AS [PriceCAD], 
+[u_SalCommissionsPrimax_TST].[ProductClass] AS [ProductClass], 
+[u_SalCommissionsPrimax_TST].[Salesperson] AS [Salesperson], 
+[u_SalCommissionsPrimax_TST].[CommissionSales1] AS [CommissionSales1], 
+[u_SalCommissionsPrimax_TST].[CommissionAmt1] AS [CommissionAmt1], 
+[u_SalCommissionsPrimax_TST].[Salesperson2] AS [Salesperson2], 
+[u_SalCommissionsPrimax_TST].[CommissionSales2] AS [CommissionSales2], 
+[u_SalCommissionsPrimax_TST].[CommissionAmt2] AS [CommissionAmt2], 
+[u_SalCommissionsPrimax_TST].[Salesperson3] AS [Salesperson3], 
+[u_SalCommissionsPrimax_TST].[CommissionSales3] AS [CommissionSales3], 
+[u_SalCommissionsPrimax_TST].[CommissionAmt3] AS [CommissionAmt3], 
+[u_SalCommissionsPrimax_TST].[Salesperson4] AS [Salesperson4], 
+[u_SalCommissionsPrimax_TST].[CommissionSales4] AS [CommissionSales4], 
+[u_SalCommissionsPrimax_TST].[CommissionAmt4] AS [CommissionAmt4], 
+[u_SalCommissionsPrimax_TST].[UserDef] AS [UserDef], 
+[u_SalCommissionsPrimax_TST].[Rate] AS [Rate], 
+[u_SalCommissionsPrimax_TST].[AgentCount] AS [AgentCount], 
+[u_SalCommissionsPrimax_TST].[SalespersonCount] AS [SalespersonCount], 
+[u_SalCommissionsPrimax_TST].[LID] AS [LID]
+FROM [dbo].[u_SalCommissionsPrimax_TST] AS [u_SalCommissionsPrimax_TST]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="Syspro_FK_SalCommission_SalSalesperson" Association="Self.Syspro_FK_SalCommission_SalSalesperson">
+            <End Role="SalSalesperson" EntitySet="SalSalesperson" />
+            <End Role="SalCommission" EntitySet="SalCommission" />
+          </AssociationSet>
+          <AssociationSet Name="Syspro_FK_SalSalespersonSum_SalSalesperson" Association="Self.Syspro_FK_SalSalespersonSum_SalSalesperson">
+            <End Role="SalSalesperson" EntitySet="SalSalesperson" />
+            <End Role="SalSalespersonSum" EntitySet="SalSalespersonSum" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SysproCompanyPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="SalCommission">
+          <Key>
+            <PropertyRef Name="TrnYear" />
+            <PropertyRef Name="TrnMonth" />
+            <PropertyRef Name="Branch" />
+            <PropertyRef Name="Salesperson" />
+            <PropertyRef Name="InvDate" />
+            <PropertyRef Name="Customer" />
+            <PropertyRef Name="Invoice" />
+            <PropertyRef Name="Line" />
+          </Key>
+          <Property Name="TrnYear" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="TrnMonth" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="Branch" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Salesperson" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="InvDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Customer" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Invoice" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Line" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <Property Name="CustomerPoNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MerchandiseValue" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="InvoiceValue" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="CommissionValue" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="OrderType" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="PrintedFlag" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="SalSalesperson" Relationship="Self.Syspro_FK_SalCommission_SalSalesperson" FromRole="SalCommission" ToRole="SalSalesperson" />
+        </EntityType>
+        <EntityType Name="SalCommissionInsideSale">
+          <Key>
+            <PropertyRef Name="Lid" />
+          </Key>
+          <Property Name="Lid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Branch" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ExtSalesperson" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IntSalesperson" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IntRate" Type="Decimal" Precision="6" Scale="5" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="RateEffectiveDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PreviousIntRate" Type="Decimal" Precision="6" Scale="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SalCommissionSalesThreshold">
+          <Key>
+            <PropertyRef Name="Branch" />
+            <PropertyRef Name="ExtSalesperson" />
+          </Key>
+          <Property Name="Branch" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ExtSalesperson" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Threshold" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SalSalesperson">
+          <Key>
+            <PropertyRef Name="Branch" />
+            <PropertyRef Name="Salesperson" />
+          </Key>
+          <Property Name="Branch" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Salesperson" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SalesBudget1" Type="Decimal" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="SalesBudget2" Type="Decimal" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="SalesBudget3" Type="Decimal" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="SalesBudget4" Type="Decimal" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="SalesBudget5" Type="Decimal" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="SalesBudget6" Type="Decimal" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="SalesBudget7" Type="Decimal" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="SalesBudget8" Type="Decimal" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="SalesBudget9" Type="Decimal" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="SalesBudget10" Type="Decimal" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="SalesBudget11" Type="Decimal" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="SalesBudget12" Type="Decimal" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="SalesBudget13" Type="Decimal" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="SalesActual1" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="SalesActual2" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="SalesActual3" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="SalesActual4" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="SalesActual5" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="SalesActual6" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="SalesActual7" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="SalesActual8" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="SalesActual9" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="SalesActual10" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="SalesActual11" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="SalesActual12" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="SalesActual13" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="CommissionPct" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="SalespersonColl" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="SalCommissions" Relationship="Self.Syspro_FK_SalCommission_SalSalesperson" FromRole="SalSalesperson" ToRole="SalCommission" />
+          <NavigationProperty Name="SalSalespersonSums" Relationship="Self.Syspro_FK_SalSalespersonSum_SalSalesperson" FromRole="SalSalesperson" ToRole="SalSalespersonSum" />
+        </EntityType>
+        <EntityType Name="SalSalespersonSum">
+          <Key>
+            <PropertyRef Name="Branch" />
+            <PropertyRef Name="Salesperson" />
+            <PropertyRef Name="ProductClass" />
+            <PropertyRef Name="OrderType" />
+          </Key>
+          <Property Name="Branch" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Salesperson" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductClass" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OrderType" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="PtdSales" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="PtdCost" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="PtdQty" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="PtdMass" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="MtdSales1" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="MtdSales2" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="MtdSales3" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="MtdCost1" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="MtdCost2" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="MtdCost3" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="MtdQty1" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="MtdQty2" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="MtdQty3" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="MtdMass1" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="MtdMass2" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="MtdMass3" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="YtdSales" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="YtdCost" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="YtdQty" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="YtdMass" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="PrvYearSales" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="PrvYearCost" Type="Decimal" Precision="14" Scale="2" Nullable="false" />
+          <Property Name="PrvYearQty" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="PrvYearMass" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="TimeStamp" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="SalSalesperson" Relationship="Self.Syspro_FK_SalSalespersonSum_SalSalesperson" FromRole="SalSalespersonSum" ToRole="SalSalesperson" />
+        </EntityType>
+        <EntityType Name="u_SalCommissionsInsideSales">
+          <Key>
+            <PropertyRef Name="Invoice" />
+            <PropertyRef Name="SalesOrder" />
+            <PropertyRef Name="SalesOrderLine" />
+            <PropertyRef Name="Salesperson" />
+            <PropertyRef Name="IntSalesperson" />
+          </Key>
+          <Property Name="DateLastInvPrt" Type="DateTime" Precision="3" />
+          <Property Name="FiscalYear" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="FiscalMonth" Type="Decimal" Precision="2" Scale="0" />
+          <Property Name="Project" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="Customer" Type="String" MaxLength="65" FixedLength="false" Unicode="true" />
+          <Property Name="Currency" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="Branch" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Invoice" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="SalesOrder" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="SalesOrderLine" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="StockCode" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="StockDescription" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="OrderQty" Type="Decimal" Precision="10" Scale="3" />
+          <Property Name="ShipQty" Type="Decimal" Precision="10" Scale="3" />
+          <Property Name="BackOrderQty" Type="Decimal" Precision="10" Scale="3" />
+          <Property Name="Price" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="ExchangeRate" Type="Decimal" Precision="12" Scale="6" />
+          <Property Name="PriceCAD" Type="Decimal" Precision="28" Scale="11" />
+          <Property Name="ProductClass" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="Salesperson" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IntSalesperson" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IntRate" Type="Decimal" Precision="8" Scale="5" />
+          <Property Name="Amt" Type="Decimal" Precision="10" Scale="4" />
+          <Property Name="AgentCount" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SalespersonCount" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="u_SalCommissionsPrimax">
+          <Key>
+            <PropertyRef Name="Invoice" />
+            <PropertyRef Name="SalesOrder" />
+            <PropertyRef Name="SalesOrderLine" />
+          </Key>
+          <Property Name="DateLastInvPrt" Type="DateTime" Precision="3" />
+          <Property Name="FiscalYear" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="FiscalMonth" Type="Decimal" Precision="2" Scale="0" />
+          <Property Name="Project" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="Customer" Type="String" MaxLength="65" FixedLength="false" Unicode="true" />
+          <Property Name="Currency" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="Branch" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Invoice" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="SalesOrder" Type="String" MaxLength="15" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="SalesOrderLine" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="StockCode" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="StockDescription" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="OrderQty" Type="Decimal" Precision="10" Scale="3" />
+          <Property Name="ShipQty" Type="Decimal" Precision="10" Scale="3" />
+          <Property Name="BackOrderQty" Type="Decimal" Precision="10" Scale="3" />
+          <Property Name="Price" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="ExchangeRate" Type="Decimal" Precision="12" Scale="6" />
+          <Property Name="PriceCAD" Type="Decimal" Precision="28" Scale="11" />
+          <Property Name="ProductClass" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="Salesperson" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="CommissionSales1" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="CommissionAmt1" Type="Decimal" Precision="38" Scale="10" />
+          <Property Name="Salesperson2" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="CommissionSales2" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="CommissionAmt2" Type="Decimal" Precision="38" Scale="10" Nullable="false" />
+          <Property Name="Salesperson3" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="CommissionSales3" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="CommissionAmt3" Type="Decimal" Precision="38" Scale="10" />
+          <Property Name="Salesperson4" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="CommissionSales4" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="CommissionAmt4" Type="Decimal" Precision="38" Scale="10" />
+          <Property Name="UserDef" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="Rate" Type="Decimal" Precision="5" Scale="4" />
+          <Property Name="AgentCount" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SalespersonCount" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="LID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="SalCommissionInsideSales_25022015">
+          <Key>
+            <PropertyRef Name="Branch" />
+            <PropertyRef Name="ExtSalesperson" />
+            <PropertyRef Name="IntSalesperson" />
+            <PropertyRef Name="IntRate" />
+            <PropertyRef Name="Active" />
+            <PropertyRef Name="RateEffectiveDate" />
+            <PropertyRef Name="PreviousIntRate" />
+          </Key>
+          <Property Name="Branch" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ExtSalesperson" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IntSalesperson" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IntRate" Type="Decimal" Precision="6" Scale="5" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="RateEffectiveDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PreviousIntRate" Type="Decimal" Precision="6" Scale="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SalCommissionInsideSales_25092018">
+          <Key>
+            <PropertyRef Name="Lid" />
+            <PropertyRef Name="Branch" />
+            <PropertyRef Name="ExtSalesperson" />
+            <PropertyRef Name="IntSalesperson" />
+            <PropertyRef Name="IntRate" />
+            <PropertyRef Name="Active" />
+            <PropertyRef Name="RateEffectiveDate" />
+            <PropertyRef Name="PreviousIntRate" />
+          </Key>
+          <Property Name="Lid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Branch" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ExtSalesperson" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IntSalesperson" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IntRate" Type="Decimal" Precision="6" Scale="5" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="RateEffectiveDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PreviousIntRate" Type="Decimal" Precision="6" Scale="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SalCommissionInsideSales_30012016">
+          <Key>
+            <PropertyRef Name="Lid" />
+            <PropertyRef Name="Branch" />
+            <PropertyRef Name="ExtSalesperson" />
+            <PropertyRef Name="IntSalesperson" />
+            <PropertyRef Name="IntRate" />
+            <PropertyRef Name="Active" />
+            <PropertyRef Name="RateEffectiveDate" />
+            <PropertyRef Name="PreviousIntRate" />
+          </Key>
+          <Property Name="Lid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Branch" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ExtSalesperson" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IntSalesperson" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IntRate" Type="Decimal" Precision="6" Scale="5" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="RateEffectiveDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PreviousIntRate" Type="Decimal" Precision="6" Scale="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SalCommissionInsideSales_30072015">
+          <Key>
+            <PropertyRef Name="Branch" />
+            <PropertyRef Name="ExtSalesperson" />
+            <PropertyRef Name="IntSalesperson" />
+            <PropertyRef Name="IntRate" />
+            <PropertyRef Name="Active" />
+            <PropertyRef Name="RateEffectiveDate" />
+            <PropertyRef Name="PreviousIntRate" />
+          </Key>
+          <Property Name="Branch" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ExtSalesperson" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IntSalesperson" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IntRate" Type="Decimal" Precision="6" Scale="5" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="RateEffectiveDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PreviousIntRate" Type="Decimal" Precision="6" Scale="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SalCommissionInsideSales_Hakim">
+          <Key>
+            <PropertyRef Name="Branch" />
+            <PropertyRef Name="ExtSalesperson" />
+            <PropertyRef Name="IntSalesperson" />
+            <PropertyRef Name="IntRate" />
+            <PropertyRef Name="Active" />
+            <PropertyRef Name="RateEffectiveDate" />
+            <PropertyRef Name="PreviousIntRate" />
+          </Key>
+          <Property Name="Branch" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ExtSalesperson" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IntSalesperson" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IntRate" Type="Decimal" Precision="6" Scale="5" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <Property Name="RateEffectiveDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PreviousIntRate" Type="Decimal" Precision="6" Scale="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SalCommissionOverage">
+          <Key>
+            <PropertyRef Name="Branch" />
+            <PropertyRef Name="Customer" />
+            <PropertyRef Name="ExtSalesperson" />
+            <PropertyRef Name="IntSalesperson" />
+          </Key>
+          <Property Name="Branch" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Customer" Type="String" MaxLength="7" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ExtSalesperson" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IntSalesperson" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IntRate" Type="Decimal" Precision="5" Scale="4" />
+          <Property Name="OverageActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="u_SalCommissionsPrimax_TST">
+          <Key>
+            <PropertyRef Name="Invoice" />
+            <PropertyRef Name="SalesOrder" />
+            <PropertyRef Name="SalesOrderLine" />
+            <PropertyRef Name="CommissionAmt2" />
+            <PropertyRef Name="AgentCount" />
+            <PropertyRef Name="LID" />
+          </Key>
+          <Property Name="DateLastInvPrt" Type="DateTime" Precision="3" />
+          <Property Name="FiscalYear" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="FiscalMonth" Type="Decimal" Precision="2" Scale="0" />
+          <Property Name="Project" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="Customer" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Currency" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="Branch" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="Invoice" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="SalesOrder" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="SalesOrderLine" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="StockCode" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="StockDescription" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="OrderQty" Type="Decimal" Precision="10" Scale="3" />
+          <Property Name="ShipQty" Type="Decimal" Precision="10" Scale="3" />
+          <Property Name="BackOrderQty" Type="Decimal" Precision="10" Scale="3" />
+          <Property Name="Price" Type="Decimal" Precision="15" Scale="5" />
+          <Property Name="ExchangeRate" Type="Decimal" Precision="12" Scale="6" />
+          <Property Name="PriceCAD" Type="Decimal" Precision="28" Scale="11" />
+          <Property Name="ProductClass" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="Salesperson" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="CommissionSales1" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="CommissionAmt1" Type="Decimal" Precision="38" Scale="10" />
+          <Property Name="Salesperson2" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="CommissionSales2" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="CommissionAmt2" Type="Decimal" Precision="38" Scale="10" Nullable="false" />
+          <Property Name="Salesperson3" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="CommissionSales3" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="CommissionAmt3" Type="Decimal" Precision="38" Scale="10" />
+          <Property Name="Salesperson4" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="CommissionSales4" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="CommissionAmt4" Type="Decimal" Precision="38" Scale="10" />
+          <Property Name="UserDef" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="Rate" Type="Decimal" Precision="5" Scale="4" />
+          <Property Name="AgentCount" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SalespersonCount" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="LID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <Association Name="Syspro_FK_SalCommission_SalSalesperson">
+          <End Role="SalSalesperson" Type="Self.SalSalesperson" Multiplicity="1" />
+          <End Role="SalCommission" Type="Self.SalCommission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SalSalesperson">
+              <PropertyRef Name="Branch" />
+              <PropertyRef Name="Salesperson" />
+            </Principal>
+            <Dependent Role="SalCommission">
+              <PropertyRef Name="Branch" />
+              <PropertyRef Name="Salesperson" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Syspro_FK_SalSalespersonSum_SalSalesperson">
+          <End Role="SalSalesperson" Type="Self.SalSalesperson" Multiplicity="1" />
+          <End Role="SalSalespersonSum" Type="Self.SalSalespersonSum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SalSalesperson">
+              <PropertyRef Name="Branch" />
+              <PropertyRef Name="Salesperson" />
+            </Principal>
+            <Dependent Role="SalSalespersonSum">
+              <PropertyRef Name="Branch" />
+              <PropertyRef Name="Salesperson" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SysproCompanyPEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="SalCommissions" EntityType="Self.SalCommission" />
+          <EntitySet Name="SalCommissionInsideSales" EntityType="Self.SalCommissionInsideSale" />
+          <EntitySet Name="SalCommissionSalesThresholds" EntityType="Self.SalCommissionSalesThreshold" />
+          <EntitySet Name="SalSalespersons" EntityType="Self.SalSalesperson" />
+          <EntitySet Name="SalSalespersonSums" EntityType="Self.SalSalespersonSum" />
+          <EntitySet Name="u_SalCommissionsInsideSales" EntityType="Self.u_SalCommissionsInsideSales" />
+          <EntitySet Name="u_SalCommissionsPrimax" EntityType="Self.u_SalCommissionsPrimax" />
+          <EntitySet Name="SalCommissionInsideSales_25022015" EntityType="Self.SalCommissionInsideSales_25022015" />
+          <EntitySet Name="SalCommissionInsideSales_25092018" EntityType="Self.SalCommissionInsideSales_25092018" />
+          <EntitySet Name="SalCommissionInsideSales_30012016" EntityType="Self.SalCommissionInsideSales_30012016" />
+          <EntitySet Name="SalCommissionInsideSales_30072015" EntityType="Self.SalCommissionInsideSales_30072015" />
+          <EntitySet Name="SalCommissionInsideSales_Hakim" EntityType="Self.SalCommissionInsideSales_Hakim" />
+          <EntitySet Name="SalCommissionOverages" EntityType="Self.SalCommissionOverage" />
+          <EntitySet Name="u_SalCommissionsPrimax_TST" EntityType="Self.u_SalCommissionsPrimax_TST" />
+          <AssociationSet Name="Syspro_FK_SalCommission_SalSalesperson" Association="Self.Syspro_FK_SalCommission_SalSalesperson">
+            <End Role="SalSalesperson" EntitySet="SalSalespersons" />
+            <End Role="SalCommission" EntitySet="SalCommissions" />
+          </AssociationSet>
+          <AssociationSet Name="Syspro_FK_SalSalespersonSum_SalSalesperson" Association="Self.Syspro_FK_SalSalespersonSum_SalSalesperson">
+            <End Role="SalSalesperson" EntitySet="SalSalespersons" />
+            <End Role="SalSalespersonSum" EntitySet="SalSalespersonSums" />
+          </AssociationSet>
+          <FunctionImport Name="sp_UPDATE_Commissions" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SysproCompanyPModelStoreContainer" CdmEntityContainer="SysproCompanyPEntities1">
+          <EntitySetMapping Name="SalCommissions">
+            <EntityTypeMapping TypeName="SysproCompanyPModel.SalCommission">
+              <MappingFragment StoreEntitySet="SalCommission">
+                <ScalarProperty Name="TrnYear" ColumnName="TrnYear" />
+                <ScalarProperty Name="TrnMonth" ColumnName="TrnMonth" />
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="Salesperson" ColumnName="Salesperson" />
+                <ScalarProperty Name="InvDate" ColumnName="InvDate" />
+                <ScalarProperty Name="Customer" ColumnName="Customer" />
+                <ScalarProperty Name="Invoice" ColumnName="Invoice" />
+                <ScalarProperty Name="Line" ColumnName="Line" />
+                <ScalarProperty Name="CustomerPoNumber" ColumnName="CustomerPoNumber" />
+                <ScalarProperty Name="MerchandiseValue" ColumnName="MerchandiseValue" />
+                <ScalarProperty Name="InvoiceValue" ColumnName="InvoiceValue" />
+                <ScalarProperty Name="CommissionValue" ColumnName="CommissionValue" />
+                <ScalarProperty Name="OrderType" ColumnName="OrderType" />
+                <ScalarProperty Name="PrintedFlag" ColumnName="PrintedFlag" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalCommissionInsideSales">
+            <EntityTypeMapping TypeName="SysproCompanyPModel.SalCommissionInsideSale">
+              <MappingFragment StoreEntitySet="SalCommissionInsideSales">
+                <ScalarProperty Name="Lid" ColumnName="Lid" />
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="ExtSalesperson" ColumnName="ExtSalesperson" />
+                <ScalarProperty Name="IntSalesperson" ColumnName="IntSalesperson" />
+                <ScalarProperty Name="IntRate" ColumnName="IntRate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="RateEffectiveDate" ColumnName="RateEffectiveDate" />
+                <ScalarProperty Name="PreviousIntRate" ColumnName="PreviousIntRate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalCommissionSalesThresholds">
+            <EntityTypeMapping TypeName="SysproCompanyPModel.SalCommissionSalesThreshold">
+              <MappingFragment StoreEntitySet="SalCommissionSalesThreshold">
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="ExtSalesperson" ColumnName="ExtSalesperson" />
+                <ScalarProperty Name="Threshold" ColumnName="Threshold" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalSalespersons">
+            <EntityTypeMapping TypeName="SysproCompanyPModel.SalSalesperson">
+              <MappingFragment StoreEntitySet="SalSalesperson">
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="Salesperson" ColumnName="Salesperson" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SalesBudget1" ColumnName="SalesBudget1" />
+                <ScalarProperty Name="SalesBudget2" ColumnName="SalesBudget2" />
+                <ScalarProperty Name="SalesBudget3" ColumnName="SalesBudget3" />
+                <ScalarProperty Name="SalesBudget4" ColumnName="SalesBudget4" />
+                <ScalarProperty Name="SalesBudget5" ColumnName="SalesBudget5" />
+                <ScalarProperty Name="SalesBudget6" ColumnName="SalesBudget6" />
+                <ScalarProperty Name="SalesBudget7" ColumnName="SalesBudget7" />
+                <ScalarProperty Name="SalesBudget8" ColumnName="SalesBudget8" />
+                <ScalarProperty Name="SalesBudget9" ColumnName="SalesBudget9" />
+                <ScalarProperty Name="SalesBudget10" ColumnName="SalesBudget10" />
+                <ScalarProperty Name="SalesBudget11" ColumnName="SalesBudget11" />
+                <ScalarProperty Name="SalesBudget12" ColumnName="SalesBudget12" />
+                <ScalarProperty Name="SalesBudget13" ColumnName="SalesBudget13" />
+                <ScalarProperty Name="SalesActual1" ColumnName="SalesActual1" />
+                <ScalarProperty Name="SalesActual2" ColumnName="SalesActual2" />
+                <ScalarProperty Name="SalesActual3" ColumnName="SalesActual3" />
+                <ScalarProperty Name="SalesActual4" ColumnName="SalesActual4" />
+                <ScalarProperty Name="SalesActual5" ColumnName="SalesActual5" />
+                <ScalarProperty Name="SalesActual6" ColumnName="SalesActual6" />
+                <ScalarProperty Name="SalesActual7" ColumnName="SalesActual7" />
+                <ScalarProperty Name="SalesActual8" ColumnName="SalesActual8" />
+                <ScalarProperty Name="SalesActual9" ColumnName="SalesActual9" />
+                <ScalarProperty Name="SalesActual10" ColumnName="SalesActual10" />
+                <ScalarProperty Name="SalesActual11" ColumnName="SalesActual11" />
+                <ScalarProperty Name="SalesActual12" ColumnName="SalesActual12" />
+                <ScalarProperty Name="SalesActual13" ColumnName="SalesActual13" />
+                <ScalarProperty Name="CommissionPct" ColumnName="CommissionPct" />
+                <ScalarProperty Name="SalespersonColl" ColumnName="SalespersonColl" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalSalespersonSums">
+            <EntityTypeMapping TypeName="SysproCompanyPModel.SalSalespersonSum">
+              <MappingFragment StoreEntitySet="SalSalespersonSum">
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="Salesperson" ColumnName="Salesperson" />
+                <ScalarProperty Name="ProductClass" ColumnName="ProductClass" />
+                <ScalarProperty Name="OrderType" ColumnName="OrderType" />
+                <ScalarProperty Name="PtdSales" ColumnName="PtdSales" />
+                <ScalarProperty Name="PtdCost" ColumnName="PtdCost" />
+                <ScalarProperty Name="PtdQty" ColumnName="PtdQty" />
+                <ScalarProperty Name="PtdMass" ColumnName="PtdMass" />
+                <ScalarProperty Name="MtdSales1" ColumnName="MtdSales1" />
+                <ScalarProperty Name="MtdSales2" ColumnName="MtdSales2" />
+                <ScalarProperty Name="MtdSales3" ColumnName="MtdSales3" />
+                <ScalarProperty Name="MtdCost1" ColumnName="MtdCost1" />
+                <ScalarProperty Name="MtdCost2" ColumnName="MtdCost2" />
+                <ScalarProperty Name="MtdCost3" ColumnName="MtdCost3" />
+                <ScalarProperty Name="MtdQty1" ColumnName="MtdQty1" />
+                <ScalarProperty Name="MtdQty2" ColumnName="MtdQty2" />
+                <ScalarProperty Name="MtdQty3" ColumnName="MtdQty3" />
+                <ScalarProperty Name="MtdMass1" ColumnName="MtdMass1" />
+                <ScalarProperty Name="MtdMass2" ColumnName="MtdMass2" />
+                <ScalarProperty Name="MtdMass3" ColumnName="MtdMass3" />
+                <ScalarProperty Name="YtdSales" ColumnName="YtdSales" />
+                <ScalarProperty Name="YtdCost" ColumnName="YtdCost" />
+                <ScalarProperty Name="YtdQty" ColumnName="YtdQty" />
+                <ScalarProperty Name="YtdMass" ColumnName="YtdMass" />
+                <ScalarProperty Name="PrvYearSales" ColumnName="PrvYearSales" />
+                <ScalarProperty Name="PrvYearCost" ColumnName="PrvYearCost" />
+                <ScalarProperty Name="PrvYearQty" ColumnName="PrvYearQty" />
+                <ScalarProperty Name="PrvYearMass" ColumnName="PrvYearMass" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="u_SalCommissionsInsideSales">
+            <EntityTypeMapping TypeName="SysproCompanyPModel.u_SalCommissionsInsideSales">
+              <MappingFragment StoreEntitySet="u_SalCommissionsInsideSales">
+                <ScalarProperty Name="DateLastInvPrt" ColumnName="DateLastInvPrt" />
+                <ScalarProperty Name="FiscalYear" ColumnName="FiscalYear" />
+                <ScalarProperty Name="FiscalMonth" ColumnName="FiscalMonth" />
+                <ScalarProperty Name="Project" ColumnName="Project" />
+                <ScalarProperty Name="Customer" ColumnName="Customer" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="Invoice" ColumnName="Invoice" />
+                <ScalarProperty Name="SalesOrder" ColumnName="SalesOrder" />
+                <ScalarProperty Name="SalesOrderLine" ColumnName="SalesOrderLine" />
+                <ScalarProperty Name="StockCode" ColumnName="StockCode" />
+                <ScalarProperty Name="StockDescription" ColumnName="StockDescription" />
+                <ScalarProperty Name="OrderQty" ColumnName="OrderQty" />
+                <ScalarProperty Name="ShipQty" ColumnName="ShipQty" />
+                <ScalarProperty Name="BackOrderQty" ColumnName="BackOrderQty" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ExchangeRate" ColumnName="ExchangeRate" />
+                <ScalarProperty Name="PriceCAD" ColumnName="PriceCAD" />
+                <ScalarProperty Name="ProductClass" ColumnName="ProductClass" />
+                <ScalarProperty Name="Salesperson" ColumnName="Salesperson" />
+                <ScalarProperty Name="IntSalesperson" ColumnName="IntSalesperson" />
+                <ScalarProperty Name="IntRate" ColumnName="IntRate" />
+                <ScalarProperty Name="Amt" ColumnName="Amt" />
+                <ScalarProperty Name="AgentCount" ColumnName="AgentCount" />
+                <ScalarProperty Name="SalespersonCount" ColumnName="SalespersonCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="u_SalCommissionsPrimax">
+            <EntityTypeMapping TypeName="SysproCompanyPModel.u_SalCommissionsPrimax">
+              <MappingFragment StoreEntitySet="u_SalCommissionsPrimax">
+                <ScalarProperty Name="DateLastInvPrt" ColumnName="DateLastInvPrt" />
+                <ScalarProperty Name="FiscalYear" ColumnName="FiscalYear" />
+                <ScalarProperty Name="FiscalMonth" ColumnName="FiscalMonth" />
+                <ScalarProperty Name="Project" ColumnName="Project" />
+                <ScalarProperty Name="Customer" ColumnName="Customer" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="Invoice" ColumnName="Invoice" />
+                <ScalarProperty Name="SalesOrder" ColumnName="SalesOrder" />
+                <ScalarProperty Name="SalesOrderLine" ColumnName="SalesOrderLine" />
+                <ScalarProperty Name="StockCode" ColumnName="StockCode" />
+                <ScalarProperty Name="StockDescription" ColumnName="StockDescription" />
+                <ScalarProperty Name="OrderQty" ColumnName="OrderQty" />
+                <ScalarProperty Name="ShipQty" ColumnName="ShipQty" />
+                <ScalarProperty Name="BackOrderQty" ColumnName="BackOrderQty" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ExchangeRate" ColumnName="ExchangeRate" />
+                <ScalarProperty Name="PriceCAD" ColumnName="PriceCAD" />
+                <ScalarProperty Name="ProductClass" ColumnName="ProductClass" />
+                <ScalarProperty Name="Salesperson" ColumnName="Salesperson" />
+                <ScalarProperty Name="CommissionSales1" ColumnName="CommissionSales1" />
+                <ScalarProperty Name="CommissionAmt1" ColumnName="CommissionAmt1" />
+                <ScalarProperty Name="Salesperson2" ColumnName="Salesperson2" />
+                <ScalarProperty Name="CommissionSales2" ColumnName="CommissionSales2" />
+                <ScalarProperty Name="CommissionAmt2" ColumnName="CommissionAmt2" />
+                <ScalarProperty Name="Salesperson3" ColumnName="Salesperson3" />
+                <ScalarProperty Name="CommissionSales3" ColumnName="CommissionSales3" />
+                <ScalarProperty Name="CommissionAmt3" ColumnName="CommissionAmt3" />
+                <ScalarProperty Name="Salesperson4" ColumnName="Salesperson4" />
+                <ScalarProperty Name="CommissionSales4" ColumnName="CommissionSales4" />
+                <ScalarProperty Name="CommissionAmt4" ColumnName="CommissionAmt4" />
+                <ScalarProperty Name="UserDef" ColumnName="UserDef" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="AgentCount" ColumnName="AgentCount" />
+                <ScalarProperty Name="SalespersonCount" ColumnName="SalespersonCount" />
+                <ScalarProperty Name="LID" ColumnName="LID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalCommissionInsideSales_25022015">
+            <EntityTypeMapping TypeName="SysproCompanyPModel.SalCommissionInsideSales_25022015">
+              <MappingFragment StoreEntitySet="SalCommissionInsideSales_25022015">
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="ExtSalesperson" ColumnName="ExtSalesperson" />
+                <ScalarProperty Name="IntSalesperson" ColumnName="IntSalesperson" />
+                <ScalarProperty Name="IntRate" ColumnName="IntRate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="RateEffectiveDate" ColumnName="RateEffectiveDate" />
+                <ScalarProperty Name="PreviousIntRate" ColumnName="PreviousIntRate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalCommissionInsideSales_25092018">
+            <EntityTypeMapping TypeName="SysproCompanyPModel.SalCommissionInsideSales_25092018">
+              <MappingFragment StoreEntitySet="SalCommissionInsideSales_25092018">
+                <ScalarProperty Name="Lid" ColumnName="Lid" />
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="ExtSalesperson" ColumnName="ExtSalesperson" />
+                <ScalarProperty Name="IntSalesperson" ColumnName="IntSalesperson" />
+                <ScalarProperty Name="IntRate" ColumnName="IntRate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="RateEffectiveDate" ColumnName="RateEffectiveDate" />
+                <ScalarProperty Name="PreviousIntRate" ColumnName="PreviousIntRate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalCommissionInsideSales_30012016">
+            <EntityTypeMapping TypeName="SysproCompanyPModel.SalCommissionInsideSales_30012016">
+              <MappingFragment StoreEntitySet="SalCommissionInsideSales_30012016">
+                <ScalarProperty Name="Lid" ColumnName="Lid" />
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="ExtSalesperson" ColumnName="ExtSalesperson" />
+                <ScalarProperty Name="IntSalesperson" ColumnName="IntSalesperson" />
+                <ScalarProperty Name="IntRate" ColumnName="IntRate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="RateEffectiveDate" ColumnName="RateEffectiveDate" />
+                <ScalarProperty Name="PreviousIntRate" ColumnName="PreviousIntRate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalCommissionInsideSales_30072015">
+            <EntityTypeMapping TypeName="SysproCompanyPModel.SalCommissionInsideSales_30072015">
+              <MappingFragment StoreEntitySet="SalCommissionInsideSales_30072015">
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="ExtSalesperson" ColumnName="ExtSalesperson" />
+                <ScalarProperty Name="IntSalesperson" ColumnName="IntSalesperson" />
+                <ScalarProperty Name="IntRate" ColumnName="IntRate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="RateEffectiveDate" ColumnName="RateEffectiveDate" />
+                <ScalarProperty Name="PreviousIntRate" ColumnName="PreviousIntRate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalCommissionInsideSales_Hakim">
+            <EntityTypeMapping TypeName="SysproCompanyPModel.SalCommissionInsideSales_Hakim">
+              <MappingFragment StoreEntitySet="SalCommissionInsideSales_Hakim">
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="ExtSalesperson" ColumnName="ExtSalesperson" />
+                <ScalarProperty Name="IntSalesperson" ColumnName="IntSalesperson" />
+                <ScalarProperty Name="IntRate" ColumnName="IntRate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="RateEffectiveDate" ColumnName="RateEffectiveDate" />
+                <ScalarProperty Name="PreviousIntRate" ColumnName="PreviousIntRate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalCommissionOverages">
+            <EntityTypeMapping TypeName="SysproCompanyPModel.SalCommissionOverage">
+              <MappingFragment StoreEntitySet="SalCommissionOverage">
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="Customer" ColumnName="Customer" />
+                <ScalarProperty Name="ExtSalesperson" ColumnName="ExtSalesperson" />
+                <ScalarProperty Name="IntSalesperson" ColumnName="IntSalesperson" />
+                <ScalarProperty Name="IntRate" ColumnName="IntRate" />
+                <ScalarProperty Name="OverageActive" ColumnName="OverageActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="u_SalCommissionsPrimax_TST">
+            <EntityTypeMapping TypeName="SysproCompanyPModel.u_SalCommissionsPrimax_TST">
+              <MappingFragment StoreEntitySet="u_SalCommissionsPrimax_TST">
+                <ScalarProperty Name="DateLastInvPrt" ColumnName="DateLastInvPrt" />
+                <ScalarProperty Name="FiscalYear" ColumnName="FiscalYear" />
+                <ScalarProperty Name="FiscalMonth" ColumnName="FiscalMonth" />
+                <ScalarProperty Name="Project" ColumnName="Project" />
+                <ScalarProperty Name="Customer" ColumnName="Customer" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="Invoice" ColumnName="Invoice" />
+                <ScalarProperty Name="SalesOrder" ColumnName="SalesOrder" />
+                <ScalarProperty Name="SalesOrderLine" ColumnName="SalesOrderLine" />
+                <ScalarProperty Name="StockCode" ColumnName="StockCode" />
+                <ScalarProperty Name="StockDescription" ColumnName="StockDescription" />
+                <ScalarProperty Name="OrderQty" ColumnName="OrderQty" />
+                <ScalarProperty Name="ShipQty" ColumnName="ShipQty" />
+                <ScalarProperty Name="BackOrderQty" ColumnName="BackOrderQty" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ExchangeRate" ColumnName="ExchangeRate" />
+                <ScalarProperty Name="PriceCAD" ColumnName="PriceCAD" />
+                <ScalarProperty Name="ProductClass" ColumnName="ProductClass" />
+                <ScalarProperty Name="Salesperson" ColumnName="Salesperson" />
+                <ScalarProperty Name="CommissionSales1" ColumnName="CommissionSales1" />
+                <ScalarProperty Name="CommissionAmt1" ColumnName="CommissionAmt1" />
+                <ScalarProperty Name="Salesperson2" ColumnName="Salesperson2" />
+                <ScalarProperty Name="CommissionSales2" ColumnName="CommissionSales2" />
+                <ScalarProperty Name="CommissionAmt2" ColumnName="CommissionAmt2" />
+                <ScalarProperty Name="Salesperson3" ColumnName="Salesperson3" />
+                <ScalarProperty Name="CommissionSales3" ColumnName="CommissionSales3" />
+                <ScalarProperty Name="CommissionAmt3" ColumnName="CommissionAmt3" />
+                <ScalarProperty Name="Salesperson4" ColumnName="Salesperson4" />
+                <ScalarProperty Name="CommissionSales4" ColumnName="CommissionSales4" />
+                <ScalarProperty Name="CommissionAmt4" ColumnName="CommissionAmt4" />
+                <ScalarProperty Name="UserDef" ColumnName="UserDef" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="AgentCount" ColumnName="AgentCount" />
+                <ScalarProperty Name="SalespersonCount" ColumnName="SalespersonCount" />
+                <ScalarProperty Name="LID" ColumnName="LID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_UPDATE_Commissions" FunctionName="SysproCompanyPModel.Store.sp_UPDATE_Commissions" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,79 @@
+﻿@model List<PBsizing.Models.CalTiers_All>
+
+@Scripts.Render("~/bundles/jquery")
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        // $.ajaxSetup({ cache: false });
+      //  fnRefresh();
+    });
+
+     function fnRefresh()
+     {
+     window.history.go(0);
+     }
+
+
+     ExportPDF = function () {
+         $.getJSON("../DispTiers/Tiers_GenPDF");
+     }
+
+
+     </script>
+
+@{
+    ViewBag.Title = "DispTIERS";
+    var TIERSgrid = new WebGrid(source: Model, canPage: true, rowsPerPage: 10);
+    TIERSgrid.Pager(WebGridPagerModes.All);
+}
+
+
+<style type="text/css">
+
+ table.gridtable 
+{                
+ font-family: verdana,arial,sans-serif;     
+            font-size:11px;   
+              color:#333333;  
+               border-width: 1px;   
+              border-color: #666666;    
+             border-collapse: collapse;  
+          }    
+            table.gridtable th 
+ {                
+ border-width: 1px;   
+              padding: 8px;    
+             border-style: solid;     
+            border-color: #666666;     
+    background-color: #A7C942;    
+          }
+                table.gridtable td {
+                    border-width: 1px;
+                    padding: 8px;
+                    border-style: solid;
+                    border-color: #666666;
+                    background-color: #ffffff;
+                }
+
+
+</style>
+
+<div id="GridCentent">
+
+    @TIERSgrid.GetHtml(
+    tableStyle:"gridtable",
+    columns:TIERSgrid.Columns(
+    TIERSgrid.Column(columnName:"cabn",header:"CABINET"),
+    TIERSgrid.Column(columnName:"hc",header:"Height"),
+    TIERSgrid.Column(columnName:"lc",header:"Width"),
+    TIERSgrid.Column(columnName:"pc",header:"Depth"),
+    TIERSgrid.Column(columnName:"nt",header:"TIERS#"),
+    TIERSgrid.Column(columnName:"nbt",header:"BATT.# / Tier"),
+    TIERSgrid.Column(columnName:"nb",header:"TOTAL BATT."),
+    TIERSgrid.Column(columnName:"surface",header:"AREA")
+    
+    ))
+
+ <div>@Html.ActionLink("Export to PDF", "Tiers_GenPDF", "DispTiers", new { target="_blank"})            </div>
+</div>

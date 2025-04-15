@@ -1,0 +1,124 @@
+﻿@model PBsizing.Models.BATTERIE
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>BATTERIE</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CMA)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CMA)
+            @Html.ValidationMessageFor(model => model.CMA)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CBT)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CBT)
+            @Html.ValidationMessageFor(model => model.CBT)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CGB)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CGB)
+            @Html.ValidationMessageFor(model => model.CGB)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CBA)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CBA)
+            @Html.ValidationMessageFor(model => model.CBA)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DESC)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DESC)
+            @Html.ValidationMessageFor(model => model.DESC)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TM)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TM)
+            @Html.ValidationMessageFor(model => model.TM)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.WIDTH)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.WIDTH)
+            @Html.ValidationMessageFor(model => model.WIDTH)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LENGTH)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LENGTH)
+            @Html.ValidationMessageFor(model => model.LENGTH)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.HEIGHT)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.HEIGHT)
+            @Html.ValidationMessageFor(model => model.HEIGHT)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.WEIGHT)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.WEIGHT)
+            @Html.ValidationMessageFor(model => model.WEIGHT)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CAPACITY)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CAPACITY)
+            @Html.ValidationMessageFor(model => model.CAPACITY)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.price)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.price)
+            @Html.ValidationMessageFor(model => model.price)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

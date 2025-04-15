@@ -1,0 +1,150 @@
+﻿@model IEnumerable<PBsizing.Models.V_u_agcmsmvmt>
+
+@Scripts.Render("~/bundles/jquery")
+@*<script src="~/Scripts/jquery-1.8.2.min.js"></script>*@
+
+@*<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@
+<script type="text/javascript">
+    $(document).ready(function () {
+        // $.ajaxSetup({ cache: false });
+      //  fnRefresh();
+    });
+
+     function fnRefresh()
+     {
+     window.history.go(0);
+     }
+
+
+     ExportPDF = function () {
+         $.getJSON("../DispTiers/Tiers_GenPDF");
+     }
+
+
+     </script>
+
+@{
+     var cmsgrid = new WebGrid(source: Model, canPage: true, rowsPerPage: 10);
+    cmsgrid.Pager(WebGridPagerModes.All);
+}
+
+
+<style type="text/css">
+
+ table.gridtable 
+{                
+ font-family: verdana,arial,sans-serif;     
+            font-size:11px;   
+              color:#333333;  
+               border-width: 1px;   
+              border-color: #666666;    
+             border-collapse: collapse;  
+          }    
+            table.gridtable th 
+ {                
+ border-width: 1px;   
+              padding: 8px;    
+             border-style: solid;     
+            border-color: #666666;     
+    background-color: #A7C942;    
+          }
+                table.gridtable td {
+                    border-width: 1px;
+                    padding: 8px;
+                    border-style: solid;
+                    border-color: #666666;
+                    background-color: #ffffff;
+                }
+         .Grid th a, .Grid th a:visited
+        {
+            color: #333;
+        }
+        .Grid .row:hover td
+        {
+            background-color:gold;
+            cursor:pointer;
+        }
+
+</style>
+<br />
+<br />
+<div id="GridCentent" style="margin-left:15px; padding:20px; ">
+
+    @cmsgrid.GetHtml(
+        tableStyle: "gridtable",
+    headerStyle: "webgrid-header",
+    footerStyle: "webgrid-footer",
+    alternatingRowStyle: "webgrid-alternating-row",
+    selectedRowStyle: "webgrid-selected-row",
+    rowStyle: "gridrow",
+    columns: cmsgrid.Columns(    
+    cmsgrid.Column(columnName: "customerNM", header: "Customer"),
+    cmsgrid.Column("Invoice", "Invoice", format: @<text>  <input type="text" id="invnb" value="@item.Invoice" class="edit-mode"  readonly = "readonly" /></text>, style: "col1Width"),
+    cmsgrid.Column(columnName: "Inv_date", header: "Invoice date"),
+    cmsgrid.Column(columnName: "RID", header: "Project#"),
+    cmsgrid.Column("New Agency", format: @item => @Html.DropDownList("value",new SelectList(ViewBag.aglist as System.Collections.IEnumerable, "codeAG", "AGname"),"Select Agency",new { @class="selectpicker form-control", id = "agencyDrop",value="@item.agg", style = "background-color: #cefa29; color: black;width: 250px"})),
+    cmsgrid.Column("Action", format: @<text> <button class="save-user edit-mode" >Save</button> </text>, style: "col3Width", canSort: false)
+    ))
+
+ <br />
+
+
+     @*<button id="saveall">Save</button>*@
+
+
+
+       @*@if (cmsgrid.HasSelection)
+       {
+           long idmy = (cmsgrid.SelectedRow.Value as PBsizing.Models.U_agCMSmvmt).agcmsLID;//..agcmsLID;
+           @Html.ActionLink("zzzzzzzzz","Edit", "AGCMS", new { id = idmy.ToString () });
+             //  Html.RenderAction("Details", new { customerId = id });
+           }*@
+ 
+         @*<script type="text/javascript">
+        $("body").on("click", "#cmsgrid td", function () {
+            var lid = $(this).closest("tr").find("td:first").html();
+            window.location = "/AGCMS/Edit/" + lid;
+        });
+    </script>*@
+
+
+    <script type="text/javascript">
+
+    
+          $('.save-user').on('click', function () {
+
+                    
+            var tr = $(this).parents('tr:first');
+            var invTR = tr.find("#invnb").val();
+              var newagTR = tr.find("#agencyDrop").val();
+            var mye_d = invTR + "||" + newagTR;
+              alert("   invTR=" + invTR + "  newag= " + newagTR);
+
+
+              $.ajax({
+                url: "../AGCMS/SavInvNoAG",
+                  type: "GET",
+                  data: { _inv: invTR, _newag: newagTR },
+                cache: false,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function (msgLst) {
+
+                    $.each(msgLst, function (index, itemData) {
+                        if (itemData.recnb == 0) alert(itemData.msg);
+
+                        //$("#msgerr_mois").val(itemData.msg + "   Imported Records= " + itemData.recnb);
+                    });
+                }
+            });
+      
+            });
+       
+
+        </script> 
+      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+</div>
+
+

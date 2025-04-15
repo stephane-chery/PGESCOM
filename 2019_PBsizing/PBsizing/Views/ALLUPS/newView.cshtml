@@ -1,0 +1,1096 @@
+﻿@{
+    ViewBag.Title = "newView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*@model PBsizing.Models.U_agCMSmvmt
+    @{
+        ViewBag.Title = "Edit";
+        //ViewBag.aglist;
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }*@
+
+
+<link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+<style type="text/css">
+
+    .table-fixed tbody {
+        float: left;
+        height: 600px;
+        overflow-y: auto;
+        width: auto;
+        font-family: Verdana;
+    }
+
+    thead, tbody {
+        display: block;
+    }
+</style>
+
+<div class="container-fluid ">
+    @using (Html.BeginForm())
+    {
+        <div class="form-group">
+            <div class="col-xs-9" style="height:600px;">
+                @*<button type="button" class="btn btn-danger btn-sm btn-block" disabled>P850U</button>*@
+                @*<span class="badge badge-pill badge-warning">Warning</span>*@
+                <button type="button" class="btn btn-primary">
+                    UPS Model: <span class="badge badge-light">P850U</span>
+                </button>
+                <table style="border-collapse: separate; border-spacing: 5px;">
+                    <tr>
+                        <td style="text-align:right"> Phase Out    </td>
+                        <td style="text-align:right">Output Voltage     </td>
+                        <td style="text-align:right">  Output KVA                  </td>
+
+                    </tr>
+                    <tr>
+                                      
+                        <td>
+                            <select id="cbPHSout" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 110px; ">
+                                <option value="Select">Select</option>
+                                <option value="1">1</option>
+                                <option value="3">3</option>
+                            </select>
+                        </td>
+                
+                        <td>
+                            <select id="cbVout" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 150px; ">
+                                <option value="Select">Select</option>
+                                <option value="120">120 V</option>
+                                @*<option value="208">208 V</option>*@
+                                <option value="240">240 V</option>
+                                @*<option value="380">380 V</option>
+                                <option value="400">400 V</option>
+                                <option value="480">480 V</option>
+                                <option value="575">575 V</option>
+                                <option value="600">600 V</option>*@
+                            </select>
+                        </td>
+                 
+                    </tr>
+
+                    <tr>
+                 
+               
+                        <td style="text-align:left">
+                            <select id="cbKVA" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 110px; ">
+                                <option value="Select">Select</option>
+                                <option value="5">5</option>
+                                <option value="7.5">7.5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="30">30</option>
+                                <option value="40">40</option>
+                                <option value="50">50</option>
+                                <option value="60">60</option>
+                                <option value="80">80</option>
+                                <option value="100">100</option>
+                                <option value="150">150</option>
+                                <option value="200">200</option>
+                                <option value="250">250</option>
+                                <option value="500">500</option>
+                                <option value="700">700</option>
+                            </select>
+                        </td>
+                        <td style="text-align:right">Output KW </td>
+                        <td style="text-align:left">
+                            <input class="input--style-4" type="text" id="outkw" style="background-color:lightgray; color: black; width: 150px; text-align:center  ;" value="0" readonly="readonly">
+                        </td>
+                        @*<td> @Html.TextBox("outkw", null, new { @class = "form-control", style = "width:150px; background-color: #cee3e3;", @readonly = "readonly" }) </td>*@
+                        <td>  @*<button type="button" class="btn btn-success" id="ups_valida">Next Step</button>*@</td>
+                    </tr>
+                    <tr>
+                        <td> <label class="label--desc" style="width:100px;">DCBUS</label></td>
+                        <td style="text-align:right">  DcBus Voltage   </td>
+                        <td style="text-align:left">
+                            <select id="cbDCbus" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 110px; ">
+                                <option value="Select">Select</option>
+                                <option value="125">125 V</option>
+                                <option value="240">250 V</option>
+                                <option value="380">380 V</option>
+                                @*<option value="400">400 V</option>*@
+                                <option value="480">480 V</option>
+                            </select>
+                        </td>
+                        <td style="text-align:right"> </td>
+                        <td> @Html.TextBox("zzzz99", null, new { @class = "form-control", style = "width:150px; background-color: #cefa29;display:none", @readonly = "readonly" }) </td>
+                        <td>  @*<button type="button" class="btn btn-success" id="ups_valida">Next Step</button>*@</td>
+                    </tr>
+                    <tr>
+                        <td> <label class="label--desc" style="width:100px;">INPUT</label></td>
+                        <td style="text-align:right"> Phase In    </td>
+                        <td>
+                            <select id="cbPHSin" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 110px; ">
+                                <option value="Select">Select</option>
+                                <option value="1">1</option>
+                                <option value="3">3</option>
+                            </select>
+                        </td>
+                        <td style="text-align:right">Input Voltage     </td>
+                        <td>
+                            <select id="cbVin" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 150px; ">
+                                <option value="Select">Select</option>
+                                <option value="120">120 V</option>
+                                @*<option value="208">208 V</option>*@
+                                <option value="240">240 V</option>
+                                @*<option value="380">380 V</option>
+                                <option value="400">400 V</option>
+                                <option value="480">480 V</option>
+                                <option value="575">575 V</option>
+                                <option value="600">600 V</option>*@
+
+                            </select>
+                        </td>
+                        <td>  @*<button type="button" class="btn btn-success" id="ups_valida">Next Step</button>*@</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input id="chkbypass" type="checkbox" checked />
+                            <label class="label--desc" style="width:100px;">BYPASS</label>
+                        </td>
+                        <td style="text-align:right" id="td_lbphs">  Bypass Phase   </td>
+                        <td id="td_txbphs">
+                            <select id="cbPHSbps" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 110px; ">
+                                <option value="Select">Select</option>
+                                <option value="1">1</option>
+                                <option value="3">3</option>
+                            </select>
+                        </td>
+                        <td style="text-align:right" id="td_lbv">Bypass Voltage </td>
+                        <td id="td_txbv">
+                            <select id="cbVinbps" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 150px; ">
+                                <option value="Select">Select</option>
+                                <option value="120">120 V</option>
+                                <option value="208">208 V</option>
+                                <option value="240">240/120 V</option>
+                                <option value="380">380 V</option>
+                                <option value="400">400 V</option>
+                                <option value="480">480 V</option>
+                                <option value="575">575 V</option>
+                                <option value="600">600 V</option>
+
+                            </select>
+                        </td>
+                        <td>  @*<button type="button" class="btn btn-success" id="ups_valida">Next Step</button>*@</td>
+                    </tr>
+                    <tr>
+                        <td><label class="label--desc" style="width:100px;"></label> </td>
+                        <td> </td>
+                        <td>
+                        </td>
+                        <td> </td>
+                        <td>
+                        </td>
+                        <td>  @*<button type="button" class="btn btn-success" id="ups_valida">Next Step</button>*@</td>
+                    </tr>
+                    <tr>
+                        <td> <label class="label--desc" style="width:100px;">MISC. INFO.</label></td>
+                        <td style="text-align:right"> Power Factor  </td>
+                        <td>
+                            <select id="cbpf" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 110px; ">
+                                <option value="0.8">0.8</option>
+                                <option value="1">1</option>
+                            </select>
+                        </td>
+                        <td style="text-align:right">Frequency  </td>
+                        <td>
+                            <select id="cbfreq" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 150px; ">
+                                <option value="60">60 Hertz</option>
+                                <option value="50">50 Hertz</option>
+
+                            </select>
+                        </td>
+                        <td><button type="button" class="btn btn-danger" id="ups_ref">Refresh Values</button></td>
+                    </tr>
+                    <tr>
+                        <td> <label class="label--desc" style="width:100px;"></label></td>
+                        <td style="text-align:right"> Batteries Type  </td>
+                        <td>
+                            <select id="cbb_type" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 110px; ">
+                                <option value="VR">VRLA</option>
+                                <option value="LA">Lead Acid</option>
+                                <option value="NI">NI-CAD</option>
+
+                            </select>
+                        </td>
+                        <td style="text-align:right">Cell #  </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="nb_cells" style="background-color: #cefa29; color: black; width: 150px; text-align:center  ;" value="60">
+                        </td>
+                        <td>
+                            @*<button type="button" class="btn btn-success" id="ups_ref">Refresh Values</button>*@
+
+
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> <label class="label--desc" style="width:100px;"> </label></td>
+                        <td style="text-align:right"> Vpc Float </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="vpcfloat" style="background-color: #cefa29; color: black; width: 110px;text-align:center  ; " value="2.27">
+                        </td>
+                        <td style="text-align:right">VFloat  </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="vfloat" style="background-color: lightgray; color: black; width: 150px; text-align:center  ;" value="136.2" readonly="readonly">
+                        </td>
+                        <td> @*<button type="button" class="btn btn-success btn-lg" id="ups_valida">UPS Validation</button>*@</td>
+                    </tr>
+                    <tr>
+                        <td> <label class="label--desc" style="width:100px;"> </label></td>
+                        <td style="text-align:right"> Vpc Equalize </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="vpceqlz" style="background-color: #cefa29; color: black; width: 110px;text-align:center  ; " value="2.27">
+                        </td>
+                        <td style="text-align:right">VEqualize  </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="veqlz" style="background-color: lightgray; color: black; width: 150px; text-align:center  ;" value="136.2" readonly="readonly">
+                        </td>
+                        <td>  @*<button type="button" class="btn btn-success" id="ups_valida">Next Step</button>*@</td>
+                    </tr>
+                    <tr>
+                        <td> <label class="label--desc" style="width:100px;"> </label></td>
+                        <td style="text-align:right"> VDC Min </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="c_vdcmin" style="background-color: lightgray; color: black; width: 110px; text-align:center  ;" value="0" readonly="readonly">
+                        </td>
+                        <td style="text-align:right">VDC Max  </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="c_vdcmax" style="background-color: lightgray; color: black; width: 150px; text-align:center  ;" value="0" readonly="readonly">
+                        </td>
+                        <td><button type="button" class="btn btn-success btn-lg" id="ups_valida">VALUES Validation</button></td>
+                    </tr>
+                    <tr>
+                        <td> <label class="label--desc" style="width:100px;"> </label></td>
+                        <td style="text-align:right"> Battery Capacity  </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="batt_capa" style="background-color: #cefa29; color: black; width: 110px;text-align:center  ; " value="0">
+                        </td>
+                        <td style="text-align:right">Charging Time  </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="batt_tc" style="background-color: #cefa29; color: black; width: 150px; text-align:center  ;" value="8">
+                        </td>
+                        <td><button type="button" class="btn btn-success btn-lg" id="ups_quote">UPS Quote</button>  </td>
+                    </tr>
+                    <tr>
+                        <td> <label class="label--desc" style="width:100px;"> </label></td>
+                        <td style="text-align:right"> Irecharge AH </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="c_irecharge_ah" style="background-color: lightgray; color: black; width: 110px; text-align:center  ;" value="0" readonly="readonly">
+                        </td>
+                        <td style="text-align:right">Irecharge STD  </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="c_irecharge_std" style="background-color: lightgray; color: black; width: 150px; text-align:center  ;" value="0" readonly="readonly">
+                        </td>
+                        <td><button type="button" class="btn btn-success btn-lg" id="ups_valida">VALUES Validation</button></td>
+                    </tr>
+
+                </table>
+                @*<h4 style="color:red">Breakers</h4>*@
+              
+
+                @Html.Hidden("upsurl", Url.Action("validate_ups", "ALLUPS"))
+                @Html.Hidden("quoteurl", Url.Action("UPS_QT", "ALLUPS"))
+
+
+
+                @Html.Hidden("H_lNBC_LA", "2.4")
+                @Html.Hidden("H_lNBC_NI", "1.56")
+
+                @Html.Hidden("H_lVcellMin_NI", "1")
+                @Html.Hidden("H_lVcellMin_LA", "1.53")
+
+                @Html.Hidden("H_lvpcF_LA", "2.27")
+                @Html.Hidden("H_lvpcF_NI", "1.45")
+
+                @Html.Hidden("H_lvpcE_LA", "2.33")
+                @Html.Hidden("H_lvpcE_NI ", "1.52")
+
+                @Html.Hidden("H_lFLT_EQ_SEC", "1")
+                @Html.Hidden("H_idci", "0")
+                @Html.Hidden("H_eff_rect", "0.9")
+
+                <table class="table table-fixed" style="border: 1px ;display: none " id="vcs_tbl">
+                    <tr>
+                        <th style=" width: 69px;border: 1px solid black;background-color: #fff34d;">   Name    </th>
+                        <th style=" width: 69px;border: 1px solid black;background-color: #fff34d;">Value</th>
+                        <th style=" width: 150px;border: 1px solid black;background-color: #fff34d;">msg</th>
+                    </tr>
+                </table>
+                <table class="table table-condensed tab-pane " style="border: 1px solid black; display: none" id="quote_tbl">
+                    <tr style="border: 1px solid black; background-color: #fff34d; ">
+                        <th style="border: 1px solid black; white-space: nowrap;">    ITEM Ref.    </th>
+                        <th style="border: 1px solid black;">   Description  </th>
+                        <th class="not_mapped_style" style="text-align: center; border: 1px solid black;">Qty</th>
+                        <th class="not_mapped_style" style="text-align: center; border: 1px solid black; white-space: nowrap;">U. Price</th>
+                        <th class="not_mapped_style" style="text-align: center; border: 1px solid black;">Extension</th>
+
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col-xs-3" style="height:600px;background-color:burlywood;line-height: 0.5">
+                <br />
+                <label class="label--desc" style="width:100px;">BREAKERS</label>
+                <table>
+                    <tr>
+                        <td><label>&nbsp;&nbsp;&nbsp;</label></td>
+                        <td>   <input id="chkcb1" type="checkbox" checked disabled="disabled" /><label style="width:100px;">CB1    ka AC:</label></td>
+                        <td>
+                            <input class="input--style-5" type="text" id="ka_cb1" style="background-color: #cefa29; color: black; width: 50px;text-align:center  ; " value="0">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>&nbsp;&nbsp;&nbsp;</label></td>
+                        <td>   <input id="chkcb2" type="checkbox" /><label style="width:100px;">CB2   ka DC:</label></td>
+
+                        <td>
+                            <input class="input--style-5" type="text" id="ka_cb2" style="background-color: #cefa29; color: black; width: 50px;text-align:center  ; " value="0">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><label>&nbsp;&nbsp;&nbsp;</label></td>
+                        <td>   <input id="chkcb3" type="checkbox" /><label style="width:100px;">CB3    ka DC:</label></td>
+
+                        <td>
+                            <input class="input--style-5" type="text" id="ka_cb3" style="background-color: #cefa29; color: black; width: 50px;text-align:center  ; " value="0">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label>&nbsp;&nbsp;&nbsp;</label></td>
+                        <td>   <input id="chkcb4" type="checkbox" /><label style="width:100px;">CB4    ka AC:</label></td>
+
+                        <td>
+                            <input class="input--style-5" type="text" id="ka_cb4" style="background-color: #cefa29; color: black; width: 50px;text-align:center  ; " value="0">
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td><label>&nbsp;&nbsp;&nbsp;</label></td>
+                        <td>   <input id="chkcb5" type="checkbox" /><label style="width:100px;">CB5 ka AC: </label></td>
+
+                        <td>
+                            <input class="input--style-5" type="text" id="ka_cb5" style="background-color: #cefa29; color: black; width: 50px;text-align:center  ; " value="0">
+                        </td>
+                    </tr>
+
+                    @*<tr>
+                        <td><label>&nbsp;&nbsp;&nbsp;</label></td>
+                        <td>   <input id="chkcb7" type="checkbox" /><label style="width:40px;">CB7</label></td>
+                        <td><label>ka:</label></td>
+                        <td>
+                            <input class="input--style-5" type="text" id="ka_cb7" style="background-color: #cefa29; color: black; width: 50px;text-align:center  ; " value="0">
+                        </td>
+                        <td><label>&nbsp;&nbsp;&nbsp;</label></td>
+                        <td>   <input id="chkcb8" type="checkbox" /><label style="width:40px;">CB8</label></td>
+                        <td><label>ka:</label></td>
+                        <td>
+                            <input class="input--style-5" type="text" id="ka_cb8" style="background-color: #cefa29; color: black; width: 50px;text-align:center  ; " value="0">
+                        </td>
+                        <td><label>&nbsp;&nbsp;&nbsp;</label></td>
+                        <td>   <input id="chkcb9" type="checkbox" /><label style="width:40px;">CB9</label></td>
+                        <td><label>ka:</label></td>
+                        <td>
+                            <input class="input--style-5" type="text" id="ka_cb9" style="background-color: #cefa29; color: black; width: 50px;text-align:center  ; " value="0">
+                        </td>
+
+                    </tr>*@
+
+                </table>
+
+            </div>
+
+        </div>
+
+    }
+
+
+
+</div>
+<script>
+
+    //   $(function () {
+    //    //events
+
+    $("#cbPHSout").change(function () {
+        var myphs = $(this).val();
+
+        //  localStorage.setItem("myCBT", myCBT);
+
+        var itemsvdc = "";
+        if (myphs == '1') {
+            itemsvdc = "<option value='Select'>Select</option>";
+            itemsvdc += "<option value='120'>120 V</option>";
+            itemsvdc += "<option value='240'>240 V</option>";
+        }
+        if (myphs == '3') {
+            itemsvdc = "<option value='Select'>Select</option>";
+            itemsvdc += "<option value='208'>208 V</option>";
+            itemsvdc += "<option value='480'>480 V</option>";
+            itemsvdc += "<option value='575'>575 V</option>";
+            itemsvdc += "<option value='600'>600 V</option>";
+
+        }
+        if (myphs == '2') {
+            itemsvdc = "<option value='Select'>Select</option>";
+            itemsvdc += "<option value='240'>240 V</option>";
+            itemsvdc += "<option value='480'>480 V</option>";
+            itemsvdc += "<option value='575'>575 V</option>";
+            itemsvdc += "<option value='600'>600 V</option>";
+
+        }
+
+        $("#cbVout").html(itemsvdc);
+
+
+    });
+
+
+    $("#cbPHSin").change(function () {
+        var myphs = $(this).val();
+
+        //  localStorage.setItem("myCBT", myCBT);
+
+        var itemsvdc = "";
+        if (myphs == '1') {
+            itemsvdc = "<option value='Select'>Select</option>";
+            itemsvdc += "<option value='120'>120 V</option>";
+            itemsvdc += "<option value='240'>240 V</option>";
+        }
+        if (myphs == '3') {
+            itemsvdc = "<option value='Select'>Select</option>";
+            itemsvdc += "<option value='208'>208 V</option>";
+            itemsvdc += "<option value='480'>480 V</option>";
+            itemsvdc += "<option value='575'>575 V</option>";
+            itemsvdc += "<option value='600'>600 V</option>";
+
+        }
+        if (myphs == '2') {
+            itemsvdc = "<option value='Select'>Select</option>";
+            itemsvdc += "<option value='240'>240 V</option>";
+            itemsvdc += "<option value='480'>480 V</option>";
+            itemsvdc += "<option value='575'>575 V</option>";
+            itemsvdc += "<option value='600'>600 V</option>";
+
+        }
+
+        $("#cbVin").html(itemsvdc);
+
+
+    });
+
+
+
+
+
+
+    $("#chkbypass").click(function () {
+        // alert("debut,,,,,,,,,,,");
+        if ($(this).is(":checked")) {
+            $("#td_lbv").show();
+            $("#td_txbv").show();
+            $("#td_lbphs").show();
+            $("#td_txbphs").show();
+
+        } else {
+            $("#td_lbv").hide();
+            $("#td_txbv").hide();
+            $("#td_lbphs").hide();
+            $("#td_txbphs").hide();
+            bps = 0;
+        }
+    });
+
+    // $("#cbPHSout").change(function () {  $("#divbypass").show(); });
+
+
+    $("#ups_valida").on('click', function (e) {
+        // debugger;
+        //  alert("debut...........");
+        var bps = 1, j_ups = "P850u", j_cbnkaac = "";
+        var j_phsout = $("#cbPHSout").val(), j_vout = $("#cbVout").val(), j_kva = $("#cbKVA").val(), j_dcbus = $("#cbDCbus").val();
+        var j_phsin = $("#cbPHSin").val(), j_vin = $("#cbVin").val(), j_phsbps = $("#cbPHSbps").val(), j_vinbps = $("#cbVinbps").val();
+        var j_pf = $("#cbpf").val(), j_freq = $("#cbfreq").val(), j_batt_capa = $("#batt_capa").val(), j_batt_tc = $("#batt_tc").val();
+        var j_nbcell = $("#nb_cells").val(), j_bat_type = $("#cbb_type").val(), j_flt = $("#vfloat").val(), j_eqlz = $("#veqlz").val(),
+            j_vdcmin = $("#c_vdcmin").val(), j_vdcmax = $("#c_vdcmax").val();
+        var valid_err = "";
+
+        //tst
+        //var nbc = H_round(nbCells(j_dcbus, j_bat_type), 0);
+        //$("#nb_cells").val(nbc);
+        //    alert("nvcells=" + nbc);
+        //tst
+
+
+        if ($("#chkbypass").is(":checked")) bps = j_phsbps;
+        else bps = 0;
+
+        //  alert("bps=" + bps + "  err=" + valid_err);
+        if (j_phsout == "Select") valid_err = " Invalid Output Phase....";
+        else {
+            if (j_vout == "Select") valid_err = " Invalid Output Voltage ....";
+            else {
+                if (j_kva == "Select") valid_err = " Invalid KVA ....";
+                else {
+                    if (j_dcbus == "Select") valid_err = " Invalid DCBus ....";
+                    else {
+                        if (j_phsin == "Select") valid_err = " Invalid INPUT Phase ....";
+                        else {
+                            if (j_vin == "Select") valid_err = " Invalid INPUT Voltage ....";
+                            else {
+                                if (bps == 1) {
+                                    if (j_phsbps == "Select" || j_vinbps == "Select") valid_err = " Invalid BYPASS info: Phase / Input Voltage ....";
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+
+        //  alert("err= " + valid_err);
+        if (valid_err == "") {
+
+            $.ajaxSetup({
+                async: false
+            });
+
+            var urlo = $("#upsurl").val();
+            //    alert("urlo = " + urlo );
+            $.getJSON(urlo, {
+
+                ups: j_ups, PHSout: j_phsout, OP_KVA: j_kva, ACoutputV: j_vout, DCBus: j_dcbus, PHSin: j_phsin, ACinputV: j_vin, PHSbps: j_phsbps,
+                BpsinputV: j_vinbps, Cbatt: j_batt_capa, timeChrg: j_batt_tc, PF: j_pf, FLT: j_flt, EQLZ: j_eqlz, vdcmin: j_vdcmin, vdcmax: j_vdcmax, frq: j_freq,
+                cbnkaac: j_cbnkaac
+            },
+
+                function (Frmls_list, status, xhr) {
+                    if (status == "success") {
+
+                        $("#vcs_tbl tr>td").remove();
+                        var fin = "";
+                        var items_data = '';
+                        var config_ok = "Y";
+                        $.each(Frmls_list, function (index, itemData) {
+                            {
+                                // debugger;
+                                items_data += '<tr>';
+                                items_data += itemData.frmlNm;
+                                items_data += itemData.frmlval;
+                                items_data += itemData.f_msg;
+
+                                //  if (itemData.desc.index("please call PRIMAX") >= 0) config_ok = "N";
+                                //if (itemData.msgerror == "2") config_ok = "N";
+
+                                items_data += '</tr>';
+
+
+                            }
+                        });
+                        $('#vcs_tbl').append(items_data);
+                        $("#vcs_tbl").show();
+                        //        $("#addal").show();
+                        // debugger;
+                        //         if (config_ok == "Y") $("#btnalrm").show();
+                    }
+                    else {
+                        alert(" Error AJAX.....Contact Admin....");
+                    }
+
+                });
+
+        }
+        else alert(valid_err);
+
+
+
+    });
+
+    $("#ups_quote").on('click', function (e) {
+        // debugger;
+        //  alert("debut...........");
+        var bps = 1, j_ups = "P850U", j_cbnkaac = get_CBN();
+        var j_phsout = $("#cbPHSout").val(), j_vout = $("#cbVout").val(), j_kva = $("#cbKVA").val(), j_dcbus = $("#cbDCbus").val();
+        var j_phsin = $("#cbPHSin").val(), j_vin = $("#cbVin").val(), j_phsbps = $("#cbPHSbps").val(), j_vinbps = $("#cbVinbps").val();
+        var j_pf = $("#cbpf").val(), j_freq = $("#cbfreq").val(), j_batt_capa = $("#batt_capa").val(), j_batt_tc = $("#batt_tc").val();
+        var j_nbcell = $("#nb_cells").val(), j_bat_type = $("#cbb_type").val(), j_flt = $("#vfloat").val(), j_eqlz = $("#veqlz").val(),
+            j_idci = $("#H_idci").val(), j_std = $("#c_irecharge_std").val(), j_ah = $("#c_irecharge_ah").val(),
+            j_vdcmin = $("#c_vdcmin").val(), j_vdcmax = $("#c_vdcmax").val();
+        var valid_err = "";
+        //var cbnkaac = get_CBN();
+        //alert("CBN= " + cbnkaac);
+
+
+
+        if ($("#chkbypass").is(":checked")) bps = j_phsbps;
+        else bps = 0;
+
+        //  alert("bps=" + bps + "  err=" + valid_err);
+        if (j_phsout == "Select") valid_err = " Invalid Output Phase....";
+        else {
+            if (j_vout == "Select") valid_err = " Invalid Output Voltage ....";
+            else {
+                if (j_kva == "Select") valid_err = " Invalid KVA ....";
+                else {
+                    if (j_dcbus == "Select") valid_err = " Invalid DCBus ....";
+                    else {
+                        if (j_phsin == "Select") valid_err = " Invalid INPUT Phase ....";
+                        else {
+                            if (j_vin == "Select") valid_err = " Invalid INPUT Voltage ....";
+                            else {
+                                if (bps == 1) {
+                                    if (j_phsbps == "Select" || j_vinbps == "Select") valid_err = " Invalid BYPASS info: Phase / Input Voltage ....";
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+
+        //  alert("err= " + valid_err);
+        if (valid_err == "") {
+
+            j_ups = "P850U" + "-" + j_phsout + "-" + j_kva + "-" + j_vout + "-" + j_dcbus;
+            if ($("#chkbypass").is(":checked")) j_ups += "-" + j_phsbps + "-" + j_vinbps;
+            else j_phsbps = 0;
+
+            $.ajaxSetup({
+                async: false
+            });
+
+            var urlo = $("#quoteurl").val();
+            //    alert("urlo = " + urlo );
+            $.getJSON(urlo, {
+
+                ups: j_ups, PHSout: j_phsout, OP_KVA: j_kva, ACoutputV: j_vout, DCBus: j_dcbus, PHSin: j_phsin, ACinputV: j_vin, PHSbps: j_phsbps,
+                BpsinputV: j_vinbps, Cbatt: j_batt_capa, timeChrg: j_batt_tc, PF: j_pf, FLT: j_flt, EQLZ: j_eqlz, vdcmin: j_vdcmin, vdcmax: j_vdcmax, frq: j_freq,
+                cbnkaac: j_cbnkaac, idci: j_idci, ah: j_ah, std: j_std
+            },
+                function (msglst) {
+                    $.each(msglst, function (index, itemData) {
+                        par = itemData.msg;
+                        tt = itemData.recnb;
+                    });
+                    //  alert("par= " + par + "  tt= " + tt);
+                });
+
+            var sppar = '@Url.Action("quoting_ups", "ALLUPS")';
+            window.location.href = sppar;
+
+        }
+        else alert(valid_err);
+
+
+
+    });
+
+    //tsssssssssssssssssssssssssssssssssttt
+
+    $("#ups_validatsssttt").on('click', function (e) {
+        // debugger;
+        alert("debut..tstttttt.........");
+        var bps = 1, j_ups = "P850u", j_cbnkaac = "CB1|0";
+        var j_phsout = $("#cbPHSout").val(), j_vout = $("#cbVout").val(), j_kva = $("#cbKVA").val(), j_dcbus = $("#cbDCbus").val();
+        var j_phsin = $("#cbPHSin").val(), j_vin = $("#cbVin").val(), j_phsbps = $("#cbPHSbps").val(), j_vinbps = $("#cbVinbps").val();
+        var j_pf = $("#cbpf").val(), j_freq = $("#cbfreq").val(), j_batt_capa = $("#batt_capa").val(), j_batt_tc = $("#batt_tc").val();
+        var j_nbcell = $("#nb_cells").val(), j_bat_type = $("#cbb_type").val(), j_flt = $("#vfloat").val(), j_eqlz = $("#veqlz").val(),
+            j_vdcmin = $("#c_vdcmin").val(), j_vdcmax = $("#c_vdcmax").val();
+        debugger;
+        var valid_err = "";
+
+
+
+        var bps = 1, j_ups = "P850u", j_cbnkaac = "CB1|0";
+        $.ajaxSetup({
+            async: false
+        });
+        debugger;
+        var urlo = $("#upsurl").val();
+        alert("urlo = " + urlo);
+        $.getJSON(urlo, {
+
+            ups: j_ups, PHSout: j_phsout, OP_KVA: j_kva, ACoutputV: j_vout, DCBus: j_dcbus, PHSin: j_phsin, ACinputV: j_vin, PHSbps: j_phsbps,
+            BpsinputV: j_vinbps, Cbatt: j_batt_capa, timeChrg: j_batt_tc, PF: j_pf, FLT: j_flt, EQLZ: j_eqlz, vdcmin: j_vdcmin, vdcmax: j_vdcmax, frq: j_freq,
+            cbnkaac: j_cbnkaac
+        },
+
+            function (frmt_defoptions, status, xhr) {
+                if (status == "success") {
+
+                    var fin = "";
+                    var items_data = '';
+                    var config_ok = "Y";
+                    $.each(frmt_defoptions, function (index, itemData) {
+                        {
+                            alert("refcpt=" + itemData.refcpt);
+                        }
+                    });
+
+                }
+                else {
+                    alert(" Error")
+                }
+
+            });
+
+    });
+
+
+
+    $("#ups_ref").on('click', function (e) {
+        // debugger;
+        //   alert("debut.calc..........");
+
+        var t = calc_Flt_Eq();
+        var tt2 = Maj_VDCMax();
+        t=calc_irechag_std_ah();
+
+
+
+
+    });
+
+    $("#fillbtn").on('click', function (e) {
+
+        //    var vdcmin = 0;
+        $("#cbPHSout").val("1");
+        $("#cbVout").val("120");
+        $("#cbKVA").val("30");
+        $("#cbDCbus").val("380");
+        $("#cbPHSin").val("3");
+        $("#cbVin").val("600");
+        $("#cbPHSbps").val("3");
+        $("#cbVinbps").val("600");
+
+        //var j_phsout = $("").val(), j_vout = $("#cbVout").val(), j_kva =, j_dcbus = $("#cbDCbus").val();
+        //var j_phsin = $("#cbPHSin").val(), j_vin = $("#cbVin").val(), j_phsbps = $("#cbPHSbps").val(), j_vinbps = $("#cbVinbps").val();
+
+    });
+
+    $("#cbKVA").change(function () {
+        var t = Maj_KW();
+        // var t2 = Maj_vpc();
+    });
+
+    $("#cbpf").change(function () {
+        var t = tstst();
+    });
+
+    $("#nb_cells").change(function () {
+        // var t = Maj_VDCMax();
+    });
+
+    $("#cbb_type").change(function () {
+        var t = Maj_vpc();
+    });
+
+    $("#cbDCbus").change(function () {
+
+        var t2 = Maj_vpc();
+        //       alert("avant ...");
+        var t = Maj_VDCMax();
+    });
+
+    //functions
+    function Maj_VDCMaxbad() {
+
+        var j_dcbus = $("#cbDCbus").val();
+        alert("  dcbus=" + j_dcbus);
+        if (j_dcbus != "Select") {
+
+            var vdcmax = get_vdcmax(j_dcbus);
+            var vdcmin = get_vdcmin(j_dcbus);
+
+            alert("  vdcmax= " + vdcmax + "  vdcmin= " + vdcmin);
+            $("#c_vdcmax").val(vdcmax);
+            $("#c_vdcmin").val(vdcmin);
+        }
+        else {
+            var vdcmax = 0;
+            var vdcmin = 0;
+            $("#c_vdcmax").val(vdcmax);
+            $("#c_vdcmin").val(vdcmin);
+        }
+
+
+    }
+
+    function Maj_VDCMax() {
+
+        //var lNBC_NI = "1.56", lNBC_LA = $("#H_lNBC_LA").val(), lVcellMin_NI = "1", lVcellMin_LA = "1.53", lvpcE_LA = "2.33", lvpcF_LA = "2.27",
+        //lvpcE_NI = "1.52", lvpcF_NI = "1.45", lFLT_EQ_SEC = "1";
+        var lVcellMin_NI = $("#H_lVcellMin_NI").val(),
+            lVcellMin_LA = $("#H_lVcellMin_LA").val(),
+            lvpcE_LA = $("#H_lvpcE_LA").val(), lvpcF_LA = $("#H_lvpcF_LA").val(),
+            lvpcE_NI = $("#H_lvpcE_NI").val(), lvpcF_NI = $("#H_lvpcF_NI").val(),
+            lNBC_NI = $("#H_lNBC_NI").val(), lNBC_LA = $("#H_lNBC_LA").val(),
+            lFLT_EQ_SEC = $("#H_lFLT_EQ_SEC").val();
+
+
+
+        var j_dcbus = $("#cbDCbus").val(), j_bat_type = $("#cbb_type").val(),
+            nbc = $("#nb_cells").val();
+
+        var vcellMin = (j_bat_type == "NI") ? lVcellMin_NI : lVcellMin_LA;
+        var cfVcellMax = (j_bat_type == "NI") ? lNBC_NI : lNBC_LA ;
+        var tVEQL = $("#veqlz").val(), tVFLOAT = $("#vfloat").val();
+        var Max_FLTEQ = lFLT_EQ_SEC * Math.max(tVEQL, tVFLOAT);
+        var VdcMax_Text = H_round(Math.max(nbc * cfVcellMax, Max_FLTEQ), 2);
+        debugger;
+        var tvdcMin_Text = vcellMin * nbc;
+
+        $("#c_vdcmax").val(VdcMax_Text);
+        $("#c_vdcmin").val(tvdcMin_Text);
+
+    }
+
+    function calc_irechag_std_ah() {
+
+        var sload = $("#cbKVA").val(), eff_rect = $("#H_eff_rect").val(),
+            j_pf = $("#cbpf").val(), j_batt_capa = $("#batt_capa").val(), j_batt_tc = $("#batt_tc").val(), j_vdcmin = $("#c_vdcmin").val();
+        debugger;
+        var std = (j_vdcmin > 0) ? H_round(1000 * sload * j_pf * 0.15 / j_vdcmin, 4) : 0; $("#c_irecharge_std").val(std);
+        var ah = (j_batt_capa > 0) ? H_round(j_batt_capa * 1.1 / j_batt_tc, 4) : 0; $("#c_irecharge_ah").val(ah);
+       // alert("STD=" + std + "   AH=" + ah);"H_idci" "H_eff_rect"
+
+        var idci = (j_vdcmin > 0) ? H_round(1000 * sload * j_pf / j_vdcmin * eff_rect, 4) : 0; $("#H_idci").val(idci);
+    }
+
+    function calc_Flt_Eq() {
+
+        var nbc = $("#nb_cells").val(),
+            cr_vpcf = $("#vpcfloat").val(),
+            cr_eqlz = $("#vpceqlz").val();
+        var vflt = H_round(cr_vpcf * nbc, 2); $("#vfloat").val(vflt);
+        var veqlz = H_round(cr_eqlz * nbc, 2); $("#veqlz").val(veqlz);
+    }
+
+    function Maj_KW() {
+        var myKVA = $("#cbKVA").val();
+        if (myKVA != 'Select') {
+
+            var myPF = $("#cbpf").val();
+            localStorage.setItem("myKVA", myKVA);
+            var sload = myKVA * myPF;
+            $("#outkw").val(sload);
+        }
+        else $("#outkw").val('0');
+    }
+
+    function Maj_vpc() {
+        //var lNBC_NI = "1.56", lNBC_LA = $("#H_lNBC_LA").val(), lVcellMin_NI = "1", lVcellMin_LA = "1.53", lvpcE_LA = "2.33", lvpcF_LA = "2.27",
+        //lvpcE_NI = "1.52", lvpcF_NI = "1.45", lFLT_EQ_SEC = "1";
+        var lNBC_NI = $("#H_lNBC_NI").val(), lNBC_LA = $("#H_lNBC_LA").val(), lVcellMin_NI = $("#H_lVcellMin_NI").val(),
+            lVcellMin_LA = $("#H_lVcellMin_LA").val(), lvpcE_LA = $("#H_lvpcE_LA").val(), lvpcF_LA = $("#H_lvpcF_LA").val(),
+            lvpcE_NI = $("#H_lvpcE_NI").val(), lvpcF_NI = $("#H_lvpcF_NI").val(), lFLT_EQ_SEC = $("#H_lFLT_EQ_SEC").val();
+        var myBT = $("#cbb_type").val(), cr_vpcf = 0, cr_eqlz = 0;
+        var j_dcbus = $("#cbDCbus").val();
+        if (j_dcbus != "Select") {
+            //      alert('typ=' + myBT + "  dcbus=" + j_dcbus);
+            switch (myBT) {
+
+                case "NI":
+                    cr_vpcf = lvpcF_NI;
+                    cr_eqlz = lvpcE_NI;
+                    $("#vpcfloat").val(lvpcF_NI);
+                    $("#vpceqlz").val(lvpcE_NI);
+                    break;
+                case "VR":
+                case "LA":
+                    cr_vpcf = lvpcF_LA;
+                    cr_eqlz = lvpcE_LA;
+                    $("#vpcfloat").val(lvpcF_LA);
+                    $("#vpceqlz").val(lvpcE_LA);
+                    break;
+            }
+            //    alert('cr_vpcf =' + cr_vpcf + '     cr_eqlz  =' + cr_eqlz);
+            var nbc = H_round(nbCells(j_dcbus, myBT), 0);
+            $("#nb_cells").val(nbc);
+            var vflt = H_round(cr_vpcf * nbc, 2);
+            $("#vfloat").val(vflt);
+            var veqlz = H_round(cr_eqlz * nbc, 2);
+            $("#veqlz").val(veqlz);
+
+            //   alert('vflt =' + vflt + '     veqlz  =' + veqlz);
+        }
+        else alert("Invalid DCBUS Voltage.....");
+
+        //	  tVEQL.Text = Convert.ToString(Math.Round(Tools.Conv_Dbl(tvpcEq.Text) * Tools.Conv_Dbl(tCellN.Text),2));
+        //     tVFLOAT.Text = Convert.ToString(Math.Round(Tools.Conv_Dbl(tvpcF.Text) * Tools.Conv_Dbl(tCellN.Text), 2));
+        // alert('fin...........');
+
+    }
+
+    function sign(x) {
+        if (+x === x) { // check if a number was given
+            return (x === 0) ? x : (x > 0) ? 1 : -1;
+        }
+        return NaN;
+    }
+    function H_round(num, decimals) {
+        //not supported by IE all version
+        var t = Math.pow(10, decimals);
+        return (Math.round((num * t) + (decimals > 0 ? 1 : 0) * (sign(num) * (10 / Math.pow(100, decimals)))) / t).toFixed(decimals);
+    }
+    function H_round_FOX(num, decimals) {
+        //not supported by IE all version
+        var t = Math.pow(10, decimals);
+        return (Math.round((num * t) + (decimals > 0 ? 1 : 0) * (Math.sign(num) * (10 / Math.pow(100, decimals)))) / t).toFixed(decimals);
+    }
+
+    function Chk_Save() {
+        if ($("#BatName").val().length == 0 || InValid_Dims()) {
+            alert("No selected Battery OR Invalid Dimensions ......");
+            return false;
+        }
+        else Save_CAB_Dim();
+    }
+
+    function InValid_Dims() {
+
+        var myBL = $("#BatLen").val();
+        var myBH = $("#BatHei").val();
+        var myBWD = $("#BatWidth").val();
+        var ddBL = parseFloat(myBL).toFixed(2);
+        var ddBH = parseFloat(myBH).toFixed(2);
+        var ddBWD = parseFloat(myBWD).toFixed(2);
+        // debugger
+        if (parseFloat(myBL).toFixed(2) == "NaN" || parseFloat(myBH).toFixed(2) == "NaN" || parseFloat(myBWD).toFixed(2) == "NaN") return true;
+        else return false;
+        //alert("Dimensions are GOOOOOOOOOOOOOOODDD....." + parseFloat(myBL));
+        //debugger
+    }
+
+    function get_CBN() {
+
+        var cb1 = 0, cb2 = -1, cb3 = -1, cb4 = -1, cb5 = -1, cb6 = -1, cb7 = -1, cb8 = -1, cb9 = -1;
+
+        cb1 = $("#ka_cb1").val();
+        cb2 = ($("#chkcb2").is(":checked")) ? $("#ka_cb2").val() : "-1";
+        cb4 = ($("#chkcb4").is(":checked")) ? $("#ka_cb4").val() : "-1";
+        cb5 = ($("#chkcb5").is(":checked")) ? $("#ka_cb5").val() : "-1";
+        cb6 = ($("#chkcb6").is(":checked")) ? $("#ka_cb6").val() : "-1";
+        cb3 = ($("#chkcb3").is(":checked")) ? $("#ka_cb3").val() : "-1";
+        cb7 = ($("#chkcb7").is(":checked")) ? $("#ka_cb7").val() : "-1";
+        cb8 = ($("#chkcb8").is(":checked")) ? $("#ka_cb8").val() : "-1";
+        cb9 = ($("#chkcb9").is(":checked")) ? $("#ka_cb9").val() : "-1";
+        return "cb1||" + cb1 + "~~cb2||" + cb2 + "~~cb3||" + cb3 + "~~cb4||" + cb4 + "~~cb5||" + cb5 + "~~cb6||" + cb6 + "~~cb7||" + cb7 + "~~cb8||" + cb8 + "~~cb9||" + cb9+";"    ;
+
+    }
+
+    Convert_TONCH = function () {
+
+        var lendd = H_round($("#BatLenMM").val() / 25.4, 2);
+        var heidd = H_round($("#BatHeiMM").val() / 25.4, 2);
+        var widdd = H_round($("#BatWidthMM").val() / 25.4, 2);
+
+        $("#BatLen").val(lendd);
+        $("#BatHei").val(heidd);
+        $("#BatWidth").val(widdd);
+
+
+
+    }
+
+
+
+    Save_CAB_Dim = function () {
+
+        var myBN = $("#BatName").val();
+        var myBC = $("#Capa").val();
+        var myBL = $("#BatLen").val();
+        var myBH = $("#BatHei").val();
+        var myBW = $("#BatWei").val();
+        var myBWD = $("#BatWidth").val();
+
+        $.getJSON("../Sizing/Save_Cab_Dim", { c_BN: myBN, c_BH: myBH, c_BL: myBL, c_BWD: myBWD });
+    }
+
+
+    function get_vdcmax_SNB() {
+
+        var flt = $("#vfloat").val();
+        var vmax = H_round((2 / Math.PI) * (flt * 1.27) * Math.SQRT2,3);//H_round($("#vfloat").val() / 1.064, 2);
+        return vmax;
+    }
+
+    function get_vdcmin_SNB() {
+
+        var vmin = H_round($("#vfloat").val() / 0.8, 2);
+        return vmin;
+    }
+
+
+
+    function get_vdcmax(vnom) {
+
+        var C_VDCMAX = [12, "14.4", 24, "28.8", 36, "43.2", 48, "57.6", 72, "86.4", 125, "144", 144, "173", 250, "288", 380, "456", 480, "576", 600, "630"];
+        var ndx = -1; //  C_VDCMAX.findIndex(myFunction);
+
+        for (i = 0; i < C_VDCMAX.length; i += 2) {
+            if (C_VDCMAX[i] >= vnom) {
+                ndx = i; i = C_VDCMAX.length;
+            }
+        }
+        if (ndx > -1) return C_VDCMAX[ndx + 1];
+        else return 0;
+    }
+    function get_vdcmin(vnom) {
+
+        var C_VDCMIN = [12, "9", 24, "18", 36, "27", 48, "36", 72, "54", 125, "90", 144, "108", 250, "180", 380, "285", 480, "360", 600, "393"];
+        var ndx = -1; //  C_VDCMAX.findIndex(myFunction);
+
+        for (i = 0; i < C_VDCMIN.length; i += 2) {
+            if (C_VDCMIN[i] >= vnom) {
+                ndx = i; i = C_VDCMIN.length;
+            }
+        }
+        if (ndx > -1) return C_VDCMIN[ndx + 1];
+        else return 0;
+    }
+
+    function nbCells(vnom, bat_type) {
+        //alert("vdc=" + vnom + "  type=" + bat_type);
+        //var C_VDCMAX = [12, "14.4", 24, "28.8", 36, "43.2", 48, "57.6", 72, "86.4", 125, "144", 144, "173", 250, "288", 380, "456", 480, "576", 600, "630"];
+        //var ndx = -1; //  C_VDCMAX.findIndex(myFunction);
+
+        //for (i = 0; i < C_VDCMAX.length; i += 2) {
+        //    if (C_VDCMAX[i] >= vnom) {
+        //        ndx = i; i = C_VDCMAX.length;
+        //    }
+        //}
+        var lNBC_NI = $("#H_lNBC_NI").val(), lNBC_LA = $("#H_lNBC_LA").val();
+        var res = 0;
+        var vdcmax = get_vdcmax(vnom);
+        if (vdcmax > 0) {
+            // var vdcmax = C_VDCMAX[ndx + 1];
+            // alert("newvdc= " + newvdcmax + "  oldvdc= " + vdcmax);
+            switch (bat_type) {
+                case "LA":
+                case "VR":
+                    res = vdcmax / lNBC_LA;
+                    break;
+                case "NI":
+                    res = vdcmax / lNBC_NI ;
+                    break;
+            }
+
+        }
+        //  alert("vdcmax=" + vdcmax +"  ndx="+ndx);
+        return res;
+        function myFunction(value, index, array) {
+            return value >= vnom;
+        }
+    }
+
+
+
+</script>

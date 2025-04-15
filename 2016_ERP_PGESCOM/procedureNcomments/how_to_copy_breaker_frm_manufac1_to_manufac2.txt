@@ -1,0 +1,10 @@
+SELECT     *
+INTO            Tmp_CPTS272
+FROM         COMPNT_PRICE_LIST
+WHERE     (COMPONENT_ID = 147) AND (Manufac_ID = 2) AND (compnt_man_Fam_ID = 3)
+
+//after changing data in Tmp_CPTS272  and set identity=NO in COMPNT_PRICE_LIST
+
+INSERT INTO COMPNT_PRICE_LIST
+SELECT     *
+FROM         Tmp_CPTS272

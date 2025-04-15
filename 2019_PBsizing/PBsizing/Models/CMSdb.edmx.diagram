@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a3f28f89e37342708846970878b4d86a" Name="Diagram1">
+        <EntityTypeShape EntityType="SysproCompanyPModel.SalCommission" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SysproCompanyPModel.SalCommissionInsideSale" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SysproCompanyPModel.SalCommissionSalesThreshold" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SysproCompanyPModel.SalSalesperson" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SysproCompanyPModel.SalSalespersonSum" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SysproCompanyPModel.u_SalCommissionsInsideSales" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SysproCompanyPModel.u_SalCommissionsPrimax" Width="1.5" PointX="5.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SysproCompanyPModel.SalCommissionInsideSales_25022015" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SysproCompanyPModel.SalCommissionInsideSales_25092018" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SysproCompanyPModel.SalCommissionInsideSales_30012016" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SysproCompanyPModel.SalCommissionInsideSales_30072015" Width="1.5" PointX="9.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SysproCompanyPModel.SalCommissionInsideSales_Hakim" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SysproCompanyPModel.SalCommissionOverage" Width="1.5" PointX="11.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SysproCompanyPModel.u_SalCommissionsPrimax_TST" Width="1.5" PointX="11.75" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="SysproCompanyPModel.Syspro_FK_SalCommission_SalSalesperson" ManuallyRouted="false" />
+        <AssociationConnector Association="SysproCompanyPModel.Syspro_FK_SalSalespersonSum_SalSalesperson" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

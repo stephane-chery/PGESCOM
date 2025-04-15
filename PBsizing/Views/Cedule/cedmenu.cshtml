@@ -1,0 +1,592 @@
+﻿@model IEnumerable<PBsizing.Models.cedulo_jobs_raw>
+
+
+
+
+@{
+    ViewBag.Title = "AgenciesCMS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+<div class="container">
+    <div id="loader" style="margin: 0px; padding: 0px; position: fixed; right: 0px; top: 0px; width: 100%; height: 100%; background-color: rgb(102, 102, 102); z-index: 30001; opacity: 0.4;display: none;display: none; ">
+        <p style="position: absolute; color: White; top: 50%; left: 45%;">
+            <img src="~/Images/reload3.gif">
+        </p>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            @*<h2>IMPORT </h2>*@
+            <h3>Import SYSPRO Systems </h3>
+            <table>
+                <tr>
+                    <td> <button id="btn_goimp" type="button" class="btn btn-danger btn-sm ">Import SYSPRO Systems</button> </td>
+                    <td> @*@Html.TextBox("curr_prd", (string)ViewBag.mmyyyy, new { @class = "form-control", style = "width:90px; background-color: #cefa29; color: black;", @readonly = "readonly" })*@ </td>
+                    <td><button class="btn btn-primary" id="btnwait" style="display: none "> <span class="spinner-border spinner-border-sm"></span>  Importing data....please wait....</button></td>
+                    <td> @Html.TextBox("msgerr", null, new { @class = "form-control", style = "width:400px; background-color: #cee3e3;display: none ", @readonly = "readonly" }) </td>
+                </tr>
+            </table>
+            <br />
+        </div>
+        <div class="col-md-12">
+            @*<h2>ADD  </h2>*@
+            @*<p>Add system to Schedule </p>*@
+            <h3>Add systems to Schedule  </h3>
+            <p><button id="btn_addprj" type="button" class="btn btn-danger btn-sm  ">By Delivery date</button></p>
+            <p><button id="btn_addprj_p" type="button" class="btn btn-danger btn-sm  ">By Project #</button></p>
+            <br />
+        </div>
+        <div class="col-md-12">
+            <h3>Schedule Status</h3>
+            @*<h2>Display all Projects from Schedule</h2>*@
+            <p><button id="btn_dispsteps" type="button" class="btn btn-danger btn-sm  ">Systems List</button></p>
+            <p><button id="btn_reorder" type="button" class="btn btn-danger btn-sm  ">Systems Priorities</button></p>
+            <br />
+        </div>
+
+        <div class="col-md-12">
+            @*<h2>Statistics</h2>*@
+            <h3>Projects Statistics</h3>
+            <p><button id="btnstat" type="button" class="btn btn-danger btn-sm  " disabled>Under Construction</button></p>
+        </div>
+        <div class="col-md-12">
+            @*<h2>Check delayed</h2>*@
+            <h3>Check delayed</h3>
+            <p><button id="btn_chk_enretard" type="button" class="btn btn-danger btn-sm  " disabled>Under Construction</button></p>
+            <button class="btn btn-primary" id="btnwait2" style="display: none "> <span class="spinner-border spinner-border-sm"></span>  Checking projects.......please wait....</button>
+            @Html.TextBox("msgerr2", null, new { @class = "form-control", style = "width:400px; background-color: #cee3e3;display: none ", @readonly = "readonly" })
+        </div>
+
+    </div>
+
+
+</div>
+
+<script>
+
+
+        $('#btn_goimp').on('click', function (e) {
+
+         var cpny = '@HttpContext.Current.Session["cpny"]' ;
+        if (cpny == "99") {
+
+            var sppar = '@Url.Action("Cdl_impjobs", "Cedule")';
+            window.location.href = sppar;
+        }
+        else alert("ACCESS DENIED......");
+        });
+
+
+    $('#btn_addprj').on('click', function (e) {
+
+         var cpny = '@HttpContext.Current.Session["cpny"]' ;
+        if (cpny == "99") {
+
+            var sppar = '@Url.Action("Cdl_addprj", "Cedule")';
+            window.location.href = sppar;
+        }
+        else alert("ACCESS DENIED......");
+        @*var mymm = $("#cbmm_lst").val();
+        var my_yyyy = $("#cbyyyy_lst").val();
+        var my_agncy = $("#cbagncy").val(); my_agncy = my_agncy.substring(0, 3);
+        if (my_agncy.length < 1 ) my_agncy = "Select";
+     //   alert("ag= " + my_agncy +"  mm= -" + mymm + "-   yyyy= -" + my_yyyy +"-");
+        if (my_agncy !="Select" || (mymm !="Select" && my_yyyy !="Select" )) {
+        var sppar = "@Url.Action( "DispINVCMS","AGCMS",new {_SP = "SS", _MM="mm", _YYYY="yy"})".replace("SS", mysp).replace("mm",mymm).replace("yy",myyyyy);*@
+
+
+        //    sparr= sppar.replace("SS", mysp);
+
+
+        //}
+        //else alert("ERROR Selection......");
+
+
+
+    });
+
+
+    $('#btn_addprj_p').on('click', function (e) {
+
+         var cpny = '@HttpContext.Current.Session["cpny"]' ;
+        if (cpny == "99") {
+
+            var sppar = '@Url.Action("Cdl_addprj_p", "Cedule")';
+            window.location.href = sppar;
+        }
+        else alert("ACCESS DENIED......");
+
+
+    });
+
+       $('#btn_reorder').on('click', function (e) {
+
+         var cpny = '@HttpContext.Current.Session["cpny"]' ;
+        if (cpny == "99") {
+
+            var sppar = '@Url.Action("Reorder_prjTBLO", "Cedule")';
+            window.location.href = sppar;
+        }
+        else alert("ACCESS DENIED......");
+
+
+    });
+
+
+
+    $('#btn_dispsteps').on('click', function (e) {
+
+          var sppar = '@Url.Action("Disp_Steps", "Cedule")';
+          window.location.href = sppar;
+
+
+        @*var mymm = $("#cbmm_lst").val();
+        var my_yyyy = $("#cbyyyy_lst").val();
+        var my_agncy = $("#cbagncy").val(); my_agncy = my_agncy.substring(0, 3);
+        if (my_agncy.length < 1 ) my_agncy = "Select";
+     //   alert("ag= " + my_agncy +"  mm= -" + mymm + "-   yyyy= -" + my_yyyy +"-");
+        if (my_agncy !="Select" || (mymm !="Select" && my_yyyy !="Select" )) {
+        var sppar = "@Url.Action( "DispINVCMS","AGCMS",new {_SP = "SS", _MM="mm", _YYYY="yy"})".replace("SS", mysp).replace("mm",mymm).replace("yy",myyyyy);*@
+
+
+            //    sparr= sppar.replace("SS", mysp);
+
+
+        //}
+        //else alert("ERROR Selection......");
+
+
+    });
+
+
+
+    $('#chkall').click(function () {
+        var isChecked = $(this).prop("checked");
+        $('#table-style tr:has(td)').find('input[type="checkbox"]').prop('checked', isChecked);
+    });
+
+    $('#table-style tr:has(td)').find('input[type="checkbox"]').click(function () {
+        var isChecked = $(this).prop("checked");
+        var isHeaderChecked = $("#chkParent").prop("checked");
+        if (isChecked == false && isHeaderChecked)
+            $("#chkParent").prop('checked', isChecked);
+        else {
+            $('#table-style tr:has(td)').find('input[type="checkbox"]').each(function () {
+                if ($(this).prop("checked") == false)
+                    isChecked = false;
+            });
+         //   console.log(isChecked);
+            $("#chkall").prop('checked', isChecked);
+        }
+    });
+
+
+
+    $('#btnaddprj').click(function () {
+
+        var Vie
+        var arr = [];
+        arr = $('#table-style').find('[type="checkbox"]:checked').map(function () {
+            return $(this).closest('tr').find('td:nth-child(2)').text();
+           // return $(this).val();
+        }).get();
+      //   debugger;
+          //var urlo = $("#saval_url").val();
+
+        var msg_al = "Saving Alarms Errors..........!!!!!";
+           $.ajax({
+               url: "../Cedule/cedule_prj",
+               type: "GET",
+               data: { c_al_list: arr.toString() },
+               cache: false,
+               contentType: "application/json; charset=utf-8",
+               dataType: "json",
+               success: function (data) {
+                   msg_al = "Saving projects DONE......";
+                   $('#table-style :checked').each(function () {
+                       $('#table-style :checkbox:checked').closest('tr').remove();
+                   });
+
+               }
+
+        });
+
+        alert("Saving projects DONE......");
+
+
+
+    });
+
+
+
+//good
+    $('#btngowait').on('click', function (e) {
+
+       // var cpny = @ViewBag.cpny;
+
+        var cpny = '@HttpContext.Current.Session["cpny"]';
+        alert("me......cpny=" + cpny);
+        if (cpny == "99") {
+
+            $.ajaxSetup({
+                async: false,
+                beforeSend: function () {
+                    $("#loader").show();
+                },
+                complete: function (data) {
+                    $("#loader").hide();
+                }
+
+
+            });
+            var j_toto = "????";
+            $.ajax({
+                url: "../Cedule/import_trs",
+                type: "GET",
+                data: { toto: j_toto },
+                cache: false,
+                dataType: "json",
+               //   contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    alert("sluuuuuuuuuuuuuuuu");
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert("xhr.status: " + xhr.status);
+                    alert("thrownError: " + thrownError);
+                }
+
+            });
+            @*var err=@ViewBag.errormsg;
+            alert(err);*@
+         }
+        else alert("ACCESS DENIED......");
+
+    });
+
+      $('#btngo').on('click', function (e) {
+
+       // var cpny = @ViewBag.cpny;
+   //     alert("cpny="+'@HttpContext.Current.Session["cpny"]' +"=");
+          var cpny = '@HttpContext.Current.Session["cpny"]';
+
+//tstttttttttt
+          var mymm ="02";
+          var my_yyyy = "2020";
+
+
+
+          if (cpny == "99") {
+
+            $.ajax({
+                url: "../Cedule/Impcms_mmyyyy",
+                type: "GET",
+                data: { _mm: mymm, _yyyy: my_yyyy },
+                cache: false,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function (msgLst) {
+                    $.each(msgLst, function (index, itemData) {
+                       // $("#msgerr").val(itemData.msg + "   Imported Records= " + itemData.recnb);
+                        alert(itemData.msg + "   Imported Records= " + itemData.recnb);
+                    });
+
+                         var      bv_srvr = '@HttpContext.Current.Session["bv_srvr"]';
+                        alert("bvSRVER innnnn= " + bv_srvr);
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+
+                    alert("xhr.status: " + xhr.status + "   sts code= " + xhr.statusCode + "   txtstat= " + xhr.textStatus);
+                    alert("thrownError: " + thrownError);
+
+                      var  bv_srvr = '@HttpContext.Current.Session["bv_srvr"]';
+                        alert("bvSRVER error= " + bv_srvr);
+
+                }
+            });
+
+              debugger;
+        }
+        else alert("ACCESS DENIED......");
+
+    });
+
+
+
+
+    $('#btn_imprt').on('click', function (e) {
+
+
+
+        var mymm = "02";
+        var my_yyyy = "2020";
+            $.ajax({
+                url: "../Cedule/Impcms_mmyyyy",
+                type: "GET",
+                data: { _mm: mymm, _yyyy: my_yyyy },
+                cache: false,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function (msgLst) {
+
+                    $.each(msgLst, function (index, itemData) {
+                        alert("done");
+                        //$("#msgerr_mois").val(itemData.msg + "   Imported Records= " + itemData.recnb);
+                    });
+                }
+            });
+
+            //$("#btnwait_mois").hide();
+            //$("#msgerr_mois").show();
+        alert("NoooooooooooooooooooooooooooT done");
+
+    });
+
+
+        $('#btn_chk_enretard').on('click', function (e) {
+
+       // var cpny = @ViewBag.cpny;
+   //     alert("cpny="+'@HttpContext.Current.Session["cpny"]' +"=");
+        var cpny = '@HttpContext.Current.Session["usr"]' ;
+        if (cpny == "ede") {
+            $("#btnwait2").show();
+            //  $("#btnwait").css('display', 'block');
+
+            $("#btn_chk_enretard").hide();
+            $.ajax({
+                url: "../Cedule/chk_tard_Jobs",
+                type: "GET",
+                data: {},
+                cache: false,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function (msgLst) {
+
+                    $.each(msgLst, function (index, itemData) {
+                        $("#msgerr2").val(itemData.msg + " Projects found: " + itemData.recnb);
+                    });
+                }
+            });
+
+            $("#btnwait2").hide();
+            $("#msgerr2").show();
+        }
+        else alert("Under Construction......");
+
+    });
+
+
+
+
+    $('#btn_cmslst_sap').on('click', function (e) {
+
+        var mymm = $("#cbmm_lst").val();
+        var my_yyyy = $("#cbyyyy_lst").val();
+        var my_agncy = $("#cbagncy").val();
+
+      //  alert("ag= " + my_agncy.length + "   mm= " + mymm + "    yyyy= " + my_yyyy);
+        if (mymm != "Select" && my_yyyy != "Select" && my_agncy.length>3) {
+             // $("#msgerr_mois").hide();
+             //  $("#btnwait_mois").show();
+            //  $("#btnwait").css('display', 'block');
+
+            //  $("#btn_imprt").hide();
+            $.ajax({
+                url: "../AGCMS/lstcms_mmyyyyag",
+                type: "GET",
+                data: { _mm: mymm, _yyyy: my_yyyy },
+                cache: false,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function (msgLst) {
+
+                    $.each(msgLst, function (index, itemData) {
+                        $("#msgerr_mois").val(itemData.msg + "   Imported Records= " + itemData.recnb);
+                    });
+                }
+            });
+
+            $("#btnwait_mois").hide();
+            $("#msgerr_mois").show();
+        }
+        else   alert("ERROR: please select  Month and Year.....");
+
+    });
+
+    $('#btn_cmslst').on('click', function (e) {
+
+        var mymm = $("#cbmm_lst").val();
+        var my_yyyy = $("#cbyyyy_lst").val();
+        var my_agncy = $("#cbagncy").val(); my_agncy = my_agncy.substring(0, 3);
+        if (my_agncy.length < 1 ) my_agncy = "Select";
+     //   alert("ag= " + my_agncy +"  mm= -" + mymm + "-   yyyy= -" + my_yyyy +"-");
+        if (my_agncy !="Select" || (mymm !="Select" && my_yyyy !="Select" )) {
+        @*var sppar = "@Url.Action( "DispINVCMS","AGCMS",new {_SP = "SS", _MM="mm", _YYYY="yy"})".replace("SS", mysp).replace("mm",mymm).replace("yy",myyyyy);*@
+
+            var sppar = '@Url.Action( "DispCMS_lst","AGCMS")?_AG=' + my_agncy + '&_MM=' + mymm + '&_YYYY=' + my_yyyy;
+            //    sparr= sppar.replace("SS", mysp);
+
+            window.location.href = sppar;
+        }
+        else alert("ERROR Selection......");
+
+
+    });
+
+
+        $('#btn_cmslst_byinv').on('click', function (e) {
+
+            var my_inv = $("#invnb").val();
+            if ($.isNumeric(my_inv))
+            {
+                var sppar = '@Url.Action( "DispCMS_lstbyinv","AGCMS")?_INV=' + my_inv;
+            //    sparr= sppar.replace("SS", mysp);
+
+            window.location.href = sppar;
+        }
+        else alert("ERROR: Invalid Invoice #......");
+
+
+    });
+
+    $('#btngrid').on('click', function (e) {
+
+       // debugger;
+        var mysp = $("#cbsp").val();
+        var mymm = $("#cbmm").val();
+        var myyyyy = $("#cbyyyy").val();
+        @*var sppar = "@Url.Action( "DispINVCMS","AGCMS",new {_SP = "SS", _MM="mm", _YYYY="yy"})".replace("SS", mysp).replace("mm",mymm).replace("yy",myyyyy);*@
+
+        var sppar = '@Url.Action( "DispINVCMS","AGCMS")?_SP=' + mysp + '&_MM=' + mymm + '&_YYYY=' + myyyyy;
+   //    sparr= sppar.replace("SS", mysp);
+      //   alert(sppar);
+        window.location.href = sppar;
+    //    $.get('@Url.Action("DispINVCMS","AGCMS")', { _SP : mysp });
+
+    });
+
+    $('#btngrid_noag').on('click', function (e) {
+
+        $.ajaxSetup({
+       async: false
+         });
+        var mysp = $("#cbsp").val();
+        var mymm = $("#cbmm").val();
+        if (mymm.length == 1) mymm = "0" + mymm;
+        var myyyyy = $("#cbyyyy").val();
+        if (mysp != "Select" && mymm != "Select" && myyyyy != "Select") {
+
+            var mye_d = mysp + '&_MM=' + mymm + '&_YYYY=' + myyyyy;
+        //    alert("MM=" + mymm);
+           // debugger;
+            var par="????", tt="";
+
+             $.getJSON("../AGCMS/dingo", { _pkt: mye_d },
+                function (msglst) {
+                      $.each(msglst, function (index, itemData) {
+                          par = itemData.msg;
+                          tt = itemData.recnb ;
+                      });
+                  //  alert("par= " + par + "  tt= " + tt);
+                 });
+            //    var sppar = '@Url.Action( "DispINV_NOAG","AGCMS")?_SP=' + mysp + '&_MM=' + mymm + '&_YYYY=' + myyyyy;
+
+
+            var sppar = '@Url.Action( "DispINV_NOAG","AGCMS")?_SP=' + par;
+            window.location.href = sppar;
+        }
+        else alert("ERROR Selection......");
+
+    });
+
+
+
+        $('#btnxl').click(function () {
+
+        var j_Quotenb = $("#Quotenb").val();
+        if (j_Quotenb.length > 3) {
+            window.location.href = "@Url.Action("XL_configo", "BfrQuote")";
+        }
+        else alert("First click on button:  Generate Quote #");
+    });
+
+
+
+
+    $('#btn_import').click(function () {
+        var arr = [];
+        arr = $('#table-style').find('[type="checkbox"]:checked').map(function () {
+            return $(this).closest('tr').find('td:nth-child(2)').text();
+            // return $(this).val();
+        }).get();
+        if (arr.length > 0 && arr != "") {
+            //  alert("rec...*" + arr+"*");
+
+
+            $.ajaxSetup({
+                async: false,
+                beforeSend: function () {
+                    $("#loader").show();
+                },
+                complete: function (data) {
+                    $("#loader").hide();
+                }
+
+
+            });
+            //   debugger;
+            var msg_al = "????";
+            $.ajax({
+                url: "../Cedule/cedule_prj",
+                type: "POST",
+                data: { c_al_list: arr.toString() },
+                cache: false,
+                dataType: "json",
+                //contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    msg_al = "ok";
+                    //alert('succ='+msg_al);
+                    $('#table-style :checked').each(function () {
+                        $('#table-style :checkbox:checked').closest('tr').remove();
+
+                    });
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert("xhr.status: " + xhr.status);
+                    alert("thrownError: " + thrownError);
+                }
+
+            });
+
+            //$('#table-style :checked').each(function () {
+            //    $('#table-style :checkbox:checked').closest('tr').remove();
+            //});
+            //alert('succ=' + msg_al);
+            alert("Saving projects DONE......");
+
+        }
+        else alert("No Projects selected....." + arr.length.toString());
+
+    });
+
+
+
+</script>
+
+<script src="http://code.jquery.com/jquery-1.8.3.js"></script>

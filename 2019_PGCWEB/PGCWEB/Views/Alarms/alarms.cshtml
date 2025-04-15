@@ -1,0 +1,181 @@
+﻿@model IEnumerable<PGCWEB.Models.Alarms>
+@{
+    ViewBag.Title = "alarms";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"  ></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesome-bootstrap-checkbox/0.3.7/awesome-bootstrap-checkbox.css">
+
+    <style type="text/css">
+
+.table-fixed tbody {
+
+
+ float:left;
+    height:630px;
+    overflow-y:auto ;
+    width:auto;
+      font-family:Verdana;
+}
+thead, tbody { display: block; }
+
+
+ 
+
+</style>
+   
+</head>
+<body>
+    <br />
+    <br />
+    @*<h2 style="color:red">Alarms / options</h2>*@
+      @*<button type="button" class="btn btn-primary btn-lg active ">Alarms / options</button>*@
+    <button type="button" class="btn btn-danger btn-lg ">Alarms / Options</button>
+    <br />
+    @if (Model != null)
+{
+    <div class="col-md-6" style="line-height: 0.5">
+        @*<table class="table table-bordered" id="table-style">*@
+          <table class="table table-fixed" id="table-style">
+            <thead>
+                <tr>
+                    <th style=" width: 69px;border: 1px solid black;background-color: #fff34d;">Select</th>
+                    <th style=" width: 50px;border: 1px solid black;background-color: #fff34d;">ID</th>
+                    <th style=" width: 635px;border: 1px solid black;background-color: #fff34d;">Alarm Name</th>
+                    <th style=" width: 70px;border: 1px solid black;background-color: #fff34d;">Relay</th>
+                    <th style=" width: 87px;border: 1px solid black;background-color: #fff34d;">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var itm in Model)
+                {
+                    <tr>
+                        <td style="border: 1px solid black;width: 70px;">
+                            @if (itm.price == "0")
+                            {
+                                @:<div class="checkbox checkbox-success"><input type="checkbox" id="checkbox1" checked="checked" class="styled" value=@itm.alrmId><label></label></div>
+                    }
+                            else
+                            {
+                                @:<div class="checkbox checkbox-success"><input type="checkbox" id="checkbox1" class="styled" value=@itm.alrmId><label></label></div>
+                    }
+                        </td>
+
+                        <td style="border: 1px solid black;width: 50px;vertical-align:middle"> @itm.alrmId</td>
+                        <td style="border: 1px solid black;width: 650px;vertical-align:middle ">@itm.eng_desc</td>
+                        <td style="border: 1px solid black;width: 70px;">
+                            @if (itm.relay01 == "0")
+                            {
+                                @:<div ><label>--</label></div>
+                    }
+                            else
+                            {
+                                @:<div class="checkbox checkbox-success"><input type="checkbox" id="checkbox1" class="styled" value=R_@itm.alrmId><label></label></div>
+                    }
+                        </td>
+
+                        @*<td style="border: 1px solid black;">@itm.price</td>*@
+                        <td style="border: 1px solid black;width: 70px;vertical-align:middle">
+                        @if (itm.price == "0.001")
+                        {
+                            @:<div ><label>0</label></div>
+                        }
+                       else 
+                       {
+                                @:<div ><label>@itm.price</label></div>
+                       }
+                        
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        @*<input id="btnold" class="button" value="Save selected alarms" />*@
+        <button type="button" class="btn btn-success" id="btn"> Save selected alarms </button>
+
+        <a href='@Url.Action("options", "Options")'>  <img src='@Url.Content("~/Images/button_add-options_2.png")' />   </a>
+
+        @*<button id="btnnxt" type="button" class="btn btn-dark">Display final Charger</button>
+        <input id="btnnxtt" class="button button3" value="Display final Charger" />*@
+        <button type="button" class="btn btn-success" id="btnnxt"> Charger Final Configuration </button>
+
+        @Html.Hidden("saval_url", Url.Action("Save_ch_alarms", "Alarms"))
+        <br />
+        <br />
+        <br />
+        <br />
+    </div>
+
+}
+
+</body>
+</html>
+
+<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+<script>
+    var arr=[];
+    $('#btn').click(function () {
+        arr = $('#table-style').find('[type="checkbox"]:checked').map(function () {
+            //return $(this).closest('tr').find('td:nth-child(2)').text();
+            return $(this).val();
+        }).get();
+      //   debugger;
+          var urlo = $("#saval_url").val();
+      //   var urlo = $("#saval_url").val();
+         
+        @*var ROOT = '@Url.Content($("#saval_url").val())';
+        var urlo = ROOT + $("#saval_url").val();*@
+        // var urlo= rootUrl + "/Alarms/Save_ch_alarms";
+     //   alert("urlo= " + urlo);
+        var msg_al = "Saving Alarms Errors..........!!!!!";
+           $.ajax({
+               url: "../Alarms/Save_ch_alarms",
+               type: "GET",
+               data: { c_al_list: arr.toString() },
+               cache: false,
+               contentType: "application/json; charset=utf-8",
+               dataType: "json",
+               success: function (data) {
+                   msg_al = "Saving alarms DONE......";
+               }
+
+        });
+
+        alert("Saving alarms DONE......" );
+
+ //       window.location.href = "@Url.Action("bfrQuote", "BfrQuote")";
+
+        //    alert(arr);
+        //     $.getJSON("../Alarms/Save_ch_alarms", { c_al_list: arr });
+    });
+
+
+
+    $('#btnnxt').click(function () {
+       
+             window.location.href = "@Url.Action("bfrQuote", "BfrQuote")";
+    });
+
+    //function relay(x) {
+    //    debugger;
+    //    var tt = x.val();
+    //     return (tt * 2);
+        
+        
+    //}
+
+</script>
+
+
+

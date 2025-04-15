@@ -1,0 +1,700 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery-3.2.1.min.js"></script>
+<script src="~/Scripts/moment.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+@*<link href="~/Content/font-awesome.min.css" rel="stylesheet" />*@
+@*<link href="~/Content/bootstrap-iso.css" rel="stylesheet" />*@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+@*<link rel="stylesheet" href="/resources/demos/style.css">*@
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+@*<link href="~/Content/themes/SupplierSearchBar.css" rel="stylesheet" />*@
+
+<style>
+    hr.light {
+        width: 70%;
+        margin: 0 auto;
+        border: 0px none white;
+        border-top: 1px solid lightgrey;
+    }
+
+    a.classname {
+        background: url(../Images/category_3145.png) no-repeat top left;
+        display: block;
+        width: 150px;
+        height: 150px;
+        text-indent: -9999px; /* hides the link text */
+    }
+</style>
+
+
+<div class="container-fluid ">
+    <br />
+    <h4>@ViewBag.Qnb </h4>
+    <br />
+    <table>
+        <tr>
+            <th class="not_mapped_style" style="text-align: center; ">CHARGER MODEL</th>
+            <th class="not_mapped_style" style="text-align: center;">PHASE</th>
+            <th class="not_mapped_style" style="text-align: center;">VDC</th>
+            <th class="not_mapped_style" style="text-align: center;">IDC</th>
+            <th class="not_mapped_style" style="text-align: center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+            <th class="not_mapped_style" style="text-align: center;">Batteries</th>
+            <th class="not_mapped_style" style="text-align: center;">Hertz</th>
+
+        </tr>
+        <tr>
+            <td>
+                <select id="cbpxx" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 300px; ">
+                    <option value="P4500F">P4600F (Filtered)</option>
+                    <option value="P4500T">P4600T (Battery eliminator)</option>
+                    <option value="P4500TT">P4600TT (30mV on battery for 125 Vdc)</option>
+                </select>
+            </td>
+            <td>
+                <select id="cbphs" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 150px; ">
+                    <option value="Select">Select PHASE</option>
+                    <option value="1">PHASE 1</option>
+                    <option value="3">PHASE 3</option>
+                </select>
+            </td>
+            <td>
+                <select id="cbvdc" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 150px; ">
+                    <option value="Select">Select VDC</option>
+                    <option value="12">12 V</option>
+                    <option value="24">24 V</option>
+                    <option value="36">36 V</option>
+                    <option value="48">48 V</option>
+                    <option value="72">72 V</option>
+                    <option value="125">125 V</option>
+                    <option value="144">144 V</option>
+                    <option value="250">250 V</option>
+                    <option value="380">380 V</option>
+                    <option value="480">480 V</option>
+                    <option value="600">600 V</option>
+
+                </select>
+            </td>
+            <td>
+                <select id="cbidc" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 150px; ">
+                    <option value="Select">Select IDC</option>
+                    <option value="5">5 A</option>
+                    <option value="10">10 A</option>
+                    <option value="15">15 A</option>
+                    <option value="20">20 A</option>
+                    <option value="25">25 A</option>
+                    <option value="30">30 A</option>
+                    <option value="35">35 A</option>
+                    <option value="40">40 A</option>
+                    <option value="50">50 A</option>
+                    <option value="60">60 A</option>
+                    <option value="70">70 A</option>
+                    <option value="75">75 A</option>
+                    <option value="80">80 A</option>
+                    <option value="100">100 A</option>
+                    <option value="125">125 A</option>
+                    <option value="150">150 A</option>
+                    <option value="175">175 A</option>
+                    <option value="200">200 A</option>
+                    <option value="225">225 A</option>
+                    <option value="250">250 A</option>
+                    <option value="275">275 A</option>
+                    <option value="300">300 A</option>
+                    <option value="325">325 A</option>
+                    <option value="350">350 A</option>
+                    <option value="375">375 A</option>
+                    <option value="400">400 A</option>
+                    <option value="500">500 A</option>
+                    <option value="600">600 A</option>
+                    <option value="750">750 A</option>
+                    <option value="800">800 A</option>
+                    <option value="900">900 A</option>
+                    <option value="1000">1000 A</option>
+                </select>
+            </td>
+            <td>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+
+            </td>
+
+            <td>
+                <select id="cbbatt" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 120px; ">
+                    <option value="VRLA">VRLA</option>
+                    <option value="LA">VLA</option>
+                    <option value="NI-CAD">NI-CAD</option>
+                </select>
+            </td>
+            <td>
+                <select id="cbhertz" class="selectpicker form-control" style="background-color: #cefa29;color: black; width: 80px; ">
+                    <option value="60">60</option>
+                </select>
+            </td>
+
+        </tr>
+    </table>
+    <br />
+    <button type="button" class="btn btn-success" id="valida_ch_info">Next Step</button>
+    <hr style="border-top: 1px solid black; background: transparent;" />
+
+
+    <div class="row" id="ch_values" style="display:none">
+        <div>
+            <table id="ch_values_tbl">
+                <tr>
+                    <td align="right" nowrap>
+                        Cell #
+                    </td>
+                    <td align="left">
+                        @Html.TextBox("cal_cellnb", null, new { @class = "form-control  ", style = "width:100px; " })
+                    </td>
+                    <td>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+
+                    </td>
+                    <td align="right">
+                        VAC
+                    </td>
+                    <td align="left">
+                        @Html.TextBox("cal_vac", null, new { @class = "form-control", style = "width:100px; " })
+                    </td>
+                    <td>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    </td>
+                    <td align="right">
+                        KA ac breaker
+                    </td>
+                    <td align="left">
+                        @Html.TextBox("acka", null, new { @class = "form-control", style = "width:100px; " })
+                    </td>
+
+                </tr>
+                <tr>
+                    <td align="right" nowrap>
+                        Vpc Float
+                    </td>
+                    <td align="left">
+                        @Html.TextBox("vpcfloat", null, new { @class = "form-control", style = "width:100px; " })
+                    </td>
+                    <td>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    </td>
+                    <td align="right">
+                        VFLOAT
+                    </td>
+                    <td align="left">
+                        @Html.TextBox("vfloat", null, new { @class = "form-control", style = "width:100px; background-color: #cee3e3 ", @readonly = "readonly" })
+                    </td>
+                    <td>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    </td>
+                    <td align="right">
+                        KA dc breaker
+                    </td>
+                    <td align="left">
+                        @Html.TextBox("dcka", null, new { @class = "form-control", style = "width:100px; " })
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" nowrap>
+                        Vpc Equalize
+                    </td>
+                    <td align="left">
+                        @Html.TextBox("vpcequal", null, new { @class = "form-control", style = "width:100px; " })
+                    </td>
+                    <td>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+
+                    </td>
+                    <td align="right">
+                        VEQUALIZE
+                    </td>
+                    <td align="left">
+                        @Html.TextBox("vequal", null, new { @class = "form-control", style = "width:100px; background-color: #cee3e3 ", @readonly = "readonly" })
+                    </td>
+                    <td>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td align="right" nowrap>
+                        VDC Min
+                    </td>
+                    <td align="left">
+                        @Html.TextBox("vdcmin", null, new { @class = "form-control", style = "width:100px; background-color: #cee3e3 ", @readonly = "readonly" })
+                    </td>
+                    <td>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+
+                    </td>
+                    <td align="right">
+                        IDC Min
+                    </td>
+                    <td align="left">
+                        @Html.TextBox("idcmin", null, new { @class = "form-control", style = "width:100px;background-color: #cee3e3 ", @readonly = "readonly" })
+                    </td>
+                    <td>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    </td>
+                    <td>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td align="right" nowrap>
+                        VDC Max
+                    </td>
+                    <td align="left">
+                        @Html.TextBox("vdcmax", null, new { @class = "form-control", style = "width:100px; " })
+                    </td>
+                    <td>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+
+                    </td>
+                    <td align="right">
+                        IDC Max
+                    </td>
+                    <td align="left">
+                        @Html.TextBox("idcmax", null, new { @class = "form-control", style = "width:100px; background-color: #cee3e3 ", @readonly = "readonly" })
+                    </td>
+                    <td>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    </td>
+                    <td>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    </td>
+                    <td>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8" align="center">
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="8" align="center" style="">
+                        <button type="button" class="btn btn-warning" id="refresh_vals"> modify above values &amp; Refresh </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        @*<!-- Modal -->
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Modal Header</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Some text in the modal.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- Modal -->*@
+
+        <hr style="border-top: 1px solid black; background: transparent;" />
+        <button type="button" class="btn btn-success" id="charger_vali"> Generate Charger Configuration </button>
+        <table class="table table-condensed tab-pane " style="border: 1px solid black; display: none" id="options_tbl">
+            <tr style="border: 1px solid black; background-color: #fff34d; ">
+                <th style="border: 1px solid black; white-space: nowrap;">    Option Ref.    </th>
+                <th style="border: 1px solid black;">   Description  </th>
+                <th class="not_mapped_style" style="text-align: center; border: 1px solid black;">Qty</th>
+                <th class="not_mapped_style" style="text-align: center; border: 1px solid black; white-space: nowrap;">U. Price</th>
+                <th class="not_mapped_style" style="text-align: center; border: 1px solid black;">Extension</th>
+                <th class="not_mapped_style" style="text-align: center; border: 1px solid black; white-space: nowrap;">Lead Time</th>
+            </tr>
+        </table>
+
+        @Html.Hidden("GetMsgPath", Url.Action("valida_ch_info", "PRX_P4600"))
+        @Html.Hidden("refurl", Url.Action("refresh_vals", "PRX_P4600"))
+        @Html.Hidden("chrgurl", Url.Action("validate_charger", "PRX_P4600"))
+        @Html.Hidden("alarmurl", Url.Action("alarms", "Alarms"))
+    </div>
+    <div class="row" id="btnalrm" style="display:none">
+        <br />
+        <a href='@Url.Action("alarms", "Alarms")'>
+            <img src="~/Images/button_add-options_2.png" />
+            @*<img src='@Url.Content("~/Images/button_add-alarms_2.png")' />*@
+        </a>
+        <br />
+        <br />
+    </div>
+</div>
+
+
+
+<script>
+
+    $("#cbphs").change(function () {
+        var myphs = $(this).val();
+
+      //  localStorage.setItem("myCBT", myCBT);
+
+        var itemsvdc = "",itemidc="";
+        if (myphs == '1')
+        {
+            itemsvdc = "<option value='Select'>Select VDC</option>";
+            itemsvdc += "<option value='12'>12 V</option>";
+            itemsvdc += "<option value='24'>24 V</option>";
+            itemsvdc += "<option value='48'>48 V</option>";
+            itemsvdc += "<option value='125'>125 V</option>";
+
+            itemsidc = "<option value='Select'>Select IDC</option>";
+            itemsidc += "<option value='5'>5 A</option>";
+            itemsidc += "<option value='10'>10 A</option>";
+            itemsidc += "<option value='15'>15 A</option>";
+            itemsidc += "<option value='20'>20 A</option>";
+            itemsidc += "<option value='25'>25 A</option>";
+            itemsidc += "<option value='30'>30 A</option>";
+            itemsidc += "<option value='40'>40 A</option>";
+            itemsidc += "<option value='50'>50 A</option>";
+            itemsidc += "<option value='75'>75 A</option>";
+            itemsidc += "<option value='100'>100 A</option>";
+
+        }
+        else {
+            itemsvdc = "<option value='Select'>Select VDC</option>";
+            itemsvdc += "<option value='12'>12 V</option>";
+            itemsvdc += "<option value='24'>24 V</option>";
+            itemsvdc += "<option value='48'>48 V</option>";
+            itemsvdc += "<option value='125'>125 V</option>";
+
+            itemsidc = "<option value='Select'>Select IDC</option>";
+            itemsidc += "<option value='25'>25 A</option>";
+            itemsidc += "<option value='30'>30 A</option>";
+            itemsidc += "<option value='40'>40 A</option>";
+            itemsidc += "<option value='50'>50 A</option>";
+            itemsidc += "<option value='75'>75 A</option>";
+            itemsidc += "<option value='100'>100 A</option>";
+            itemsidc += "<option value='125'>125 A</option>";
+            itemsidc += "<option value='150'>150 A</option>";
+            itemsidc += "<option value='200'>200 A</option>";
+            itemsidc += "<option value='250'>250 A</option>";
+            //itemsidc += "<option value='300'>300 A</option>";
+            //itemsidc += "<option value='400'>400 A</option>";
+            //itemsidc += "<option value='500'>500 A</option>";
+            //itemsidc += "<option value='600'>600 A</option>";
+            //itemsidc += "<option value='800'>800 A</option>";
+            //itemsidc += "<option value='1000'>1000 A</option>";
+
+
+        }
+        $("#cbvdc").html(itemsvdc);
+        $("#cbidc").html(itemsidc);
+
+    });
+
+
+
+    $('#fire').on('click', function (e) {
+
+     //   alert("#####fire");
+        var js_ipadrs = $("#h_ipadrs").val();
+        var js_opc = "ALRM";
+        //alert(js_ipadrs + "----" + js_txcgi);
+        $.getJSON("../PRX_P4600/Get_CHRGR_Alarms", { c_opc: js_opc, C_ipadrs: js_ipadrs },
+        function (allALRMlist_report) {
+            $("#Alrm_tbl tr>td").remove();
+            var items_data = '';
+            $.each(allALRMlist_report, function (index, itemData) {
+                //debugger;
+                items_data += '<tr>';
+                items_data += itemData.Alarm_Name;
+                items_data += itemData.ADF;
+                items_data += itemData.AV;
+                items_data += itemData.AD;
+                items_data += itemData.AR;
+                items_data += itemData.AL;
+                items_data += itemData.AML;
+                items_data += itemData.ARL;
+                items_data += itemData.ALG;
+                items_data += itemData.APR;
+                items_data += itemData.ACR;
+                items_data += itemData.AEN;
+                items_data += '</tr>';
+            });
+            $('#Alrm_tbl').append(items_data);
+
+        });
+    });
+
+    $('#only_enabled').on('click', function (e) {
+        alert("#####only_enabled");
+        var js_ipadrs = $("#h_ipadrs").val();
+        var js_opc = "ALRM";
+        //alert(js_ipadrs + "----" + js_txcgi);
+        $.getJSON("../PRX_P4600/Get_CHRGR_Alarms", { c_opc: js_opc, C_ipadrs: js_ipadrs },
+        function (allALRMlist_report) {
+            $("#Alrm_tbl tr>td").remove();
+            var items_data = '';
+            $.each(allALRMlist_report, function (index, itemData) {
+                if (itemData.AEN.indexOf("yes.png") != -1) {
+                    items_data += '<tr>';
+                    items_data += itemData.Alarm_Name;
+                    items_data += itemData.ADF;
+                    items_data += itemData.AV;
+                    items_data += itemData.AD;
+                    items_data += itemData.AR;
+                    items_data += itemData.AL;
+                    items_data += itemData.AML;
+                    items_data += itemData.ARL;
+                    items_data += itemData.ALG;
+                    items_data += itemData.APR;
+                    items_data += itemData.ACR;
+                    items_data += itemData.AEN;
+                    items_data += '</tr>';
+                }
+            });
+            $('#Alrm_tbl').append(items_data);
+
+        });
+    });
+
+    $("#ddTRid").change(function () {
+
+        var js_trid = $(this).val();
+
+        $.getJSON("../PRX_P4600/Get_prj_Alarms", { c_TRid: js_trid },
+        function (allALRMlist_report) {
+            $("#prjAlrm_tbl tr>td").remove();
+            //var tt=ViewBag.FLT;
+            //alert("TR= " +tt );
+            var items_data = '', i = 0;
+            $.each(allALRMlist_report, function (index, itemData) {
+                items_data += '<tr>';
+                items_data += itemData.Alarm_Name;
+                items_data += itemData.ADF;
+                items_data += itemData.AV;
+                items_data += itemData.AD;
+                items_data += itemData.AR;
+                items_data += itemData.AL;
+                items_data += itemData.AML;
+                items_data += itemData.ARL;
+                items_data += itemData.ALG;
+                items_data += itemData.APR;
+                items_data += itemData.ACR;
+                items_data += itemData.AEN;
+                items_data += '</tr>';
+                //  alert(items_data);
+
+
+            });
+            $('#prj').append(items_data);
+            //  $("#divtable").html(items_data);
+        });
+    });
+
+
+
+    $("#valida_ch_info").on('click', function (e) {
+          // debugger;
+        var j_pxx = $("#cbpxx").val(), j_phs = $("#cbphs").val(), j_vdc = $("#cbvdc").val(), j_idc = $("#cbidc").val();
+        var j_vf = $("#cbvf").val(), j_battt = $("#cbbatt").val(), j_hrtz = $("#cbhertz").val(), j_riple = $("#cbriple").val();
+
+        if (j_pxx != "Select" && j_phs != "Select" && j_vdc != "Select" && j_idc != "Select") {
+
+           // alert("goto value "+url);
+            var urlo = $("#GetMsgPath").val();
+            var errmsg = "N";
+         //   debugger;
+            $.getJSON(urlo, { pxx: j_pxx, phs: j_phs, vdc: j_vdc, idc: j_idc, vf: j_vf, battt: j_battt, lhrtz: j_hrtz, lriple: j_riple },
+                       function (lst_chconfigs) {
+
+                           $.each(lst_chconfigs, function (index, itemData) {
+                               {
+                                   var errmdg = itemData.msgerror;
+                                   if (errmdg != "") {
+                                       errmsg = "Y";
+                                       alert(errmdg);
+
+                                   }
+                                   else {
+
+
+                                       $("#cal_cellnb").val(itemData.tCellN_Text);
+                                       $("#cal_vac").val(itemData.tVac_Text);
+                                       $("#vpcfloat").val(itemData.tvpcF_Text);
+                                       $("#vfloat").val(itemData.tVFLOAT_Text);
+                                       $("#vpcequal").val(itemData.tvpcEq_Text);
+                                       $("#vequal").val(itemData.tVEQL_Text);
+                                       $("#vdcmin").val(itemData.tvdcMin_Text);
+                                       $("#idcmin").val(itemData.tIdcMin_Text);
+                                       $("#vdcmax").val(itemData.tVdcMax_Text);
+                                       $("#idcmax").val(itemData.tIdcMax_Text);
+                                   }
+
+                               }
+                           });
+                           if (errmsg == "N") {
+                               $("#ch_values").show();
+                               $("#ch_values_tbl").show();
+                               $("#options_tbl tr>td").remove();
+                           }
+
+
+
+                       });
+        }
+        else alert("Selection ERROR ......");
+
+
+
+    });
+
+
+    $("#cbpxx").change(function () { $("#ch_values").hide(); $("#btnalrm").hide(); });
+    $("#cbphs").change(function () { $("#ch_values").hide(); $("#btnalrm").hide(); });
+    $("#cbvdc").change(function () { $("#ch_values").hide(); $("#btnalrm").hide(); });
+    $("#cbidc").change(function () { $("#ch_values").hide(); $("#btnalrm").hide(); });
+
+    $("#cbvf").change(function () { $("#ch_values").hide(); $("#btnalrm").hide(); });
+    $("#cbbatt").change(function () { $("#ch_values").hide(); $("#btnalrm").hide(); });
+
+
+    $("#refresh_vals").on('click', function (e) {
+        //    debugger;
+        var j_pxx = $("#cbpxx").val(), j_phs = $("#cbphs").val(), j_vdc = $("#cbvdc").val(), j_idc = $("#cbidc").val();
+        var j_vf = $("#cbvf").val(), j_battt = $("#cbbatt").val(), j_hrtz = $("#cbhertz").val(), j_riple = $("#cbriple").val();
+        var j_cellnb = $("#cal_cellnb").val(), j_vac = $("#cal_vac").val(), j_cof_flt = $("#vpcfloat").val(), j_cof_eql = $("#vpcequal").val(), j_txeql = $("#vequal").val();
+        var j_txflt = $("#vfloat").val(), j_vdcmin = $("#vdcmin").val(), j_idcmin = $("#idcmin").val(), j_vdcmax = $("#vdcmax").val(), j_idcmax = $("#idcmax").val();
+
+
+        var urlo = $("#refurl").val();
+        $.getJSON(urlo, {
+            pxx: j_pxx, phs: j_phs, vdc: j_vdc, idc: j_idc, vf: j_vf, battt: j_battt, lhrtz: j_hrtz, lriple: j_riple,
+            cellnb: j_cellnb, vac: j_vac, cof_flt: j_cof_flt, cof_eql: j_cof_eql, txeql: j_txeql, txflt: j_txflt, vdcmin: j_vdcmin, idcmin: j_idcmin, vdcmax: j_vdcmax, idcmax: j_idcmax
+        },
+                   function (lst_chconfigs) {
+                       $.each(lst_chconfigs, function (index, itemData) {
+                           {
+                               var msg = itemData.msgerror;
+                               if (msg != "") alert(msg);
+                               else {
+                                   $("#cal_cellnb").val(itemData.tCellN_Text);
+                                   $("#cal_vac").val(itemData.tVac_Text);
+                                   $("#vpcfloat").val(itemData.tvpcF_Text);
+                                   $("#vfloat").val(itemData.tVFLOAT_Text);
+                                   $("#vpcequal").val(itemData.tvpcEq_Text);
+                                   $("#vequal").val(itemData.tVEQL_Text);
+                                   $("#vdcmin").val(itemData.tvdcMin_Text);
+                                   $("#idcmin").val(itemData.tIdcMin_Text);
+                                   $("#vdcmax").val(itemData.tVdcMax_Text);
+                                   $("#idcmax").val(itemData.tIdcMax_Text);
+                               }
+
+                           }
+                       });
+                       //$("#ch_values").show();
+                       //$("#ch_values_tbl").show();
+                       $("#options_tbl tr>td").remove();
+
+
+
+                   });
+
+
+
+
+    });
+
+
+    $("#charger_vali").on('click', function (e) {
+      //  debugger;
+                $.ajaxSetup({
+       async: false
+         });
+        var j_pxx = $("#cbpxx").val(), j_phs = $("#cbphs").val(), j_vdc = $("#cbvdc").val(), j_idc = $("#cbidc").val();
+        var j_vf = $("#cbvf").val(), j_battt = $("#cbbatt").val(), j_hrtz = $("#cbhertz").val(), j_riple = $("#cbriple").val();
+        var j_cellnb = $("#cal_cellnb").val(), j_vac = $("#cal_vac").val(), j_cof_flt = $("#vpcfloat").val(), j_cof_eql = $("#vpcequal").val(), j_txeql = $("#vequal").val();
+        var j_txflt = $("#vfloat").val(), j_vdcmin = $("#vdcmin").val(), j_idcmin = $("#idcmin").val(), j_vdcmax = $("#vdcmax").val(), j_idcmax = $("#idcmax").val();
+        var j_kaac = $("#acka").val(), j_kadc = $("#dcka").val()
+
+
+        var urlo = $("#chrgurl").val();
+        $.getJSON(urlo, {
+            pxx: j_pxx, phs: j_phs, vdc: j_vdc, idc: j_idc, vf: j_vf, battt: j_battt, lhrtz: j_hrtz, lriple: j_riple,
+            cellnb: j_cellnb, vac: j_vac, cof_flt: j_cof_flt, cof_eql: j_cof_eql, txeql: j_txeql, txflt: j_txflt, vdcmin: j_vdcmin, idcmin: j_idcmin, vdcmax: j_vdcmax, idcmax: j_idcmax, kaac: j_kaac,
+            kadc: j_kadc
+        },
+
+            function (frmt_defoptions, status, xhr) {
+                if (status == "success") {
+
+                    $("#options_tbl tr>td").remove();
+                    var fin = "";
+                    var items_data = '';
+                    var config_ok = "Y";
+                    $.each(frmt_defoptions, function (index, itemData) {
+                        {
+                            // debugger;
+                            items_data += '<tr>';
+                            items_data += itemData.refcpt;
+                            items_data += itemData.desc;
+                            items_data += itemData.qty;
+                            items_data += itemData.uprice;
+                            items_data += itemData.ext;
+                            items_data += itemData.dlvdate;
+                            //  if (itemData.desc.index("please call PRIMAX") >= 0) config_ok = "N";
+                            if (itemData.msgerror == "2") config_ok = "N";
+
+                            items_data += '</tr>';
+
+
+                        }
+                    });
+                    $('#options_tbl').append(items_data);
+                    $("#options_tbl").show();
+                    //        $("#addal").show();
+                    // debugger;
+                    if (config_ok == "Y") $("#btnalrm").show();
+                }
+                else  {
+                    alert(" Error")
+                }
+
+     });
+
+
+
+
+    });
+
+
+    $("#fill_alarms").on('click', function (e) {
+        var urlo = $("#alarmurl").val();
+        urlo="../"
+        window.location.href = urlo;
+
+    });
+
+</script>
+
+
+
+
+
+

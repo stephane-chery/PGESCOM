@@ -1,0 +1,423 @@
+﻿@model IEnumerable<PBsizing.Models.cedulo_jobs_raw>
+
+@{
+    ViewBag.Title = "AgenciesCMS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+<style>
+    .container {
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+        color: black;
+        background-color: #fcd900;
+    }
+
+    .buttonload {
+        background-color: #4CAF50; /* Green background */
+        border: none; /* Remove borders */
+        color: white; /* White text */
+        padding: 12px 24px; /* Some padding */
+        font-size: 16px; /* Set a font-size */
+    }
+
+    /* Add a right margin to each icon */
+    .fa {
+        margin-left: -12px;
+        margin-right: 8px;
+    }
+
+
+    .table-fixed tbody {
+        float: left;
+        height: 500px;
+        overflow-y: auto;
+        width: auto;
+        font-family: Verdana;
+    }
+
+    thead, tbody {
+        display: block;
+    }
+
+
+
+
+    body {
+        font-family: arial, sans-serif;
+        font-size: 14px;
+    }
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        table-layout: fixed;
+        width: 100%;
+    }
+
+    td,
+    th {
+        // border: 1px solid #dddddd;
+        white-space: nowrap;
+        text-align: left;
+        padding: 8px;
+    }
+
+    th {
+        background-color: #ccd;
+    }
+
+    tr:nth-child(even) {
+        background-color: #ecf6fc;
+        width: 25%;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #ddeedd;
+        width: 25%;
+    }
+</style>
+
+
+
+<div class="container">
+    <div id="loader" style="margin: 0px; padding: 0px; position: fixed; right: 0px; top: 0px; width: 100%; height: 100%; background-color: rgb(102, 102, 102); z-index: 30001; opacity: 0.4;display: none;display: none; ">
+        <p style="position: absolute; color: White; top: 50%; left: 45%;">
+            <img src="~/Images/reload3.gif">
+        </p>
+    </div>
+    <table>
+        <tr>
+            <td> <button id="btn_impprd" type="button" class="btn btn-danger btn-sm " style="width:300px;">START Importing........</button> </td>
+        </tr>
+    </table>
+
+
+
+</div>
+
+<script>
+
+    $('#chkall').click(function () {
+        var isChecked = $(this).prop("checked");
+        $('#table-style tr:has(td)').find('input[type="checkbox"]').prop('checked', isChecked);
+    });
+
+    $('#table-style tr:has(td)').find('input[type="checkbox"]').click(function () {
+        var isChecked = $(this).prop("checked");
+        var isHeaderChecked = $("#chkParent").prop("checked");
+        if (isChecked == false && isHeaderChecked)
+            $("#chkParent").prop('checked', isChecked);
+        else {
+            $('#table-style tr:has(td)').find('input[type="checkbox"]').each(function () {
+                if ($(this).prop("checked") == false)
+                    isChecked = false;
+            });
+         //   console.log(isChecked);
+            $("#chkall").prop('checked', isChecked);
+        }
+    });
+
+
+    $("#search").on("keyup", function () {
+        var value = $(this).val();
+
+        $("table tr").each(function (index) {
+            if (index !== 0) {
+
+                $row = $(this);
+
+                var id = $row.find("td:second").text();
+
+                if (id.indexOf(value) !== 0) {
+                    $row.hide();
+                }
+                else {
+                    $row.show();
+                }
+            }
+        });
+    });
+
+
+
+
+
+
+
+
+    $('#btn_impprd').click(function () {
+       
+          $.ajaxSetup({
+                async: false,
+                beforeSend: function () {
+                    $("#loader").show();
+                },
+                complete: function (data) {
+                    $("#loader").hide();
+                }
+
+
+            });
+            //   debugger;
+            var msg_al = "????";
+            $.ajax({
+                url: "../Cedule/imp_alljobs",
+                type: "POST",
+                data: {},
+                cache: false,
+                dataType: "json",
+                //contentType: "application/json; charset=utf-8",
+                success: function (msgLst) {
+                    $.each(msgLst, function (index, itemData) {
+                        var nb=itemData.recnb;
+                        if (nb>0)
+                            alert("  IMPORTED PROJECTS# = " + itemData.recnb);
+                        else alert("   NO PROJECT IMPORTED..........");
+                    });
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert("xhr.status: " + xhr.status);
+                    alert("thrownError: " + thrownError);
+                }
+
+            });
+     
+
+     
+
+    });
+
+
+
+
+    $('#btngo').on('click', function (e) {
+        $("#btnwait").show();
+        //  $("#btnwait").css('display', 'block');
+
+        $("#btngo").hide();
+        $.ajax({
+            url: "../Cedule/ImpJobs",
+            type: "GET",
+            data: {},
+            cache: false,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: false,
+            success: function (msgLst) {
+
+                $.each(msgLst, function (index, itemData) {
+                    $("#msgerr").val(itemData.msg+"   Imported Records= "+itemData.recnb);
+                });
+            }
+        });
+
+        $("#btnwait").hide();
+        $("#msgerr").show();
+
+    });
+
+    $('#btn_imprt').on('click', function (e) {
+
+
+
+        var mymm = $("#cbmois").val();
+        var my_yyyy = $("#cbyear").val();
+        if (mymm != "Select" && my_yyyy != "Select") {
+                  $("#msgerr_mois").hide();
+        $("#btnwait_mois").show();
+            //  $("#btnwait").css('display', 'block');
+
+            //  $("#btn_imprt").hide();
+            $.ajax({
+                url: "../AGCMS/Impcms_mmyyyy",
+                type: "GET",
+                data: { _mm: mymm, _yyyy: my_yyyy },
+                cache: false,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function (msgLst) {
+
+                    $.each(msgLst, function (index, itemData) {
+                        $("#msgerr_mois").val(itemData.msg + "   Imported Records= " + itemData.recnb);
+                    });
+                }
+            });
+
+            $("#btnwait_mois").hide();
+            $("#msgerr_mois").show();
+        }
+        else   alert("ERROR: please select  Month and Year.....");
+
+    });
+
+
+    $('#btn_cmslst_sap').on('click', function (e) {
+
+        var mymm = $("#cbmm_lst").val();
+        var my_yyyy = $("#cbyyyy_lst").val();
+        var my_agncy = $("#cbagncy").val();
+
+      //  alert("ag= " + my_agncy.length + "   mm= " + mymm + "    yyyy= " + my_yyyy);
+        if (mymm != "Select" && my_yyyy != "Select" && my_agncy.length>3) {
+             // $("#msgerr_mois").hide();
+             //  $("#btnwait_mois").show();
+            //  $("#btnwait").css('display', 'block');
+
+            //  $("#btn_imprt").hide();
+            $.ajax({
+                url: "../AGCMS/lstcms_mmyyyyag",
+                type: "GET",
+                data: { _mm: mymm, _yyyy: my_yyyy },
+                cache: false,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function (msgLst) {
+
+                    $.each(msgLst, function (index, itemData) {
+                        $("#msgerr_mois").val(itemData.msg + "   Imported Records= " + itemData.recnb);
+                    });
+                }
+            });
+
+            $("#btnwait_mois").hide();
+            $("#msgerr_mois").show();
+        }
+        else   alert("ERROR: please select  Month and Year.....");
+
+    });
+
+    $('#btn_cmslst').on('click', function (e) {
+
+        var mymm = $("#cbmm_lst").val();
+        var my_yyyy = $("#cbyyyy_lst").val();
+        var my_agncy = $("#cbagncy").val(); my_agncy = my_agncy.substring(0, 3);
+        if (my_agncy.length < 1 ) my_agncy = "Select";
+     //   alert("ag= " + my_agncy +"  mm= -" + mymm + "-   yyyy= -" + my_yyyy +"-");
+        if (my_agncy !="Select" || (mymm !="Select" && my_yyyy !="Select" )) {
+        @*var sppar = "@Url.Action( "DispINVCMS","AGCMS",new {_SP = "SS", _MM="mm", _YYYY="yy"})".replace("SS", mysp).replace("mm",mymm).replace("yy",myyyyy);*@
+
+            var sppar = '@Url.Action( "DispCMS_lst","AGCMS")?_AG=' + my_agncy + '&_MM=' + mymm + '&_YYYY=' + my_yyyy;
+            //    sparr= sppar.replace("SS", mysp);
+
+            window.location.href = sppar;
+        }
+        else alert("ERROR Selection......");
+
+
+    });
+
+
+        $('#btn_cmslst_byinv').on('click', function (e) {
+
+            var my_inv = $("#invnb").val();
+            if ($.isNumeric(my_inv))
+            {
+                var sppar = '@Url.Action( "DispCMS_lstbyinv","AGCMS")?_INV=' + my_inv;
+            //    sparr= sppar.replace("SS", mysp);
+
+            window.location.href = sppar;
+        }
+        else alert("ERROR: Invalid Invoice #......");
+
+
+    });
+
+    $('#btngrid').on('click', function (e) {
+
+       // debugger;
+        var mysp = $("#cbsp").val();
+        var mymm = $("#cbmm").val();
+        var myyyyy = $("#cbyyyy").val();
+        @*var sppar = "@Url.Action( "DispINVCMS","AGCMS",new {_SP = "SS", _MM="mm", _YYYY="yy"})".replace("SS", mysp).replace("mm",mymm).replace("yy",myyyyy);*@
+
+        var sppar = '@Url.Action( "DispINVCMS","AGCMS")?_SP=' + mysp + '&_MM=' + mymm + '&_YYYY=' + myyyyy;
+   //    sparr= sppar.replace("SS", mysp);
+      //   alert(sppar);
+        window.location.href = sppar;
+    //    $.get('@Url.Action("DispINVCMS","AGCMS")', { _SP : mysp });
+
+    });
+
+    $('#btngrid_noag').on('click', function (e) {
+
+        $.ajaxSetup({
+       async: false
+         });
+        var mysp = $("#cbsp").val();
+        var mymm = $("#cbmm").val();
+        if (mymm.length == 1) mymm = "0" + mymm;
+        var myyyyy = $("#cbyyyy").val();
+        if (mysp != "Select" && mymm != "Select" && myyyyy != "Select") {
+
+            var mye_d = mysp + '&_MM=' + mymm + '&_YYYY=' + myyyyy;
+        //    alert("MM=" + mymm);
+           // debugger;
+            var par="????", tt="";
+
+             $.getJSON("../AGCMS/dingo", { _pkt: mye_d },
+                function (msglst) {
+                      $.each(msglst, function (index, itemData) {
+                          par = itemData.msg;
+                          tt = itemData.recnb ;
+                      });
+                  //  alert("par= " + par + "  tt= " + tt);
+                 });
+            //    var sppar = '@Url.Action( "DispINV_NOAG","AGCMS")?_SP=' + mysp + '&_MM=' + mymm + '&_YYYY=' + myyyyy;
+
+
+            var sppar = '@Url.Action( "DispINV_NOAG","AGCMS")?_SP=' + par;
+            window.location.href = sppar;
+        }
+        else alert("ERROR Selection......");
+
+    });
+
+
+
+        $('#btnxl').click(function () {
+
+        var j_Quotenb = $("#Quotenb").val();
+        if (j_Quotenb.length > 3) {
+            window.location.href = "@Url.Action("XL_configo", "BfrQuote")";
+        }
+        else alert("First click on button:  Generate Quote #");
+    });
+
+
+
+
+    @*$("#fill_alarms").on('click', function (e) {
+             @Html.Hidden("alarmurl", Url.Action("alarms", "Alarms"));
+            var urlo = $("#alarmurl").val();
+                                <a href='@Url.Action( "DispINVCMS","AGCMS",new {_SP = #cb})'>
+            <img src='@Url.Content("~/Images/laptop_battery2.png")' />
+            </a>
+
+        urlo="../"
+        window.location.href = urlo;
+
+    });*@
+
+
+
+</script>
+
+<script src="http://code.jquery.com/jquery-1.8.3.js"></script>

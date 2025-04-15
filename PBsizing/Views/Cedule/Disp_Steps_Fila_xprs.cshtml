@@ -1,0 +1,398 @@
+﻿@model IEnumerable<PBsizing.Models.V_cedulotrs_jobs>
+
+@{
+    ViewBag.Title = "disp steps_Mecan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+<style>
+    .table-fixed tbody {
+        height: 700px;
+        overflow-y: auto;
+        width: 90%;
+    }
+
+        .table-fixed tbody tr th {
+            float: left;
+        }
+    .table-fixed thead tr th {
+        float: left;
+        background-color: #ececec;
+        border-collapse:collapse;
+        border-color: #005277;
+        text-align:center;
+    }
+</style>
+
+
+
+<div class="container-fluid">
+    <div>
+        <table>
+            <tr>
+                <th scope="row" style="text-align:right ;">STEP Name</th>
+                <td class="left">
+
+                    @Html.DropDownList("cbstep", new SelectList(ViewBag.flg_stpLst as System.Collections.IEnumerable, "stpid", "stepname"), "Select Step", new { @class = "selectpicker form-control", id = "cbstp", style = "background-color: #cefa29; color: black;width: 250px" })
+
+                </td>
+                <td>&nbsp;&nbsp;</td>
+                <td>&nbsp;&nbsp;</td>
+                <th scope="row" style="text-align:right ;">New Status</th>
+                <td class="left">
+                    <select id="cbstat" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 150px; ">
+                        <option value="Select">Select Status</option>
+                        <option value="1">En attente</option>
+                        <option value="2">En cours</option>
+                        <option value="4">Terminé</option>
+                        <option value="5">En cours-Terminé</option>
+                    </select>
+                </td>
+                <td>&nbsp;&nbsp;</td>
+                <td>&nbsp;&nbsp;</td>
+                <th scope="row" style="text-align:right ;"> Employee</th>
+                <td>
+                    @Html.DropDownList("cbemp", new SelectList(ViewBag.fila_Lst as System.Collections.IEnumerable, "emplid", "empName"), "Select Employee", new { @class = "selectpicker form-control", id = "cbemp", style = "background-color: #cefa29; color: black;width: 250px" })
+                </td>
+                <td>&nbsp;&nbsp;</td>
+                <td>&nbsp;&nbsp;</td>
+                <td>  <button id="btn_xprsgo" type="button" class="btn btn-danger btn-sm" style="width: 150px;">Save Step</button> </td>
+            </tr>
+        </table>
+
+    </div>
+    <br /><br />
+    <div>
+        <table class="table table-bordered table-fixed" id="table-style">
+
+            <tr style="position:sticky;top:0;background:#ffd800;color:Black;font-weight:bold">
+                <td>  <input type="checkbox" id="chkall">  </td>
+                <td>###</td>
+                <td>Customer</td>
+                <td>Project # </td>
+                <td>System</td>
+
+                <td>Filage Plaques</td>
+                <td>Mécanique Cabinet</td>
+                <td>Filage Cabinet </td>
+            </tr>
+
+
+            @foreach (var itm in Model)
+            {
+
+        <tr>
+            <td>  <input type="checkbox" id="checkbox1" class="styled" onclick="chkbxBC(this)">     </td>
+            <td> @itm.trslid </td>
+            <td> @itm.customer.Replace(",", " ") </td>
+            <td>@itm.pgc_prj</td>
+            <td>@itm.StockCode</td>
+
+            <td><img src="@Url.Content(itm.pato_fp)" /> </td>
+            <td><img src="@Url.Content(itm.pato_mc)" /></td>
+            <td><img src="@Url.Content(itm.pato_fc)" /> </td>
+        </tr>
+            }
+
+
+        </table>
+    </div>
+    @*<div>
+            <table id="blk">
+
+                <tr>
+                    <td>
+                        <button id="btnsearch" class="btn btn-primary btn-block"><i class="fa fa-search"></i>Search</button>
+                    </td>
+                    <td>
+                        <input type="text" id="search" placeholder="Project# " />
+                    </td>
+
+                </tr>
+                <tr>
+                    <td> <button id="btnaddprj" type="button" class="btn btn-danger btn-block">Add Selected Projects</button> </td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>*@
+
+
+</div>
+
+<script>
+
+    function chkbxBC(stat) {
+        if (stat.checked) {
+            stat.parentNode.parentNode.style.backgroundColor = "cyan";
+            stat.parentNode.parentNode.style.color = "red";
+        }
+        else {
+            stat.parentNode.parentNode.style.backgroundColor = "";
+            stat.parentNode.parentNode.style.color = "";
+        }
+    }
+
+
+
+
+    $('#chkall').click(function () {
+       // alert('je alllllllll');
+        var isChecked = $(this).prop("checked");
+        $('#table-style tr:has(td)').find('input[type="checkbox"]').prop('checked', isChecked);
+    });
+
+    $('#table-style tr:has(td)').find('input[type="checkbox"]').click(function () {
+        var isChecked = $(this).prop("checked");
+        var isHeaderChecked = $("#chkParent").prop("checked");
+        if (isChecked == false && isHeaderChecked)
+            $("#chkParent").prop('checked', isChecked);
+        else {
+            $('#table-style tr:has(td)').find('input[type="checkbox"]').each(function () {
+                if ($(this).prop("checked") == false)
+                    isChecked = false;
+            });
+  
+            $("#chkall").prop('checked', isChecked);
+        }
+    });
+
+
+    $("#searchddd").on("keyup", function () {
+        var value = $(this).val();
+
+        $("table tr").each(function (index) {
+            if (index !== 0) {
+
+                $row = $(this);
+
+                var id = $row.find("td:eq(2)").text();
+
+                if (id.indexOf(value) !== 0) {
+                    $row.hide();
+                }
+                else {
+                    $row.show();
+                }
+            }
+        });
+    });
+
+
+
+
+
+    $('#btnsearch').on('click', function (e) {
+        var value = $("#search").val();
+
+        $("#table-style tr").each(function (index) {
+            if (index !== 0) {
+
+                $row = $(this);
+
+                var id = $row.find("td:eq(2)").text();
+
+                if (id.indexOf(value) !== 0) {
+                    $row.hide();
+                }
+                else {
+                    $row.show();
+                }
+            }
+        });
+    });
+
+
+    //$("#btnsearch").keydown(function (e) {
+    //    if (e.which === 13) {
+    //        alert('Enter key pressed.');
+    //       // $('input[name="btnsearch"]').trigger('click');
+    //        $("#btnsearch").click();
+    //    }
+    //});
+
+
+
+    $('#btnaddprj').click(function () {
+        var arr = [];
+        arr = $('#table-style').find('[type="checkbox"]:checked').map(function () {
+            return $(this).closest('tr').find('td:nth-child(2)').text();
+           // return $(this).val();
+        }).get();
+        if (arr.length > 0 && arr!="") {
+          //  alert("rec...*" + arr+"*");
+
+
+            $.ajaxSetup({
+                async: false,
+                beforeSend: function () {
+                    $("#loader").show();
+                },
+                complete: function (data) {
+                    $("#loader").hide();
+                }
+
+
+            });
+            //   debugger;
+            var msg_al = "????";
+            $.ajax({
+                url: "../Cedule/cedule_prj",
+                type: "POST",
+                data: { c_al_list: arr.toString() },
+                cache: false,
+                dataType: "json",
+                //contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    msg_al = "ok";
+                    //alert('succ='+msg_al);
+                    $('#table-style :checked').each(function () {
+                        $('#table-style :checkbox:checked').closest('tr').remove();
+
+                    });
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert("xhr.status: " + xhr.status);
+                    alert("thrownError: " + thrownError);
+                }
+
+            });
+
+            //$('#table-style :checked').each(function () {
+            //    $('#table-style :checkbox:checked').closest('tr').remove();
+            //});
+            //alert('succ=' + msg_al);
+            alert("Projects added successfully......");
+
+        }
+        else alert("No Project selected....." );
+     //   alert("No Projects selected....." + arr.length.toString());
+
+    });
+
+
+
+
+    $('#btngo').on('click', function (e) {
+        $("#btnwait").show();
+        //  $("#btnwait").css('display', 'block');
+
+        $("#btngo").hide();
+        $.ajax({
+            url: "../Cedule/ImpJobs",
+            type: "GET",
+            data: {},
+            cache: false,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: false,
+            success: function (msgLst) {
+
+                $.each(msgLst, function (index, itemData) {
+                    $("#msgerr").val(itemData.msg+"   Imported Records= "+itemData.recnb);
+                });
+            }
+        });
+
+        $("#btnwait").hide();
+        $("#msgerr").show();
+
+    });
+
+
+
+  $('#btn_xprsgo').click(function () {
+
+        var myemp = $("#cbemp").val(), mystp = $("#cbstp").val(), mystat = $("#cbstat").val();
+
+
+        var arr = [];
+      arr = $('#table-style').find('[type="checkbox"]:checked').map(function () {
+          return $(this).closest('tr').find('td:nth-child(2)').text();
+      }).get();
+     //   alert("stp= " + mystp + "   status= " + mystat + "   emp= " + myemp + "    arr= " + arr + "  len= " + arr.length );
+
+      if (myemp != '' && mystat != 'Select' && mystp != '') {
+          if (arr.length > 0 && arr != "") {
+              //  alert("rec...*" + arr+"*");
+
+
+              $.ajaxSetup({
+                  async: false,
+                  beforeSend: function () {
+                      $("#loader").show();
+                  },
+                  complete: function (data) {
+                      $("#loader").hide();
+                  }
+
+
+              });
+              //   debugger;
+              var msg_al = "????";
+              $.ajax({
+                  url: "../Cedule/xprs_savstp",
+                  type: "POST",
+                  data: { c_al_list: arr.toString(), stp: mystp, stat: mystat, empid: myemp },
+                  cache: false,
+                  dataType: "json",
+                  //contentType: "application/json; charset=utf-8",
+                  success: function (responseText) {
+                      if (responseText.length < 3) alert("Steps saved successfully......");
+                      else alert('Some errors happened..........' + responseText); //alert('ERROR: ' + responseText);
+                  },
+                  error: function (xhr, ajaxOptions, thrownError) {
+                      alert("xhr.status: " + xhr.status);
+                      alert("thrownError: " + thrownError);
+                  }
+
+              });
+
+              location.reload();
+          }
+          else alert("Please select a project.....");
+          //   alert("No Projects selected....." + arr.length.toString());
+      }
+      else alert("INVALID SELECTION.....");
+    });
+
+
+
+        $('#btnxl').click(function () {
+
+        var j_Quotenb = $("#Quotenb").val();
+        if (j_Quotenb.length > 3) {
+            window.location.href = "@Url.Action("XL_configo", "BfrQuote")";
+        }
+        else alert("First click on button:  Generate Quote #");
+    });
+
+
+
+
+    @*$("#fill_alarms").on('click', function (e) {
+             @Html.Hidden("alarmurl", Url.Action("alarms", "Alarms"));
+            var urlo = $("#alarmurl").val();
+                                <a href='@Url.Action( "DispINVCMS","AGCMS",new {_SP = #cb})'>
+            <img src='@Url.Content("~/Images/laptop_battery2.png")' />
+            </a>
+
+        urlo="../"
+        window.location.href = urlo;
+
+    });*@
+
+
+
+</script>
+
+<script src="http://code.jquery.com/jquery-1.8.3.js"></script>

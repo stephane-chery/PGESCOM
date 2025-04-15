@@ -1,0 +1,145 @@
+﻿@model PBsizing.Models.Cab_Dim
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Cab_Dim</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cabDim_id)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cabDim_id)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.mm_inch)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.mm_inch)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BatteryName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BatteryName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.HB)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HB)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LB)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LB)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PB)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PB)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CAB_A)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CAB_A)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CAB_B)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CAB_B)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CAB_C)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CAB_C)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CAB_D)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CAB_D)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CAB_HP)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CAB_HP)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CAB_HCB)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CAB_HCB)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CAB_HD1_2)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CAB_HD1_2)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Gage)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Gage)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Cust_CAB_HEI)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Cust_CAB_HEI)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Cust_CAB_WIDTH)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Cust_CAB_WIDTH)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Cust_CAB_Depth)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Cust_CAB_Depth)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserName)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

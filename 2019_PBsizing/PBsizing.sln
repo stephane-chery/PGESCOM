@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2041
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PBsizing", "PBsizing\PBsizing.csproj", "{56DD1B07-108B-44CF-89A6-5D0959476ABE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C433C6FF-471B-4391-BB19-FC5633A76643}"
+	ProjectSection(SolutionItems) = preProject
+		Performance1.psess = Performance1.psess
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{56DD1B07-108B-44CF-89A6-5D0959476ABE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56DD1B07-108B-44CF-89A6-5D0959476ABE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56DD1B07-108B-44CF-89A6-5D0959476ABE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56DD1B07-108B-44CF-89A6-5D0959476ABE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D99A0AD2-4D70-49D2-9957-48AEAB175A4D}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,175 @@
+﻿@model IEnumerable<PGCWEB.Models.bfrQuote>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesome-bootstrap-checkbox/0.3.7/awesome-bootstrap-checkbox.css">
+
+
+</head>
+<body>
+    <br />
+    <br />
+    <h2 style="color:red">Charger Final Configuration</h2>
+    @if (Model != null)
+{
+    //**********************
+
+    <table id="quot" >
+
+        <tr>
+            <td align="right" nowrap>
+                Project Name :
+            </td>
+            <td align="left">
+                @Html.TextBox("prjname", null, new { @class = "form-control  ", style = "width:500px; " })
+            </td>
+            <td>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+            </td>
+        </tr>
+        <tr>
+            <td align="right" nowrap>
+                Customer Ref. :
+            </td>
+            <td align="left">
+                @Html.TextBox("cust_ref", null, new { @class = "form-control  ", style = "width:500px; " })
+            </td>
+            <td>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <button type="button" class="btn btn-success" id="btnquote"> Generate Quote #  </button>
+            </td>
+            <td>
+      
+                    @Html.TextBox("Quotenb", null, new { @class = "form-control  ", style = "width:100px;color:red ;font-size:large;", @readonly = "readonly" })
+                
+   
+            </td>
+            <td>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+            </td>
+        </tr>
+
+    </table>
+
+
+
+        <div class="col-md-6" style="line-height: 0.5">
+            <table class="table table-bordered" id="table-style">
+                <thead>
+                    <tr>
+                        <th style="white-space: nowrap; border: 1px solid black; background-color: #fff34d; ">item #</th>
+                        <th style="white-space: nowrap; border: 1px solid black; background-color: #fff34d; ">Item description</th>
+                        <th style="white-space: nowrap; border: 1px solid black; background-color: #fff34d; ">Qty</th>
+                        <th style="white-space: nowrap; border: 1px solid black; background-color: #fff34d; ">Unit Price</th>
+                        <th style="white-space: nowrap; border: 1px solid black; background-color: #fff34d; ">Extension</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var itm in Model)
+                    {
+                        <tr>
+                            <td style="white-space: nowrap; border: 1px solid black;" align="center"> @itm.lineid</td>
+                            <td style="white-space: nowrap; border: 1px solid black;">@itm.item </td>
+                            <td style="white-space: nowrap; border: 1px solid black;" align="center">@itm.qty</td>
+                            <td style="white-space: nowrap; border: 1px solid black;" align="right">@itm.uprice</td>
+                            <td style="white-space: nowrap; border: 1px solid black;" align="right">@itm.ext</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            @Html.Hidden("h_savquote", Url.Action("savquote", "BfrQuote"))
+            <p>
+                @*<input id="btnquote"  class="button button3" value="Accept as Quote" />*@
+                @*<button type="button" class="btn btn-success" id="btnquote"> Accept as Quote </button>*@
+
+                @*<input id="btnxl" class="button button3" value="Export to EXCEL" />*@
+                @*<input type="button" class="excel" value="Export to Excel File" style="align-content:center" />*@
+                <button type="button" class="btn btn-success" id="btnxl"> Export to EXCEL </button>
+            </p>
+        </div>
+    }
+    else 
+    {
+        <h1 style="color:red" >Sorry,  This configuration is Empty or Invalid......call Primax </h1>
+    }
+</body>
+</html>
+
+<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+
+<script>
+  
+   
+   
+
+    $(document).on('click', '.excel', function () {
+        // window.location.href = '/BfrQuote/XL_configo/';
+        window.location.href = "@Url.Action("XL_configo", "BfrQuote")";
+    });
+
+    $('#btnnxt').click(function () {
+
+        window.location.href = "@Url.Action("bfrQuote", "BfrQuote")";
+    });
+
+    $('#btnxl').click(function () {
+
+        var j_Quotenb = $("#Quotenb").val();
+        if (j_Quotenb.length > 3) {
+            window.location.href = "@Url.Action("XL_configo", "BfrQuote")";
+        }
+        else alert("First click on button:  Generate Quote #");
+    });
+
+
+    $("#btnquote").on('click', function (e) {
+
+        var row = $("#table-style tr").length;   //.closest('tr').index();
+     //   alert("rows===" + row); 
+        if (row <2) { alert("Sorry No Item to save....."+row); }
+        else {
+            var j_prjname = $("#prjname").val(), j_cust_ref = $("#cust_ref").val(), j_Quotenb = $("#Quotenb").val();
+            if (j_Quotenb.length < 1) {
+                if (j_prjname.length > 1 && j_cust_ref.length > 1) {
+                    var urlo = $("#h_savquote").val();
+                    $.getJSON(urlo, { prjname: j_prjname, cust_ref: j_cust_ref },
+                        function (mylstqtinfo) {
+
+                            $.each(mylstqtinfo, function (index, itemData) {
+                                {
+                                    $("#Quotenb").val(itemData.qtnb);
+                                }
+                            });
+
+
+                        });
+                }
+                else alert("Invalid Data :  Project Name or  Ref ......");
+            }
+            else alert("Quote already saved ......");
+        }
+
+
+    });
+
+
+
+</script>
+
+

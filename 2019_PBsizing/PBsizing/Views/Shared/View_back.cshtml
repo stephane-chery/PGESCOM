@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "View_back";
+}
+
+<h2>View_back</h2>
+
+@Ajax.ActionLink("Refresh","Ref_BatValues","Sizing",new AjaxOptions() {
+    HttpMethod="POST",
+    UpdateTargetId ="content",
+    InsertionMode=InsertionMode.Replace  } )
+ 
+
+   <div id="content">
+  <table style="border: 2px solid black; background-color:white  ">
+    <tr>
+        <th>
+            @Html.DisplayName("Load (AMP)")
+        </th>
+        <th>
+            @Html.DisplayName("Period")
+        </th>
+        <th>
+            @Html.DisplayName("Temperature")
+        </th>
+    </tr>
+
+@foreach (var item in ViewBag.BattVal)
+{
+   
+    <tr>
+        <td>@item.Load_amp </td>
+        <td>@item.Period  </td>
+        <td>@item.Temp    </td>
+    </tr>
+}
+
+</table> 
+     
+   </div> 
+
+
+<script>
+ function aff_CAB_SI_REP() {
+        "<option>------------------</option>";
+        var items = ' <table id="Mainmenu" > \
+    <tr> \
+        <td> \
+            <img src="~/Images/cabinet-icon.png" width="100" height="80"  /> \
+        </td> \
+        <td> \
+             @Html.ActionLink("Cabinets", "Cabinets", "Cabinets") \
+        </td> \
+    </tr> \
+    <tr> \
+        <td> \
+            <img src="~/Images/laptop_battery2.png" width="100" height="80"  /> \
+        </td> \
+        <td> \
+              @Html.ActionLink("Sizing", "Sizing", "Sizing") \
+        </td> \
+    </tr> \
+    <tr> \
+        <td> \
+            <img src="~/Images/print.png" width="100" height="80"  /> \
+        </td> \
+        <td> \
+              @Html.ActionLink("Reports", "reports", "reports") \
+        </td> \
+    </tr> \
+</table>'
+        $("#divLNK").html(items);
+    
+
+ }
+    </script>
+
+
+    <input id="bigbutton3" type="button" class="bigbutton" value="Inch" onclick="rtoo()" style="width:50px" />
+    <input id="bigbutton2" type="button"  class="bigbutton" value="mm" onclick="rtoo()" style="width:50px" />
+    
+    
+<input type="hidden" id="h_MANid" />  
+<input type="hidden" id="h_CBA" />  

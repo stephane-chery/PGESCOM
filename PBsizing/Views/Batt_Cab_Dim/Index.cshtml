@@ -1,0 +1,252 @@
+﻿@model IEnumerable<PBsizing.Models.Cab_Dim>
+
+@Scripts.Render("~/bundles/jquery")
+
+
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#lnkSTEPS").click(function () {
+            Save_ABCD();
+         
+
+        });
+        $("#lnkTIERS").click(function () {
+            Save_ABCD();
+
+
+        });
+
+    });
+
+    Save_ABCD = function () {
+
+        var myBN = $("#BatteryName").val();
+        var myHB = $("#HB").val();
+        var myLB = $("#LB").val();
+        var myPB = $("#PB").val();
+        var CAB_A = $("#CAB_A").val();
+        var CAB_B = $("#CAB_B").val();
+        var CAB_C = $("#CAB_C").val();
+        var CAB_D = $("#CAB_D").val();
+        var CAB_HP = $("#CAB_HP").val();
+        var CAB_HCB = $("#CAB_HCB").val();
+        var CAB_HD1_2 = $("#CAB_HD1_2").val();
+        var CAB_Gage = $("#CAB_Gage").val();
+        var Cust_CAB_HEI = $("#Cust_CAB_HEI").val();
+        var Cust_CAB_WIDTH = $("#Cust_CAB_WIDTH").val();
+        var Cust_CAB_Depth = $("#Cust_CAB_Depth").val();
+        var Gage = $("#Gage").val();
+
+
+        $.getJSON("../Batt_Cab_Dim/Save_Cab_ALLDim", {
+            c_BN: myBN, c_BH: myHB, c_BL: myLB, c_BWD: myPB,
+            c_CAB_A:CAB_A, c_CAB_B:CAB_B, c_CAB_C:CAB_C,c_CAB_D:CAB_D, c_CAB_HP:CAB_HP, c_CAB_HCB:CAB_HCB,
+            c_CAB_HD1_2: CAB_HD1_2, c_Gage: Gage, c_Cust_CAB_HEI: Cust_CAB_HEI, c_Cust_CAB_WIDTH: Cust_CAB_WIDTH, c_Cust_CAB_Depth: Cust_CAB_Depth
+        });
+    }
+
+    function sign(x) {
+        if (+x === x)    return (x === 0) ? x : (x > 0) ? 1 : -1;
+        return NaN;
+    }
+    function H_round(num, decimals) {
+        //not supported by IE all version
+        var t = Math.pow(10, decimals);
+        return (Math.round((num * t) + (decimals > 0 ? 1 : 0) * (sign(num) * (10 / Math.pow(100, decimals)))) / t).toFixed(decimals);
+    }
+
+    Convert_TONCH_BatCab = function () {
+        
+        var mmdd = H_round($("#mmHB").val() / 25.4, 2);  $("#HB").val(mmdd);
+            mmdd = H_round($("#mmLB").val() / 25.4, 2);  $("#LB").val(mmdd);
+            mmdd = H_round($("#mmPB").val() / 25.4, 2);  $("#PB").val(mmdd);
+
+            mmdd = H_round($("#mmCAB_A").val() / 25.4, 2); $("#CAB_A").val( mmdd );
+            mmdd = H_round($("#mmCAB_B").val() / 25.4, 2); $("#CAB_B").val(mmdd);
+            mmdd = H_round($("#mmCAB_C").val() / 25.4, 2);   $("#CAB_C").val(mmdd);
+
+            mmdd = H_round($("#mmCAB_D").val() / 25.4, 2);   $("#CAB_D").val(mmdd);
+            mmdd = H_round($("#mmCAB_HP").val() / 25.4, 2);   $("#CAB_HP").val(mmdd);
+            mmdd = H_round($("#mmCAB_HCB").val() / 25.4, 2);   $("#CAB_HCB").val(mmdd);
+            mmdd = H_round($("#mmCAB_HD1_2").val() / 25.4, 2);   $("#CAB_HD1_2").val(mmdd);
+     
+
+    }
+
+    Convert_TONCH_Cstm = function () {
+
+        var mmdd = H_round($("#mmCust_CAB_HEI").val() / 25.4, 2); $("#Cust_CAB_HEI").val(mmdd);
+        mmdd = H_round($("#mmCust_CAB_WIDTH").val() / 25.4, 2); $("#Cust_CAB_WIDTH").val(mmdd);
+        mmdd = H_round($("#mmCust_CAB_Depth").val() / 25.4, 2); $("#Cust_CAB_Depth").val(mmdd);
+    
+    }
+
+    
+</script>
+
+<div id="nav">
+
+    <ul>
+        <li>
+            @Html.ActionLink("STEPS", "DispSTEPS", "DispSteps", "STEPS", new { id = "lnkSTEPS" })
+        </li>
+        <li>
+            @Html.ActionLink("TIERS", "DispTIERS", "DispTiers", "TIERS", new { id = "lnkTIERS" })
+        </li>
+    </ul>
+
+
+</div>
+@foreach (var item in Model)
+{
+  
+      @Html.HiddenFor(modelItem => item.mm_inch)
+     @Html.Label("Battery Name ", new { style = "width:180px;color: red" })
+    @Html.TextBoxFor(modelItem => item.BatteryName, new { style = "width:180px;      height:15px;", id = "BatteryName", @readonly = "readonly" })
+       <input type="button" class="bigbutton" value=" Battery ? " onclick="HelpBATT_js();" />
+    <input type="button" class="bigbutton" value="Cabinet ?" onclick="HelpCAB_js();" />
+    <table class="KIM_table" style="border: 1px solid black ; background-color: #f1f1c1; border-spacing: 1px; table-layout:fixed">
+        <tr>
+            <td class="right_TD_DRW">@Html.Label(" ")</td>
+            <td class="right_TD_DRW">@Html.Label("BH ")</td>
+            <td class="right_TD_DRW">@Html.Label("BL ")</td>
+            <td class="right_TD_DRW">@Html.Label("BW ")</td>
+            <td class="right_TD_DRW">@Html.Label("A ")</td>
+            <td class="right_TD_DRW">@Html.Label("B ")</td>
+            <td class="right_TD_DRW">@Html.Label("C ")</td>
+            <td class="right_TD_DRW">@Html.Label("D ")</td>
+            <td class="right_TD_DRW">@Html.Label("HP ")</td>
+            <td class="right_TD_DRW">@Html.Label("HBC ")</td>
+            <td class="right_TD_DRW">@Html.Label("HD1-2 ")</td>
+            <td class="right_TD_DRW">@Html.Label("Gage ")</td>
+
+        </tr>
+        <tr style="border: 1px solid black;">
+            <td class="right_TD_DRW">@Html.Label(" Inch ", new { style = "width:80px; " })</td>
+            <td class="left_TD_DRW ">@Html.TextBoxFor(modelItem => item.HB, new { style = "width:80px;    height:15px; text-align:center;", id = "HB" })</td>
+            <td class="left_TD_DRW ">@Html.TextBoxFor(modelItem => item.LB, new { style = "width:80px;    height:15px; text-align:center;", id = "LB" })</td>
+            <td class="left_TD_DRW ">@Html.TextBoxFor(modelItem => item.PB, new { style = "width:80px;    height:15px; text-align:center;", id = "PB" })</td>
+            <td class="left_TD_DRW ">@Html.TextBoxFor(modelItem => item.CAB_A, new { style = "width:80px;    height:15px; text-align:center;", id = "CAB_A" })</td>
+            <td class="left_TD_DRW ">@Html.TextBoxFor(modelItem => item.CAB_B, new { style = "width:80px;    height:15px; text-align:center;", id = "CAB_B" })</td>
+            <td class="left_TD_DRW ">@Html.TextBoxFor(modelItem => item.CAB_C, new { style = "width:80px;    height:15px; text-align:center;", id = "CAB_C" })</td>
+            <td class="left_TD_DRW ">@Html.TextBoxFor(modelItem => item.CAB_D, new { style = "width:80px;    height:15px; text-align:center;", id = "CAB_D" })</td>
+            <td class="left_TD_DRW ">@Html.TextBoxFor(modelItem => item.CAB_HP, new { style = "width:80px;    height:15px; text-align:center;", id = "CAB_HP" })</td>
+            <td class="left_TD_DRW ">@Html.TextBoxFor(modelItem => item.CAB_HCB, new { style = "width:80px;    height:15px; text-align:center;", id = "CAB_HCB" })</td>
+            <td class="left_TD_DRW ">@Html.TextBoxFor(modelItem => item.CAB_HD1_2, new { style = "width:80px;    height:15px; text-align:center;", id = "CAB_HD1_2" })</td>
+            <td class="left_TD_DRW ">@Html.TextBoxFor(modelItem => item.Gage, new { style = "width:80px;    height:15px; text-align:center;", id = "Gage", @readonly = "readonly" })</td>
+
+        </tr>
+        <tr style="border: 1px solid black;">
+            <td class="right_TD_DRW">@Html.Label(" mm ", new { style = "width:80px; " })</td>
+            <td class="left_TD_DRW ">@Html.TextBox("mmHB","", new { style = "width:80px;    height:15px; text-align:center;" })</td>
+            <td class="left_TD_DRW ">@Html.TextBox("mmLB","", new { style = "width:80px;    height:15px; text-align:center;"})</td>
+            <td class="left_TD_DRW ">@Html.TextBox("mmPB", "", new { style = "width:80px;    height:15px; text-align:center;"})</td>
+            <td class="left_TD_DRW ">@Html.TextBox("mmCAB_A", "", new { style = "width:80px;    height:15px; text-align:center;"})</td>
+            <td class="left_TD_DRW ">@Html.TextBox("mmCAB_B", "", new { style = "width:80px;    height:15px; text-align:center;"})</td>
+            <td class="left_TD_DRW ">@Html.TextBox("mmCAB_C", "", new { style = "width:80px;    height:15px; text-align:center;"})</td>
+            <td class="left_TD_DRW ">@Html.TextBox("mmCAB_D", "", new { style = "width:80px;    height:15px; text-align:center;"})</td>
+            <td class="left_TD_DRW ">@Html.TextBox("mmCAB_HP", "", new { style = "width:80px;    height:15px; text-align:center;"})</td>
+            <td class="left_TD_DRW ">@Html.TextBox("mmCAB_HCB", "", new { style = "width:80px;    height:15px; text-align:center;"})</td>
+            <td class="left_TD_DRW ">@Html.TextBox("mmCAB_HD1_2", "", new { style = "width:80px;    height:15px; text-align:center;" })</td>
+            <td class="left_TD_DRW ">@Html.TextBox("mmGage", "", new { style = "width:80px;    height:15px; text-align:center;", @readonly = "readonly" })</td>
+
+        </tr>
+        <tr>
+            <td colspan="12" class="left_TD_DRW">
+                <input id="btn_ConvertTOInch1" type="button" value="Convert mm to Inch" onclick="Convert_TONCH_BatCab()" />
+            </td>
+        </tr>
+    </table>
+    
+      
+    <table class="KIM_table" style="border: 1px solid black ; background-color: #f1f1c1; border-spacing: 1px; table-layout:fixed">
+        <tr>
+            <td class="left_TD_DRW">@Html.Label("Custom Cabinet Dimensions", new { style = "width:180px; ; text-align:center;" })</td>
+            <td class="left_TD_DRW">@Html.Label("Height ", new { style = "width:80px; ; text-align:center;" })</td>
+            <td class="left_TD_DRW">@Html.Label("Width ", new { style = "width:80px; ; text-align:center;" })</td>
+            <td class="left_TD_DRW">@Html.Label("Depth ", new { style = "width:80px; ; text-align:center;" })</td>
+        </tr>
+        <tr>
+            <td class="right_TD_DRW">@Html.Label(" Inch ", new { style = "text-align:center" })</td>
+            <td class="left_TD_DRW">@Html.TextBoxFor(modelItem => item.Cust_CAB_HEI, new { style = "width:80px;    height:15px;background-color:red;color:white; text-align:center;", id = "Cust_CAB_HEI" })</td>
+            <td class="left_TD_DRW ">@Html.TextBoxFor(modelItem => item.Cust_CAB_WIDTH, new { style = "width:80px;    height:15px;background-color:red;color:white; text-align:center;", id = "Cust_CAB_WIDTH" })</td>
+            <td class="left_TD_DRW ">@Html.TextBoxFor(modelItem => item.Cust_CAB_Depth, new { style = "width:80px;    height:15px;background-color:red;color:white; text-align:center;", id = "Cust_CAB_Depth" })</td>
+        </tr>
+        <tr>
+            <td class="right_TD_DRW">@Html.Label(" mm ", new { style = "text-align:center" })</td>
+            <td class="left_TD_DRW ">@Html.TextBox("mmCust_CAB_HEI", "", new { style = "width:80px;    height:15px;background-color:red;color:white; text-align:center;" })</td>
+            <td class="left_TD_DRW ">@Html.TextBox("mmCust_CAB_WIDTH", "", new { style = "width:80px;    height:15px;background-color:red;color:white; text-align:center;" })</td>
+            <td class="left_TD_DRW ">@Html.TextBox("mmCust_CAB_Depth", "", new { style = "width:80px;    height:15px;background-color:red;color:white; text-align:center;" })</td>
+        </tr>
+        <tr>
+            <td colspan="4" class="left_TD_DRW">
+                <input id="btn_ConvertTOInch2" type="button" value="Convert mm to Inch" onclick="Convert_TONCH_Cstm()" />
+            </td>
+        </tr>
+    </table>
+
+    
+    
+             
+           
+}
+<!--<input type="button" class="bigbutton" value="STEPS" onclick="CalcSTEPS();" /> -->
+
+<!--
+<div id="divLNK">
+    <table id="Mainmenu">
+        <tr>
+            <td>
+                <img src="~/Images/gallery-c25-11.png" width="100" height="100" />
+            </td>
+            <td>
+                @Html.ActionLink("STEPS", "DispSTEPS", "DispSteps", "STEPS",new { id = "lnkSTEPS" })
+       
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="~/Images/OLPC cabinet.JPG" width="100" height="100" />
+            </td>
+            <td>
+                @Html.ActionLink("TIERS", "DispTIERS","DispTiers", "TIERS",new { id = "lnkTIERS" })
+            </td>
+        </tr>
+
+    </table>
+
+</div>
+
+
+ @Html.ActionLink("Create New", "Create")
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+
+    -->
+          
+            
+<script>
+
+ //   setTimeout(function () { window.location.reload(true);}, 30000);
+
+    HelpBATT_js = function () {
+        window.showModalDialog('/Batt_Cab_Dim/HelpBAT_Ctr', "HelpBAT_Ctr", 'width=500px,height=500px');
+
+    }
+    HelpCAB_js = function () {
+        window.showModalDialog('/Batt_Cab_Dim/HelpCAB_Ctr', "HelpCAB_Ctr", 'width=500px,height=500px');
+
+    }
+   convertTOmm = function () {
+
+
+        var st = document.getElementById("item_mm_inch").value;
+        if (st == "0") alert("Inchhhhhh,,,,,,,,,,,,");
+        else alert("mmmmmmmmmmmmmmmmmmmmmmmm");
+    }
+</script>

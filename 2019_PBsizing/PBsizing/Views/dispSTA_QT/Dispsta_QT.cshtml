@@ -1,0 +1,77 @@
+﻿@model List<PBsizing.Models.PSM_WB_STQuote>
+
+@Scripts.Render("~/bundles/jquery")
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        // $.ajaxSetup({ cache: false });
+        //  fnRefresh();
+    });
+
+    function fnRefresh() {
+        window.history.go(0);
+    }
+
+
+    ExportPDF = function () {
+        $.getJSON("../DispTiers/Tiers_GenPDF");
+    }
+
+
+</script>
+
+@{
+    ViewBag.Title = "Dispsta_QT";
+    var Sta_QTgrid = new WebGrid(source: Model, canPage: true, rowsPerPage: 10);
+    Sta_QTgrid.Pager(WebGridPagerModes.All);
+}
+
+
+<style type="text/css">
+    table.gridtable {
+        font-family: verdana,arial,sans-serif;
+        font-size: 11px;
+        color: #333333;
+        border-width: 1px;
+        border-color: #666666;
+        border-collapse: collapse;
+    }
+
+        table.gridtable th {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #A7C942;
+        }
+
+        table.gridtable td {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #ffffff;
+        }
+</style>
+
+<div id="GridCentent">
+
+    @Sta_QTgrid.GetHtml(
+    tableStyle: "gridtable",
+            columns: Sta_QTgrid.Columns(
+                    Sta_QTgrid.Column(columnName: "Q_date", header: "Date"),
+                    Sta_QTgrid.Column(columnName: "Sale", header: "Inside sales"),
+                            Sta_QTgrid.Column(columnName: "Quote", header: "Quote #"),
+                            Sta_QTgrid.Column(columnName: "Customer", header: "Customer"),
+                            Sta_QTgrid.Column(columnName: "Amount", header: "Amount"),
+                    Sta_QTgrid.Column(columnName: "curr", header: "Currency"),
+                            Sta_QTgrid.Column(columnName: "ProjectName", header: "Project Name"),
+                    Sta_QTgrid.Column(columnName: "Tel1", header: "Phone #"),
+                            Sta_QTgrid.Column(columnName: "M_Adrs", header: "Adress")
+
+    ))
+
+   
+</div>
+

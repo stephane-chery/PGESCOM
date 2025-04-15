@@ -1,0 +1,385 @@
+﻿@model PBsizing.Models.BatListEntities2
+@{
+    ViewBag.Title = "Sizing";
+}
+@Scripts.Render("~/bundles/jquery")
+
+<body oncontextmenu="return false;">
+
+</body> 
+
+
+    <link href="~/Content/mySite.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            //   var myH_manid = document.getElementById ("h_MANid").value;
+            //    alert(myH_manid);
+
+            $("#ddlCBT").change(function () {
+                var myCBT = $(this).val();
+
+                localStorage.setItem("myCBT", myCBT);
+
+                $.getJSON("../Sizing/LoadManifac_cbt", { _CBT: myCBT },
+                function (ManifacData) {
+                    // var select = $("#ddlManID");
+                    var items = "<option>------------------</option>";
+                    $.each(ManifacData, function (index, itemData) {
+                        // debugger;   return debugger pour fin
+                        items += "<option value='" + itemData.Value + "'>" + itemData.Text + "</option>";
+                    });
+                    $("#ddlManID").html(items);
+                });
+            });
+
+            $("#ddlManID").change(function () {
+                var myCMA = $(this).val();
+                var MANname = $("#ddlManID option:selected").text();
+
+                $("#h_MANid").val(MANname);
+                var saved_myCBT = localStorage.getItem("myCBT");
+
+                $.getJSON("../Sizing/LoadBat_cbt_cma", { _CBT: saved_myCBT, _CMA: myCMA },
+                function (ManifacData) {
+                    var items = "<option>------------------</option>";
+                    $.each(ManifacData, function (index, itemData) {
+                        // debugger;   return debugger pour fin
+                        items += "<option value='" + itemData.Value + "'>" + itemData.Text + "</option>";
+                    });
+
+                    $("#ddlCBA").html(items);
+                });
+            });
+
+            //test if battery choosen go with Cabinet view else nothing (disable link of Html.Actionlink
+
+            $("#lnkCab").click(function () {
+                if ($("#BatName").val().length == 0 || InValid_Dims()) {
+                    alert("No selected Battery OR Invalid Dimensions ......");
+                    return false;
+                }
+                else Save_CAB_Dim();
+
+            });
+
+
+
+            $("#ddlCBA").change(function () {
+
+                var myCBA = $(this).val();
+                $.getJSON("../Sizing/LoadBattery_CBA", { _CBA: myCBA },
+                           function (DataBat) {
+                               $.each(DataBat, function (index, itemData) {
+                                   {
+                                       var lenMM = H_round(itemData.IN_LENGTH * 25.4, 2);
+                                       var heiMM = H_round(itemData.IN_HEIGHT * 25.4, 2);
+                                       var widMM = H_round(itemData.IN_WIDTH * 25.4, 2);
+
+                                       $("#BatName").val(itemData.DESC);
+                                       $("#Capa").val(itemData.CAPACITY);
+                                       $("#BatLen").val(itemData.IN_LENGTH);
+                                       $("#BatHei").val(itemData.IN_HEIGHT);
+                                       $("#BatWidth").val(itemData.IN_WIDTH);
+                                       $("#BatWei").val(itemData.WEIGHT);
+                                       $("#BatLenMM").val(lenMM);
+                                       $("#BatHeiMM").val(heiMM);
+                                       $("#BatWidthMM").val(widMM);
+
+                                   }
+                               }
+            );
+
+                           });
+
+            });
+
+
+        });
+
+
+
+
+        function sign(x) {
+            if (+x === x) { // check if a number was given
+                return (x === 0) ? x : (x > 0) ? 1 : -1;
+            }
+            return NaN;
+        }
+        function H_round(num, decimals) {
+            //not supported by IE all version
+            var t = Math.pow(10, decimals);
+            return (Math.round((num * t) + (decimals > 0 ? 1 : 0) * (sign(num) * (10 / Math.pow(100, decimals)))) / t).toFixed(decimals);
+        }
+        function H_round_FOX(num, decimals) {
+            //not supported by IE all version
+            var t = Math.pow(10, decimals);
+            return (Math.round((num * t) + (decimals > 0 ? 1 : 0) * (Math.sign(num) * (10 / Math.pow(100, decimals)))) / t).toFixed(decimals);
+        }
+
+        function Chk_Save() {
+            if ($("#BatName").val().length == 0 || InValid_Dims()) {
+                alert("No selected Battery OR Invalid Dimensions ......");
+                return false;
+            }
+            else Save_CAB_Dim();
+        }
+
+        function InValid_Dims() {
+
+            var myBL = $("#BatLen").val();
+            var myBH = $("#BatHei").val();
+            var myBWD = $("#BatWidth").val();
+            var ddBL = parseFloat(myBL).toFixed(2);
+            var ddBH = parseFloat(myBH).toFixed(2);
+            var ddBWD = parseFloat(myBWD).toFixed(2);
+            // debugger
+            if (parseFloat(myBL).toFixed(2) == "NaN" || parseFloat(myBH).toFixed(2) == "NaN" || parseFloat(myBWD).toFixed(2) == "NaN") return true;
+            else return false;
+            //alert("Dimensions are GOOOOOOOOOOOOOOODDD....." + parseFloat(myBL));
+            //debugger
+        }
+
+        Convert_TONCH = function () {
+
+            var lendd = H_round($("#BatLenMM").val() / 25.4, 2);
+            var heidd = H_round($("#BatHeiMM").val() / 25.4, 2);
+            var widdd = H_round($("#BatWidthMM").val() / 25.4, 2);
+
+            $("#BatLen").val(lendd);
+            $("#BatHei").val(heidd);
+            $("#BatWidth").val(widdd);
+
+
+
+        }
+
+
+
+        Save_CAB_Dim = function () {
+
+            var myBN = $("#BatName").val();
+            var myBC = $("#Capa").val();
+            var myBL = $("#BatLen").val();
+            var myBH = $("#BatHei").val();
+            var myBW = $("#BatWei").val();
+            var myBWD = $("#BatWidth").val();
+
+            $.getJSON("../Sizing/Save_Cab_Dim", { c_BN: myBN, c_BH: myBH, c_BL: myBL, c_BWD: myBWD });
+        }
+
+
+        //   $(window).load(function () {
+
+        //       alert("(window).load was called - window is loaded!");
+        //    });
+
+
+    </script>
+
+
+
+
+    <style>
+        .right {
+            text-align: right;
+            /*  border:solid;*/
+        }
+
+        .left {
+            text-align: left;
+            /*border:solid;*/
+            /* margin-left: 1em;*/
+        }
+
+        .BatDim {
+            text-align: right;
+            font-size: 1.0em;
+        }
+
+        .sizing_lnks {
+            font-family: Verdana;
+            font-size: 1.2em;
+        }
+
+        table td {
+            padding: 2px;
+        }
+
+        .webgrid-table {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            font-size: 1.2em;
+            width: 60%;
+            display: table;
+            border-collapse: separate;
+            border: solid 1px #98BF21;
+            background-color: white;
+        }
+
+            .webgrid-table td, th {
+                border: 1px solid #98BF21;
+                padding: 3px 2px 2px;
+            }
+
+        .webgrid-header {
+            background-color: #A7C942;
+            color: #FFFFFF;
+            padding-bottom: 4px;
+            padding-top: 5px;
+            text-align: left;
+        }
+
+        .webgrid-footer {
+        }
+
+        .webgrid-row-style {
+            padding: 3px 2px 2px;
+        }
+
+        .webgrid-alternating-row {
+            background-color: #EAF2D3;
+            padding: 3px 2px 2px;
+        }
+
+        .myClasPNG {
+            background-image: url('../../Images/Refresh-icon.png');
+        }
+    </style>
+
+    @using (Html.BeginForm())
+    {
+        <div id="nav">
+
+            <ul>
+                <li>
+                    @Html.ActionLink("CABINETS", "Index", "Batt_Cab_Dim", "Cabinets", new { id = "lnkCab" })
+                </li>
+                <li>
+                    @Html.ActionLink("BATTERY SIZING", "Sizing", "Sizing")
+                </li>
+            </ul>
+
+
+        </div>
+        <br />  <br />   <br />
+        <div>
+
+            <table>
+                <tr>
+                    <td class="right">
+                        @Html.Label("Battery Type ")
+                    </td>
+                    <td class="left">
+                        @Html.DropDownListFor(Model => Model.BATTYPEs, new SelectList(ViewBag.batype as System.Collections.IEnumerable, "CBT", "DESC"), "Select", new { id = "ddlCBT" })
+                    </td>
+                    <td class="right">
+                        @Html.Label("Manifacturer ")
+                    </td>
+                    <td class="left">
+                        @Html.DropDownListFor(Model => Model.v_MANUFAC, new SelectList(ViewBag.manifac as System.Collections.IEnumerable, "CMA", "MARQUE"), "Select", new { id = "ddlManID", style = "width: 200px" })
+
+                    </td>
+                    <td class="right">
+                        @Html.Label("Batteries List ")
+                    </td>
+                    <td class="left">
+                        @Html.DropDownListFor(Model => Model.BATTERIEs, new SelectList(ViewBag.batteries as System.Collections.IEnumerable, "CBA", "DESC"), "Select", new { id = "ddlCBA", style = "width: 200px" })
+                    </td>
+                </tr>
+            </table>
+
+
+            <table style="  color: brown ;font-weight:bold">
+                <tr>
+                    <td class="right">
+                        @Html.Label("Battery Name: ", new { style = "width:120px;font-weight:bold" })
+                    </td>
+                    <td class="left">
+                        @Html.TextBox("BatName", "", new { style = "width:460px ; background:aliceblue;font-weight:bold ;color:brown ", @readonly = "readonly" })
+                    </td>
+                    <td class="BatDim">
+                        @Html.Label("Capacity: ", new { style = "font-weight:bold" })
+                    </td>
+                    <td class="left">
+                        @Html.TextBox("Capa", "", new { style = "width:60px; background : aliceblue;font-weight:bold ;color:brown ", @readonly = "readonly" })
+                    </td>
+                    <td class="BatDim">
+                        @Html.Label("Weight: ", new { style = "font-weight:bold" })
+                    </td>
+                    <td class="left">
+                        @Html.TextBox("BatWei", "", new { style = "width:60px; background : aliceblue;font-weight:bold ;color:brown ", @readonly = "readonly" })
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td class="BatDim">
+                        @Html.Label("Length (mm)")
+                    </td>
+                    <td class="left">
+                        @Html.TextBox("BatLenMM", "", new { style = "width:60px" })
+                    </td>
+                    <td class="BatDim">
+                        @Html.Label("Length (inch)")
+                    </td>
+                    <td class="left">
+                        @Html.TextBox("BatLen", "", new { style = "width:60px" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="BatDim">
+                        @Html.Label("Height (mm)")
+                    </td>
+                    <td class="left">
+                        @Html.TextBox("BatHeiMM", "", new { style = "width:60px" })
+                    </td>
+                    <td class="BatDim">
+                        @Html.Label("Height (inch)")
+                    </td>
+                    <td class="left">
+                        @Html.TextBox("BatHei", "", new { style = "width:60px" })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="BatDim">
+                        @Html.Label("Width (mm)")
+                    </td>
+                    <td class="left">
+                        @Html.TextBox("BatWidthMM", "", new { style = "width:60px" })
+                    </td>
+                    <td class="BatDim">
+                        @Html.Label("Width (inch)")
+                    </td>
+                    <td class="left">
+                        @Html.TextBox("BatWidth", "", new { style = "width:60px" })
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="left">
+                        <input id="btn_ConvertTOInch" type="button" value="Convert mm -> Inch" onclick="Convert_TONCH()" style="width:200px" />
+                    </td>
+
+                    <td colspan="2" class="left">
+                        <input id="btn_SaveSel" type="button" value="Save" onclick="Chk_Save()" style="width:200px;background-color:red;color:white" />
+                    </td>
+
+                </tr>
+            </table>
+
+
+
+
+        </div>
+        <br /> <br />
+
+
+
+
+
+    }
+
+

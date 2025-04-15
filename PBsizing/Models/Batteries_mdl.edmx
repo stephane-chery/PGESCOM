@@ -1,0 +1,729 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BatListModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="BatListModelStoreContainer">
+          <EntitySet Name="BATTERIE" EntityType="BatListModel.Store.BATTERIE" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Battery_Values" EntityType="BatListModel.Store.Battery_Values" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="BATTYPE" EntityType="BatListModel.Store.BATTYPE" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Cab_Dim" EntityType="BatListModel.Store.Cab_Dim" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="cabinets" EntityType="BatListModel.Store.cabinets" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CABNCSTM" EntityType="BatListModel.Store.CABNCSTM" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CalCab_All" EntityType="BatListModel.Store.CalCab_All" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CalTiers_All" EntityType="BatListModel.Store.CalTiers_All" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="GRPBAT" EntityType="BatListModel.Store.GRPBAT" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MANIFAC" EntityType="BatListModel.Store.MANIFAC" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="v_MANUFAC" EntityType="BatListModel.Store.v_MANUFAC" store:Type="Views" store:Schema="dbo" store:Name="v_MANUFAC">
+            <DefiningQuery>SELECT 
+      [v_MANUFAC].[ManID] AS [ManID], 
+      [v_MANUFAC].[CMA] AS [CMA], 
+      [v_MANUFAC].[MARQUE] AS [MARQUE]
+      FROM [dbo].[v_MANUFAC] AS [v_MANUFAC]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+        <EntityType Name="BATTERIE">
+          <Key>
+            <PropertyRef Name="CBA" />
+          </Key>
+          <Property Name="CMA" Type="smallint" />
+          <Property Name="CBT" Type="smallint" />
+          <Property Name="CGB" Type="smallint" />
+          <Property Name="CBA" Type="smallint" Nullable="false" />
+          <Property Name="DESC" Type="nvarchar" MaxLength="20" />
+          <Property Name="TM" Type="tinyint" />
+          <Property Name="WIDTH" Type="nvarchar" MaxLength="15" />
+          <Property Name="LENGTH" Type="nvarchar" MaxLength="15" />
+          <Property Name="HEIGHT" Type="nvarchar" MaxLength="15" />
+          <Property Name="WEIGHT" Type="nvarchar" MaxLength="15" />
+          <Property Name="CAPACITY" Type="nvarchar" MaxLength="15" />
+          <Property Name="price" Type="float" />
+          <Property Name="IN_WIDTH" Type="nvarchar" MaxLength="15" />
+          <Property Name="IN_LENGTH" Type="nvarchar" MaxLength="15" />
+          <Property Name="IN_HEIGHT" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Battery_Values">
+          <Key>
+            <PropertyRef Name="Val_ID" />
+          </Key>
+          <Property Name="Val_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="usrName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Load_amp" Type="decimal" Scale="2" />
+          <Property Name="hms" Type="nchar" MaxLength="1" />
+          <Property Name="Period" Type="decimal" Scale="2" />
+          <Property Name="Temp" Type="decimal" Scale="2" />
+          <Property Name="NR" Type="nchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="BATTYPE">
+          <Key>
+            <PropertyRef Name="CBT" />
+          </Key>
+          <Property Name="CBT" Type="smallint" Nullable="false" />
+          <Property Name="DESC" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Cab_Dim">
+          <Key>
+            <PropertyRef Name="cabDim_id" />
+          </Key>
+          <Property Name="cabDim_id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="mm_inch" Type="int" />
+          <Property Name="BatteryName" Type="nvarchar" MaxLength="50" />
+          <Property Name="HB" Type="decimal" Scale="2" />
+          <Property Name="LB" Type="decimal" Scale="2" />
+          <Property Name="PB" Type="decimal" Scale="2" />
+          <Property Name="CAB_A" Type="decimal" Scale="2" />
+          <Property Name="CAB_B" Type="decimal" Scale="2" />
+          <Property Name="CAB_C" Type="decimal" Scale="2" />
+          <Property Name="CAB_D" Type="decimal" Scale="2" />
+          <Property Name="CAB_HP" Type="decimal" Scale="2" />
+          <Property Name="CAB_HCB" Type="decimal" Scale="2" />
+          <Property Name="CAB_HD1_2" Type="decimal" Scale="2" />
+          <Property Name="Gage" Type="decimal" Scale="2" />
+          <Property Name="Cust_CAB_HEI" Type="decimal" Scale="2" />
+          <Property Name="Cust_CAB_WIDTH" Type="decimal" Scale="2" />
+          <Property Name="Cust_CAB_Depth" Type="decimal" Scale="2" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="cabinets">
+          <Key>
+            <PropertyRef Name="cabcode" />
+          </Key>
+          <Property Name="cabcode" Type="int" Nullable="false" />
+          <Property Name="cabn" Type="nvarchar" MaxLength="20" />
+          <Property Name="hc" Type="nvarchar" MaxLength="15" />
+          <Property Name="lc" Type="nvarchar" MaxLength="15" />
+          <Property Name="pc" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="CABNCSTM">
+          <Key>
+            <PropertyRef Name="LID" />
+          </Key>
+          <Property Name="LID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="cabcode" Type="int" />
+          <Property Name="cabn" Type="nvarchar" MaxLength="20" />
+          <Property Name="hc" Type="nvarchar" MaxLength="15" />
+          <Property Name="lc" Type="nvarchar" MaxLength="15" />
+          <Property Name="pc" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="CalCab_All">
+          <Key>
+            <PropertyRef Name="LID" />
+          </Key>
+          <Property Name="LID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="cabn" Type="nvarchar" MaxLength="20" />
+          <Property Name="hc" Type="nvarchar" MaxLength="15" />
+          <Property Name="lc" Type="nvarchar" MaxLength="15" />
+          <Property Name="pc" Type="nvarchar" MaxLength="15" />
+          <Property Name="h1" Type="nvarchar" MaxLength="15" />
+          <Property Name="n11" Type="nvarchar" MaxLength="15" />
+          <Property Name="n21" Type="nvarchar" MaxLength="15" />
+          <Property Name="nt11" Type="nvarchar" MaxLength="15" />
+          <Property Name="nbt1" Type="nvarchar" MaxLength="15" />
+          <Property Name="nb1" Type="nvarchar" MaxLength="15" />
+          <Property Name="nstep" Type="tinyint" />
+          <Property Name="h2" Type="nvarchar" MaxLength="15" />
+          <Property Name="n12" Type="nvarchar" MaxLength="15" />
+          <Property Name="n22" Type="nvarchar" MaxLength="15" />
+          <Property Name="nt12" Type="nvarchar" MaxLength="15" />
+          <Property Name="nbt2" Type="nvarchar" MaxLength="15" />
+          <Property Name="nb2" Type="nvarchar" MaxLength="15" />
+          <Property Name="NBtot" Type="nvarchar" MaxLength="15" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CalTiers_All">
+          <Key>
+            <PropertyRef Name="LID" />
+          </Key>
+          <Property Name="LID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="cabn" Type="nvarchar" MaxLength="20" />
+          <Property Name="hc" Type="nvarchar" MaxLength="15" />
+          <Property Name="lc" Type="nvarchar" MaxLength="15" />
+          <Property Name="pc" Type="nvarchar" MaxLength="15" />
+          <Property Name="nt" Type="nvarchar" MaxLength="15" />
+          <Property Name="nbt" Type="nvarchar" MaxLength="15" />
+          <Property Name="nb" Type="nvarchar" MaxLength="15" />
+          <Property Name="surface" Type="nvarchar" MaxLength="20" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="GRPBAT">
+          <Key>
+            <PropertyRef Name="CGB" />
+          </Key>
+          <Property Name="CMA" Type="smallint" />
+          <Property Name="CBT" Type="smallint" />
+          <Property Name="CGB" Type="smallint" Nullable="false" />
+          <Property Name="DESC" Type="nvarchar" MaxLength="15" />
+          <Property Name="Mult" Type="float" />
+        </EntityType>
+        <EntityType Name="MANIFAC">
+          <Key>
+            <PropertyRef Name="ManID" />
+          </Key>
+          <Property Name="ManID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CMA" Type="smallint" />
+          <Property Name="MARQUE" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'BatList.dbo.v_MANUFAC' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="v_MANUFAC">
+          <Key>
+            <PropertyRef Name="ManID" />
+          </Key>
+          <Property Name="ManID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CMA" Type="smallint" />
+          <Property Name="MARQUE" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Function Name="Save_Cab_Dim" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="mm_inch" Type="int" Mode="In" />
+          <Parameter Name="BatteryName" Type="varchar" Mode="In" />
+          <Parameter Name="HB" Type="decimal" Mode="In" />
+          <Parameter Name="LB" Type="decimal" Mode="In" />
+          <Parameter Name="PB" Type="decimal" Mode="In" />
+          <Parameter Name="CAB_A" Type="decimal" Mode="In" />
+          <Parameter Name="CAB_B" Type="decimal" Mode="In" />
+          <Parameter Name="CAB_C" Type="decimal" Mode="In" />
+          <Parameter Name="CAB_D" Type="decimal" Mode="In" />
+          <Parameter Name="CAB_HP" Type="decimal" Mode="In" />
+          <Parameter Name="CAB_HCB" Type="decimal" Mode="In" />
+          <Parameter Name="CAB_HD1_2" Type="decimal" Mode="In" />
+          <Parameter Name="Gage" Type="decimal" Mode="In" />
+          <Parameter Name="Cust_CAB_HEI" Type="decimal" Mode="In" />
+          <Parameter Name="Cust_CAB_WIDTH" Type="decimal" Mode="In" />
+          <Parameter Name="Cust_CAB_Depth" Type="decimal" Mode="In" />
+          <Parameter Name="UserName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Save_CalCabALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cabn" Type="nvarchar" Mode="In" />
+          <Parameter Name="hc" Type="varchar" Mode="In" />
+          <Parameter Name="lc" Type="varchar" Mode="In" />
+          <Parameter Name="pc" Type="varchar" Mode="In" />
+          <Parameter Name="h1" Type="varchar" Mode="In" />
+          <Parameter Name="n11" Type="varchar" Mode="In" />
+          <Parameter Name="n21" Type="varchar" Mode="In" />
+          <Parameter Name="nt11" Type="varchar" Mode="In" />
+          <Parameter Name="nbt1" Type="varchar" Mode="In" />
+          <Parameter Name="nb1" Type="varchar" Mode="In" />
+          <Parameter Name="nstep" Type="tinyint" Mode="In" />
+          <Parameter Name="h2" Type="varchar" Mode="In" />
+          <Parameter Name="n12" Type="varchar" Mode="In" />
+          <Parameter Name="n22" Type="varchar" Mode="In" />
+          <Parameter Name="nt12" Type="varchar" Mode="In" />
+          <Parameter Name="nbt2" Type="varchar" Mode="In" />
+          <Parameter Name="nb2" Type="varchar" Mode="In" />
+          <Parameter Name="NBtot" Type="varchar" Mode="In" />
+          <Parameter Name="UserName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Save_CalTiers_ALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cabn" Type="nvarchar" Mode="In" />
+          <Parameter Name="hc" Type="varchar" Mode="In" />
+          <Parameter Name="lc" Type="varchar" Mode="In" />
+          <Parameter Name="pc" Type="varchar" Mode="In" />
+          <Parameter Name="nt" Type="varchar" Mode="In" />
+          <Parameter Name="nbt" Type="varchar" Mode="In" />
+          <Parameter Name="nb" Type="varchar" Mode="In" />
+          <Parameter Name="surface" Type="varchar" Mode="In" />
+          <Parameter Name="UserName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spBatteries_CBT_CMA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CBT" Type="int" Mode="In" />
+          <Parameter Name="CMA" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spBattery_CBA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CBA" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spManufac_CBT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CBT" Type="int" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BatListModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="BatListEntities2" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="BATTERIEs" EntityType="BatListModel.BATTERIE" />
+          <EntitySet Name="BATTYPEs" EntityType="BatListModel.BATTYPE" />
+          <EntitySet Name="GRPBATs" EntityType="BatListModel.GRPBAT" />
+          <EntitySet Name="MANIFACs" EntityType="BatListModel.MANIFAC" />
+          <FunctionImport Name="spManufac_CBT" ReturnType="Collection(BatListModel.spManufac_CBT_Result)">
+          <Parameter Name="CBT" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spManufac_CBT1" EntitySet="MANIFACs" ReturnType="Collection(BatListModel.MANIFAC)">
+          <Parameter Name="CBT" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spManufac_CBT2" ReturnType="Collection(BatListModel.spManufac_CBT_Result)">
+          <Parameter Name="CBT" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spBatteries_CBT_CMA" ReturnType="Collection(BatListModel.spBatteries_CBT_CMA_Result)">
+            <Parameter Name="CBT" Mode="In" Type="Int32" />
+            <Parameter Name="CMA" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spBattery_CBA" ReturnType="Collection(BatListModel.spBattery_CBA_Result)">
+          <Parameter Name="CBA" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Battery_Values" EntityType="BatListModel.Battery_Values" />
+          <EntitySet Name="Cab_Dim" EntityType="BatListModel.Cab_Dim" />
+          <FunctionImport Name="Save_Cab_Dim">
+            <Parameter Name="mm_inch" Mode="In" Type="Int32" />
+            <Parameter Name="BatteryName" Mode="In" Type="String" />
+            <Parameter Name="HB" Mode="In" Type="Decimal" />
+            <Parameter Name="LB" Mode="In" Type="Decimal" />
+            <Parameter Name="PB" Mode="In" Type="Decimal" />
+            <Parameter Name="CAB_A" Mode="In" Type="Decimal" />
+            <Parameter Name="CAB_B" Mode="In" Type="Decimal" />
+            <Parameter Name="CAB_C" Mode="In" Type="Decimal" />
+            <Parameter Name="CAB_D" Mode="In" Type="Decimal" />
+            <Parameter Name="CAB_HP" Mode="In" Type="Decimal" />
+            <Parameter Name="CAB_HCB" Mode="In" Type="Decimal" />
+            <Parameter Name="CAB_HD1_2" Mode="In" Type="Decimal" />
+            <Parameter Name="Gage" Mode="In" Type="Decimal" />
+            <Parameter Name="Cust_CAB_HEI" Mode="In" Type="Decimal" />
+            <Parameter Name="Cust_CAB_WIDTH" Mode="In" Type="Decimal" />
+            <Parameter Name="Cust_CAB_Depth" Mode="In" Type="Decimal" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Save_CalCabALL">
+            <Parameter Name="cabn" Mode="In" Type="String" />
+            <Parameter Name="hc" Mode="In" Type="String" />
+            <Parameter Name="lc" Mode="In" Type="String" />
+            <Parameter Name="pc" Mode="In" Type="String" />
+            <Parameter Name="h1" Mode="In" Type="String" />
+            <Parameter Name="n11" Mode="In" Type="String" />
+            <Parameter Name="n21" Mode="In" Type="String" />
+            <Parameter Name="nt11" Mode="In" Type="String" />
+            <Parameter Name="nbt1" Mode="In" Type="String" />
+            <Parameter Name="nb1" Mode="In" Type="String" />
+            <Parameter Name="nstep" Mode="In" Type="Byte" />
+            <Parameter Name="h2" Mode="In" Type="String" />
+            <Parameter Name="n12" Mode="In" Type="String" />
+            <Parameter Name="n22" Mode="In" Type="String" />
+            <Parameter Name="nt12" Mode="In" Type="String" />
+            <Parameter Name="nbt2" Mode="In" Type="String" />
+            <Parameter Name="nb2" Mode="In" Type="String" />
+            <Parameter Name="NBtot" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="CABNCSTMs" EntityType="BatListModel.CABNCSTM" />
+          <EntitySet Name="CalCab_All" EntityType="BatListModel.CalCab_All" />
+          <EntitySet Name="cabinets" EntityType="BatListModel.cabinet" />
+          <FunctionImport Name="Save_CalTiers_ALL">
+            <Parameter Name="cabn" Mode="In" Type="String" />
+            <Parameter Name="hc" Mode="In" Type="String" />
+            <Parameter Name="lc" Mode="In" Type="String" />
+            <Parameter Name="pc" Mode="In" Type="String" />
+            <Parameter Name="nt" Mode="In" Type="String" />
+            <Parameter Name="nbt" Mode="In" Type="String" />
+            <Parameter Name="nb" Mode="In" Type="String" />
+            <Parameter Name="surface" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="CalTiers_All" EntityType="BatListModel.CalTiers_All" />
+          <EntitySet Name="v_MANUFAC" EntityType="BatListModel.v_MANUFAC" />
+        </EntityContainer>
+        <EntityType Name="BATTERIE">
+          <Key>
+            <PropertyRef Name="CBA" />
+          </Key>
+          <Property Name="CMA" Type="Int16" />
+          <Property Name="CBT" Type="Int16" />
+          <Property Name="CGB" Type="Int16" />
+          <Property Name="CBA" Type="Int16" Nullable="false" />
+          <Property Name="DESC" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="TM" Type="Byte" />
+          <Property Name="WIDTH" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="LENGTH" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="HEIGHT" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="WEIGHT" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="CAPACITY" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="price" Type="Double" />
+          <Property Type="String" Name="IN_WIDTH" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IN_LENGTH" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IN_HEIGHT" MaxLength="15" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BATTYPE">
+          <Key>
+            <PropertyRef Name="CBT" />
+          </Key>
+          <Property Name="CBT" Type="Int16" Nullable="false" />
+          <Property Name="DESC" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="GRPBAT">
+          <Key>
+            <PropertyRef Name="CGB" />
+          </Key>
+          <Property Name="CMA" Type="Int16" />
+          <Property Name="CBT" Type="Int16" />
+          <Property Name="CGB" Type="Int16" Nullable="false" />
+          <Property Name="DESC" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="Mult" Type="Double" />
+        </EntityType>
+        <EntityType Name="MANIFAC">
+          <Key>
+            <PropertyRef Name="ManID" />
+          </Key>
+          <Property Name="ManID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CMA" Type="Int16" />
+          <Property Name="MARQUE" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <ComplexType Name="spManufac_CBT_Result">
+          <Property Type="String" Name="MARQUE" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ManID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="spBatteries_CBT_CMA_Result">
+          <Property Type="Int16" Name="CBA" Nullable="false" />
+          <Property Type="String" Name="BatName" Nullable="true" MaxLength="36" />
+        </ComplexType>
+        <ComplexType Name="spBattery_CBA_Result">
+          <Property Type="Int16" Name="CMA" Nullable="true" />
+          <Property Type="Int16" Name="CBT" Nullable="true" />
+          <Property Type="Int16" Name="CGB" Nullable="true" />
+          <Property Type="Int16" Name="CBA" Nullable="false" />
+          <Property Type="String" Name="DESC" Nullable="true" MaxLength="20" />
+          <Property Type="Byte" Name="TM" Nullable="true" />
+          <Property Type="String" Name="WIDTH" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="LENGTH" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="HEIGHT" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="WEIGHT" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="CAPACITY" Nullable="true" MaxLength="15" />
+          <Property Type="Double" Name="price" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="Battery_Values">
+          <Key>
+            <PropertyRef Name="Val_ID" />
+          </Key>
+          <Property Type="Int32" Name="Val_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="usrName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="Load_amp" Precision="18" Scale="2" />
+          <Property Type="String" Name="hms" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Type="Decimal" Name="Period" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Temp" Precision="18" Scale="2" />
+          <Property Type="String" Name="NR" MaxLength="1" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Cab_Dim">
+          <Key>
+            <PropertyRef Name="cabDim_id" />
+          </Key>
+          <Property Type="Int64" Name="cabDim_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="mm_inch" />
+          <Property Type="String" Name="BatteryName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="HB" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="LB" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="PB" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="CAB_A" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="CAB_B" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="CAB_C" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="CAB_D" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="CAB_HP" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="CAB_HCB" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="CAB_HD1_2" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Gage" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Cust_CAB_HEI" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Cust_CAB_WIDTH" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Cust_CAB_Depth" Precision="18" Scale="2" />
+          <Property Type="String" Name="UserName" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CABNCSTM">
+          <Key>
+            <PropertyRef Name="LID" />
+          </Key>
+          <Property Type="Int64" Name="LID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="cabcode" />
+          <Property Type="String" Name="cabn" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="hc" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="lc" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="pc" MaxLength="15" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CalCab_All">
+          <Key>
+            <PropertyRef Name="LID" />
+          </Key>
+          <Property Type="Int64" Name="LID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="cabn" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="hc" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="lc" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="pc" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="h1" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="n11" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="n21" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="nt11" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="nbt1" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="nb1" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="Byte" Name="nstep" />
+          <Property Type="String" Name="h2" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="n12" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="n22" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="nt12" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="nbt2" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="nb2" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NBtot" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="UserName" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="cabinet">
+          <Key>
+            <PropertyRef Name="cabcode" />
+          </Key>
+          <Property Type="Int32" Name="cabcode" Nullable="false" />
+          <Property Type="String" Name="cabn" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="hc" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="lc" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="pc" MaxLength="15" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CalTiers_All">
+          <Key>
+            <PropertyRef Name="LID" />
+          </Key>
+          <Property Type="Int64" Name="LID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="cabn" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="hc" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="lc" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="pc" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="nt" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="nbt" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="nb" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="surface" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="UserName" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="v_MANUFAC">
+          <Key>
+            <PropertyRef Name="ManID" />
+          </Key>
+          <Property Type="Int32" Name="ManID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int16" Name="CMA" />
+          <Property Type="String" Name="MARQUE" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BatListModelStoreContainer" CdmEntityContainer="BatListEntities2">
+          <EntitySetMapping Name="BATTERIEs">
+            <EntityTypeMapping TypeName="BatListModel.BATTERIE">
+              <MappingFragment StoreEntitySet="BATTERIE">
+                <ScalarProperty Name="IN_HEIGHT" ColumnName="IN_HEIGHT" />
+                <ScalarProperty Name="IN_LENGTH" ColumnName="IN_LENGTH" />
+                <ScalarProperty Name="IN_WIDTH" ColumnName="IN_WIDTH" />
+                <ScalarProperty Name="CMA" ColumnName="CMA" />
+                <ScalarProperty Name="CBT" ColumnName="CBT" />
+                <ScalarProperty Name="CGB" ColumnName="CGB" />
+                <ScalarProperty Name="CBA" ColumnName="CBA" />
+                <ScalarProperty Name="DESC" ColumnName="DESC" />
+                <ScalarProperty Name="TM" ColumnName="TM" />
+                <ScalarProperty Name="WIDTH" ColumnName="WIDTH" />
+                <ScalarProperty Name="LENGTH" ColumnName="LENGTH" />
+                <ScalarProperty Name="HEIGHT" ColumnName="HEIGHT" />
+                <ScalarProperty Name="WEIGHT" ColumnName="WEIGHT" />
+                <ScalarProperty Name="CAPACITY" ColumnName="CAPACITY" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BATTYPEs">
+            <EntityTypeMapping TypeName="BatListModel.BATTYPE">
+              <MappingFragment StoreEntitySet="BATTYPE">
+                <ScalarProperty Name="CBT" ColumnName="CBT" />
+                <ScalarProperty Name="DESC" ColumnName="DESC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GRPBATs">
+            <EntityTypeMapping TypeName="BatListModel.GRPBAT">
+              <MappingFragment StoreEntitySet="GRPBAT">
+                <ScalarProperty Name="CMA" ColumnName="CMA" />
+                <ScalarProperty Name="CBT" ColumnName="CBT" />
+                <ScalarProperty Name="CGB" ColumnName="CGB" />
+                <ScalarProperty Name="DESC" ColumnName="DESC" />
+                <ScalarProperty Name="Mult" ColumnName="Mult" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MANIFACs">
+            <EntityTypeMapping TypeName="BatListModel.MANIFAC">
+              <MappingFragment StoreEntitySet="MANIFAC">
+                <ScalarProperty Name="ManID" ColumnName="ManID" />
+                <ScalarProperty Name="CMA" ColumnName="CMA" />
+                <ScalarProperty Name="MARQUE" ColumnName="MARQUE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spManufac_CBT" FunctionName="BatListModel.Store.spManufac_CBT">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BatListModel.spManufac_CBT_Result">
+                <ScalarProperty Name="MARQUE" ColumnName="MARQUE" />
+                <ScalarProperty Name="ManID" ColumnName="ManID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spManufac_CBT1" FunctionName="BatListModel.Store.spManufac_CBT" />
+          <FunctionImportMapping FunctionImportName="spManufac_CBT2" FunctionName="BatListModel.Store.spManufac_CBT">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BatListModel.spManufac_CBT_Result">
+                <ScalarProperty Name="MARQUE" ColumnName="MARQUE" />
+                <ScalarProperty Name="ManID" ColumnName="ManID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spBatteries_CBT_CMA" FunctionName="BatListModel.Store.spBatteries_CBT_CMA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BatListModel.spBatteries_CBT_CMA_Result">
+                <ScalarProperty Name="CBA" ColumnName="CBA" />
+                <ScalarProperty Name="BatName" ColumnName="BatName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spBattery_CBA" FunctionName="BatListModel.Store.spBattery_CBA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BatListModel.spBattery_CBA_Result">
+                <ScalarProperty Name="CMA" ColumnName="CMA" />
+                <ScalarProperty Name="CBT" ColumnName="CBT" />
+                <ScalarProperty Name="CGB" ColumnName="CGB" />
+                <ScalarProperty Name="CBA" ColumnName="CBA" />
+                <ScalarProperty Name="DESC" ColumnName="DESC" />
+                <ScalarProperty Name="TM" ColumnName="TM" />
+                <ScalarProperty Name="WIDTH" ColumnName="WIDTH" />
+                <ScalarProperty Name="LENGTH" ColumnName="LENGTH" />
+                <ScalarProperty Name="HEIGHT" ColumnName="HEIGHT" />
+                <ScalarProperty Name="WEIGHT" ColumnName="WEIGHT" />
+                <ScalarProperty Name="CAPACITY" ColumnName="CAPACITY" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Battery_Values">
+            <EntityTypeMapping TypeName="BatListModel.Battery_Values">
+              <MappingFragment StoreEntitySet="Battery_Values">
+                <ScalarProperty Name="NR" ColumnName="NR" />
+                <ScalarProperty Name="Temp" ColumnName="Temp" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="hms" ColumnName="hms" />
+                <ScalarProperty Name="Load_amp" ColumnName="Load_amp" />
+                <ScalarProperty Name="usrName" ColumnName="usrName" />
+                <ScalarProperty Name="Val_ID" ColumnName="Val_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cab_Dim">
+            <EntityTypeMapping TypeName="BatListModel.Cab_Dim">
+              <MappingFragment StoreEntitySet="Cab_Dim">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Cust_CAB_Depth" ColumnName="Cust_CAB_Depth" />
+                <ScalarProperty Name="Cust_CAB_WIDTH" ColumnName="Cust_CAB_WIDTH" />
+                <ScalarProperty Name="Cust_CAB_HEI" ColumnName="Cust_CAB_HEI" />
+                <ScalarProperty Name="Gage" ColumnName="Gage" />
+                <ScalarProperty Name="CAB_HD1_2" ColumnName="CAB_HD1_2" />
+                <ScalarProperty Name="CAB_HCB" ColumnName="CAB_HCB" />
+                <ScalarProperty Name="CAB_HP" ColumnName="CAB_HP" />
+                <ScalarProperty Name="CAB_D" ColumnName="CAB_D" />
+                <ScalarProperty Name="CAB_C" ColumnName="CAB_C" />
+                <ScalarProperty Name="CAB_B" ColumnName="CAB_B" />
+                <ScalarProperty Name="CAB_A" ColumnName="CAB_A" />
+                <ScalarProperty Name="PB" ColumnName="PB" />
+                <ScalarProperty Name="LB" ColumnName="LB" />
+                <ScalarProperty Name="HB" ColumnName="HB" />
+                <ScalarProperty Name="BatteryName" ColumnName="BatteryName" />
+                <ScalarProperty Name="mm_inch" ColumnName="mm_inch" />
+                <ScalarProperty Name="cabDim_id" ColumnName="cabDim_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Save_Cab_Dim" FunctionName="BatListModel.Store.Save_Cab_Dim" />
+          <FunctionImportMapping FunctionImportName="Save_CalCabALL" FunctionName="BatListModel.Store.Save_CalCabALL" />
+          <EntitySetMapping Name="CABNCSTMs">
+            <EntityTypeMapping TypeName="BatListModel.CABNCSTM">
+              <MappingFragment StoreEntitySet="CABNCSTM">
+                <ScalarProperty Name="pc" ColumnName="pc" />
+                <ScalarProperty Name="lc" ColumnName="lc" />
+                <ScalarProperty Name="hc" ColumnName="hc" />
+                <ScalarProperty Name="cabn" ColumnName="cabn" />
+                <ScalarProperty Name="cabcode" ColumnName="cabcode" />
+                <ScalarProperty Name="LID" ColumnName="LID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CalCab_All">
+            <EntityTypeMapping TypeName="BatListModel.CalCab_All">
+              <MappingFragment StoreEntitySet="CalCab_All">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="NBtot" ColumnName="NBtot" />
+                <ScalarProperty Name="nb2" ColumnName="nb2" />
+                <ScalarProperty Name="nbt2" ColumnName="nbt2" />
+                <ScalarProperty Name="nt12" ColumnName="nt12" />
+                <ScalarProperty Name="n22" ColumnName="n22" />
+                <ScalarProperty Name="n12" ColumnName="n12" />
+                <ScalarProperty Name="h2" ColumnName="h2" />
+                <ScalarProperty Name="nstep" ColumnName="nstep" />
+                <ScalarProperty Name="nb1" ColumnName="nb1" />
+                <ScalarProperty Name="nbt1" ColumnName="nbt1" />
+                <ScalarProperty Name="nt11" ColumnName="nt11" />
+                <ScalarProperty Name="n21" ColumnName="n21" />
+                <ScalarProperty Name="n11" ColumnName="n11" />
+                <ScalarProperty Name="h1" ColumnName="h1" />
+                <ScalarProperty Name="pc" ColumnName="pc" />
+                <ScalarProperty Name="lc" ColumnName="lc" />
+                <ScalarProperty Name="hc" ColumnName="hc" />
+                <ScalarProperty Name="cabn" ColumnName="cabn" />
+                <ScalarProperty Name="LID" ColumnName="LID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cabinets">
+            <EntityTypeMapping TypeName="BatListModel.cabinet">
+              <MappingFragment StoreEntitySet="cabinets">
+                <ScalarProperty Name="pc" ColumnName="pc" />
+                <ScalarProperty Name="lc" ColumnName="lc" />
+                <ScalarProperty Name="hc" ColumnName="hc" />
+                <ScalarProperty Name="cabn" ColumnName="cabn" />
+                <ScalarProperty Name="cabcode" ColumnName="cabcode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Save_CalTiers_ALL" FunctionName="BatListModel.Store.Save_CalTiers_ALL" />
+          <EntitySetMapping Name="CalTiers_All">
+            <EntityTypeMapping TypeName="BatListModel.CalTiers_All">
+              <MappingFragment StoreEntitySet="CalTiers_All">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="surface" ColumnName="surface" />
+                <ScalarProperty Name="nb" ColumnName="nb" />
+                <ScalarProperty Name="nbt" ColumnName="nbt" />
+                <ScalarProperty Name="nt" ColumnName="nt" />
+                <ScalarProperty Name="pc" ColumnName="pc" />
+                <ScalarProperty Name="lc" ColumnName="lc" />
+                <ScalarProperty Name="hc" ColumnName="hc" />
+                <ScalarProperty Name="cabn" ColumnName="cabn" />
+                <ScalarProperty Name="LID" ColumnName="LID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_MANUFAC">
+            <EntityTypeMapping TypeName="BatListModel.v_MANUFAC">
+              <MappingFragment StoreEntitySet="v_MANUFAC">
+                <ScalarProperty Name="MARQUE" ColumnName="MARQUE" />
+                <ScalarProperty Name="CMA" ColumnName="CMA" />
+                <ScalarProperty Name="ManID" ColumnName="ManID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

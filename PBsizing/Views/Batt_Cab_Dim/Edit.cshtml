@@ -1,0 +1,172 @@
+﻿@model PBsizing.Models.Cab_Dim
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Cab_Dim</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.cabDim_id)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.cabDim_id)
+            @Html.ValidationMessageFor(model => model.cabDim_id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.mm_inch)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.mm_inch)
+            @Html.ValidationMessageFor(model => model.mm_inch)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BatteryName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BatteryName)
+            @Html.ValidationMessageFor(model => model.BatteryName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.HB)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.HB)
+            @Html.ValidationMessageFor(model => model.HB)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LB)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LB)
+            @Html.ValidationMessageFor(model => model.LB)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PB)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PB)
+            @Html.ValidationMessageFor(model => model.PB)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CAB_A)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CAB_A)
+            @Html.ValidationMessageFor(model => model.CAB_A)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CAB_B)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CAB_B)
+            @Html.ValidationMessageFor(model => model.CAB_B)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CAB_C)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CAB_C)
+            @Html.ValidationMessageFor(model => model.CAB_C)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CAB_D)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CAB_D)
+            @Html.ValidationMessageFor(model => model.CAB_D)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CAB_HP)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CAB_HP)
+            @Html.ValidationMessageFor(model => model.CAB_HP)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CAB_HCB)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CAB_HCB)
+            @Html.ValidationMessageFor(model => model.CAB_HCB)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CAB_HD1_2)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CAB_HD1_2)
+            @Html.ValidationMessageFor(model => model.CAB_HD1_2)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Gage)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Gage)
+            @Html.ValidationMessageFor(model => model.Gage)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Cust_CAB_HEI)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Cust_CAB_HEI)
+            @Html.ValidationMessageFor(model => model.Cust_CAB_HEI)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Cust_CAB_WIDTH)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Cust_CAB_WIDTH)
+            @Html.ValidationMessageFor(model => model.Cust_CAB_WIDTH)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Cust_CAB_Depth)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Cust_CAB_Depth)
+            @Html.ValidationMessageFor(model => model.Cust_CAB_Depth)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UserName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UserName)
+            @Html.ValidationMessageFor(model => model.UserName)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

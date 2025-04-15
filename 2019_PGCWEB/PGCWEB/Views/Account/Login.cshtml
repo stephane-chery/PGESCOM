@@ -1,0 +1,53 @@
+﻿@model IEnumerable<PGCWEB.Models.Alarms>
+@{
+    ViewBag.Title = "alarms";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/moment.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-iso.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <link href="~/Content/themes/SupplierSearchBar.css" rel="stylesheet" />
+</head>
+<body>
+    <br />
+    <br />
+    <div class="row" id="ch_values" style="display:none">
+        <div>
+            <table id="ch_values_tbl" class="table-bordered">
+                <tr>
+                    <td align="right" nowrap>
+                        User Name
+                    </td>
+                    <td align="left">
+                        @Html.TextBox("usrnme", null, new { @class = "form-control  ", style = "width:100px; " })
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" nowrap>
+                        password
+                    </td>
+                    <td align="left">
+                        @Html.TextBox("pwd", null, new { @class = "form-control  ", style = "width:100px; " })
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+</body>
+</html>

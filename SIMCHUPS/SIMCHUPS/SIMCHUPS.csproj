@@ -1,0 +1,413 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{776C518A-45E7-4EDC-A741-DB434447C2B7}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SIMCHUPS</RootNamespace>
+    <AssemblyName>SIMCHUPS</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>SIMCHUPS.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>simchups.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Change_Float_EQ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Change_Float_EQ.Designer.cs">
+      <DependentUpon>Change_Float_EQ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReset_AMBR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReset_AMBR.Designer.cs">
+      <DependentUpon>frmReset_AMBR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Confirm_Docmd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Confirm_Docmd.Designer.cs">
+      <DependentUpon>Confirm_Docmd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Confirm_Mode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Confirm_Mode.Designer.cs">
+      <DependentUpon>Confirm_Mode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Confirm_value.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Confirm_value.Designer.cs">
+      <DependentUpon>Confirm_value.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAlarmsOL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAlarmsOL.Designer.cs">
+      <DependentUpon>frmAlarmsOL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAlarms_edit_OnOff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAlarms_edit_OnOff.Designer.cs">
+      <DependentUpon>frmAlarms_edit_OnOff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAlarms_others.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAlarms_others.Designer.cs">
+      <DependentUpon>frmAlarms_others.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UPSAlarms_2Status.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UPSAlarms_2Status.Designer.cs">
+      <DependentUpon>UPSAlarms_2Status.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UPSAlarms_ONOFF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UPSAlarms_ONOFF.Designer.cs">
+      <DependentUpon>UPSAlarms_ONOFF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UPSMsgIN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UPSMsgIN.Designer.cs">
+      <DependentUpon>UPSMsgIN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UPS_STS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UPS_STS.Designer.cs">
+      <DependentUpon>UPS_STS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UPSInv_Alarms_val.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UPSInv_Alarms_val.Designer.cs">
+      <DependentUpon>UPSInv_Alarms_val.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmOption2_5_values.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOption2_5_values.Designer.cs">
+      <DependentUpon>frmOption2_5_values.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTools_values.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTools_values.Designer.cs">
+      <DependentUpon>frmTools_values.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTools.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTools.Designer.cs">
+      <DependentUpon>frmTools.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmControls.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmControls.Designer.cs">
+      <DependentUpon>frmControls.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAlarms_values.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAlarms_values.Designer.cs">
+      <DependentUpon>frmAlarms_values.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAlarms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAlarms.Designer.cs">
+      <DependentUpon>frmAlarms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMenusetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMenusetting.Designer.cs">
+      <DependentUpon>frmMenusetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Confirm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Confirm.Designer.cs">
+      <DependentUpon>Confirm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAlarms_edit_Val.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAlarms_edit_Val.Designer.cs">
+      <DependentUpon>frmAlarms_edit_Val.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pwd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pwd.Designer.cs">
+      <DependentUpon>Pwd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainM.Designer.cs">
+      <DependentUpon>MainM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Simulators.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Simulators.Designer.cs">
+      <DependentUpon>Simulators.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UPSConfirm_Val.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UPSConfirm_Val.Designer.cs">
+      <DependentUpon>UPSConfirm_Val.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UPSInv_Alarms.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UPSInv_Alarms.Designer.cs">
+      <DependentUpon>UPSInv_Alarms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UPSOption2_5_values.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UPSOption2_5_values.Designer.cs">
+      <DependentUpon>UPSOption2_5_values.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UPSControls.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UPSControls.Designer.cs">
+      <DependentUpon>UPSControls.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UPSAlarms_edit_Val.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UPSAlarms_edit_Val.Designer.cs">
+      <DependentUpon>UPSAlarms_edit_Val.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UPSInverter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UPSInverter.Designer.cs">
+      <DependentUpon>UPSInverter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UPSRectifier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UPSRectifier.Designer.cs">
+      <DependentUpon>UPSRectifier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UPSMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UPSMain.Designer.cs">
+      <DependentUpon>UPSMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UPSConfirm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UPSConfirm.Designer.cs">
+      <DependentUpon>UPSConfirm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UPSpwd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UPSpwd.Designer.cs">
+      <DependentUpon>UPSpwd.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Change_Float_EQ.resx">
+      <DependentUpon>Change_Float_EQ.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReset_AMBR.resx">
+      <DependentUpon>frmReset_AMBR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Confirm_Docmd.resx">
+      <DependentUpon>Confirm_Docmd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Confirm_Mode.resx">
+      <DependentUpon>Confirm_Mode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Confirm_value.resx">
+      <DependentUpon>Confirm_value.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAlarmsOL.resx">
+      <DependentUpon>frmAlarmsOL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAlarms_edit_OnOff.resx">
+      <DependentUpon>frmAlarms_edit_OnOff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAlarms_others.resx">
+      <DependentUpon>frmAlarms_others.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UPSAlarms_2Status.resx">
+      <DependentUpon>UPSAlarms_2Status.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UPSAlarms_ONOFF.resx">
+      <DependentUpon>UPSAlarms_ONOFF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UPSMsgIN.resx">
+      <DependentUpon>UPSMsgIN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UPS_STS.resx">
+      <DependentUpon>UPS_STS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UPSInv_Alarms_val.resx">
+      <DependentUpon>UPSInv_Alarms_val.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOption2_5_values.resx">
+      <DependentUpon>frmOption2_5_values.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTools_values.resx">
+      <DependentUpon>frmTools_values.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTools.resx">
+      <DependentUpon>frmTools.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmControls.resx">
+      <DependentUpon>frmControls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAlarms_values.resx">
+      <DependentUpon>frmAlarms_values.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAlarms.resx">
+      <DependentUpon>frmAlarms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMenusetting.resx">
+      <DependentUpon>frmMenusetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Confirm.resx">
+      <DependentUpon>Confirm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAlarms_edit_Val.resx">
+      <DependentUpon>frmAlarms_edit_Val.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pwd.resx">
+      <DependentUpon>Pwd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainM.resx">
+      <DependentUpon>MainM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Simulators.resx">
+      <DependentUpon>Simulators.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UPSConfirm_Val.resx">
+      <DependentUpon>UPSConfirm_Val.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UPSInv_Alarms.resx">
+      <DependentUpon>UPSInv_Alarms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UPSOption2_5_values.resx">
+      <DependentUpon>UPSOption2_5_values.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UPSControls.resx">
+      <DependentUpon>UPSControls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UPSAlarms_edit_Val.resx">
+      <DependentUpon>UPSAlarms_edit_Val.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UPSInverter.resx">
+      <DependentUpon>UPSInverter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UPSRectifier.resx">
+      <DependentUpon>UPSRectifier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UPSMain.resx">
+      <DependentUpon>UPSMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UPSConfirm.resx">
+      <DependentUpon>UPSConfirm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UPSpwd.resx">
+      <DependentUpon>UPSpwd.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="simchups.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

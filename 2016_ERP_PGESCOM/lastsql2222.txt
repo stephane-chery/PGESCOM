@@ -1,0 +1,23 @@
+insert into BIG_LIST_P4500XX SELECT  'P4500-1-' +[vdc]+'-' +[idc] as PXXXX, 'Fully automatic battery charger ' as PDesc
+  FROM [Orig_PSM_FDB].[dbo].[TBLAVAIL1]
+
+insert into BIG_LIST_P4500XX SELECT  'P4500F-1-' +[vdc]+'-' +[idc] as PXXXX, 'Fully automatic battery charger ' as PDesc
+  FROM [Orig_PSM_FDB].[dbo].[TBLAVAIL1]
+
+insert into BIG_LIST_P4500XX SELECT  'P4500T-1-' +[vdc]+'-' +[idc] as PXXXX, 'Fully automatic battery charger ' as PDesc
+  FROM [Orig_PSM_FDB].[dbo].[TBLAVAIL1]
+
+insert into BIG_LIST_P4500XX SELECT  'P4500TT-1-' +[vdc]+'-' +[idc] as PXXXX, 'Fully automatic battery charger ' as PDesc
+  FROM [Orig_PSM_FDB].[dbo].[TBLAVAIL1]
+
+insert into BIG_LIST_P4500XX SELECT  'P4500-3-' +[vdc]+'-' +[idc] as PXXXX, 'Fully automatic battery charger ' as PDesc
+  FROM [Orig_PSM_FDB].[dbo].[TBLAVAIL3]
+
+insert into BIG_LIST_P4500XX SELECT  'P4500F-3-' +[vdc]+'-' +[idc] as PXXXX, 'Fully automatic battery charger ' as PDesc
+  FROM [Orig_PSM_FDB].[dbo].[TBLAVAIL3]
+
+insert into BIG_LIST_P4500XX SELECT  'P4500T-3-' +[vdc]+'-' +[idc] as PXXXX, 'Fully automatic battery charger ' as PDesc
+  FROM [Orig_PSM_FDB].[dbo].[TBLAVAIL3]
+
+insert into BIG_LIST_P4500XX SELECT  'P4500TT-3-' +[vdc]+'-' +[idc] as PXXXX, 'Fully automatic battery charger ' as PDesc
+  FROM [Orig_PSM_FDB].[dbo].[TBLAVAIL3]

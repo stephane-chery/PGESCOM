@@ -1,0 +1,135 @@
+﻿@model IEnumerable<PBsizing.Models.V_U_agcmsmvt_VNTL>
+
+@{
+    ViewBag.Title = "DispCMS_lst";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Scripts.Render("~/bundles/jquery")
+@*<script src="~/Scripts/jquery-1.8.2.min.js"></script>*@
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+@*<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        // $.ajaxSetup({ cache: false });
+      //  fnRefresh();
+    });
+
+     function fnRefresh()
+     {
+     window.history.go(0);
+     }
+
+
+     ExportPDF = function () {
+         $.getJSON("../DispTiers/Tiers_GenPDF");
+     }
+
+
+     </script>
+
+@{
+     var cmsgrid = new WebGrid(source: Model, canPage: true, rowsPerPage: 20);
+    cmsgrid.Pager(WebGridPagerModes.All);
+}
+
+
+<style type="text/css">
+
+ table.gridtable 
+{                
+ font-family: verdana,arial,sans-serif;     
+            font-size:11px;   
+              color:#333333;  
+               border-width: 1px;   
+              border-color: #666666;    
+             border-collapse: collapse;  
+          }    
+            table.gridtable th 
+ {                
+ border-width: 1px;   
+              padding: 8px;    
+             border-style: solid;     
+            border-color: #666666;     
+    background-color: #A7C942;    
+          }
+                table.gridtable td {
+                    border-width: 1px;
+                    padding: 8px;
+                    border-style: solid;
+                    border-color: #666666;
+                    background-color: #ffffff;
+                }
+         .Grid th a, .Grid th a:visited
+        {
+            color: #333;
+        }
+        .Grid .row:hover td
+        {
+            background-color:gold;
+            cursor:pointer;
+        }
+
+</style>
+<br />
+
+<div id="GridCentent" style="margin-left:15px;">
+
+     @cmsgrid.GetHtml(
+    tableStyle: "gridtable",
+    columns: cmsgrid.Columns(
+                cmsgrid.Column(columnName: "agencyNM", header: "Agency"),
+           cmsgrid.Column(columnName: "Ttype", header: "Involving type"),
+     cmsgrid.Column(columnName: "Invoice", header: "Invoice"),
+    cmsgrid.Column(columnName: "item", header: "ITEM"),
+    cmsgrid.Column(columnName: "Price", header: "PRICE"),
+    cmsgrid.Column(columnName: "grp", header: "grp"),
+    cmsgrid.Column(columnName: "vRT", header: "Rate %"),
+        cmsgrid.Column(columnName: "vCMSamnt", header: "CMS Amount")
+   
+    ))
+
+                    <table>
+                 <tr> <td> <button id="btngo" type="button" class="btn btn-primary btn-xs ">Send to Excel File</button> </td> </tr>
+                </table>
+
+    @*@cmsgrid.GetHtml(
+    tableStyle: "gridtable",
+    columns: cmsgrid.Columns(
+      cmsgrid.Column(columnName: "RID", header: "Project#"),
+     cmsgrid.Column(columnName: "Invoice", header: "Invoice"),
+         cmsgrid.Column(columnName: "Inv_date", header: "Invoice date"),
+        cmsgrid.Column(columnName: "customerNM", header: "Customer"),
+    cmsgrid.Column(columnName: "PO", header: "PO #"),
+      cmsgrid.Column(columnName: "SPname", header: "Sales Person"),
+
+    cmsgrid.Column(columnName: "item", header: "ITEM"),
+    cmsgrid.Column(columnName: "Price", header: "PRICE"),
+    cmsgrid.Column(columnName: "grp", header: "grp"),
+     cmsgrid.Column(columnName: "Ttype", header: "TYPE"),
+        cmsgrid.Column(columnName: "vAG", header: "Agency"),
+            cmsgrid.Column(columnName: "vRT", header: "Rate %"),
+        cmsgrid.Column(columnName: "vCMSamnt", header: "CMS Amount")
+   
+    ))*@
+       @*@if (cmsgrid.HasSelection)
+       {
+           long idmy = (cmsgrid.SelectedRow.Value as PBsizing.Models.U_agCMSmvmt).agcmsLID;//..agcmsLID;
+           @Html.ActionLink("zzzzzzzzz","Edit", "AGCMS", new { id = idmy.ToString () });
+             //  Html.RenderAction("Details", new { customerId = id });
+           }*@
+ 
+         @*<script type="text/javascript">
+        $("body").on("click", "#cmsgrid td", function () {
+            var lid = $(this).closest("tr").find("td:first").html();
+            window.location = "/AGCMS/Edit/" + lid;
+        });
+    </script>*@
+
+</div>
+
+

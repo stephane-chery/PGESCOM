@@ -1,0 +1,606 @@
+﻿@model IEnumerable<PBsizing.Models.U_agCMSmvmt> 
+@model IEnumerable<PBsizing.Models.U_agCMSmvmt> 
+@using PBsizing.Models
+@using GridMvc.Html
+
+
+
+@{
+    ViewBag.Title = "AgenciesCMS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+	<link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" type="text/css" />
+	<script src="@Url.Content("~/Scripts/gridmvc.min.js")" type="text/javascript"> </script>
+
+
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/awesome-bootstrap-checkbox/0.3.7/awesome-bootstrap-checkbox.css">*@
+
+
+@*<link href="~/Content/Gridmvc.css" rel="stylesheet" />*@
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+@*<script src="~/Scripts/gridmvc.js"></script>*@
+
+
+<style>
+        .container {
+
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: 10px;
+    margin-left: 10px;
+
+}
+
+    .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+        color: black;
+        background-color: #fcd900;
+        
+    }
+
+.buttonload {
+  background-color: #4CAF50; /* Green background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 12px 24px; /* Some padding */
+  font-size: 16px; /* Set a font-size */
+}
+
+/* Add a right margin to each icon */
+.fa {
+  margin-left: -12px;
+  margin-right: 8px;
+}
+
+
+
+.table-fixed tbody {
+
+
+ float:left;
+    height:630px;
+    overflow-y:auto ;
+    width:auto;
+      font-family:Verdana;
+}
+thead, tbody { display: block; }
+</style>
+
+
+
+<div class="container">
+                <table>
+                <tr>
+                    <td> @Html.TextBox("curr_prd","user: " + (string)ViewBag.userName+ "       Current Period: "+(string)ViewBag.mmyyyy, new { @class = "form-control input-sm", style = "width:350px; background-color: yellow; color: black;", @readonly = "readonly" }) </td>
+                </tr>
+             </table>
+   <br />   <br />
+  <ul class="nav nav-pills" role="tablist">
+
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="pill" href="#inv">Invoices List</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link " data-toggle="pill" href="#cms">CMS List</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link " data-toggle="pill" href="#import">Agencies CMS Import</a>
+    </li>
+  </ul>
+
+
+    <div class="tab-content">
+        <div id="import" class="container tab-pane ">
+            <br />
+            <table>
+                <tr>
+                    <td> <button id="btngo" type="button" class="btn btn-primary btn-xs ">Import CMS for Current period</button> </td>
+                    <td> @Html.TextBox("curr_prd",(string)ViewBag.mmyyyy, new { @class = "form-control", style = "width:90px; background-color: #cefa29; color: black;", @readonly = "readonly" }) </td>
+                    <td><button class="btn btn-primary" id="btnwait" style = "display: none "> <span class="spinner-border spinner-border-sm"></span>  Loading..</button></td>
+                    <td> @Html.TextBox("msgerr", null, new { @class = "form-control", style = "width:400px; background-color: #cee3e3;display: none ", @readonly = "readonly" }) </td>
+                </tr>
+             </table>
+
+         <table>
+             <tr>
+                  <th class="not_mapped_style" style="text-align: center;"> </th>
+               <th class="not_mapped_style" style="text-align: center; ">MONTH</th>
+               <th class="not_mapped_style" style="text-align: center;">YEAR</th>
+         
+            </tr>
+            <tr>
+              <td> 
+                <button id="btn_imprt" type="button" class="btn btn-primary">Import CMS since >> MM/YYYY</button> 
+              </td>
+              <td>
+                <select id="cbmois" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 150px; ">
+                    <option value="Select">Select Month</option>
+                    <option value="1">01</option>
+                    <option value="2">02</option>
+                    <option value="3">03</option>
+                    <option value="4">04</option>
+                    <option value="5">05</option>
+                    <option value="6">06</option>
+                    <option value="7">07</option>
+                    <option value="8">08</option>
+                    <option value="9">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+              </td>
+              <td>
+                <select id="cbyear" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 150px; ">
+                    <option value="Select">Select YEAR</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                    <option value="2027">2027</option>
+                    <option value="2028">2028</option>
+                    <option value="2029">2029</option>
+                    <option value="2030">2030</option>
+                </select>
+              </td>
+              <td><button class="btn btn-primary" id="btnwait_mois" style = "display: none "> <span class="spinner-border spinner-border-sm"></span>  Loading..</button></td>
+              <td> @Html.TextBox("msgerr_mois", null, new { @class = "form-control", style = "width:400px; background-color: #cee3e3;display: none ", @readonly = "readonly" }) </td>
+            </tr>
+         </table>
+        </div>
+
+        <div id="inv" class="container tab-pane active">
+            <br />
+            <table>
+             <tr>
+                   <th class="not_mapped_style" style="text-align: center;">Sales Person</th>
+               <th class="not_mapped_style" style="text-align: center; ">MONTH</th>
+               <th class="not_mapped_style" style="text-align: center;">YEAR</th>
+                   <th class="not_mapped_style" style="text-align: center;"> </th>
+                 <th class="not_mapped_style" style="text-align: center;"> </th>
+               <th class="not_mapped_style" style="text-align: center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+            </tr>
+            <tr>
+              @*<td>
+                   @Html.DropDownList("cbsp", new SelectList(ViewBag.splist as System.Collections.IEnumerable, "codeAG", "AGname"), "Select ", new { @class = "selectpicker form-control", id = "cbsp", style = "background-color: #cefa29; color: black;width: 250px" })
+              </td>*@ 
+             <td>
+                <select id="cbsp" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 250px; ">
+                    <option value="Select">ALL </option>
+                    <option value="S03">Benoit Cimon</option>
+                    <option value="S08">Maria Ester Maturi</option>
+                    <option value="S05">Yves Lavoie</option>
+                 </select>
+             </td>
+             <td>
+                <select id="cbmm" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 150px; ">
+                    <option value="Select">Select Month</option>
+                    <option value="1">01</option>
+                    <option value="2">02</option>
+                    <option value="3">03</option>
+                    <option value="4">04</option>
+                    <option value="5">05</option>
+                    <option value="6">06</option>
+                    <option value="7">07</option>
+                    <option value="8">08</option>
+                    <option value="9">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+             </td>
+             <td>
+                <select id="cbyyyy" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 150px; ">
+                    <option value="Select">Select YEAR</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                    <option value="2027">2027</option>
+                    <option value="2028">2028</option>
+                    <option value="2029">2029</option>
+                    <option value="2030">2030</option>
+                </select>
+            </td>
+            <td></td>
+
+               <td> <button id="btngrid" type="button" class="btn btn-primary btn-xs">Current invoices List</button> </td>
+               <td> <button id="btngrid_noag" type="button" class="btn btn-primary btn-xs">Fix invoices without Agency</button> </td>
+                    @*<td> @Html.TextBox("msgerr", null, new { @class = "form-control", style = "width:300px; background-color: #cee3e3;display: none ", @readonly = "readonly" }) </td>*@
+                </tr>
+             </table>
+                    @*<a href='@Url.Action( "DispINVCMS","AGCMS",new {_SP = "S05"})'>
+            <img src='@Url.Content("~/Images/laptop_battery2.png")' />
+            </a>*@
+  @*@Html.Hidden("alarmurl", Url.Action("alarms", "Alarms"))*@
+            @*<button onclick="@Url.Action("DispINVCMS", "AGCMS", new {familyid = "S05"})">Display CMS</button>*@
+
+
+<div id="GridCentent">
+      @*@Html.Grid(Model).Columns(Columns =>
+{
+    Columns.Add( inv => inv.agcmsLID).Titled("id");
+    Columns.Add(inv => inv.customerNM).Titled("Customer");
+    Columns.Add(inv => inv.Invoice).Titled("Invoice");
+    Columns.Add(inv => inv.Inv_date).Titled("date");
+    Columns.Add(inv => inv.PO).Titled("PO#");
+    Columns.Add(inv => inv.RID).Titled("Project #");
+    Columns.Add(inv => inv.SPname).Titled("Sales Person");
+    Columns.Add(inv => inv.agencyNM).Titled("Agency");
+    Columns.Add(inv => inv.agencyNM).Titled("Agency");
+    Columns.Add(inv => inv.item).Titled("ITEM");
+    Columns.Add(inv => inv.grp).Titled("Group");
+    Columns.Add(inv => inv.Price).Titled("PRICE");
+    Columns.Add(inv => inv.cmsRate).Titled("RATE");
+    Columns.Add(inv => inv.cmsAMNT).Titled("CMS Amount");
+    Columns.Add()
+   .Encoded(false)
+   .Sanitized(false)
+   .SetWidth(30)
+   .RenderValueAs(inv => Html.ActionLink("Edit", "Edit", new { id = inv.agcmsLID }));
+
+}).WithPaging(10).Sortable(true)*@       
+</div>
+
+        </div>
+
+        <div id="cms" class="container tab-pane fade">
+            <table>
+                <tr>
+
+                    <th class="not_mapped_style" style="text-align: center; ">Agency</th>
+                    <th class="not_mapped_style" style="text-align: center; ">MONTH</th>
+                    <th class="not_mapped_style" style="text-align: center;">YEAR</th>
+                    <th class="not_mapped_style" style="text-align: center;"> </th>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DropDownList("cbagencies", new SelectList(ViewBag.aglist as System.Collections.IEnumerable, "codeAG", "AGname"), "Select Agency", new { @class = "selectpicker form-control", id = "cbagncy", style = "background-color: #cefa29; color: black;width: 350px" })
+                    </td>
+                    <td>
+                        <select id="cbmm_lst" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 150px; ">
+                            <option value="Select">Select Month</option>
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="5">05</option>
+                            <option value="6">06</option>
+                            <option value="7">07</option>
+                            <option value="8">08</option>
+                            <option value="9">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select id="cbyyyy_lst" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 150px; ">
+                            <option value="Select">Select YEAR</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                            <option value="2026">2026</option>
+                            <option value="2027">2027</option>
+                            <option value="2028">2028</option>
+                            <option value="2029">2029</option>
+                            <option value="2030">2030</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button id="btn_cmslst" type="button" class="btn btn-primary">Display commissions list</button>
+                    </td>
+                </tr>
+            </table>
+
+            <table>
+                <tr>
+                    <th class="not_mapped_style" style="text-align: center; ">Invoice #</th>
+                    <th class="not_mapped_style" style="text-align: center; "> </th>
+                </tr>
+                <tr>
+                    <td> @Html.TextBox("invnb",null, new { @class = "form-control", style = "width:150px; background-color: #cefa29; color: black;"}) </td>
+                    <td><button id="btn_cmslst_byinv" type="button" class="btn btn-primary">Display commissions list</button>    </td>
+                </tr>
+            </table>
+
+            <br />
+            <br />
+  
+
+
+            <div id="xl" class="container tab-pane fade">
+                <h3>SYSTEMS Statistics</h3>
+                <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+            </div>
+
+        </div>
+
+</div>
+</div>
+
+<script >
+
+    $('#fire').on('click', function (e) {
+        
+        var mydtFrom = $("input[name='datefrom']").val();
+        var mydtTo = $("input[name='dateto']").val();
+     //    alert(mydtFrom + "----" + mydtTo );
+         $.getJSON("../Statistics/stq07x1", { c_dtfrom: mydtFrom, c_dtTo: mydtTo });
+
+         $.getJSON("../dispSTA_QT/Dispsta_QT");
+
+
+            
+    })
+
+    $('#btngoOLD').on('click', function (e) {
+        $("#btnwait").show();
+        //  $("#btnwait").css('display', 'block');
+        $("#btngo").hide();
+        $.getJSON("../AGCMS/Impcms",
+            function (msgLst) {
+
+                $.each(msgLst, function (index, itemData) {
+                    {
+                        //  $("#statH1").val(itemData.msg + "   RECORDS#= " + itemData.nb);
+                        $("#msgerr").val(itemData.msg);
+                    }
+                });
+
+
+            });
+
+
+        $("#btnwait").hide();
+        //    $("#btnwait").css('display', 'none');
+
+        $("#msgerr").show();
+
+        //   $("#btnwait").delay("slow").fadeIn();
+        //    $("#btnwait").hide();
+        //$("#statH1").show();
+        //$("#btnwait").show();
+        //   $.getJSON("../AGCMS/Impcms");
+        //   $("#btnwait").hide();
+        //   $("#statH1").show();
+    });
+
+
+    $('#btngo').on('click', function (e) {
+        $("#btnwait").show();
+        //  $("#btnwait").css('display', 'block');
+
+        $("#btngo").hide();
+        $.ajax({
+            url: "../AGCMS/Impcms",
+            type: "GET",
+            data: {},
+            cache: false,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: false,
+            success: function (msgLst) {
+             
+                $.each(msgLst, function (index, itemData) {
+                    $("#msgerr").val(itemData.msg+"   Imported Records= "+itemData.recnb);
+                });
+            }
+        });
+
+        $("#btnwait").hide();
+        $("#msgerr").show();
+
+    });
+
+    $('#btn_imprt').on('click', function (e) {
+
+
+
+        var mymm = $("#cbmois").val();
+        var my_yyyy = $("#cbyear").val();
+        if (mymm != "Select" && my_yyyy != "Select") {
+                  $("#msgerr_mois").hide();
+        $("#btnwait_mois").show();
+            //  $("#btnwait").css('display', 'block');
+
+            //  $("#btn_imprt").hide();
+            $.ajax({
+                url: "../AGCMS/Impcms_mmyyyy",
+                type: "GET",
+                data: { _mm: mymm, _yyyy: my_yyyy },
+                cache: false,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function (msgLst) {
+
+                    $.each(msgLst, function (index, itemData) {
+                        $("#msgerr_mois").val(itemData.msg + "   Imported Records= " + itemData.recnb);
+                    });
+                }
+            });
+
+            $("#btnwait_mois").hide();
+            $("#msgerr_mois").show();
+        }
+        else   alert("ERROR: please select  Month and Year.....");
+
+    });
+
+
+    $('#btn_cmslst_sap').on('click', function (e) {
+  
+        var mymm = $("#cbmm_lst").val();
+        var my_yyyy = $("#cbyyyy_lst").val();
+        var my_agncy = $("#cbagncy").val();
+
+      //  alert("ag= " + my_agncy.length + "   mm= " + mymm + "    yyyy= " + my_yyyy);
+        if (mymm != "Select" && my_yyyy != "Select" && my_agncy.length>3) {
+             // $("#msgerr_mois").hide();
+             //  $("#btnwait_mois").show();
+            //  $("#btnwait").css('display', 'block');
+
+            //  $("#btn_imprt").hide();
+            $.ajax({
+                url: "../AGCMS/lstcms_mmyyyyag",
+                type: "GET",
+                data: { _mm: mymm, _yyyy: my_yyyy },
+                cache: false,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function (msgLst) {
+
+                    $.each(msgLst, function (index, itemData) {
+                        $("#msgerr_mois").val(itemData.msg + "   Imported Records= " + itemData.recnb);
+                    });
+                }
+            });
+
+            $("#btnwait_mois").hide();
+            $("#msgerr_mois").show();
+        }
+        else   alert("ERROR: please select  Month and Year.....");
+
+    });
+
+    $('#btn_cmslst').on('click', function (e) {
+
+        var mymm = $("#cbmm_lst").val();
+        var my_yyyy = $("#cbyyyy_lst").val();
+        var my_agncy = $("#cbagncy").val(); my_agncy = my_agncy.substring(0, 3);
+        if (my_agncy.length < 1 ) my_agncy = "Select";
+     //   alert("ag= " + my_agncy +"  mm= -" + mymm + "-   yyyy= -" + my_yyyy +"-");
+        if (my_agncy !="Select" || (mymm !="Select" && my_yyyy !="Select" )) {
+        @*var sppar = "@Url.Action( "DispINVCMS","AGCMS",new {_SP = "SS", _MM="mm", _YYYY="yy"})".replace("SS", mysp).replace("mm",mymm).replace("yy",myyyyy);*@
+
+            var sppar = '@Url.Action( "DispCMS_lst","AGCMS")?_AG=' + my_agncy + '&_MM=' + mymm + '&_YYYY=' + my_yyyy;
+            //    sparr= sppar.replace("SS", mysp);
+           
+            window.location.href = sppar;
+        }
+        else alert("ERROR Selection......");
+              
+
+    });
+
+    
+        $('#btn_cmslst_byinv').on('click', function (e) {
+
+            var my_inv = $("#invnb").val();
+            if ($.isNumeric(my_inv)) 
+            {
+                var sppar = '@Url.Action( "DispCMS_lstbyinv","AGCMS")?_INV=' + my_inv;
+            //    sparr= sppar.replace("SS", mysp);
+           
+            window.location.href = sppar;
+        }
+        else alert("ERROR: Invalid Invoice #......");
+              
+
+    });
+
+    $('#btngrid').on('click', function (e) {
+
+       // debugger;
+        var mysp = $("#cbsp").val();
+        var mymm = $("#cbmm").val();
+        var myyyyy = $("#cbyyyy").val();
+        @*var sppar = "@Url.Action( "DispINVCMS","AGCMS",new {_SP = "SS", _MM="mm", _YYYY="yy"})".replace("SS", mysp).replace("mm",mymm).replace("yy",myyyyy);*@
+
+        var sppar = '@Url.Action( "DispINVCMS","AGCMS")?_SP=' + mysp + '&_MM=' + mymm + '&_YYYY=' + myyyyy;
+   //    sparr= sppar.replace("SS", mysp);
+      //   alert(sppar);
+        window.location.href = sppar;
+    //    $.get('@Url.Action("DispINVCMS","AGCMS")', { _SP : mysp });                  
+
+    });
+
+    $('#btngrid_noag').on('click', function (e) {
+
+        $.ajaxSetup({
+       async: false
+         });
+        var mysp = $("#cbsp").val();
+        var mymm = $("#cbmm").val();
+        if (mymm.length == 1) mymm = "0" + mymm;
+        var myyyyy = $("#cbyyyy").val();
+        if (mysp != "Select" && mymm != "Select" && myyyyy != "Select") {
+
+            var mye_d = mysp + '&_MM=' + mymm + '&_YYYY=' + myyyyy;
+        //    alert("MM=" + mymm);
+           // debugger;
+            var par="????", tt="";
+
+             $.getJSON("../AGCMS/dingo", { _pkt: mye_d },
+                function (msglst) {
+                      $.each(msglst, function (index, itemData) {
+                          par = itemData.msg;
+                          tt = itemData.recnb ;
+                      });
+                  //  alert("par= " + par + "  tt= " + tt);
+                 });
+            //    var sppar = '@Url.Action( "DispINV_NOAG","AGCMS")?_SP=' + mysp + '&_MM=' + mymm + '&_YYYY=' + myyyyy;
+
+            
+            var sppar = '@Url.Action( "DispINV_NOAG","AGCMS")?_SP=' + par;
+            window.location.href = sppar;
+        }
+        else alert("ERROR Selection......");
+
+    });
+
+
+
+        $('#btnxl').click(function () {
+
+        var j_Quotenb = $("#Quotenb").val();
+        if (j_Quotenb.length > 3) {
+            window.location.href = "@Url.Action("XL_configo", "BfrQuote")";
+        }
+        else alert("First click on button:  Generate Quote #");
+    });
+
+
+
+
+    @*$("#fill_alarms").on('click', function (e) {
+             @Html.Hidden("alarmurl", Url.Action("alarms", "Alarms"));
+            var urlo = $("#alarmurl").val();
+                                <a href='@Url.Action( "DispINVCMS","AGCMS",new {_SP = #cb})'>
+            <img src='@Url.Content("~/Images/laptop_battery2.png")' />
+            </a>
+ 
+        urlo="../"
+        window.location.href = urlo;
+
+    });*@
+
+
+
+</script>
+
+<script src="http://code.jquery.com/jquery-1.8.3.js"></script>

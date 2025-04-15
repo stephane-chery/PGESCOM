@@ -1,0 +1,225 @@
+﻿@{
+    ViewBag.Title = "stat_spe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+<style>
+    .x-scroller {
+        overflow-x: scroll;
+        overflow-y: scroll;
+        width: 100%;
+        height: 500px;
+        white-space: nowrap;
+    }
+
+    .table-fixed tbody {
+        overflow-y: auto;
+        width: 1400px;
+        /*height: 650px;*/
+        height: auto;
+    }
+    /* laptop*/
+    @@media only screen and (min-width: 1700px) {
+
+        .x-scroller {
+            overflow-x: scroll;
+            overflow-y: scroll;
+            width: 100%;
+            height: 720px;
+            white-space: nowrap;
+        }
+        /*        .table-fixed tbody {
+            overflow-y: auto;
+            width: 1300px;
+            height: 350px;
+        }*/
+    }
+
+
+    .table-fixed tbody tr th {
+        float: left;
+    }
+
+
+    .table-fixed thead tr:nth-child(1) th {
+        background: #ffd800;
+        color: Black;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+    /*    .table-fixed thead tr th {
+        float: left;
+        background-color: #ececec;
+        border-collapse: collapse;
+        border-color: black;
+
+    }*/
+
+    /*   .table-fixed thead tr:nth-child(1) th {
+        background: white;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }*/
+
+
+    /*    .table-fixed td {
+        background-color: #ececec;
+        border-collapse: collapse;
+        border-color: black;
+        text-align: center;
+        height: auto;
+    }*/
+    /*    .table-fixed td {
+      padding-left:5px;
+      line-height: 20px;
+
+      overflow: hidden;
+    }*/
+</style>
+
+<div class="container-fluid">
+    <div>
+        @{
+            <table>
+                <tr>
+                    <th scope="row" style="text-align:right ;">By System</th>
+                    <td class="left">
+                        @Html.DropDownList("cbsys", new SelectList(ViewBag.stat_sys_Lst as System.Collections.IEnumerable, "sysName", "sysName"), "Select System", new { @class = "selectpicker form-control", id = "cbsys", style = "background-color: #cefa29; color: black;width: 250px" })
+                    </td>
+                    <td>&nbsp;&nbsp;</td>
+                    <td>&nbsp;&nbsp;</td>
+                    <td>&nbsp;&nbsp;</td>
+                    <td>&nbsp;&nbsp;</td>
+                    <td>  <button id="btn_stat_s_xl" type="button" class="btn btn-success btn-sm" style="width: 150px;"> XL file</button> </td>
+                    <td>&nbsp;&nbsp;</td>
+                    <td>&nbsp;&nbsp;</td>
+
+                </tr>
+                <tr>
+                    <th scope="row" style="text-align:right ;">By Project#</th>
+                    <td><input class="input--style-4" type="text" id="prjnb" style="background-color:gold; color: black; width: 250px; text-align:center  ;" value="" placeholder="Project# "></td>
+                    <td>&nbsp;&nbsp;</td>
+                    <td>&nbsp;&nbsp;</td>
+                    <td>&nbsp;&nbsp;</td>
+                    <td>&nbsp;&nbsp;</td>
+                    <td>  <button id="btn_stat_p_xl" type="button" class="btn btn-success btn-sm" style="width: 150px;"> XL file</button> </td>
+                    <td>&nbsp;&nbsp;</td>
+                    <td>&nbsp;&nbsp;</td>
+
+                </tr>
+            </table>
+            @*<h3>by Employee</h3>
+            <table>
+              <tr>
+                    <th scope="row" style="text-align:right ;">STEP Name</th>
+                    <td class="left">
+
+                        @Html.DropDownList("cbstep", new SelectList(ViewBag.all_stpLst as System.Collections.IEnumerable, "stpid", "stepname"), "Select Step", new { @class = "selectpicker form-control", id = "cbstp_new", style = "background-color: #cefa29; color: black;width: 250px" })
+
+                    </td>
+                    <td>&nbsp;&nbsp;</td>
+                    <td>&nbsp;&nbsp;</td>
+                    <td>&nbsp;&nbsp;</td>
+                    <td>&nbsp;&nbsp;</td>
+                    <th scope="row" style="text-align:right ;"> Employee</th>
+                    <td >
+                        <select id="cbemplst" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 250px; ">
+                            <option value="Select">Select Employee</option>
+                        </select>
+                    </td>
+                    <td>&nbsp;&nbsp;</td>
+                    <td>&nbsp;&nbsp;</td>
+                    <td>  <button id="btn_stat_E_xl" type="button" class="btn btn-danger btn-sm" style="width: 150px;">XL file </button> </td>
+                </tr>
+            </table>*@
+        }
+
+    </div>
+</div>
+
+<script>
+
+    $('#btn_stat_s_xl').click(function () {
+        var j_sysnm = $("#cbsys").val();
+            if (j_sysnm !== "") {
+               var sppar = window.location.href = "@Html.Raw(@Url.Action("XL_stat_spe", "cedule",new {spe="S",spekey="kimo"}))".replace("kimo", j_sysnm);
+             //   var sppar = window.location.href = "@Html.Raw(@Url.Action("XL_stat_spe", "cedule",new {spe="S",spekey="P40000000" }))";
+              //  alert("spar= " + sppar + "  sys=" + j_sysnm);
+                window.location.href = sppar;
+            }
+            else alert("No system selected......");
+
+    });
+
+    //project
+      $('#btn_stat_p_xl').click(function () {
+          var j_prj = $("#prjnb").val();
+          if (j_prj !== "") {
+              var sppar = window.location.href = "@Html.Raw(@Url.Action("XL_stat_spe", "cedule",new {spe="P",spekey="kimo"}))".replace("kimo", j_prj);
+              window.location.href = sppar;
+            }
+            else alert("No Project# ......!!!!");
+
+    });
+
+    @*$("#cbstpoldd").change(function () {
+        var curr_stp = $(this).val();
+        alert("stp= " + curr_stp);
+        var tt="@Html.DropDownList("cbemp", new SelectList(ViewBag.fila_Lst as System.Collections.IEnumerable, "emplid", "empName"), "Select Employee", new { @class = "selectpicker form-control", id = "cbemp", style = "background-color: #cefa29; color: black;width: 250px" })";
+        $("#l_emp").html(tt);
+
+
+    });*@
+
+    @*$('#cbstp_new').change(function () {
+
+        var j_stp = $(this).val();
+      //  alert("stp= " + j_stp);
+    //    var j_depid = get_depid;
+        $('#cbemplst option').remove();
+        $('#cbemplst').append("<option value='Select'>Select</option>");
+        $.getJSON('/cedule/get_stpemp', { stp: j_stp }, function (data) {
+            $.each(data, function () {
+               $('#cbemplst').append('<option value=' + this.empName + '>' + this.empName + '</option>');
+            });
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            alert('Error getting employees!');
+        });
+    });
+
+
+    $('#cbemplst').change(function () {
+
+        var j_emp = $(this).val();
+        alert("emp= " + j_emp);
+
+    });
+
+    $('#btn_stat_E_xl').click(function () {
+        var j_stp = $('#cbstp_new').val(),
+            j_emp = $('#cbemplst').val();
+
+        alert("stp= " + j_stp+"    emp= " + j_emp);
+        if (j_stp !== "Select" && j_emp !=="Select") {
+            var sppar = window.location.href = "@Html.Raw(@Url.Action("XL_stat_Emp", "cedule",new {stp="zzino",empnm="kimo"}))".replace("kimo", j_emp).replace("zzino", j_stp);
+              window.location.href = sppar;
+            }
+       else alert("No Step / No Employee Selected ......!!!!");
+
+    });*@
+
+
+
+
+</script>

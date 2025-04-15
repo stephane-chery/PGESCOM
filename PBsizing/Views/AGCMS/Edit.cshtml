@@ -1,0 +1,292 @@
+﻿@model PBsizing.Models.U_agCMSmvmt
+@{
+    ViewBag.Title = "Edit";
+    //ViewBag.aglist;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+     .container {
+
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: 10px;
+    margin-left: 10px;
+
+}
+.table .thead-light th {
+ 
+  color: #401500;
+ 
+  background-color: #FFDDCC;
+ 
+  border-color: #792700;
+ 
+}
+ 
+</style>
+<link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<div class="container-fluid"  >
+    @using (Html.BeginForm())
+    {
+         <div class="form-group"  >
+         <table id="tbl1">
+                <tr>
+                    <td align="right" nowrap>
+                        Invoice #:
+                    </td>
+                    <td align="left">
+                        @Html.TextBoxFor(model => model.Invoice, new { @class = "form-control  ", style = "width:150px; " , @readonly = "readonly"  })
+                    </td>
+                   </tr>
+               <tr>
+                    <td align="right" nowrap>
+                        Invoice Date:
+                    </td>
+                    <td align="left">
+                        @Html.TextBoxFor(model => model.Inv_date, new { @class = "form-control  ", style = "width:100px; ", @readonly = "readonly"  })
+                    </td>
+               </tr>
+               <tr>
+                    <td align="right" nowrap>
+                        Customer :
+                    </td>
+                    <td align="left">
+                        @Html.TextBoxFor(model => model.customerNM, new { @class = "form-control  ", style = "width:350px; ", @readonly = "readonly"  })
+                    </td>
+               </tr>
+               <tr>
+                    <td align="right" nowrap>
+                     Customer PO#:
+                    </td>
+                    <td align="left">
+                        @Html.TextBoxFor(model => model.PO, new { @class = "form-control  ", style = "width:150px; " , @readonly = "readonly" })
+                    </td>
+               </tr>
+               <tr>
+                    <td align="right" nowrap>
+                        Project #:
+                    </td>
+                    <td align="left">
+                        @Html.TextBoxFor(model => model.RID, new { @class = "form-control  ", style = "width:150px; " , @readonly = "readonly" })
+                    </td>
+               </tr>
+               <tr>
+                    <td align="right" nowrap>
+                        Item Description:
+                    </td>
+                    <td align="left">
+                        @Html.TextBoxFor(model => model.item, new { @class = "form-control  ", style = "width:450px; " , @readonly = "readonly"  })
+                    </td>
+               </tr>
+                            <tr>
+                    <td align="right" nowrap>
+                        Price:
+                    </td>
+                    <td align="left">
+                        @Html.TextBoxFor(model => model.Price, new { @class = "form-control  ", style = "width:150px; " , @readonly = "readonly" })
+                    </td>
+               </tr>
+     
+         </table>
+       </div>
+       <div class="form-group">
+         <table>
+            <tr>
+                    <td align="right" nowrap>
+                        Item group:
+                    </td>
+                    <td align="left">
+                        @Html.TextBoxFor(model => model.grp, new { @class = "form-control  ",id="oldgrp", style = "width:50px; " , @readonly = "readonly"  })
+                    </td>
+               <td>
+                 <select id="cbgrp" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 325px; ">
+
+                    <option value="Select">Select </option>
+                    <option value="A">Group A:  Custom SCR Battery chargers, UPS, Inverters and SUPPLIER’S modified PRODUCTS, sold at the current multiplier for the specific market it is intended for</option>
+                    <option value="B">Group B:  Custom SCR Battery chargers, UPS, Inverters and SUPPLIER’S modified PRODUCTS, sold at a discounted price or through approved reseller </option>
+                    <option value="C">Group C:  Batteries, racks, accessories and all SUPPLIER’S non-modified items, sold at the quoted price</option>
+                    <option value="D">Group D:  Batteries, racks, accessories and all SUPPLIER’S non-modified items, sold at a discounted price</option>
+                    <option value="E">Group E:  Standard SCR Battery chargers and SUPPLIER’S modified PRODUCTS sold at the regular multiplier</option>
+                    <option value="F">Group F:  Switch Mode Battery chargers and SUPPLIER’S modified PRODUCTS, sold at the regular multiplier</option>
+
+                </select>
+               </td>
+               <td> 
+                   @Html.TextBoxFor(model => model.agcmsLID, new { @class = "hidden",id="aglid", style = "width:50px; " , @readonly = "readonly" })
+                  <button id="btn_savgrp" type="button" class="btn btn-primary">Save new group</button> 
+               </td>
+      
+            </tr>
+          
+         </table>
+       </div>
+
+
+   <div class="form-group">
+     <table class="table table-bordered">
+        <thead class="thead-light">
+          <tr >
+            <th style="text-align:center">Involvement</th>
+            <th style="text-align:center">Current Agency</th>
+            <th style="text-align:center">New Agency</th>
+            <th style="text-align:center">CMS Rate % </th>
+            <th style="text-align:center">NEW Rate % </th>
+            <th style="text-align:center">CMS Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+              <tr>
+                <th scope="row" style="text-align:right">Destination</th>
+                <td align="left"> @Html.TextBoxFor(model => model.desti_AG , new { @class = "form-control  ", style = "width:350px; " , @readonly = "readonly" }) </td>
+                <td class="left"> @Html.DropDownListFor(Models => Model.desti_rt, new SelectList(ViewBag.aglist as System.Collections.IEnumerable, "codeAG", "AGname"), "Select Agency", new { @class="selectpicker form-control", id = "cbdesti", style = "background-color: #cefa29; color: black;width: 350px" }) </td>
+                <td style="text-align:center">@Html.TextBoxFor(model => model.desti_rt, new { @class = "form-control  ", style = "width:100px; " , @readonly = "readonly" })</td>
+                <td style="text-align:center">@Html.TextBoxFor(model => model.desti_rt, new { @class = "form-control  ", style = "background-color: #cefa29; color: black;width: 100px", id = "newRT_dst" })</td>
+                <td style="text-align:center">@Html.TextBoxFor(model => model.desti_amnt, new { @class = "form-control  ", style = "width:120px; " , @readonly = "readonly" })</td>
+              </tr>
+              <tr>
+                <th scope="row" style="text-align:right">Influence</th>
+                <td align="left"> @Html.TextBoxFor(model => model.inf_AG, new { @class = "form-control  ", style = "width:350px; " , @readonly = "readonly" }) </td>
+                <td class="left"> @Html.DropDownListFor(Models => Model.desti_rt, new SelectList(ViewBag.aglist as System.Collections.IEnumerable, "codeAG", "AGname"), "Select Agency", new { @class="selectpicker form-control", id = "cbinf", style = "background-color: #cefa29; color: black;width: 350px" }) </td>
+                <td style="text-align:center">@Html.TextBoxFor(model => model.inf_rt, new { @class = "form-control  ", style = "width:100px; " , @readonly = "readonly" })</td>
+                <td style="text-align:center">@Html.TextBoxFor(model => model.inf_rt, new { @class = "form-control  ", style = "background-color: #cefa29; color: black;width: 100px", id = "newRT_inf" })</td>
+                <td style="text-align:center">@Html.TextBoxFor(model => model.inf_amnt, new { @class = "form-control  ", style = "width:120px; " , @readonly = "readonly" })</td>
+              </tr>
+              <tr>
+                <th scope="row" style="text-align:right">Engineering</th>
+                <td align="left"> @Html.TextBoxFor(model => model.eng_AG, new { @class = "form-control  ", style = "width:350px; " , @readonly = "readonly" }) </td>
+                <td class="left"> @Html.DropDownListFor(Models => Model.desti_rt, new SelectList(ViewBag.aglist as System.Collections.IEnumerable, "codeAG", "AGname"), "Select Agency", new { @class="selectpicker form-control", id = "cbing", style = "background-color: #cefa29; color: black;width: 350px" }) </td>
+                <td style="text-align:center">@Html.TextBoxFor(model => model.eng_rt, new { @class = "form-control  ", style = "width:100px; ", @readonly = "readonly"  })</td>
+                <td style="text-align:center">@Html.TextBoxFor(model => model.eng_rt, new { @class = "form-control  ", style = "background-color: #cefa29; color: black;width: 100px", id = "newRT_eng" })</td>
+                <td style="text-align:center">@Html.TextBoxFor(model => model.eng_amnt, new { @class = "form-control  ", style = "width:120px; " , @readonly = "readonly" })</td>
+              </tr>
+              <tr>
+                <th scope="row" style="text-align:right">P.O.</th>
+                <td align="left"> @Html.TextBoxFor(model => model.po_AG, new { @class = "form-control  ", style = "width:350px; " , @readonly = "readonly"  }) </td>
+                <td class="left"> @Html.DropDownListFor(Models => Model.desti_rt, new SelectList(ViewBag.aglist as System.Collections.IEnumerable, "codeAG", "AGname"), "Select Agency", new { @class="selectpicker form-control", id = "cbpo", style = "background-color: #cefa29; color: black;width: 350px" }) </td>
+                <td style="text-align:center">@Html.TextBoxFor(model => model.po_rt, new { @class = "form-control  ", style = "width:100px; " , @readonly = "readonly" })</td>
+                <td style="text-align:center">@Html.TextBoxFor(model => model.po_rt, new { @class = "form-control  ", style = "background-color: #cefa29; color: black;width: 100px", id = "newRT_po" })</td>
+                <td style="text-align:center">@Html.TextBoxFor(model => model.po_amnt, new { @class = "form-control  ", style = "width:120px; " , @readonly = "readonly" })</td>
+              </tr>
+        </tbody>
+     </table>
+   </div>
+
+ 
+  }
+
+    
+    <table>
+        <tr>
+            <td>  <button id="btn_sav_involv" type="button" class="btn btn-primary">Save agencies involvement</button> </td>
+              <td>   </td>
+              <td>  <button id="btn_sav_Rates" type="button" class="btn btn-primary">Save new Rates</button> </td>
+            <td> @Html.TextBox("msgerr", null, new { @class = "form-control", style = "width:300px; background-color: #cee3e3;display: none ", @readonly = "readonly" }) </td>
+             <td>  <button id="btn_sav_noag" type="button" class="btn btn-primary">Delete Agency (*)</button> </td>
+        </tr>
+
+    </table>
+    
+     
+</div>
+<script>
+
+
+
+       $('#btn_savgrp').on('click', function (e) {
+           var myagid = $("#aglid").val(), mygrp = $("#cbgrp").val(), oldgrp = $("#oldgrp").val();
+           if (mygrp != "Select" && oldgrp != mygrp) {
+               $("#msgerr").val("");
+               //alert("lid= " + myagid + "old grp= " + oldgrp + "  new grp= " + mygrp);
+               $.ajax({
+                   url: "../AGCMS/sav_newgrp",
+                   type: "GET",
+                   data: { _lid: myagid, _grp: mygrp },
+                   cache: false,
+                   contentType: "application/json; charset=utf-8",
+                   dataType: "json",
+                   async: false,
+                   success: function (msgLst) {
+
+                       $.each(msgLst, function (index, itemData) {
+                           $("#msgerr").val(itemData.msg);//+"   nb= "+itemData.recnb);
+                       });
+                       $("#msgerr").show();
+                   }
+               });
+               location.reload();
+           }
+
+
+
+        //$("#btnwait").hide();
+        //$("#msgerr").show();
+
+    });
+
+
+           $('#btn_sav_involv').on('click', function (e) {
+               var myagid = $("#aglid").val(), mydesti = $("#cbdesti").val(), myinf = $("#cbinf").val(), mying = $("#cbing").val(), mypo = $("#cbpo").val();
+
+          // if (mygrp != "Select" && oldgrp != mygrp) {
+               $("#msgerr").val("");
+               alert("lid= " + myagid + "mydesti= " + mydesti +  " myinf= " + myinf + "  mying= " + mying + "  mypo= " + mypo);
+               $.ajax({
+                   url: "../AGCMS/sav_newinvolv",
+                   type: "GET",
+                   data: { _lid: myagid, _desti: mydesti, _inf: myinf, _ing: mying, _po: mypo },
+                   cache: false,
+                   contentType: "application/json; charset=utf-8",
+                   dataType: "json",
+                   async: false,
+                   success: function (msgLst) {
+
+                       $.each(msgLst, function (index, itemData) {
+                           $("#msgerr").val(itemData.msg);//+"   nb= "+itemData.recnb);
+                       });
+                       $("#msgerr").show();
+                   }
+               });
+               location.reload();
+        
+
+
+        //$("#btnwait").hide();
+        //$("#msgerr").show();
+
+    });
+
+         $('#btn_sav_Rates').on('click', function (e) {
+               var myagid = $("#aglid").val(), mydesti = $("#newRT_dst").val(), myinf = $("#newRT_inf").val(), mying = $("#newRT_eng").val(), mypo = $("#newRT_po").val();
+
+          // if (mygrp != "Select" && oldgrp != mygrp) {
+               $("#msgerr").val("");
+               alert("lid= " + myagid + "mydesti= " + mydesti +  " myinf= " + myinf + "  mying= " + mying + "  mypo= " + mypo);
+               $.ajax({
+                   url: "../AGCMS/sav_new_rates",
+                   type: "GET",
+                   data: { _lid: myagid, _desti: mydesti, _inf: myinf, _ing: mying, _po: mypo },
+                   cache: false,
+                   contentType: "application/json; charset=utf-8",
+                   dataType: "json",
+                   async: false,
+                   success: function (msgLst) {
+
+                       $.each(msgLst, function (index, itemData) {
+                           $("#msgerr").val(itemData.msg);//+"   nb= "+itemData.recnb);
+                       });
+                       $("#msgerr").show();
+                   }
+               });
+               location.reload();
+        
+
+
+        //$("#btnwait").hide();
+        //$("#msgerr").show();
+
+    });
+
+    </script>

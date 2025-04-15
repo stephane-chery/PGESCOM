@@ -1,0 +1,89 @@
+﻿@model List<PBsizing.Models.CalCab_All>
+
+
+@Scripts.Render("~/bundles/jquery")
+
+
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        // $.ajaxSetup({ cache: false });
+      //  fnRefresh();
+    });
+
+     function fnRefresh()
+     {
+     window.history.go(0);
+     }
+
+
+     ExportPDF = function () {
+         $.getJSON("../DispSteps/Steps_GenPDF");
+     }
+
+
+     </script>
+
+@{
+    ViewBag.Title = "DispSTEPS";
+    var STPgrid = new WebGrid(source: Model, canPage: true, rowsPerPage: 10);
+    STPgrid.Pager(WebGridPagerModes.All);
+}
+
+
+<style type="text/css">
+
+ table.gridtable 
+{                
+ font-family: verdana,arial,sans-serif;     
+            font-size:11px;   
+              color:#333333;  
+               border-width: 1px;   
+              border-color: #666666;    
+             border-collapse: collapse;  
+          }    
+            table.gridtable th 
+ {                
+ border-width: 1px;   
+              padding: 8px;    
+             border-style: solid;     
+            border-color: #666666;     
+    background-color: #A7C942;    
+          }
+                table.gridtable td {
+                    border-width: 1px;
+                    padding: 8px;
+                    border-style: solid;
+                    border-color: #666666;
+                    background-color: #ffffff;
+                }
+
+
+</style>
+
+<div id="GridCentent">
+
+    @STPgrid.GetHtml(
+    tableStyle:"gridtable",
+    columns:STPgrid.Columns(
+    STPgrid.Column(columnName:"cabn",header:"CABINET"),
+    STPgrid.Column(columnName:"hc",header:"Height"),
+    STPgrid.Column(columnName:"lc",header:"Width"),
+    STPgrid.Column(columnName:"pc",header:"Depth"),
+    STPgrid.Column(columnName:"h1",header:"H1"),
+    STPgrid.Column(columnName:"n11",header:"N11"),
+    STPgrid.Column(columnName:"n21",header:"N21"),
+    STPgrid.Column(columnName:"nt11",header:"Steps#"),
+    STPgrid.Column(columnName:"nbt1",header:"Batt/stp"),
+    STPgrid.Column(columnName:"nb1",header:"Batt/Tier"),
+    STPgrid.Column(columnName:"nt12",header:"Steps#"),   
+    STPgrid.Column(columnName:"nbt2",header:"Batt/stp"),
+    STPgrid.Column(columnName:"nb2",header:"Batt/Tier"),
+    STPgrid.Column(columnName:"NBtot",header:"Batt Total "),
+    STPgrid.Column(columnName:"n12",header:"Area")
+    
+    ))
+        <div>@Html.ActionLink("Export to PDF", "Steps_GenPDF", "DispSteps", new { target="_blank"})            </div>
+</div>

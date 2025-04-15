@@ -1,0 +1,201 @@
+﻿@model PBsizing.Models.Orig_PSM_FDBEntities2
+
+@{
+    ViewBag.Title = "TR_List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+<div class="container-fluid ">
+    <br />
+    <div class="row justify-content-left">
+        <div class="col-12 col-md-10 col-lg-8">
+            <table>
+                <tr>
+                    <td class="not_mapped_style" style="text-align: right; ">PROJECT #:</td>
+                    <td> @Html.TextBox("prjid", null, new { @class = "form-control", style = "width:100px; background-color: #cefa29; color: black;" }) </td>
+                    <td><button id="btn_rev" type="button" class="btn btn-primary">Find Revisions</button>    </td>
+                    <td>
+                        <select id="cbrev" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 200px; ">
+                            <option value="Select">SELECT Revision</option>
+                        </select>
+                    </td>
+                    <td><button id="btn_trlist" type="button" class="btn btn-primary">Display Test Report List</button>    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+    <div>
+        <table class="table table-bordered w-50">
+
+            <thead>
+                <tr class="table-dark">
+                    <th style="text-align:center">Id#</th>
+                    <th>Config Name</th>
+                    <th>Test Report Name </th>
+                    <th>Action </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row" style="text-align:center">1</th>
+                    <td>Kate</td>
+                    <td>Kate</td>
+                    <td>Moss</td>
+
+                </tr>
+                <tr>
+                    <th scope="row" style="text-align:center">1</th>
+                    <td>Kate</td>
+                    <td>Kate</td>
+                    <td><a class="fa fa-pencil" title="Edit user" href="?act=edit&amp;userid=2"></a></td>
+
+                </tr>
+                <tr>
+                    <th scope="row" style="text-align:center">1</th>
+                    <td>Kate</td>
+                    <td>Kate</td>
+                    <td>
+                        <span class="glyphicon glyphicon-edit"></span> @Html.ActionLink("Edit", "Edit_TRid","TestsReport", new { id = "12547" })
+                        <li>@Html.ActionLink("Agencies CMS", "AgenciesCMS", "AGCMS")</li>
+
+                    </td>
+
+                </tr>
+            </tbody>
+  
+        </table>
+    </div>
+
+
+
+
+    <script>
+
+        $('#btn_rev').on('click', function (e) {
+            alert('debut');
+            var js_rid = $("#prjid").val();
+            var json = "";
+            var itemsREV = "<option value='Select'>Select revision</option>";
+
+            $.ajax({
+                url: "../TestsReport/revlst_rid",
+                type: "GET",
+                data: { c_rid: js_rid },
+                cache: false,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function (Rev_List) {
+                    $.each(Rev_List, function (index, itemData) {
+                        itemsREV += "<option value=" + itemData.irrev + ">" + itemData.rev_name + "</option>";
+                    });
+                }
+            });
+            alert('itemrev=' + itemsREV);
+            $("#cbrev").html(itemsREV);
+
+        });
+
+
+        $('#btn_trlist').on('click', function (e) {
+            alert('debut');
+            var js_rid = $("#prjid").val();
+            var json = "";
+            var itemsREV = "<option value='Select'>Select revision</option>";
+
+            $.ajax({
+                url: "../TestsReport/trlst_revid",
+                type: "GET",
+                data: { c_rid: js_rid },
+                cache: false,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function (Rev_List) {
+                    $.each(Rev_List, function (index, itemData) {
+                        itemsREV += "<option value=" + itemData.irrev + ">" + itemData.rev_name + "</option>";
+                    });
+                }
+            });
+            alert('itemrev=' + itemsREV);
+            $("#cbrev").html(itemsREV);
+
+        });
+
+
+        $("#cbphs").change(function () {
+            var myphs = $(this).val();
+
+            //  localStorage.setItem("myCBT", myCBT);
+
+            var itemsvdc = "", itemidc = "";
+            if (myphs == '1') {
+                itemsvdc = "<option value='Select'>Select VDC</option>";
+                itemsvdc += "<option value='12'>12 V</option>";
+                itemsvdc += "<option value='24'>24 V</option>";
+                itemsvdc += "<option value='48'>48 V</option>";
+                itemsvdc += "<option value='125'>125 V</option>";
+
+                itemsidc = "<option value='Select'>Select IDC</option>";
+                itemsidc += "<option value='5'>5 A</option>";
+                itemsidc += "<option value='10'>10 A</option>";
+                itemsidc += "<option value='15'>15 A</option>";
+                itemsidc += "<option value='20'>20 A</option>";
+                itemsidc += "<option value='25'>25 A</option>";
+                itemsidc += "<option value='30'>30 A</option>";
+                itemsidc += "<option value='40'>40 A</option>";
+                itemsidc += "<option value='50'>50 A</option>";
+                itemsidc += "<option value='75'>75 A</option>";
+                itemsidc += "<option value='100'>100 A</option>";
+
+            }
+            else {
+                itemsvdc = "<option value='Select'>Select VDC</option>";
+                itemsvdc += "<option value='12'>12 V</option>";
+                itemsvdc += "<option value='24'>24 V</option>";
+                itemsvdc += "<option value='48'>48 V</option>";
+                itemsvdc += "<option value='125'>125 V</option>";
+
+                itemsidc = "<option value='Select'>Select IDC</option>";
+                itemsidc += "<option value='25'>25 A</option>";
+                itemsidc += "<option value='30'>30 A</option>";
+                itemsidc += "<option value='40'>40 A</option>";
+                itemsidc += "<option value='50'>50 A</option>";
+                itemsidc += "<option value='75'>75 A</option>";
+                itemsidc += "<option value='100'>100 A</option>";
+                itemsidc += "<option value='125'>125 A</option>";
+                itemsidc += "<option value='150'>150 A</option>";
+                itemsidc += "<option value='200'>200 A</option>";
+                itemsidc += "<option value='250'>250 A</option>";
+                //itemsidc += "<option value='300'>300 A</option>";
+                //itemsidc += "<option value='400'>400 A</option>";
+                //itemsidc += "<option value='500'>500 A</option>";
+                //itemsidc += "<option value='600'>600 A</option>";
+                //itemsidc += "<option value='800'>800 A</option>";
+                //itemsidc += "<option value='1000'>1000 A</option>";
+
+
+            }
+            $("#cbvdc").html(itemsvdc);
+            $("#cbidc").html(itemsidc);
+
+        });
+
+
+
+
+    </script>

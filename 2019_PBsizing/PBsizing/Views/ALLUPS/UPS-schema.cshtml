@@ -1,0 +1,2758 @@
+﻿@{
+    ViewBag.Title = "UPS-schema";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <head>
+        <meta charset="utf-8">
+        <title>GSMA Intelligence &mdash; Visuals</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    </head>
+
+
+
+<link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+<style type="text/css">
+
+    .table-fixed tbody {
+        float: left;
+        height: 600px;
+        overflow-y: auto;
+        width: auto;
+        font-family: Verdana;
+    }
+
+    thead, tbody {
+        display: block;
+    }
+
+    .btn-primary custom-btn {
+        background-color:yellow;
+      
+    }
+
+    #modeUPS {
+        border-collapse: separate;
+        border-spacing: 10px 2px;
+        text-align: center;
+        font-weight: bold;
+    }
+</style>
+
+
+<div class="container-fluid ">
+    @using (Html.BeginForm())
+    {
+        <div class="form-group">
+            @*<div class="col-xs-12" style="height:600px;">*@
+            <div class="col-xs-12" style="height:auto;width:auto">
+                @*<button type="button" class="btn btn-success btn-sm btn-block" disabled>P850U</button>*@
+                @*<span class="badge badge-pill badge-warning">Warning</span>*@
+
+                <table id="modeUPS">
+
+                    <tr>
+                        <td>
+                            @*<button type="button" class="btn btn-primary">
+                                    UPS Model: <span class="badge badge-light">P850U</span>
+                                </button>*@
+                            MODEL
+                        </td>
+                        <td>PHS Out    </td>
+                        <td>Output Voltage     </td>
+                        <td>  Output KVA                  </td>
+                        <td>  DcBus Voltage   </td>
+                        <td> Phase In    </td>
+                        <td>Input Voltage     </td>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td> Power Factor  </td>
+                        <td>Input Freq.  </td>
+                        <td>Output Freq.  </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @*<button type="button" class="btn btn-primary">
+                                    UPS Model: <span class="badge badge-light">P850U</span>
+                                </button>*@
+                            <select id="cbmodels" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 150px; ">
+                                <option value="Select">P850U</option>
+                                @*<option value="1">1</option>
+                                    <option value="3">3</option>*@
+                            </select>
+                        </td>
+                        <td>
+                            <select id="cbPHSout" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 90px; ">
+                                <option value="Select">Select</option>
+                                <option value="1">1</option>
+                                <option value="3">3</option>
+                            </select>
+                        </td>
+
+                        <td>
+                            <select id="cbVout" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 150px; ">
+                                <option value="Select">Select</option>
+                                <option value="120">120 V</option>
+                                @*<option value="208">208 V</option>*@
+                                <option value="240">240 V</option>
+                                @*<option value="380">380 V</option>
+                                    <option value="400">400 V</option>
+                                    <option value="480">480 V</option>
+                                    <option value="575">575 V</option>
+                                    <option value="600">600 V</option>*@
+                            </select>
+                        </td>
+                        @*<td>  <button type="button" class="btn btn-success" id="fillbtn">fill config</button></td>*@
+                        <td style="text-align:left">
+                            <select id="cbKVA" class="selectpicker form-control" style=" background-color: #cefa29; color: black;   width: 110px;">
+                                <option value="Select">Select</option>
+                                <option value="5">5</option>
+                                <option value="7.5">7.5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="30">30</option>
+                                <option value="40">40</option>
+                                <option value="50">50</option>
+                                <option value="60">60</option>
+                                <option value="80">80</option>
+                                <option value="100">100</option>
+                                <option value="150">150</option>
+                                <option value="200">200</option>
+                                <option value="250">250</option>
+                                <option value="500">500</option>
+                                <option value="700">700</option>
+                            </select>
+                        </td>
+                        <td style="text-align:left">
+                            <select id="cbDCbus" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 110px; ">
+                                <option value="Select">Select</option>
+                                <option value="125">125 V</option>
+                                <option value="240">250 V</option>
+                                <option value="380">380 V</option>
+                                @*<option value="400">400 V</option>*@
+                                <option value="480">480 V</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select id="cbPHSin" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 90px; ">
+                                <option value="Select">Select</option>
+                                <option value="1">1</option>
+                                <option value="3">3</option>
+                            </select>
+                        </td>
+
+                        <td>
+                            <select id="cbVin" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 150px; ">
+                                <option value="Select">Select</option>
+                                <option value="120">120 V</option>
+                                @*<option value="208">208 V</option>*@
+                                <option value="240">240 V</option>
+                                @*<option value="380">380 V</option>
+                                    <option value="400">400 V</option>
+                                    <option value="480">480 V</option>
+                                    <option value="575">575 V</option>
+                                    <option value="600">600 V</option>*@
+
+                            </select>
+                        </td>
+                        <td> </td>
+
+                        <td>
+                            <select id="cbpf" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 90px; ">
+                                <option value="0.8">0.8</option>
+                                <option value="1">1</option>
+                            </select>
+                        </td>
+
+                        <td>
+                            <select id="cbfreqin" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 100px; ">
+                                <option value="60">60 Hz</option>
+                                <option value="50">50 Hz</option>
+
+                            </select>
+                        </td>
+
+                        <td>
+                            <select id="cbfreqout" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 100px; ">
+                                <option value="60">60 Hz</option>
+                                <option value="50">50 Hz</option>
+
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> </td>
+                        <td>    </td>
+                        <td>    </td>
+                        <td>    </td>
+                        <td>    </td>
+                        <td>    </td>
+                        <td>    </td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                    </tr>
+                    <tr>
+                        <td colspan="11"> </td>
+                    </tr>
+                    <tr>
+                        <td colspan="11"> </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td> <button type="button" class="btn btn-primary btn-lg btn-block" id="btnnext">NEXT STEP</button></td>
+                        <td>&nbsp; &nbsp;</td>
+                        <td>&nbsp;&nbsp; </td>
+                        <td>&nbsp; &nbsp;</td>
+                        <td>&nbsp;&nbsp; </td>
+                        <td>  <button type="button" class="btn btn-primary" id="fillbtn">fill config</button></td>
+                        <td>  <button type="button" class="btn btn-warning" id="btnrefresh1" style="display:none">UPS VALIDATION</button></td>
+                        <td>  </td>
+                        <td>  <button type="button" class="btn btn-primary" id="btnquote1" style="display:none">GENERATE QUOTE</button></td>
+                        <td> @*<button type="button" class="btn btn-primary" data-target="#mymodal" id="btnvcs">calculations</button>*@</td>
+                        <td> <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#myModal" style="display:none" id="btnvcs" >display calculations</button></td>
+
+                    </tr>
+
+                </table>
+                <br />
+                @*<h4 style="color:red">Breakers</h4>*@
+
+
+                @Html.Hidden("upsurl", Url.Action("calc_upsvalues", "ALLUPS"))
+
+
+                @Html.Hidden("quoteurl", Url.Action("UPS_QT", "ALLUPS"))
+
+                @Html.Hidden("H_lvpcE_NI ", "1.52")
+
+                @Html.Hidden("H_lNBC_LA", "2.4")
+                @Html.Hidden("H_lNBC_NI", "1.56")
+
+                @Html.Hidden("H_lVcellMin_NI", "1")
+                @Html.Hidden("H_lVcellMin_LA", "1.53")
+
+                @Html.Hidden("H_lvpcF_LA", "2.27")
+                @Html.Hidden("H_lvpcF_NI", "1.45")
+
+                @Html.Hidden("H_lvpcE_LA", "2.33")
+
+
+                @Html.Hidden("H_lFLT_EQ_SEC", "1")
+                @Html.Hidden("H_idci", "0")
+                @Html.Hidden("H_eff_rect", "0.9")
+
+            <table id="cb1_ch_cb2" style="display:none">
+                <tr>
+                    <td colspan="2"> </td>
+                    <td></td>
+                    <td colspan="2"> </td>
+                    <td></td>
+
+                    <td style="border: 1px solid black;border-bottom:none;background-color:green">&nbsp;&nbsp;</td>
+                    <td></td>
+                    @*<td colspan="2" align="center" style="border: 1px solid black"><button type="button" class="btn-warning btn-block" id="btncb2">Breaker CB2</button> </td>*@
+                    <td colspan="2"> </td>
+                    <td></td>
+                    <td colspan="2"></td>
+
+                </tr>
+
+                <tr>
+                    <td colspan="2" align="center" style="border: 1px solid black"><button type="button" class="btn-success btn-block">MAIN INPUT </button></td>
+                    <td>-------------------</td>
+                    <td colspan="2" align="center" style="border: 1px solid black"><button type="button" class="btn-success btn-block">BRKR CB1</button></td>
+                    <td>-------------------</td>
+                    <td style="border-left: 1px solid black;border-right: 1px solid black;background-color:green;color:white;text-align:center">CHARGER</td>
+                    <td>-------------------</td>
+                    <td colspan="2" align="center" style="border: 1px solid black"><button type="button" class="btn-light btn-block" id="btncb2">BRKR CB2</button> </td>
+                    <td>-------------------</td>
+                    <td colspan="2" style="border: 1px solid black"><button type="button" class="btn-success btn-block">CHARGER OUTPUT</button> </td>
+                </tr>
+
+                <tr>
+                    <td style="text-align:right">input voltage  </td>
+                    <td>
+                        <input class="input--style-4" type="text" id="aff_Vin" style="background-color: bisque; color: black; width: 60px; text-align:center  ;" value="" readonly="readonly">
+                    </td>
+                    <td></td>
+                    <td style="text-align:right">vcb1  </td>
+                    <td>
+                        <input class="input--style-4" type="text" id="aff_vcb1" style="background-color: bisque; color: black; width: 60px; text-align:center  ;" value="" readonly="readonly">
+                    </td>
+                    <td></td>
+                    @*<td style="border: 1px solid black;border-top:none;background-color:green;color:white;text-align:center">P4600---------</td>*@
+                    <td style="border: 1px solid black;border-top:none;background-color:green;color:white;text-align:center">
+                        <input class="input--style-4" type="text" id="tdchrgr" style="background-color:green;color:white; width: 150px; text-align:center  ;" value="" readonly="readonly">
+                    </td>
+                    <td></td>
+                    <td style="text-align:right">vcb2 </td>
+                    <td>
+                        <input class="input--style-4" type="text" id="aff_vcb2" style="background-color: bisque; color: black; width: 60px; text-align:center  ;" value="" readonly="readonly">
+                    </td>
+                    <td></td>
+                    <td style="text-align:right">dcbus</td>
+                    <td>
+                        <input class="input--style-4" type="text" id="aff_dcbus1" style="background-color:bisque; color: black; width: 70px; text-align:center  ;" value="" readonly="readonly">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right">phase IN  </td>
+                    <td>
+                        <input class="input--style-4" type="text" id="aff_phsin" style="background-color: bisque; color: black; width: 60px; text-align:center  ;" value="" readonly="readonly">
+                    </td>
+                    <td></td>
+                    <td style="text-align:right">icb1  </td>
+                    <td>
+                        <input class="input--style-4" type="text" id="aff_icb1" style="background-color: bisque; color: black; width: 60px; text-align:center  ;" value="" readonly="readonly">
+                    </td>
+                    <td></td>
+                    <td> </td>
+                    <td></td>
+                    <td style="text-align:right">icb2  </td>
+                    <td>
+                        <input class="input--style-4" type="text" id="aff_icb2" style="background-color: bisque; color: black; width: 60px; text-align:center  ;" value="" readonly="readonly">
+                    </td>
+                    <td></td>
+                    <td style="text-align:right">Idcc</td>
+                    <td>
+                        <input class="input--style-4" type="text" id="aff_idcc1" style="background-color: bisque; color: black; width: 70px; text-align:center  ;" value="" readonly="readonly">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right">INPUT ka AC </td>
+                    <td>
+                        <input class="input--style-4" type="text" id="ka_cb1" style="background-color: #cefa29; color: black; width: 60px; text-align:center  ;" value="0">
+                    </td>
+                    <td></td>
+                    <td style="text-align:right">ka AC </td>
+                    <td>
+                        <input class="input--style-4" type="text" id="aff_cb1ka" style="background-color: bisque; color: black; width: 60px; text-align:center  ;" value="" readonly="readonly">
+                    </td>
+                    <td></td>
+                    <td> </td>
+                    <td></td>
+                    <td style="text-align:right">ka DC </td>
+                    <td>
+                        <input class="input--style-4" type="text" id="aff_cb2kadc" style="background-color: bisque; color: black; width: 60px; text-align:center  ;" value="" readonly="readonly">
+                    </td>
+                    <td></td>
+
+                    <td style="text-align:right">OUTPUT ka DC </td>
+                    <td>
+                        <input class="input--style-4" type="text" id="ka_cb2" style="background-color: #cefa29; color: black; width: 70px; text-align:center  ;" value="0">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:right">frequency </td>
+                    <td>
+                        <input class="input--style-4" type="text" id="aff_freqin1" style="background-color: bisque; color: black; width: 60px; text-align:center  ;" value="" readonly="readonly">
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td> </td>
+                    <td></td>
+                    <td> </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="text-align:right">input current </td>
+                    <td>
+                        <input class="input--style-4" type="text" id="aff_icb01" style="background-color: bisque; color: black; width: 60px; text-align:center  ;" value="" readonly="readonly">
+                    </td>
+                    <td></td>
+                    <td> </td>
+                    <td></td>
+                    <td></td>
+                    <td> </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr>      <td colspan="12"> </td>
+                <tr>
+                    <td colspan="12"> </td>
+                </tr>
+            </table>
+
+                <div id="loader" style="margin: 0px; padding: 0px; position: fixed; right: 0px; top: 0px; width: 100%; height: 100%; background-color: rgb(102, 102, 102); z-index: 30001; opacity: 0.4;display: none;display: none; ">
+                    <p style="position: absolute; color: White; top: 50%; left: 45%;">
+                        <img src="~/Images/reload3.gif">
+                    </p>
+                </div>
+                <div id="loaderxx" style="display: none;">
+                    <img src="~/Images/reload.gif" width="100" height="100" />
+                </div>
+
+
+                <table id="bps1_bps2_batt" style="display:none">
+                    <tr>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td colspan="2" align="center"> </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td colspan="2">|-----------------------</td>
+                        @*<td colspan="2">|----------------------------------</td>*@
+                        <td>--------</td>
+                        <td align="center" style="border: 1px solid black"><button type="button" class="btn-light btn-block" id="btn_xmbs">XTRN MBS1</button> </td>
+                        <td align="left">----|</td>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td colspan="2" align="center"></td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td colspan="2" align="center"> </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td colspan="2" align="left">|</td>
+                        <td></td>
+                        <td> </td>
+                        <td align="center">|</td>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td colspan="2" align="center"></td>
+
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td colspan="2" align="center" style="border: 1px solid black"><button type="button" class="btn-light btn-block" id="btn_bps2">BYPASS INPUT #2</button></td>
+                        <td>------</td>
+                        @*<td>----------------</td>*@
+                        <td colspan="2" align="center" style="border: 1px solid black"><button type="button" class="btn-light btn-block" id="btncb8">BRKR CB8</button> </td>
+                        <td>--------</td>
+
+                        <td>------------------------------------</td>
+                        <td>--------</td>
+                        <td colspan="2">|-----------------------</td>
+                        @*<td colspan="2">|----------------------------------</td>*@
+                        <td>--------</td>
+                        <td align="center" style="border: 1px solid black"><button type="button" class="btn-light btn-block" id="btn_imbs">INT. MBS1</button> </td>
+                        <td align="left">----|</td>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td colspan="2" align="center"></td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td></td>
+                        <td style="text-align:right">phase in </td>
+                        <td>
+                            <select id="cbPHSbps2" class="selectpicker form-control" style="background-color: #cefa29; color: black; width:85px; ">
+                                <option value="Select">Select</option>
+                                <option value="1">1</option>
+                                <option value="3">3</option>
+                            </select>
+                        </td>
+                        <td></td>
+                        <td style="text-align:right">vcb8 </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="aff_vcb8" style="background-color: bisque; color: black; width: 60px; text-align:center  ;" value="" readonly="readonly">
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td colspan="2">|</td>
+                        <td></td>
+                        <td align="center"></td>
+                        <td align="center">|</td>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td colspan="2" align="center"></td>
+
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td style="text-align:right">voltage in </td>
+                        <td>
+                            <select id="cbVinbps2" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 85px; ">
+                                <option value="Select">Select</option>
+                                <option value="120">120 V</option>
+                                @*<option value="208">208 V</option>*@
+                                <option value="240">240 V</option>
+                                @*<option value="380">380 V</option>
+                    <option value="400">400 V</option>
+                    <option value="480">480 V</option>
+                    <option value="575">575 V</option>
+                    <option value="600">600 V</option>*@
+
+                            </select>
+                        </td>
+                        <td></td>
+                        <td style="text-align:right">icb8 </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="aff_icb8" style="background-color: bisque; color: black; width: 60px; text-align:center  ;" value="" readonly="readonly">
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td colspan="2">|</td>
+                        <td></td>
+                        <td align="center"></td>
+                        <td align="center">|</td>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td colspan="2" align="center"></td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td style="text-align:right;white-space:nowrap">Bypass#2 ka AC</td>
+                        <td>
+                            <input class="input--style-4" type="text" id="ka_cb8" style="background-color: #cefa29; color: black; width: 85px; text-align:center  ;" value="0">
+                        </td>
+
+
+                        <td></td>
+                        <td style="text-align:right">ka AC </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="aff_cb8ka" style="background-color: bisque; color: black; width: 60px; text-align:center  ;" value="" readonly="readonly">
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td colspan="2">|-----------------------</td>
+                        @*<td colspan="2">|---------------------------------</td>*@
+                        <td>----|&nbsp;&nbsp;</td>
+                        <td align="center"></td>
+                        <td align="center">|</td>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td colspan="2" align="center"></td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td style="text-align:right">frequency </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="aff_freqin_bps2" style="background-color: bisque; color: black; width:85px; text-align:center  ;" value="" readonly="readonly">
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td colspan="2"></td>
+                        <td align="center">|</td>
+                        <td align="center"></td>
+                        <td align="center">|</td>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td colspan="2" align="center"></td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td style="text-align:right;white-space:nowrap">input current</td>
+                        <td>
+                            <input class="input--style-4" type="text" id="aff_icb08" style="background-color: bisque; color: black; width: 85px; text-align:center  ;" value="" readonly="readonly">
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td colspan="2"></td>
+                        <td align="center">|</td>
+                        <td align="center"></td>
+                        <td align="center">|</td>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td colspan="2" align="center"></td>
+
+
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td colspan="2"></td>
+                        <td align="center">|</td>
+                        <td align="center"></td>
+                        <td align="center">|</td>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td colspan="2" align="center"></td>
+
+
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td colspan="2" align="center" style="border: 1px solid black"><button type="button" class="btn-light btn-block" id="btn_bps1">BYPASS INPUT #1</button></td>
+                        <td>------</td>
+                        <td colspan="2" align="center" style="border: 1px solid black"><button type="button" class="btn-light btn-block" id="btncb4">BRKR CB4</button> </td>
+                        <td>--------</td>
+                        <td align="center" style="border: 1px solid black;white-space:nowrap"><button type="button" class="btn-light btn-block" id="btnbpstrans">BYPASS TRANSFORMER</button> </td>
+                        <td>--------</td>
+                        <td colspan="2" align="center" style="border: 1px solid black"><button type="button" class="btn-light btn-block" id="btncb7">BRKR CB7</button> </td>
+                        <td>----|----</td>
+                        <td align="center" style="border: 1px solid black"><button type="button" class="btn-light btn-block" id="btnsts2">STS2</button> </td>
+                        <td align="left">----|</td>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td colspan="2" align="center"></td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td style="text-align:right">phase in </td>
+                        <td id="td_txbphs">
+                            <select id="cbPHSbps1" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 85px; ">
+                                <option value="Select">Select</option>
+                                <option value="1">1</option>
+                                <option value="3">3</option>
+                            </select>
+                        </td>
+
+
+
+
+                        <td></td>
+                        <td style="text-align:right">vcb4 </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="aff_vcb4" style="background-color: bisque; color: black; width: 60px; text-align:center  ;" value="" readonly="readonly">
+                        </td>
+                        <td></td>
+         
+                        <td align="center"><button type="button" class="btn btn-light  btn-block" id="btn_reg">Regulating Transformer</button> </td>
+                        <td></td>
+                        <td style="text-align:right">vcb7 </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="aff_vcb7" style="background-color: bisque; color: black; width: 60px; text-align:center  ;" value="" readonly="readonly">
+                        </td>
+                        <td></td>
+                        <td align="center"></td>
+                        <td align="center">|</td>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td colspan="2" align="center"></td>
+
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td style="text-align:right">voltage in </td>
+                        <td id="td_txbv">
+                            <select id="cbVinbps1" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 85px; ">
+                                <option value="Select">Select</option>
+                                <option value="120">120 V</option>
+                                @*<option value="208">208 V</option>*@
+                                <option value="240">240 V</option>
+                                @*<option value="380">380 V</option>
+                <option value="400">400 V</option>
+                <option value="480">480 V</option>
+                <option value="575">575 V</option>
+                <option value="600">600 V</option>*@
+
+                            </select>
+                        </td>
+                        <td></td>
+                        <td style="text-align:right">icb4 </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="aff_icb4" style="background-color: bisque; color: black; width: 60px; text-align:center  ;" value="" readonly="readonly">
+                        </td>
+                        <td></td>
+                        <td style="text-align:center;white-space:nowrap">Transformer ka AC</td>
+                        <td></td>
+                        <td style="text-align:right">icb7 </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="aff_icb7" style="background-color: bisque; color: black; width: 60px; text-align:center  ;" value="" readonly="readonly">
+                        </td>
+                        <td></td>
+                        <td align="center"></td>
+                        <td align="center">|</td>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td colspan="2" align="center"></td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td style="text-align:right;white-space:nowrap">Bypass #1 ka AC</td>
+                        <td>
+                            <input class="input--style-4" type="text" id="ka_cb4" style="background-color: #cefa29; color: black; width: 85px; text-align:center  ;" value="0">
+                        </td>
+
+                        <td></td>
+                        <td style="text-align:right">kA AC </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="aff_cb4ka" style="background-color: bisque; color: black; width: 60px; text-align: center;" value="" readonly="readonly">
+                        </td>
+                        <td></td>
+                        @*<td style="text-align:center">  <input class="input--style-4" type="text" id="aff_vprim" style="background-color: bisque; color: black; width: 150px; text-align: center;" value="Vprim=6666" readonly="readonly"></td>*@
+                        <td align="center">
+                            <input class="input--style-4" type="text" id="ka_cb7" style="background-color: #cefa29; color: black; width: 150px; text-align:center  ;" value="0">
+                        </td>
+                        <td></td>
+                        <td style="text-align:right">kA AC </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="aff_cb7ka" style="background-color: bisque; color: black; width: 60px; text-align:center  ;" value="" readonly="readonly">
+                        </td>
+                        <td></td>
+                        <td align="center"></td>
+                        <td align="center">|</td>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td colspan="2" align="center"></td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td style="text-align:right">frequency </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="aff_freqin_bps1" style="background-color: bisque; color: black; width: 85px; text-align:center  ;" value="" readonly="readonly">
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                        @*<td style="text-align:center">
+            <input class="input--style-4" type="text" id="aff_vsec" style="background-color: bisque; color: black; width: 150px; text-align: center;" value="Vsec=444" readonly="readonly">
+        </td>*@
+                        <td align="center">@*<button type="button" class="btn btn-light  btn-block" id="btn_txf">shielded txf</button>*@ </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td align="center">|</td>
+                        <td align="center"></td>
+
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td colspan="2" align="center"></td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td style="text-align:right;white-space:nowrap">input current</td>
+                        <td>
+                            <input class="input--style-4" type="text" id="aff_icb04" style="background-color: bisque; color: black; width: 85px; text-align:center  ;" value="" readonly="readonly">
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        @*<td style="text-align:center">
+                <input class="input--style-4" type="text" id="aff_tkva" style="background-color: bisque; color: black; width: 150px; text-align: center;" value="Kva=222" readonly="readonly">
+            </td>*@
+                        <td></td>
+                        <td colspan="2"></td>
+                        <td></td>
+                        <td align="center"></td>
+                        <td align="center">|</td>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td colspan="2" align="center"></td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td style="text-align:right"></td>
+                        <td>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td colspan="2"></td>
+                        <td></td>
+                        <td align="center"></td>
+                        <td align="center">|</td>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td colspan="2" align="center"></td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td style="border: 1px solid black;border-bottom:none;background-color:green">&nbsp;&nbsp;</td>
+                        <td></td>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td></td>
+                        <td align="center">|</td>
+                        <td colspan="2" align="center"></td>
+                        <td></td>
+                        <td colspan="2" align="center"></td>
+
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" align="center" style="border: 1px solid black"><button type="button" class="btn-success btn-block">BATTERY INPUT</button></td>
+                        <td>--------</td>
+                        <td colspan="2" align="center" style="border: 1px solid black"><button type="button" class="btn-success btn-block" id="btncb3">BRKR CB3</button></td>
+                        <td>------</td>
+                        <td colspan="2" align="center" style="border: 1px solid black"><button type="button" class="btn-light btn-block" id="btncbi1">BRKR CBi1</button> </td>
+                        <td>--------</td>
+                        @*<td align="center" style="border: 1px solid black"><button type="button" class="btn-success btn-block">INVERTER</button> </td>*@
+                        <td style="border-left: 1px solid black;border-right: 1px solid black;background-color:green;color:white;text-align:center">INVERTER</td>
+                        <td>--------</td>
+                        <td colspan="2" align="center" style="border: 1px solid black"><button type="button" class="btn-light btn-block" id="btncb6">BRKR CB6</button> </td>
+                        <td>--------</td>
+                        <td align="center" style="border: 1px solid black"><button type="button" class="btn-light btn-block" id="btnsts1">STS1</button> </td>
+                        <td>----|----</td>
+                        <td colspan="2" align="center" style="border: 1px solid black"><button type="button" class="btn-light btn-block" id="btncb5">BRKR CB5</button></td>
+                        <td>--------</td>
+                        <td colspan="2" align="center" style="border: 1px solid black"><button type="button" class="btn-success btn-block">UPS OUTPUT</button></td>
+
+                    </tr>
+                    <tr>
+                        <td style="text-align:right">Battery type </td>
+                        <td>
+                            <select id="cbb_type" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 90px; ">
+                                <option value="VR">VRLA</option>
+                                <option value="LA">L.ACID</option>
+                                <option value="NI">NI-CAD</option>
+
+                            </select>
+                        </td>
+                        <td></td>
+                        <td style="text-align:right">vcb3 </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="aff_vcb3" style="background-color: bisque; color: black; width: 60px; text-align:center  ;" value="" readonly="readonly">
+                        </td>
+                        <td></td>
+                        <td style="text-align:right">vcbi1 </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="aff_vcbi1" style="background-color: bisque; color: black; width: 60px; text-align:center  ;" value="" readonly="readonly">
+                        </td>
+                        <td></td>
+
+                        <td style="border: 1px solid black;border-top:none;background-color:green;color:white;text-align:center">
+                            <input class="input--style-4" type="text" id="tdinvrtr" style="background-color:green;color:white; width: 160px; text-align:center  ;" value="" readonly="readonly">
+                        </td>
+
+                        <td></td>
+                        <td style="text-align:right">vcb6 </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="aff_vcb6" style="background-color: bisque; color: black; width: 60px; text-align:center  ;" value="" readonly="readonly">
+                        </td>
+                        <td></td>
+                        <td>
+                            <input class="input--style-4" type="text" id="aff_inrush" style="background-color: lightgray; color: black; width: 90px; text-align:center  ;" value="inrush Ists1" readonly="readonly">
+                        </td>
+                        <td></td>
+                        <td style="text-align:right">vcb5 </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="aff_vcb5" style="background-color: bisque; color: black; width: 60px; text-align:center  ;" value="" readonly="readonly">
+                        </td>
+                        <td></td>
+                        <td style="text-align:right">phase </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="aff_phsout1" style="background-color: bisque; color: black; width: 80px; text-align:center  ;" value="" readonly="readonly">
+                        </td>
+
+
+
+
+
+                    </tr>
+                    <tr>
+                        <td style="text-align:right">cell # </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="nb_cells" style="background-color: #cefa29; color: black; width: 90px; text-align:center  ;" value="60">
+                        </td>
+                        <td></td>
+                        <td style="text-align:right">icb3 </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="aff_icb3" style="background-color: bisque; color: black; width: 60px; text-align:center  ;" value="" readonly="readonly">
+                        </td>
+                        <td></td>
+                        <td style="text-align:right">icbi1 </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="aff_icbi1" style="background-color: bisque; color: black; width: 60px; text-align:center  ;" value="" readonly="readonly">
+                        </td>
+                        <td></td>
+                        <td style="text-align:center;white-space:nowrap">INVERTER ka AC</td>
+                        <td></td>
+                        <td style="text-align:right">icb6 </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="aff_icb6" style="background-color: bisque; color: black; width: 60px; text-align:center  ;" value="" readonly="readonly">
+                        </td>
+                        <td></td>
+                        <td>  </td>
+                        <td></td>
+                        <td style="text-align:right">icb5 </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="aff_icb5" style="background-color: bisque; color: black; width: 60px; text-align:center  ;" value="" readonly="readonly">
+                        </td>
+                        <td></td>
+                        <td style="text-align:right">voltage </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="aff_vout" style="background-color: bisque; color: black; width: 80px; text-align:center  ;" value="" readonly="readonly">
+                        </td>
+
+
+                    </tr>
+                    <tr>
+                        <td style="text-align:right;white-space:nowrap">Battery ka DC</td>
+                        <td>
+                            <input class="input--style-4" type="text" id="ka_cb3" style="background-color: #cefa29; color: black; width: 90px; text-align:center  ;" value="0">
+                        </td>
+
+                        <td></td>
+                        <td style="text-align:right">kA DC </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="aff_cb3kadc" style="background-color: bisque; color: black; width: 60px; text-align:center  ;" value="" readonly="readonly">
+                        </td>
+                        <td></td>
+                        <td style="text-align:right">kA DC </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="aff_cbi1kadc" style="background-color: bisque; color: black; width: 60px; text-align:center  ;" value="" readonly="readonly">
+                        </td>
+                        <td></td>
+                        <td align="center">
+                            <input class="input--style-4" type="text" id="ka_cb6" style="background-color: #cefa29; color: black; width: 150px; text-align:center  ;" value="0">
+                        </td>
+                        <td></td>
+                        <td style="text-align:right">kA AC </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="aff_cb6ka" style="background-color: bisque; color: black; width: 60px; text-align:center  ;" value="" readonly="readonly">
+                        </td>
+                        <td></td>
+                        <td>  </td>
+                        <td></td>
+                        <td style="text-align:right">kA AC </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="aff_cb5ka" style="background-color: bisque; color: black; width: 60px; text-align:center  ;" value="" readonly="readonly">
+                        </td>
+                        <td></td>
+                        <td style="text-align:right">KVA </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="aff_kva" style="background-color: bisque; color: black; width: 80px; text-align:center  ;" value="" readonly="readonly">
+                        </td>
+
+
+                    </tr>
+                    <tr>
+                        <td style="text-align:right;white-space:nowrap"> battery capacity  </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="batt_capa" style="background-color: #cefa29; color: black; width: 90px; text-align:center  ;" value="0">
+                        </td>
+                        <td></td>
+                        <td> </td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: right; white-space: nowrap ">@*req. ka DC*@</td>
+                        <td>
+                            @*<input class="input--style-4" type="text" id="ka_cbi1" style="background-color: #cefa29; color: black; width: 60px; text-align:center  ;" value="0">*@
+                        </td>
+                        <td></td>
+                        <td> </td>
+                        <td></td>
+                        <td></td>
+                        <td> </td>
+                        <td></td>
+                        <td>  </td>
+                        <td></td>
+                        <td style="text-align:right;white-space:nowrap">@*req. ka AC*@</td>
+                        <td>
+                            @*<input class="input--style-4" type="text" id="ka_cb5" style="background-color: #cefa29; color: black; width: 60px; text-align:center  ;" value="0">*@
+                        </td>
+                        <td></td>
+                        <td style="text-align:right">P.F </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="aff_pf" style="background-color: bisque; color: black; width: 80px; text-align:center  ;" value="" readonly="readonly">
+                        </td>
+
+
+                    </tr>
+                    <tr>
+                        <td style="text-align:right"> charging time </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="batt_tc" style="background-color: #cefa29; color: black; width: 90px;text-align:center  ; " value="8">
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td> </td>
+                        <td></td>
+                        <td></td>
+                        <td> </td>
+                        <td></td>
+                        <td> </td>
+                        <td></td>
+                        <td></td>
+                        <td> </td>
+                        <td></td>
+                        <td>  </td>
+                        <td></td>
+                        <td></td>
+                        <td> </td>
+                        <td></td>
+                        <td style="text-align:right">kW </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="outkw" style="background-color: bisque; color: black; width: 80px; text-align:center  ;" value="" readonly="readonly">
+                        </td>
+
+
+                    </tr>
+                    <tr>
+                        <td style="text-align:right"> Vpc Float </td>
+
+                        <td>
+                            <input class="input--style-4" type="text" id="vpcfloat" style="background-color: #cefa29; color: black; width: 90px;text-align:center  ; " value="2.27">
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td> </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>  </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align:right;white-space:nowrap">frequency</td>
+                        <td>
+                            <input class="input--style-4" type="text" id="aff_freqout" style="background-color: bisque; color: black; width: 80px; text-align:center  ;" value="" readonly="readonly">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right">Vpc Equalize </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="vpceqlz" style="background-color: #cefa29; color: black; width: 90px;text-align:center  ; " value="2.27">
+                        </td>
+
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td> </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>  </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align:right;white-space:nowrap">Current</td>
+                        <td>
+                            <input class="input--style-4" type="text" id="aff_icb05" style="background-color: bisque; color: black; width: 80px; text-align:center  ;" value="" readonly="readonly">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right">VFloat  </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="vfloat" style="background-color: bisque; color: black; width: 90px; text-align:center  ;" value="136.2" readonly="readonly">
+                        </td>
+                        <td colspan="17"></td>
+                        <td style="text-align:right;white-space:nowrap">@*Current*@</td>
+                        <td>
+                            @*<input class="input--style-4" type="text" id="aff_icb05" style="background-color: bisque; color: black; width: 80px; text-align:center  ;" value="" readonly="readonly">*@
+                        </td>
+
+
+                    </tr>
+                    <tr>
+                        <td style="text-align:right"> VEqualize </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="veqlz" style="background-color: bisque; color: black; width: 90px; text-align:center  ;" value="136.2" readonly="readonly">
+                        </td>
+
+                        <td colspan="19"></td>
+                    </tr>
+
+                    <tr>
+                        <td style="text-align:right">Irecharge AH </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="c_irecharge_ah" style="background-color: bisque; color: black; width: 90px; text-align:center  ;" value="0" readonly="readonly">
+                        </td>
+
+                        <td colspan="19"></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right"> Irecharge STD  </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="c_irecharge_std" style="background-color: bisque; color: black; width: 90px; text-align:center  ;" value="0" readonly="readonly">
+                        </td>
+
+                        <td colspan="19"></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right"> VDC Min </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="c_vdcmin" style="background-color: bisque; color: black; width: 90px; text-align:center  ;" value="0" readonly="readonly">
+                        </td>
+
+                        <td colspan="19"></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:right">VDC Max  </td>
+                        <td>
+                            <input class="input--style-4" type="text" id="c_vdcmax" style="background-color: bisque; color: black; width: 90px; text-align:center  ;" value="0" readonly="readonly">
+                        </td>
+                        <td colspan="19"></td>
+                    </tr>
+
+                </table>
+                <table>
+                    <tr>
+                        <td> &nbsp; &nbsp;</td>
+                        <td>&nbsp; &nbsp;</td>
+                        <td>&nbsp;&nbsp; </td>
+                        <td>&nbsp; &nbsp;</td>
+                        <td>&nbsp;&nbsp; </td>
+                        <td>  </td>
+                        <td>  <button type="button" class="btn btn-warning" id="btnrefresh2" style="display:none">>UPS VALIDATION</button></td>
+                        <td>  </td>
+                        <td>  <button type="button" class="btn btn-primary" id="btnquote2" style="display:none">GENERATE QUOTE</button></td>
+                        <td> </td>
+                        <td> </td>
+
+                    </tr>
+
+                </table>
+
+                @*<table class="table table-fixed" style="border: 1px ;display: none " id="vcs_tbl">
+                        <tr>
+                            <th style=" width: 69px;border: 1px solid black;background-color: #fff34d;">   Name    </th>
+                            <th style=" width: 69px;border: 1px solid black;background-color: #fff34d;">Value</th>
+                            <th style=" width: 150px;border: 1px solid black;background-color: #fff34d;">msg</th>
+                        </tr>
+                    </table>*@
+
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" modal-dialog modal-xl role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Values List</h4>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-fixed" style="border: 1px ;" id="vcs_tbl">
+                            <tr>
+                                <th style=" width: 69px;border: 1px solid black;background-color: #fff34d;">   Name    </th>
+                                <th style=" width: 69px;border: 1px solid black;background-color: #fff34d;">Value</th>
+                                <th style=" width: 300px;border: 1px solid black;background-color: #fff34d;">msg</th>
+                            </tr>
+                        </table>
+                    </div>        
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        @*<button type="button" class="btn btn-primary">Save changes</button>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    }
+
+
+</div>
+
+
+
+
+<script>
+
+    //   $(function () {
+    //    //events
+  //  $('#mymodal').modal('toggle');
+
+
+
+    window.onload = function () {
+
+        var p_phsout = sessionStorage.getItem("o_phsout"),
+            p_kva = sessionStorage.getItem("o_kva"),
+            p_vout = sessionStorage.getItem("o_vout"),
+            p_dcbus = sessionStorage.getItem("o_dcbus"),
+            p_phsin = sessionStorage.getItem("o_phsin"),
+            p_vin = sessionStorage.getItem("o_vin");
+        //alert( "          phsout= " + sessionStorage.getItem('o_phsout'));
+        //alert("          kva= " + sessionStorage.getItem('o_kva'));
+        //alert( "          vout= " + sessionStorage.getItem('o_vout'));
+        //alert(j_dcbus + "         dcbus= " + sessionStorage.getItem('o_dcbus'));
+        //alert( "          phsin= " + sessionStorage.getItem('o_phsin'));
+        //alert( "          vin= " + sessionStorage.getItem('o_vin'));
+
+        if (p_phsout !== null && p_kva !== null && p_vout !== null && p_dcbus !== null && p_phsin !== null && p_vin !== null) {
+
+            fill_para(p_phsout, p_vout, p_kva, p_dcbus, p_phsin, p_vin);
+        }
+      //  else alert("ERROR on loading.......");// + "p_phsout=" + p_phsout + "  p_vout=" + p_vout + "    p_kva=" + p_kva + "   p_dcbus=" + p_dcbus + " p_phsin  =" + p_phsin + "  p_vin=" + p_vin);
+
+    }
+
+
+
+
+
+    $("#btnvcsold").click(function () {
+
+
+        if ($("#bps1_bps2_batt").is(':visible') && $("#cb1_ch_cb2").is(':visible')) {
+
+            var t = calc_Flt_Eq();
+            var tt2 = Maj_VDCMax();
+            t = calc_irechag_std_ah();
+            t = maj_vprim();
+            t = get_vcs("V");
+        }
+        else alert("please click on NEXT STEP......");
+
+    });
+
+    $("#btnrefresh1").click(function () {
+
+
+        if ($("#bps1_bps2_batt").is(':visible') && $("#cb1_ch_cb2").is(':visible')) {
+
+            var t = calc_Flt_Eq();
+            var tt2 = Maj_VDCMax();
+            t = calc_irechag_std_ah();
+            t = maj_vprim();
+                                       //  t = ref_srvr();
+            t = get_vcs("C");
+        }
+        else alert("please click on NEXT STEP......");
+
+    });
+
+    $("#btnrefresh2").click(function () {
+
+        $("#btnrefresh1").click();
+
+    });
+
+    $("#btnquote").click(function () {
+
+
+        if ($("#bps1_bps2_batt").is(':visible') && $("#cb1_ch_cb2").is(':visible')) {
+            // debugger;
+            //  alert("debut...........");
+            var bps = 1, j_ups = "P850U", j_cbnkaac = get_CBN();
+            var j_phsout = $("#cbPHSout").val(), j_vout = $("#cbVout").val(), j_kva = $("#cbKVA").val(), j_dcbus = $("#cbDCbus").val();
+            var j_phsin = $("#cbPHSin").val(), j_vin = $("#cbVin").val(), j_phsbps = $("#cbPHSbps").val(), j_vinbps = $("#cbVinbps").val();
+            var j_pf = $("#cbpf").val(), j_freqin = $("#cbfreqin").val(), j_freqout = $("#cbfreqout").val(), j_batt_capa = $("#batt_capa").val(), j_batt_tc = $("#batt_tc").val();
+            var j_nbcell = $("#nb_cells").val(), j_bat_type = $("#cbb_type").val(), j_flt = $("#vfloat").val(), j_eqlz = $("#veqlz").val(),
+                j_idci = $("#H_idci").val(), j_std = $("#c_irecharge_std").val(), j_ah = $("#c_irecharge_ah").val(),
+                j_vdcmin = $("#c_vdcmin").val(), j_vdcmax = $("#c_vdcmax").val();
+            var valid_err = "";
+            //var cbnkaac = get_CBN();
+            //alert("CBN= " + cbnkaac);
+
+
+            //  alert("err= " + valid_err);
+            if (valid_err == "") {
+
+                j_ups = "P850U" + "-" + j_phsout + "-" + j_kva + "-" + j_vout + "-" + j_dcbus;
+                if ($("#chkbypass").is(":checked")) j_ups += "-" + j_phsbps + "-" + j_vinbps;
+                else j_phsbps = 0;
+
+                $.ajaxSetup({
+                    async: false
+                });
+
+                var urlo = $("#quoteurl").val();
+                //    alert("urlo = " + urlo );
+                $.getJSON(urlo, {
+
+                    ups: j_ups, PHSout: j_phsout, OP_KVA: j_kva, ACoutputV: j_vout, DCBus: j_dcbus, PHSin: j_phsin, ACinputV: j_vin, PHSbps: j_phsbps,
+                    BpsinputV: j_vinbps, Cbatt: j_batt_capa, timeChrg: j_batt_tc, PF: j_pf, FLT: j_flt, EQLZ: j_eqlz, vdcmin: j_vdcmin, vdcmax: j_vdcmax, frqin: j_freqin,
+                    frqout: j_freqout, cbnkaac: j_cbnkaac, idci: j_idci, ah: j_ah, std: j_std
+                },
+                    function (msglst) {
+                        $.each(msglst, function (index, itemData) {
+                            par = itemData.msg;
+                            tt = itemData.recnb;
+                        });
+                        //  alert("par= " + par + "  tt= " + tt);
+                    });
+
+                var sppar = '@Url.Action("quoting_ups", "ALLUPS")';
+                window.location.href = sppar;
+
+            }
+            else alert(valid_err);
+
+
+
+        }
+        else alert("please click on NEXT STEP......");
+
+    });
+
+
+
+    $("#btnnext").click(function () {
+
+
+
+        var t = init_scnr();
+
+        var j_phsout = $("#cbPHSout").val(), j_vout = $("#cbVout").val(), j_kva = $("#cbKVA").val(), j_dcbus = $("#cbDCbus").val(), j_bps1vin = $("#cb").val();
+        var j_phsin = $("#cbPHSin").val(), j_vin = $("#cbVin").val(), j_pf = $("#cbpf").val(), j_freqin = $("#cbfreqin").val(), j_freqout = $("#cbfreqout").val();
+        var valid_err = "";
+
+        if (j_phsout == "Select") valid_err = " Invalid Output Phase....";
+        else {
+            if (j_vout == "Select") valid_err = " Invalid Output Voltage ....";
+            else {
+                if (j_kva == "Select") valid_err = " Invalid KVA ....";
+                else {
+                    if (j_dcbus == "Select") valid_err = " Invalid DCBus Voltage ....";
+                    else {
+                        if (j_phsin == "Select") valid_err = " Invalid INPUT Phase ....";
+                        else if (j_vin == "Select") valid_err = " Invalid INPUT Voltage ....";
+
+                    }
+                }
+
+            }
+        }
+
+        if (valid_err == "") {
+
+            savUPSmdl(j_phsout,j_kva,j_vout,j_dcbus,j_phsin,j_vin);
+
+            $("#aff_Vin").val(j_vin);
+            $("#aff_phsin").val(j_phsin);
+            $("#aff_freqin1").val(j_freqin);
+
+            $("#aff_vout").val(j_vout);
+            $("#aff_phsout1").val(j_phsout);
+            $("#aff_dcbus1").val(j_dcbus);
+            $("#aff_kva").val(j_kva);
+            var t = Maj_KW();
+            $("#aff_pf").val(j_pf);
+            $("#aff_freqout").val(j_freqout);
+            $("#aff_freqin_bps2").val(j_freqin);
+            $("#aff_freqin_bps1").val(j_freqin);
+
+
+             t = maj_vprim();
+            $("#aff_vsec").val("Vsec=" +j_vout);
+            var j_tkva = H_round((j_kva * 1.2) , 2);
+            $("#aff_tkva").val("kVA=" +j_tkva);
+
+
+            t = calc_Flt_Eq();
+            var tt2 = Maj_VDCMax();
+            t = calc_irechag_std_ah();
+
+
+            hideschemas(1);
+            var chrgr = "P4600" + "-" + j_phsin + "-" + j_dcbus + "-" + j_vout;
+            var nvrtr = "P850I" + "-" + j_phsout + "-" + j_kva + "-" + j_vout+ "-" + j_dcbus;
+            $("#tdchrgr").val(chrgr);
+            $("#tdinvrtr").val(nvrtr );
+        }
+        else alert("ERROR===" + valid_err);
+    });
+
+    $("#btncb2").click(function () {
+        if ($(this).hasClass("btn-success"))
+            $(this).removeClass("btn-success").addClass("btn-light");
+        else $(this).removeClass("btn-light").addClass("btn-success");
+    });
+
+    $("#btn_imbs").click(function () {
+        if ($(this).hasClass("btn-success"))
+            $(this).removeClass("btn-success").addClass("btn-light");
+        else $(this).removeClass("btn-light").addClass("btn-success");
+    });
+
+    $("#btn_bps2").click(function () {
+        if ($(this).hasClass("btn-success")) {
+            $(this).removeClass("btn-success").addClass("btn-light");
+            $("#btncb8").removeClass("btn-success").addClass("btn-light");
+
+
+        }
+
+        else {
+            $(this).removeClass("btn-light").addClass("btn-success");
+            $("#btncb8").removeClass("btn-light").addClass("btn-success");
+            $("#btn_imbs").removeClass("btn-light").addClass("btn-success");
+        }
+
+        if ($("#btn_bps2").hasClass("btn-light") && $("#btn_bps1").hasClass("btn-light"))
+            $("#btnsts1").removeClass("btn-success").addClass("btn-light");
+        else $("#btnsts1").removeClass("btn-light").addClass("btn-success");
+    });
+
+
+
+
+    $("#btn_bps1").click(function () {
+        if ($(this).hasClass("btn-success")) {
+            $(this).removeClass("btn-success").addClass("btn-light");
+            $("#btncb4").removeClass("btn-success").addClass("btn-light");
+            $("#btnbpstrans").removeClass("btn-success").addClass("btn-light");
+            $("#btncb7").removeClass("btn-success").addClass("btn-light");
+            $("#btnsts2").removeClass("btn-success").addClass("btn-light");
+
+        }
+        else {
+            $(this).removeClass("btn-light").addClass("btn-success");
+            $("#btncb4").removeClass("btn-light").addClass("btn-success");
+
+            $("#btnbpstrans").removeClass("btn-light").addClass("btn-success");
+            $("#btn_imbs").removeClass("btn-light").addClass("btn-success");
+            $("#btnsts2").removeClass("btn-light").addClass("btn-success");
+        }
+
+        //check stsn
+        if ($("#btn_bps2").hasClass("btn-light") && $("#btn_bps1").hasClass("btn-light"))
+             $("#btnsts1").removeClass("btn-success").addClass("btn-light");
+        else $("#btnsts1").removeClass("btn-light").addClass("btn-success");
+    });
+
+    $("#btn_xmbs").click(function () {
+        if ($(this).hasClass("btn-success"))
+            $(this).removeClass("btn-success").addClass("btn-light");
+        else $(this).removeClass("btn-light").addClass("btn-success");
+    });
+    $("#btn_txf").click(function () {
+
+        if ($("#btnbpstrans").hasClass("btn-success")) {
+            if ($(this).hasClass("btn-success"))
+                $(this).removeClass("btn-success").addClass("btn-light");
+            else $(this).removeClass("btn-light").addClass("btn-success");
+        }
+    });
+
+    $("#btn_reg").click(function () {
+        if ($("#btnbpstrans").hasClass("btn-success")) {
+            if ($(this).hasClass("btn-success"))
+                $(this).removeClass("btn-success").addClass("btn-light");
+            else $(this).removeClass("btn-light").addClass("btn-success");
+        }
+    });
+
+    $("#btnbpstrans").click(function () {
+
+        if ($("#btn_bps1").hasClass("btn-success")) {
+            if ($(this).hasClass("btn-success"))
+                $(this).removeClass("btn-success").addClass("btn-light");
+            else $(this).removeClass("btn-light").addClass("btn-success");
+        }
+    });
+
+    $("#btncb8").click(function () {
+
+        if ($("#btn_bps2").hasClass("btn-success")) {
+            if ($(this).hasClass("btn-success"))
+                $(this).removeClass("btn-success").addClass("btn-light");
+            else $(this).removeClass("btn-light").addClass("btn-success");
+        }
+    });
+
+
+    $("#btncb6").click(function () {
+        if ($(this).hasClass("btn-success"))
+            $(this).removeClass("btn-success").addClass("btn-light");
+        else $(this).removeClass("btn-light").addClass("btn-success");
+    });
+    $("#btncb5").click(function () {
+        if ($(this).hasClass("btn-success"))
+            $(this).removeClass("btn-success").addClass("btn-light");
+        else $(this).removeClass("btn-light").addClass("btn-success");
+    });
+    $("#btncb7").click(function () {
+
+        if ($("#btn_bps1").hasClass("btn-success")) {
+            if ($(this).hasClass("btn-success"))
+                $(this).removeClass("btn-success").addClass("btn-light");
+            else $(this).removeClass("btn-light").addClass("btn-success");
+        }
+    });
+
+    $("#btncbi1").click(function () {
+        if ($(this).hasClass("btn-success"))
+            $(this).removeClass("btn-success").addClass("btn-light");
+        else $(this).removeClass("btn-light").addClass("btn-success");
+    });
+
+
+
+
+    $("#cbPHSout").change(function () {
+
+        var myphs = $(this).val();
+        var itemsvdc = voltin(myphs);
+        if (itemsvdc != '????') $("#cbVout").html(itemsvdc);
+        else alert("vdc=" + itemsvdc);
+        hideschemas(0);
+    });
+
+
+    $("#cbPHSin").change(function () {
+
+        var myphs = $(this).val();
+        var itemsvdc = voltin(myphs);
+        if (itemsvdc != '????') $("#cbVin").html(itemsvdc);
+        else alert("vdc=" + itemsvdc);
+        hideschemas(0);
+    });
+
+    $("#cbphsin_bps2").change(function () {
+
+        var myphs = $(this).val();
+        var itemsvdc = voltin(myphs);
+        if (itemsvdc != '????') $("#cbVin_bps2").html(itemsvdc);
+        else alert("vdc=" + itemsvdc);
+
+    });
+
+    $("#cbphsin_bps1").change(function () {
+
+        var myphs = $(this).val();
+        var itemsvdc = voltin(myphs);
+        if (itemsvdc != '????') $("#cbVinbps1").html(itemsvdc);
+        else alert("vdc=" + itemsvdc);
+
+    });
+
+    $("#cbVinbps1").change(function () {
+
+        var t = maj_vprim();
+
+    });
+
+    $("#chkbypass").click(function () {
+        // alert("debut,,,,,,,,,,,");
+        if ($(this).is(":checked")) {
+            $("#td_lbv").show();
+            $("#td_txbv").show();
+            $("#td_lbphs").show();
+            $("#td_txbphs").show();
+
+        } else {
+            $("#td_lbv").hide();
+            $("#td_txbv").hide();
+            $("#td_lbphs").hide();
+            $("#td_txbphs").hide();
+            bps = 0;
+        }
+    });
+
+    // $("#cbPHSout").change(function () {  $("#divbypass").show(); });
+
+
+    $("#ups_valida").on('click', function (e) {
+        // debugger;
+        //  alert("debut...........");
+        var bps = 1, j_ups = "P850u", j_cbnkaac = "";
+        var j_phsout = $("#cbPHSout").val(), j_vout = $("#cbVout").val(), j_kva = $("#cbKVA").val(), j_dcbus = $("#cbDCbus").val();
+        var j_phsin = $("#cbPHSin").val(), j_vin = $("#cbVin").val(), j_phsbps = $("#cbPHSbps").val(), j_vinbps = $("#cbVinbps").val();
+        var j_pf = $("#cbpf").val(), j_freq = $("#cbfreq").val(), j_batt_capa = $("#batt_capa").val(), j_batt_tc = $("#batt_tc").val();
+        var j_nbcell = $("#nb_cells").val(), j_bat_type = $("#cbb_type").val(), j_flt = $("#vfloat").val(), j_eqlz = $("#veqlz").val(),
+            j_vdcmin = $("#c_vdcmin").val(), j_vdcmax = $("#c_vdcmax").val();
+        var valid_err = "";
+
+        //tst
+        //var nbc = H_round(nbCells(j_dcbus, j_bat_type), 0);
+        //$("#nb_cells").val(nbc);
+        //    alert("nvcells=" + nbc);
+        //tst
+
+
+        if ($("#chkbypass").is(":checked")) bps = j_phsbps;
+        else bps = 0;
+
+        //  alert("bps=" + bps + "  err=" + valid_err);
+        if (j_phsout == "Select") valid_err = " Invalid Output Phase....";
+        else {
+            if (j_vout == "Select") valid_err = " Invalid Output Voltage ....";
+            else {
+                if (j_kva == "Select") valid_err = " Invalid KVA ....";
+                else {
+                    if (j_dcbus == "Select") valid_err = " Invalid DCBus ....";
+                    else {
+                        if (j_phsin == "Select") valid_err = " Invalid INPUT Phase ....";
+                        else {
+                            if (j_vin == "Select") valid_err = " Invalid INPUT Voltage ....";
+                            else {
+                                if (bps == 1) {
+                                    if (j_phsbps == "Select" || j_vinbps == "Select") valid_err = " Invalid BYPASS info: Phase / Input Voltage ....";
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+
+        //  alert("err= " + valid_err);
+        if (valid_err == "") {
+
+            $.ajaxSetup({
+                async: false
+            });
+
+            var urlo = $("#upsurl").val();
+            //    alert("urlo = " + urlo );
+            $.getJSON(urlo, {
+
+                ups: j_ups, PHSout: j_phsout, OP_KVA: j_kva, ACoutputV: j_vout, DCBus: j_dcbus, PHSin: j_phsin, ACinputV: j_vin, PHSbps: j_phsbps,
+                BpsinputV: j_vinbps, Cbatt: j_batt_capa, timeChrg: j_batt_tc, PF: j_pf, FLT: j_flt, EQLZ: j_eqlz, vdcmin: j_vdcmin, vdcmax: j_vdcmax, frq: j_freq,
+                cbnkaac: j_cbnkaac
+            },
+
+                function (Frmls_list, status, xhr) {
+                    if (status == "success") {
+
+                        $("#vcs_tbl tr>td").remove();
+                        var fin = "";
+                        var items_data = '';
+                        var config_ok = "Y";
+                        $.each(Frmls_list, function (index, itemData) {
+                            {
+                                // debugger;
+                                items_data += '<tr>';
+                                items_data += itemData.frmlNm;
+                                items_data += itemData.frmlval;
+                                items_data += itemData.f_msg;
+
+                                //  if (itemData.desc.index("please call PRIMAX") >= 0) config_ok = "N";
+                                //if (itemData.msgerror == "2") config_ok = "N";
+
+                                items_data += '</tr>';
+
+
+                            }
+                        });
+                        $('#vcs_tbl').append(items_data);
+                        $("#vcs_tbl").show();
+                        //        $("#addal").show();
+                        // debugger;
+                        //         if (config_ok == "Y") $("#btnalrm").show();
+                    }
+                    else {
+                        alert(" Error AJAX.....Contact Admin....");
+                    }
+
+                });
+
+        }
+        else alert(valid_err);
+
+
+
+    });
+
+    $("#ups_quote").on('click', function (e) {
+        // debugger;
+        //  alert("debut...........");
+        var bps = 1, j_ups = "P850U", j_cbnkaac = get_CBN();
+        var j_phsout = $("#cbPHSout").val(), j_vout = $("#cbVout").val(), j_kva = $("#cbKVA").val(), j_dcbus = $("#cbDCbus").val();
+        var j_phsin = $("#cbPHSin").val(), j_vin = $("#cbVin").val(), j_phsbps = $("#cbPHSbps").val(), j_vinbps = $("#cbVinbps").val();
+        var j_pf = $("#cbpf").val(), j_freq = $("#cbfreq").val(), j_batt_capa = $("#batt_capa").val(), j_batt_tc = $("#batt_tc").val();
+        var j_nbcell = $("#nb_cells").val(), j_bat_type = $("#cbb_type").val(), j_flt = $("#vfloat").val(), j_eqlz = $("#veqlz").val(),
+            j_idci = $("#H_idci").val(), j_std = $("#c_irecharge_std").val(), j_ah = $("#c_irecharge_ah").val(),
+            j_vdcmin = $("#c_vdcmin").val(), j_vdcmax = $("#c_vdcmax").val();
+        var valid_err = "";
+        //var cbnkaac = get_CBN();
+        //alert("CBN= " + cbnkaac);
+
+
+
+        if ($("#chkbypass").is(":checked")) bps = j_phsbps;
+        else bps = 0;
+
+        //  alert("bps=" + bps + "  err=" + valid_err);
+        if (j_phsout == "Select") valid_err = " Invalid Output Phase....";
+        else {
+            if (j_vout == "Select") valid_err = " Invalid Output Voltage ....";
+            else {
+                if (j_kva == "Select") valid_err = " Invalid KVA ....";
+                else {
+                    if (j_dcbus == "Select") valid_err = " Invalid DCBus ....";
+                    else {
+                        if (j_phsin == "Select") valid_err = " Invalid INPUT Phase ....";
+                        else {
+                            if (j_vin == "Select") valid_err = " Invalid INPUT Voltage ....";
+                            else {
+                                if (bps == 1) {
+                                    if (j_phsbps == "Select" || j_vinbps == "Select") valid_err = " Invalid BYPASS info: Phase / Input Voltage ....";
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+
+        //  alert("err= " + valid_err);
+        if (valid_err == "") {
+
+            j_ups = "P850U" + "-" + j_phsout + "-" + j_kva + "-" + j_vout + "-" + j_dcbus;
+            if ($("#chkbypass").is(":checked")) j_ups += "-" + j_phsbps + "-" + j_vinbps;
+            else j_phsbps = 0;
+
+            $.ajaxSetup({
+                async: false
+            });
+
+            var urlo = $("#quoteurl").val();
+            //    alert("urlo = " + urlo );
+            $.getJSON(urlo, {
+
+                ups: j_ups, PHSout: j_phsout, OP_KVA: j_kva, ACoutputV: j_vout, DCBus: j_dcbus, PHSin: j_phsin, ACinputV: j_vin, PHSbps: j_phsbps,
+                BpsinputV: j_vinbps, Cbatt: j_batt_capa, timeChrg: j_batt_tc, PF: j_pf, FLT: j_flt, EQLZ: j_eqlz, vdcmin: j_vdcmin, vdcmax: j_vdcmax, frq: j_freq,
+                cbnkaac: j_cbnkaac, idci: j_idci, ah: j_ah, std: j_std
+            },
+                function (msglst) {
+                    $.each(msglst, function (index, itemData) {
+                        par = itemData.msg;
+                        tt = itemData.recnb;
+                    });
+                    //  alert("par= " + par + "  tt= " + tt);
+                });
+
+            var sppar = '@Url.Action("quoting_ups", "ALLUPS")';
+            window.location.href = sppar;
+
+        }
+        else alert(valid_err);
+
+
+
+    });
+
+    //tsssssssssssssssssssssssssssssssssttt
+
+    $("#ups_validatsssttt").on('click', function (e) {
+        // debugger;
+        alert("debut..tstttttt.........");
+        var bps = 1, j_ups = "P850u", j_cbnkaac = "CB1|0";
+        var j_phsout = $("#cbPHSout").val(), j_vout = $("#cbVout").val(), j_kva = $("#cbKVA").val(), j_dcbus = $("#cbDCbus").val();
+        var j_phsin = $("#cbPHSin").val(), j_vin = $("#cbVin").val(), j_phsbps = $("#cbPHSbps").val(), j_vinbps = $("#cbVinbps").val();
+        var j_pf = $("#cbpf").val(), j_freq = $("#cbfreq").val(), j_batt_capa = $("#batt_capa").val(), j_batt_tc = $("#batt_tc").val();
+        var j_nbcell = $("#nb_cells").val(), j_bat_type = $("#cbb_type").val(), j_flt = $("#vfloat").val(), j_eqlz = $("#veqlz").val(),
+            j_vdcmin = $("#c_vdcmin").val(), j_vdcmax = $("#c_vdcmax").val();
+      //  debugger;
+        var valid_err = "";
+
+
+
+        var bps = 1, j_ups = "P850u", j_cbnkaac = "CB1|0";
+        $.ajaxSetup({
+            async: false
+        });
+     //   debugger;
+        var urlo = $("#upsurl").val();
+        alert("urlo = " + urlo);
+        $.getJSON(urlo, {
+
+            ups: j_ups, PHSout: j_phsout, OP_KVA: j_kva, ACoutputV: j_vout, DCBus: j_dcbus, PHSin: j_phsin, ACinputV: j_vin, PHSbps: j_phsbps,
+            BpsinputV: j_vinbps, Cbatt: j_batt_capa, timeChrg: j_batt_tc, PF: j_pf, FLT: j_flt, EQLZ: j_eqlz, vdcmin: j_vdcmin, vdcmax: j_vdcmax, frq: j_freq,
+            cbnkaac: j_cbnkaac
+        },
+
+            function (frmt_defoptions, status, xhr) {
+                if (status == "success") {
+
+                    var fin = "";
+                    var items_data = '';
+                    var config_ok = "Y";
+                    $.each(frmt_defoptions, function (index, itemData) {
+                        {
+                            alert("refcpt=" + itemData.refcpt);
+                        }
+                    });
+
+                }
+                else {
+                    alert(" Error")
+                }
+
+            });
+
+    });
+
+
+
+    $("#ups_ref").on('click', function (e) {
+        // debugger;
+        //   alert("debut.calc..........");
+
+        var t = calc_Flt_Eq();
+        var tt2 = Maj_VDCMax();
+        t=calc_irechag_std_ah();
+
+
+
+
+    });
+
+
+
+
+    $("#fillbtn").on('click', function (e) {
+        fill_para("1", "120", "10", "125", "3", "480");
+
+        //$("#cbPHSout").val("1");
+        //$("#cbPHSout").change();
+
+        //$("#cbVout").val("120");
+        //$("#cbKVA").val("30");
+        //$("#cbDCbus").val("380");
+
+        //$("#cbPHSin").val("3");
+        //$("#cbPHSin").change();
+
+        //$("#cbVin").val("600");
+
+
+    });
+
+    $("#cbKVAold").change(function () {
+        var t = Maj_KW();
+
+
+        hideschemas(0);
+        // var t2 = Maj_vpc();
+    });
+
+    $("#cbpf").change(function () {
+
+        hideschemas(0);
+    });
+
+    $("#nb_cells").change(function () {
+        // var t = Maj_VDCMax();
+    });
+
+    $("#cbb_type").change(function () {
+        var t = Maj_vpc();
+    });
+
+    $("#cbDCbus").change(function () {
+
+        var t2 = Maj_vpc();
+        //       alert("avant ...");
+        var t = Maj_VDCMax();
+
+        hideschemas(0);
+    });
+
+
+    $("#cbVout").change(function () {
+
+        hideschemas(0);
+    });
+    $("#cbVin").change(function () {
+
+
+        hideschemas(0);
+    });
+    $("#cbfreqin").change(function () {
+
+
+        hideschemas(0);
+    });
+    $("#cbfreqout").change(function () {
+
+
+        hideschemas(0);
+    });
+
+
+
+
+
+    //functions
+    function Maj_VDCMaxbad() {
+
+        var j_dcbus = $("#cbDCbus").val();
+        alert("  dcbus=" + j_dcbus);
+        if (j_dcbus != "Select") {
+
+            var vdcmax = get_vdcmax(j_dcbus);
+            var vdcmin = get_vdcmin(j_dcbus);
+
+            alert("  vdcmax= " + vdcmax + "  vdcmin= " + vdcmin);
+            $("#c_vdcmax").val(vdcmax);
+            $("#c_vdcmin").val(vdcmin);
+        }
+        else {
+            var vdcmax = 0;
+            var vdcmin = 0;
+            $("#c_vdcmax").val(vdcmax);
+            $("#c_vdcmin").val(vdcmin);
+        }
+
+
+    }
+
+    function Maj_VDCMax() {
+
+        //var lNBC_NI = "1.56", lNBC_LA = $("#H_lNBC_LA").val(), lVcellMin_NI = "1", lVcellMin_LA = "1.53", lvpcE_LA = "2.33", lvpcF_LA = "2.27",
+        //lvpcE_NI = "1.52", lvpcF_NI = "1.45", lFLT_EQ_SEC = "1";
+        var lVcellMin_NI = $("#H_lVcellMin_NI").val(),
+            lVcellMin_LA = $("#H_lVcellMin_LA").val(),
+            lvpcE_LA = $("#H_lvpcE_LA").val(), lvpcF_LA = $("#H_lvpcF_LA").val(),
+            lvpcE_NI = $("#H_lvpcE_NI").val(), lvpcF_NI = $("#H_lvpcF_NI").val(),
+            lNBC_NI = $("#H_lNBC_NI").val(), lNBC_LA = $("#H_lNBC_LA").val(),
+            lFLT_EQ_SEC = $("#H_lFLT_EQ_SEC").val();
+
+
+
+        var j_dcbus = $("#cbDCbus").val(), j_bat_type = $("#cbb_type").val(),
+            nbc = $("#nb_cells").val();
+
+        var vcellMin = (j_bat_type == "NI") ? lVcellMin_NI : lVcellMin_LA;
+        var cfVcellMax = (j_bat_type == "NI") ? lNBC_NI : lNBC_LA ;
+        var tVEQL = $("#veqlz").val(), tVFLOAT = $("#vfloat").val();
+        var Max_FLTEQ = lFLT_EQ_SEC * Math.max(tVEQL, tVFLOAT);
+        var VdcMax_Text = H_round(Math.max(nbc * cfVcellMax, Max_FLTEQ), 2);
+     //   debugger;
+        var tvdcMin_Text = vcellMin * nbc;
+
+        $("#c_vdcmax").val(VdcMax_Text);
+        $("#c_vdcmin").val(tvdcMin_Text);
+
+    }
+
+    function calc_irechag_std_ah() {
+
+        var sload = $("#cbKVA").val(), eff_rect = $("#H_eff_rect").val(),
+            j_pf = $("#cbpf").val(), j_batt_capa = $("#batt_capa").val(), j_batt_tc = $("#batt_tc").val(), j_vdcmin = $("#c_vdcmin").val();
+     //   debugger;
+        var std = (j_vdcmin > 0) ? H_round(1000 * sload * j_pf * 0.15 / j_vdcmin, 4) : 0; $("#c_irecharge_std").val(std);
+        var ah = (j_batt_capa > 0) ? H_round(j_batt_capa * 1.1 / j_batt_tc, 4) : 0; $("#c_irecharge_ah").val(ah);
+       // alert("STD=" + std + "   AH=" + ah);"H_idci" "H_eff_rect"
+
+  //      var idci = (j_vdcmin > 0) ? H_round(1000 * sload * j_pf / j_vdcmin * eff_rect, 4) : 0;
+        var idci = (j_vdcmin > 0) ? H_round(sload * 1000 * j_pf / j_vdcmin * eff_rect, 2) : 0;
+    //    alert("sload:" + sload + "  j_pf:" + j_pf + "   eff_rect:" + eff_rect + "   idci :" + idci);
+        $("#H_idci").val(idci);
+    }
+
+
+    function maj_vprim() {
+
+        var j_vinbps1 = "";
+        if ($("#btn_bps1").hasClass("btn-success") && ($("#cbVinbps1").val() != "Select"))
+            j_vinbps1 ="Vprim=" + $("#cbVinbps1").val();
+        $("#aff_vprim").val(j_vinbps1);
+    }
+
+
+
+    function calc_Flt_Eq() {
+
+        var nbc = $("#nb_cells").val(),
+            cr_vpcf = $("#vpcfloat").val(),
+            cr_eqlz = $("#vpceqlz").val();
+        var vflt = H_round(cr_vpcf * nbc, 2); $("#vfloat").val(vflt);
+        var veqlz = H_round(cr_eqlz * nbc, 2); $("#veqlz").val(veqlz);
+    }
+
+    function Maj_KW() {
+        var myKVA = $("#cbKVA").val();
+        if (myKVA != 'Select') {
+
+            var myPF = $("#cbpf").val();
+            sessionStorage.setItem("myKVA", myKVA);
+            var sload = myKVA * myPF;
+            $("#outkw").val(sload);
+        }
+        else $("#outkw").val('0');
+    }
+
+    function Maj_vpc() {
+        //var lNBC_NI = "1.56", lNBC_LA = $("#H_lNBC_LA").val(), lVcellMin_NI = "1", lVcellMin_LA = "1.53", lvpcE_LA = "2.33", lvpcF_LA = "2.27",
+        var lvpcE_NI = "1.52", lvpcF_NI = "1.45", lFLT_EQ_SEC = "1";
+        var lNBC_NI = $("#H_lNBC_NI").val(), lNBC_LA = $("#H_lNBC_LA").val(), lVcellMin_NI = $("#H_lVcellMin_NI").val(),
+            lVcellMin_LA = $("#H_lVcellMin_LA").val(), lvpcE_LA = $("#H_lvpcE_LA").val(), lvpcF_LA = $("#H_lvpcF_LA").val(),
+            old_lvpcE_NI = $("#H_lvpcE_NI").val(), old_lvpcF_NI = $("#H_lvpcF_NI").val(), lFLT_EQ_SEC = $("#H_lFLT_EQ_SEC").val();
+        var myBT = $("#cbb_type").val(), cr_vpcf = 0, cr_eqlz = 0;
+        var j_dcbus = $("#cbDCbus").val();
+        if (j_dcbus != "Select") {
+            //      alert('typ=' + myBT + "  dcbus=" + j_dcbus);
+            switch (myBT) {
+
+                case "NI":
+                    cr_vpcf = lvpcF_NI;
+                    cr_eqlz = lvpcE_NI;
+               //     alert("EQ...NI=" + lvpcE_NI );
+                    $("#vpcfloat").val(lvpcF_NI);
+                    $("#vpceqlz").val(lvpcE_NI);
+                    break;
+                case "VR":
+                case "LA":
+                    cr_vpcf = lvpcF_LA;
+                    cr_eqlz = lvpcE_LA;
+                    $("#vpcfloat").val(lvpcF_LA);
+                    $("#vpceqlz").val(lvpcE_LA);
+                    break;
+            }
+            //    alert('cr_vpcf =' + cr_vpcf + '     cr_eqlz  =' + cr_eqlz);
+            var nbc = H_round(nbCells(j_dcbus, myBT), 0);
+            $("#nb_cells").val(nbc);
+            var vflt = H_round(cr_vpcf * nbc, 2);
+            $("#vfloat").val(vflt);
+            var veqlz = H_round(cr_eqlz * nbc, 2);
+            $("#veqlz").val(veqlz);
+
+            //   alert('vflt =' + vflt + '     veqlz  =' + veqlz);
+        }
+        else alert("Invalid DCBUS Voltage.....");
+
+        //	  tVEQL.Text = Convert.ToString(Math.Round(Tools.Conv_Dbl(tvpcEq.Text) * Tools.Conv_Dbl(tCellN.Text),2));
+        //     tVFLOAT.Text = Convert.ToString(Math.Round(Tools.Conv_Dbl(tvpcF.Text) * Tools.Conv_Dbl(tCellN.Text), 2));
+        // alert('fin...........');
+
+    }
+
+    function sign(x) {
+        if (+x === x) { // check if a number was given
+            return (x === 0) ? x : (x > 0) ? 1 : -1;
+        }
+        return NaN;
+    }
+    function H_round(num, decimals) {
+        //not supported by IE all version
+        var t = Math.pow(10, decimals);
+        return (Math.round((num * t) + (decimals > 0 ? 1 : 0) * (sign(num) * (10 / Math.pow(100, decimals)))) / t).toFixed(decimals);
+    }
+    function H_round_FOX(num, decimals) {
+        //not supported by IE all version
+        var t = Math.pow(10, decimals);
+        return (Math.round((num * t) + (decimals > 0 ? 1 : 0) * (Math.sign(num) * (10 / Math.pow(100, decimals)))) / t).toFixed(decimals);
+    }
+
+    function Chk_Save() {
+        if ($("#BatName").val().length == 0 || InValid_Dims()) {
+            alert("No selected Battery OR Invalid Dimensions ......");
+            return false;
+        }
+        else Save_CAB_Dim();
+    }
+
+    function InValid_Dims() {
+
+        var myBL = $("#BatLen").val();
+        var myBH = $("#BatHei").val();
+        var myBWD = $("#BatWidth").val();
+        var ddBL = parseFloat(myBL).toFixed(2);
+        var ddBH = parseFloat(myBH).toFixed(2);
+        var ddBWD = parseFloat(myBWD).toFixed(2);
+        // debugger
+        if (parseFloat(myBL).toFixed(2) == "NaN" || parseFloat(myBH).toFixed(2) == "NaN" || parseFloat(myBWD).toFixed(2) == "NaN") return true;
+        else return false;
+        //alert("Dimensions are GOOOOOOOOOOOOOOODDD....." + parseFloat(myBL));
+        //debugger
+    }
+
+    function get_CBN() {
+
+        var cb1 = 1, cb2 = 0, cb3 = 0, cb4 = 0, cb5 = 0, cb6 = 0, cb7 = 0, cb8 = 0, cbi1 = 0;
+        var k1 = 0, k2 = 0, k3 = 0, k4 = 0, k5 = 0, k6 = 0, k7 = 0, k8 = 0, ki1 = 0;
+        k1 = $("#ka_cb1").val();
+        k2 = $("#ka_cb2").val();
+        k3 = $("#ka_cb3").val();
+        k4 = $("#ka_cb4").val();
+        k6 = $("#ka_cb6").val();
+        k8 = $("#ka_cb8").val();
+        k7 = $("#ka_cb7").val();
+        k9 = k3; //ka cbi1
+        k5 = Math.max(Math.max(k8, k7), k6);
+      
+        cb1 = '1';
+        cb2 = ($("#btncb2").hasClass("btn-success")) ? '1' : '0';
+        cb3 = ($("#btncb3").hasClass("btn-success")) ? '1' : '0';
+        cb4 = ($("#btncb4").hasClass("btn-success")) ? '1' : '0';
+        cb5 = ($("#btncb5").hasClass("btn-success")) ? '1' : '0';
+        cb6 = ($("#btncb6").hasClass("btn-success")) ? '1' : '0';
+        cb7 = ($("#btncb7").hasClass("btn-success")) ? '1' : '0';
+        cb8 = ($("#btncb8").hasClass("btn-success")) ? '1' : '0';
+        cbi1 = ($("#btncbi1").hasClass("btn-success")) ? '1' : '0';  //cb9
+
+        var cb000 = "cb0||" + cb1 + cb2 + cb3 + cb4 + cb5 + cb6 + cb7 + cb8 + cbi1 + "~~";
+
+        //good
+        return cb000+"cb1||" +k1 + "~~cb2||" + k2 + "~~cb3||" + k3 + "~~cb4||" + k4 + "~~cb5||" + k5 + "~~cb6||" + k6 + "~~cb7||" + k7 + "~~cb8||" + k8 + "~~cbi1||" + k9+";"    ;
+
+    }
+ 
+    //function get_CBN() {
+
+    //    var cb1 = 0, cb2 = -1, cb3 = -1, cb4 = -1, cb5 = -1, cb6 = -1, cb7 = -1, cb8 = -1, cb9 = -1;
+
+    //    cb1 = $("#ka_cb1").val();
+    //    cb2 = ($("#chkcb2").is(":checked")) ? $("#ka_cb2").val() : "-1";
+    //    cb4 = ($("#chkcb4").is(":checked")) ? $("#ka_cb4").val() : "-1";
+    //    cb5 = ($("#chkcb5").is(":checked")) ? $("#ka_cb5").val() : "-1";
+    //    cb6 = ($("#chkcb6").is(":checked")) ? $("#ka_cb6").val() : "-1";
+    //    cb3 = ($("#chkcb3").is(":checked")) ? $("#ka_cb3").val() : "-1";
+    //    cb7 = ($("#chkcb7").is(":checked")) ? $("#ka_cb7").val() : "-1";
+    //    cb8 = ($("#chkcb8").is(":checked")) ? $("#ka_cb8").val() : "-1";
+    //    cb9 = ($("#chkcb9").is(":checked")) ? $("#ka_cb9").val() : "-1";
+    //    return "cb1||" + cb1 + "~~cb2||" + cb2 + "~~cb3||" + cb3 + "~~cb4||" + cb4 + "~~cb5||" + cb5 + "~~cb6||" + cb6 + "~~cb7||" + cb7 + "~~cb8||" + cb8 + "~~cb9||" + cb9 + ";";
+
+    //}
+    Convert_TONCH = function () {
+
+        var lendd = H_round($("#BatLenMM").val() / 25.4, 2);
+        var heidd = H_round($("#BatHeiMM").val() / 25.4, 2);
+        var widdd = H_round($("#BatWidthMM").val() / 25.4, 2);
+
+        $("#BatLen").val(lendd);
+        $("#BatHei").val(heidd);
+        $("#BatWidth").val(widdd);
+
+
+
+    }
+
+
+
+    Save_CAB_Dim = function () {
+
+        var myBN = $("#BatName").val();
+        var myBC = $("#Capa").val();
+        var myBL = $("#BatLen").val();
+        var myBH = $("#BatHei").val();
+        var myBW = $("#BatWei").val();
+        var myBWD = $("#BatWidth").val();
+
+        $.getJSON("../Sizing/Save_Cab_Dim", { c_BN: myBN, c_BH: myBH, c_BL: myBL, c_BWD: myBWD });
+    }
+
+
+    function get_vdcmax_SNB() {
+
+        var flt = $("#vfloat").val();
+        var vmax = H_round((2 / Math.PI) * (flt * 1.27) * Math.SQRT2,3);//H_round($("#vfloat").val() / 1.064, 2);
+        return vmax;
+    }
+
+    function get_vdcmin_SNB() {
+
+        var vmin = H_round($("#vfloat").val() / 0.8, 2);
+        return vmin;
+    }
+
+
+
+    function get_vdcmax(vnom) {
+
+        var C_VDCMAX = [12, "14.4", 24, "28.8", 36, "43.2", 48, "57.6", 72, "86.4", 125, "144", 144, "173", 250, "288", 380, "456", 480, "576", 600, "630"];
+        var ndx = -1; //  C_VDCMAX.findIndex(myFunction);
+
+        for (i = 0; i < C_VDCMAX.length; i += 2) {
+            if (C_VDCMAX[i] >= vnom) {
+                ndx = i; i = C_VDCMAX.length;
+            }
+        }
+        if (ndx > -1) return C_VDCMAX[ndx + 1];
+        else return 0;
+    }
+    function get_vdcmin(vnom) {
+
+        var C_VDCMIN = [12, "9", 24, "18", 36, "27", 48, "36", 72, "54", 125, "90", 144, "108", 250, "180", 380, "285", 480, "360", 600, "393"];
+        var ndx = -1; //  C_VDCMAX.findIndex(myFunction);
+
+        for (i = 0; i < C_VDCMIN.length; i += 2) {
+            if (C_VDCMIN[i] >= vnom) {
+                ndx = i; i = C_VDCMIN.length;
+            }
+        }
+        if (ndx > -1) return C_VDCMIN[ndx + 1];
+        else return 0;
+    }
+
+    function nbCells(vnom, bat_type) {
+        //alert("vdc=" + vnom + "  type=" + bat_type);
+        //var C_VDCMAX = [12, "14.4", 24, "28.8", 36, "43.2", 48, "57.6", 72, "86.4", 125, "144", 144, "173", 250, "288", 380, "456", 480, "576", 600, "630"];
+        //var ndx = -1; //  C_VDCMAX.findIndex(myFunction);
+
+        //for (i = 0; i < C_VDCMAX.length; i += 2) {
+        //    if (C_VDCMAX[i] >= vnom) {
+        //        ndx = i; i = C_VDCMAX.length;
+        //    }
+        //}
+        var lNBC_NI = $("#H_lNBC_NI").val(), lNBC_LA = $("#H_lNBC_LA").val();
+        var res = 0;
+        var vdcmax = get_vdcmax(vnom);
+        if (vdcmax > 0) {
+            // var vdcmax = C_VDCMAX[ndx + 1];
+            // alert("newvdc= " + newvdcmax + "  oldvdc= " + vdcmax);
+            switch (bat_type) {
+                case "LA":
+                case "VR":
+                    res = vdcmax / lNBC_LA;
+                    break;
+                case "NI":
+                    res = vdcmax / lNBC_NI ;
+                    break;
+            }
+
+        }
+        //  alert("vdcmax=" + vdcmax +"  ndx="+ndx);
+        return res;
+        function myFunction(value, index, array) {
+            return value >= vnom;
+        }
+    }
+
+    function voltin(myphs) {
+        var itemsvdc = "";
+        if (myphs == '1') {
+            itemsvdc = "<option value='Select'>Select</option>";
+            itemsvdc += "<option value='120'>120 V</option>";
+            itemsvdc += "<option value='240'>240 V</option>";
+        }
+        if (myphs == '3') {
+            itemsvdc = "<option value='Select'>Select</option>";
+            itemsvdc += "<option value='208'>208 V</option>";
+            itemsvdc += "<option value='480'>480 V</option>";
+            itemsvdc += "<option value='575'>575 V</option>";
+            itemsvdc += "<option value='600'>600 V</option>";
+
+        }
+        if (myphs == '2') {
+            itemsvdc = "<option value='Select'>Select</option>";
+            itemsvdc += "<option value='240'>240 V</option>";
+            itemsvdc += "<option value='480'>480 V</option>";
+            itemsvdc += "<option value='575'>575 V</option>";
+            itemsvdc += "<option value='600'>600 V</option>";
+
+        }
+        return itemsvdc;
+    }
+
+    function hideschemas(yn)
+    {
+        if (yn == 1) {
+            $("#bps1_bps2_batt").show();
+            $("#cb1_ch_cb2").show();
+            $("#btnrefresh1").show();
+            $("#btnrefresh2").show();
+            $("#btnquote1").show();
+            $("#btnquote2").show();
+            $("#btnvcs").show();
+        
+        }
+        else {
+            $("#bps1_bps2_batt").hide();
+            $("#cb1_ch_cb2").hide();
+            $("#btnrefresh1").hide();
+            $("#btnrefresh2").hide();
+            $("#btnquote1").hide();
+            $("#btnquote2").hide();
+            $("#btnvcs").hide();
+        }
+
+    }
+
+
+
+    function savUPSmdl(j_phsout, j_kva,j_vout, j_dcbus,j_phsin, j_vin) {
+
+        //alert("vin=" + j_vin);
+        sessionStorage.setItem('o_phsout', j_phsout);
+        sessionStorage.setItem('o_kva', j_kva);
+        sessionStorage.setItem('o_vout', j_vout);
+        sessionStorage.setItem('o_dcbus', j_dcbus);
+        sessionStorage.setItem('o_phsin', j_phsin);
+        sessionStorage.setItem('o_vin', j_vin);
+
+        //alert("new phsout= " + j_phsout + "          phsout= " + sessionStorage.getItem('o_phsout'));
+        //alert("new kva= " + j_kva + "          kva= " + sessionStorage.getItem('o_kva'));
+        //alert("new vout= " + j_vout + "          vout= " + sessionStorage.getItem('o_vout'));
+        //alert("new dcbus= " + j_dcbus + "         dcbus= " + sessionStorage.getItem('o_dcbus'));
+        //alert("new phsin= " + j_phsin + "          phsin= " + sessionStorage.getItem('o_phsin'));
+        //alert("new vin= " + j_vin + "          vin= " + sessionStorage.getItem('o_vin'));
+    }
+
+
+    function fill_para(phsout, vout, kva, dcbus, phsin, vin) {
+
+        //    var vdcmin = 0;
+        $("#cbPHSout").val(phsout);
+        $("#cbPHSout").change();
+
+        $("#cbVout").val(vout);
+        $("#cbKVA").val(kva);
+        $("#cbDCbus").val(dcbus);
+        $("#cbPHSin").val(phsin);
+        $("#cbPHSin").change();
+        $("#cbVin").val(vin);
+
+
+    };
+
+
+    function ref_srvr() {
+
+        var bps = 1, j_ups = "P850U", j_cbnkaac = get_CBN(), j_op = "C";//Cpts
+            var j_phsout = $("#cbPHSout").val(), j_vout = $("#cbVout").val(), j_kva = $("#cbKVA").val(), j_dcbus = $("#cbDCbus").val();
+            var j_phsin = $("#cbPHSin").val(), j_vin = $("#cbVin").val(), j_phsbps = $("#cbPHSbps").val(), j_vinbps = $("#cbVinbps").val();
+            var j_pf = $("#cbpf").val(), j_freq = $("#cbfreq").val(), j_batt_capa = $("#batt_capa").val(), j_batt_tc = $("#batt_tc").val();
+            var j_nbcell = $("#nb_cells").val(), j_bat_type = $("#cbb_type").val(), j_flt = $("#vfloat").val(), j_eqlz = $("#veqlz").val(),
+                j_idci = $("#H_idci").val(), j_std = $("#c_irecharge_std").val(), j_ah = $("#c_irecharge_ah").val(),
+                j_vdcmin = $("#c_vdcmin").val(), j_vdcmax = $("#c_vdcmax").val();
+            var valid_err = "";
+         //  var cbnkaac = get_CBN();
+            //alert("CBN= " + cbnkaac);
+
+
+            //  alert("err= " + valid_err);
+            if (valid_err == "") {
+
+                j_ups = "P850U" + "-" + j_phsout + "-" + j_kva + "-" + j_vout + "-" + j_dcbus;
+                //if ($("#chkbypass").is(":checked")) j_ups += "-" + j_phsbps + "-" + j_vinbps;
+                //else j_phsbps = 0;
+
+                $.ajaxSetup({
+                    async: false
+                });
+
+                var urlo = $("#upsurl").val();
+                //    alert("urlo = " + urlo );
+                $.getJSON(urlo, {
+
+                    op: j_op, ups: j_ups, PHSout: j_phsout, OP_KVA: j_kva, ACoutputV: j_vout, DCBus: j_dcbus, PHSin: j_phsin, ACinputV: j_vin, PHSbps: j_phsbps,
+                    BpsinputV: j_vinbps, Cbatt: j_batt_capa, timeChrg: j_batt_tc, PF: j_pf, FLT: j_flt, EQLZ: j_eqlz, vdcmin: j_vdcmin, vdcmax: j_vdcmax, frq: j_freq,
+                    cbnkaac: j_cbnkaac, idci: j_idci, ah: j_ah, std: j_std
+                },
+                    function (Frmls_list, status, xhr) {
+                        if (status == "success") {
+                            $.each(Frmls_list, function (index, itemData) {
+                                {
+                                    // debugger;
+                          
+                                    distrib_VCS(itemData.cptnm,itemData.frmlNm,itemData.frmlval);
+                                    if (itemData.f_msg != "") alert("ERROR: " + itemData.f_msg);
+                                    
+                                }
+                            });
+                        }
+                        else {
+                            alert(" Error AJAX.....Contact Admin....");
+                        }
+                    });
+
+                @*var sppar = '@Url.Action("quoting_ups", "ALLUPS")';
+                window.location.href = sppar;*@
+
+            }
+            else alert(valid_err);
+
+
+
+    }
+
+
+    function get_vcsGOOD(j_op) {
+
+        var bps = 1, j_ups = "P850U", j_cbnkaac = get_CBN();
+       // alert(j_cbnkaac);
+        //j_op = "V";//Vcs
+        var j_phsbps1 = 0, j_vinbps1 = 0, j_phsbps2 = 0, j_vinbps2 = 0;
+        var j_phsout = $("#cbPHSout").val(), j_vout = $("#cbVout").val(), j_kva = $("#cbKVA").val(), j_dcbus = $("#cbDCbus").val();
+        var j_phsin = $("#cbPHSin").val(), j_vin = $("#cbVin").val();
+        var j_pf = $("#cbpf").val(), j_freq = $("#cbfreq").val(), j_batt_capa = $("#batt_capa").val(), j_batt_tc = $("#batt_tc").val();
+        var j_nbcell = $("#nb_cells").val(), j_bat_type = $("#cbb_type").val(), j_flt = $("#vfloat").val(), j_eqlz = $("#veqlz").val(),
+            j_idci = $("#H_idci").val(), j_std = $("#c_irecharge_std").val(), j_ah = $("#c_irecharge_ah").val(),
+            j_vdcmin = $("#c_vdcmin").val(), j_vdcmax = $("#c_vdcmax").val();
+        var valid_err = "";
+
+
+        if ($("#btn_bps1").hasClass("btn-success")) {
+            j_phsbps1 = $("#cbPHSbps1").val();
+            j_vinbps1 = $("#cbVinbps1").val();
+        }
+        if ($("#btn_bps2").hasClass("btn-success")) {
+            j_phsbps2= $("#cbPHSbps2").val();
+            j_vinbps1 = $("#cbVinbps2").val();
+        }
+       // t = maj_vprim();
+        //  var cbnkaac = get_CBN();
+        //alert("CBN= " + cbnkaac);
+
+        debugger;
+        //  alert("err= " + valid_err);
+        if (valid_err == "") {
+
+            j_ups = "P850U" + "-" + j_phsout + "-" + j_kva + "-" + j_vout + "-" + j_dcbus;
+            $.ajaxSetup({
+                async: false
+            });
+
+            var urlo = $("#upsurl").val();
+            //    alert("urlo = " + urlo );
+            $.getJSON(urlo, {
+
+                op: j_op, ups: j_ups, PHSout: j_phsout, OP_KVA: j_kva, ACoutputV: j_vout, DCBus: j_dcbus, PHSin: j_phsin, ACinputV: j_vin, PHSbps1: j_phsbps1,
+                BpsinputV1: j_vinbps1, PHSbps2: j_phsbps2,BpsinputV2: j_vinbps2, Cbatt: j_batt_capa, timeChrg: j_batt_tc, PF: j_pf, FLT: j_flt, EQLZ: j_eqlz, vdcmin: j_vdcmin, vdcmax: j_vdcmax, frq: j_freq,
+                cbnkaac: j_cbnkaac, idci: j_idci, ah: j_ah, std: j_std
+            },
+                function (Frmls_list, status, xhr) {
+                    debugger;
+                    if (status == "success") {
+
+                        if (j_op == "V") {
+
+                            $("#vcs_tbl tr>td").remove();
+                            var fin = "";
+                            var items_data = '';
+                            var config_ok = "Y";
+                            $.each(Frmls_list, function (index, itemData) {
+                                {
+                                    debugger;
+                                    items_data += '<tr>';
+                                    items_data += itemData.frmlNm;
+                                    items_data += itemData.frmlval;
+                                    items_data += itemData.f_msg;
+                                    items_data += '</tr>';
+
+
+                                }
+                            });
+                            $('#vcs_tbl').append(items_data);
+                            $("#vcs_tbl").show();
+                        }
+                        else {
+                            $.each(Frmls_list, function (index, itemData) {
+                                var t = distrib_VCS(itemData.cptnm, itemData.frmlNm, itemData.frmlval);
+                            });
+                        }
+                    }
+                    else {
+                        alert(" Error AJAX.....Contact Admin....");
+                    }
+
+                });
+
+            @*var sppar = '@Url.Action("quoting_ups", "ALLUPS")';
+            window.location.href = sppar;*@
+
+        }
+        else alert(valid_err);
+
+
+
+    }
+
+
+//---
+
+    function get_vcs(j_op) {
+
+        var bps = 1, j_ups = "P850U", j_cbnkaac = get_CBN();
+        // alert(j_cbnkaac);
+        //j_op = "V";//Vcs
+        var j_phsbps1 = 0, j_vinbps1 = 0, j_phsbps2 = 0, j_vinbps2 = 0;
+        var j_phsout = $("#cbPHSout").val(), j_vout = $("#cbVout").val(), j_kva = $("#cbKVA").val(), j_dcbus = $("#cbDCbus").val();
+        var j_phsin = $("#cbPHSin").val(), j_vin = $("#cbVin").val();
+        var j_pf = $("#cbpf").val(), j_freq = $("#cbfreq").val(), j_batt_capa = $("#batt_capa").val(), j_batt_tc = $("#batt_tc").val();
+        var j_nbcell = $("#nb_cells").val(), j_bat_type = $("#cbb_type").val(), j_flt = $("#vfloat").val(), j_eqlz = $("#veqlz").val(),
+            j_idci = $("#H_idci").val(), j_std = $("#c_irecharge_std").val(), j_ah = $("#c_irecharge_ah").val(),
+            j_vdcmin = $("#c_vdcmin").val(), j_vdcmax = $("#c_vdcmax").val();
+        var valid_err = "";
+
+
+        if ($("#btn_bps1").hasClass("btn-success")) {
+            j_phsbps1 = $("#cbPHSbps1").val();
+            j_vinbps1 = $("#cbVinbps1").val();
+        }
+        if ($("#btn_bps2").hasClass("btn-success")) {
+            j_phsbps2 = $("#cbPHSbps2").val();
+            j_vinbps2 = $("#cbVinbps2").val();
+        }
+        // t = maj_vprim();
+        //  var cbnkaac = get_CBN();
+        //alert("CBN= " + cbnkaac);
+
+        debugger;
+        //  alert("err= " + valid_err);
+        if (valid_err == "") {
+
+            j_ups = "P850U" + "-" + j_phsout + "-" + j_kva + "-" + j_vout + "-" + j_dcbus;
+            $.ajaxSetup({
+                async: false,
+
+                beforeSend: function () {
+                    // Show image container
+                    $("#loader").show();
+                },
+                complete: function (data) {
+                    // Hide image container
+                    $("#loader").hide();
+                }
+
+  
+            });
+            var t = init_scnr();
+            var urlo = $("#upsurl").val();
+            //    alert("urlo = " + urlo );
+            $.getJSON(urlo, {
+
+                op: j_op, ups: j_ups, PHSout: j_phsout, OP_KVA: j_kva, ACoutputV: j_vout, DCBus: j_dcbus, PHSin: j_phsin, ACinputV: j_vin, PHSbps1: j_phsbps1,
+                BpsinputV1: j_vinbps1, PHSbps2: j_phsbps2, BpsinputV2: j_vinbps2, Cbatt: j_batt_capa, timeChrg: j_batt_tc, PF: j_pf, FLT: j_flt, EQLZ: j_eqlz, vdcmin: j_vdcmin, vdcmax: j_vdcmax, frq: j_freq,
+                cbnkaac: j_cbnkaac, idci: j_idci, ah: j_ah, std: j_std
+            },
+                function (Frmls_list, status, xhr) {
+                    debugger;
+                    if (status == "success") {
+                      
+
+                            $("#vcs_tbl tr>td").remove();
+                            var fin = "";
+                            var items_data = '';
+                            var config_ok = "Y",st="";
+                            $.each(Frmls_list, function (index, itemData) {
+                                {
+                                    if (itemData.cptnm == "99999") st = itemData.frmlNm;
+                                    else st = itemData.cptnm + "_" + itemData.frmlNm;
+                                        items_data += '<tr>';
+                                        items_data += '<td>' + st+ '</td>';
+                                        items_data += '<td>' + itemData.frmlval + '</td>';
+                                        items_data += '<td>' + itemData.f_msg + '</td>';
+                                        //items_data += '<td>' + "MMMMMMMMMMMMMMMMMMMMMMM"+ '</td>';
+                                        items_data += '</tr>';
+                                 //   }
+                                    var t = distrib_VCS(itemData.cptnm, itemData.frmlNm, itemData.frmlval);
+
+                                }
+                            });
+                            $('#vcs_tbl').append(items_data);
+                            $("#vcs_tbl").show();
+
+
+                            //$.each(Frmls_list, function (index, itemData) {
+                            //    var t = distrib_VCS(itemData.cptnm, itemData.frmlNm, itemData.frmlval);
+                            //});
+
+                         
+                     
+                    }
+                    else {
+                        alert(" Error AJAX.....Contact Admin....");
+                    }
+
+                });
+
+            @*var sppar = '@Url.Action("quoting_ups", "ALLUPS")';
+            window.location.href = sppar;*@
+
+        }
+        else alert(valid_err);
+
+
+
+    }
+
+
+
+
+    //            distrib_VCS(itemData.cptnm,itemData.frmlNm,itemData.frmlval);
+    function distrib_VCS(cptnm,frmlNm, frmlval) {
+
+    //    alert("CPT= " + cptnm, +"  frml= " + frmlNm + "   val=" + frmlval);
+        switch (cptnm) {
+
+            case "CB1":
+                if (frmlNm == "v") $("#aff_vcb1").val(frmlval);
+                if (frmlNm == "i") $("#aff_icb1").val(frmlval);
+                if (frmlNm == "k") $("#aff_cb1ka").val(frmlval);
+                break;
+            case "CB2":
+                if (frmlNm == "v") $("#aff_vcb2").val(frmlval);
+                if (frmlNm == "i") $("#aff_icb2").val(frmlval);
+                if (frmlNm == "k") $("#aff_cb2kadc").val(frmlval);
+                break;
+            case "CBi1":
+                if (frmlNm == "v") $("#aff_vcbi1").val(frmlval);
+                if (frmlNm == "i") $("#aff_icbi1").val(frmlval);
+                if (frmlNm == "k") $("#aff_cbi1kadc").val(frmlval);
+                break;
+            case "CB3":
+                if (frmlNm == "v") $("#aff_vcb3").val(frmlval);
+                if (frmlNm == "i") $("#aff_icb3").val(frmlval);
+                if (frmlNm == "k") $("#aff_cb3kadc").val(frmlval);
+                break;
+            case "CB4":
+                if (frmlNm == "v") $("#aff_vcb4").val(frmlval);
+                if (frmlNm == "i") $("#aff_icb4").val(frmlval);
+                if (frmlNm == "k") $("#aff_cb4ka").val(frmlval);
+                break;
+            case "CB5":
+                if (frmlNm == "v") $("#aff_vcb5").val(frmlval);
+                if (frmlNm == "i") $("#aff_icb5").val(frmlval);
+                if (frmlNm == "k") $("#aff_cb5ka").val(frmlval);
+                break;
+            case "CB6":
+                if (frmlNm == "v") $("#aff_vcb6").val(frmlval);
+                if (frmlNm == "i") $("#aff_icb6").val(frmlval);
+                if (frmlNm == "k") $("#aff_cb6ka").val(frmlval);
+                break;
+            case "CB7":
+                if (frmlNm == "v") $("#aff_vcb7").val(frmlval);
+                if (frmlNm == "i") $("#aff_icb7").val(frmlval);
+                if (frmlNm == "k") $("#aff_cb7ka").val(frmlval);
+                break;
+            case "CB8":
+                if (frmlNm == "v") $("#aff_vcb8").val(frmlval);
+                if (frmlNm == "i") $("#aff_icb8").val(frmlval);
+                if (frmlNm == "k") $("#aff_cb8ka").val(frmlval);
+                break;
+            case "99999":
+                switch (frmlNm) {
+                    case "C_IDCC":
+                        $("#aff_idcc1").val(frmlval,2);
+                        break;
+                    case "C_ICB01":
+                        $("#aff_icb01").val(frmlval);
+                        break;
+                    case "C_ICB04":
+                        $("#aff_icb04").val(frmlval);
+                        break;
+                    case "C_ICB05":
+                        $("#aff_icb05").val(frmlval);
+                        break;
+                    case "C_ICB08":
+                        $("#aff_icb08").val(frmlval);
+                        break;
+                    //case "C_ICB0":
+                    //    $("#aff_ICB0").val(frmlval);
+                    //    break;
+                    //case "C_ICB0":
+                    //    $("#aff_ICB0").val(frmlval);
+                    //    break;
+                }
+                break;
+            default:
+                alert("ERROR accessing data...contact Admin....cod=" + cptnm);
+        }
+
+    }
+
+
+    function init_scnr() {
+
+        $("#aff_vcb1").val("");
+        $("#aff_icb1").val("");
+        $("#aff_cb1ka").val("");
+        $("#aff_vcb2").val("");
+        $("#aff_icb2").val("");
+        $("#aff_cb2kadc").val("");
+        $("#aff_vcbi1").val("");
+        $("#aff_icbi1").val("");
+        $("#aff_cbi1kadc").val("");
+        $("#aff_vcb3").val("");
+        $("#aff_icb3").val("");
+        $("#aff_cb3kadc").val("");
+        $("#aff_vcb4").val("");
+        $("#aff_icb4").val("");
+        $("#aff_cb4ka").val("");
+        $("#aff_vcb5").val("");
+        $("#aff_icb5").val("");
+        $("#aff_cb5ka").val("");
+        $("#aff_vcb6").val("");
+        $("#aff_icb6").val("");
+        $("#aff_cb6ka").val("");
+        $("#aff_vcb7").val("");
+        $("#aff_icb7").val("");
+        $("#aff_cb7ka").val("");
+        $("#aff_vcb8").val("");
+        $("#aff_icb8").val("");
+        $("#aff_cb8ka").val("");
+
+        $("#aff_idcc1").val("");
+
+        $("#aff_icb01").val("");
+
+        $("#aff_icb04").val("");
+
+        $("#aff_icb05").val("");
+
+        $("#aff_icb08").val("");
+
+
+    }
+
+</script>
+

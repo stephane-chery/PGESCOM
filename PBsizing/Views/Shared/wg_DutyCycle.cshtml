@@ -1,0 +1,85 @@
+﻿@model IEnumerable<PBsizing.Models.Battery_Values>
+
+<style>
+.right {
+  text-align: right;
+  
+}
+
+.left {
+  text-align: left;
+ /* margin-left: 1em;*/
+}
+    table td {
+        padding :2px;
+     
+    }
+
+     .webgrid-table
+                {
+                    font-family: "Trebuchet MS" , Arial, Helvetica, sans-serif;
+                    font-size: 1.2em;
+                    width: 60%;
+                    display: table;
+                    border-collapse: separate;
+                    border: solid 1px #98BF21;
+                    background-color: white;
+                }
+                .webgrid-table td, th
+                {
+                    border: 1px solid #98BF21;
+                    padding: 3px 2px 2px;
+                
+                }
+                .webgrid-header
+                {
+                    background-color: #A7C942;
+                    color: #FFFFFF;
+                    padding-bottom: 4px;
+                    padding-top: 5px;
+                    text-align: left;
+                }
+                .webgrid-footer
+                {
+                }
+                .webgrid-row-style
+                {
+                    padding: 3px 2px 2px;
+                }
+                .webgrid-alternating-row
+                {
+                    background-color: #EAF2D3;
+                    padding: 3px 2px 2px;
+                }
+
+</style>
+<table style="border: 1px solid black; background-color:aqua  ">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Load_amp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Period)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Temp)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Load_amp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Period)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Temp)
+        </td>
+    </tr>
+}
+
+</table>
+
+

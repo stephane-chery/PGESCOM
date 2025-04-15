@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+
+<INIT>
+
+<ENV>PROD</ENV>
+
+<DB_TU>
+  <SQLDB>VOSTRO_FLEX2344\LOC_PSM_DB2K12</SQLDB>
+  <WQfiles>C:\dataprimax\toto_Qtest</WQfiles>
+  <PWD>dara</PWD>
+  <USR>sa</USR>
+</DB_TU>
+<DB_PROD>
+  <SQLDB>ERPSERVER\PSM_DB2K8K</SQLDB>
+  <WQfiles>H:\Sales\PSM_Quotes</WQfiles>
+  <!--PWD>pgc_hada25</PWD-->
+  <PWD>darasam</PWD>
+  <USR>sa</USR>
+</DB_PROD>
+
+</INIT>

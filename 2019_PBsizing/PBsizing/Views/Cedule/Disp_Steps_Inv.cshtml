@@ -1,0 +1,235 @@
+﻿@model IEnumerable<PBsizing.Models.V_cedulotrs_jobs>
+
+@{
+    ViewBag.Title = "disp steps_Inv";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+@{
+    //var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+
+    //wide screen
+    //var Prjgrid = new WebGrid(source: Model, canPage: true, rowsPerPage: 19);
+    //Prjgrid.Pager(WebGridPagerModes.All);
+
+    //laptop
+    var Prjgrid = new WebGrid(source: Model, canPage: true, rowsPerPage: 19);
+    Prjgrid.Pager(WebGridPagerModes.All);
+
+}
+
+
+<style type="text/css">
+
+    table.gridtable {
+        font-family: verdana,arial,sans-serif;
+        font-size: 11px;
+        /*    color: #333333;*/
+        border-width: 1px;
+        border-color: #666666;
+        border-collapse: collapse;
+    }
+
+        table.gridtable th {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: coral; /*#A7C942;*/
+            white-space: nowrap;
+            text-align: center;
+            color: white;
+        }
+        /*.Table td:h {
+            background-color: red;*/ /*#A7C942;*/
+
+        /*}*/
+        /*   .Table .selected {
+        background-color: gold;
+    }*/
+
+        table.gridtable td {
+            border-width: 1px;
+            padding: 4px;
+            border-style: solid;
+            border-color: #666666;
+            /*       background-color: #ffffff;*/ /* pour permettre check-select row*/
+            white-space: nowrap;
+            text-align: center;
+            color: black;
+        }
+    /*        table.gridtable .selected {
+            background-color: gold;
+        }*/
+
+    /*.Grid th a, .Grid th a:visited {*/
+    /*  color: #333;*/
+    /*color: red;
+    }*/
+
+    /*       .Grid td a, .Grid td a:hover {
+            color: red;
+            font-size: 16px;
+        }*/
+
+    /*    .Grid .row:hover td {
+        background-color: green;
+        cursor: pointer;
+    }*/
+
+    /*img {
+        height: 15px;
+        width: 15px;
+        cursor: pointer;
+    }*/
+
+
+    /*  wide-screen*/
+    .Table {
+        width: 1900px;
+        height: 780px;
+        overflow-y: scroll;
+        overflow-x: scroll;
+    }
+
+    /* laptop*/
+    @@media only screen and (max-width: 1600px) {
+
+        .Table {
+            width: 1580px;
+            height: 605px;
+            overflow-y: scroll;
+            overflow-x: scroll;
+        }
+    }
+
+    .Table img {
+        /*height: 80px;*/
+        width: 100px;
+        /*cursor: pointer;
+            display: block;*/
+        /*  width: 100%;*/
+        height: 100%;
+        object-fit: contain;
+    }
+</style>
+<!-- Modal -->
+<div class="modal fade" id="edit_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" modal-dialog modal-xl role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Edit Job</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-fixed" style="border: 1px ;" id="edit_tbl">
+                    <tr>
+                        <th style=" width: 69px;border: 1px solid black;background-color: #fff34d;">   Name    </th>
+                        <th style=" width: 69px;border: 1px solid black;background-color: #fff34d;">Value</th>
+                        <th style=" width: 300px;border: 1px solid black;background-color: #fff34d;">msg</th>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+            </div>
+        </div>
+    </div>
+</div>
+<div id="loader" style="margin: 0px; padding: 0px; position: fixed; right: 0px; top: 0px; width: 100%; height: 100%; background-color: rgb(102, 102, 102); z-index: 30001; opacity: 0.4;display: none;display: none; ">
+    <p style="position: absolute; color: White; top: 50%; left: 45%;">
+        <img src="~/Images/reload3.gif">
+    </p>
+</div>
+<br />
+@*<div id="GridCentent" style="margin-left:5px; padding:5px; ">*@
+<div class="Table" style="margin-left:5px; padding:5px; " id="content">
+    @Prjgrid.GetHtml(
+        tableStyle: "gridtable",
+    headerStyle: "webgrid-header",
+    footerStyle: "webgrid-footer",
+    alternatingRowStyle: "webgrid-alternating-row",
+    selectedRowStyle: "select",
+        mode: WebGridPagerModes.All, //paging to grid
+    firstText: "<< First",
+    previousText: "< Prev",
+    nextText: "Next >",
+    lastText: "Last >>",
+    rowStyle: "gridrow",
+    columns: Prjgrid.Columns(
+          //   Prjgrid.Column(columnName: "Edit Job", header: null, format: (item) => Html.ActionLink("E d i t", "Edit", new { _ID = item.trslid }), style: "column-action"),
+                   Prjgrid.Column(header: "Select", format:@<text><input type="checkbox" onclick="chkbxBC(this);" /></text>),
+Prjgrid.Column(columnName: "Edit Job", header: null, format: (item) => Html.ActionLink(" ", "Edit", new { _ID = item.trslid }, new { @style = "background:url('../Images/pen3.png') no-repeat center right; display:block; height: 20px; width: 40px" }), canSort: false),
+//     Prjgrid.Column(columnName: "Modify", header: null, format: (item) => Html.ActionLink("Edit", "Edit", new { @_ID = item.trslid }, new { @class = "popupLink" })),
+//  Prjgrid.Column(columnName: "Modify", header: null, format: @<text> <a href="" id="edit_job" onclick="edit_job(@item.trslid);">Edit Job</a> </text>),
+Prjgrid.Column(columnName: "customer", header: "Customer", canSort: false),
+Prjgrid.Column(columnName: "pgc_prj", header: "Project #", canSort: false),
+Prjgrid.Column(columnName: "StockCode", header: "System", canSort: false),
+Prjgrid.Column(columnName: "JobDD", header: "Delivery Date", format: @<text> @item.JobDD.ToString().Substring(0, 10)</text>, canSort: false),
+Prjgrid.Column(columnName: "pato_inv", header: "Facturation", format: @<text><img src="@Url.Content(item.pato_inv)" /></text>, canSort: false)
+
+))
+    @*@if (Prjgrid.HasSelection)
+        {
+            <b>Idddddddddddddddddddddd</b>
+        }*@
+    @*<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#edit_modal" id="btnvcs">display calculations</button>
+        <button type="button" class="btn btn-primary " id="btntst">tssst</button>*@
+
+</div>
+
+
+@*<button id="saveall">Save</button>*@
+
+
+
+@*<script src="~/Scripts/jquery-1.7.1.js"></script>*@
+<script type="text/javascript">
+
+    function chkbxBC(stat) {
+        if (stat.checked) {
+            stat.parentNode.parentNode.style.backgroundColor = "cyan";
+            stat.parentNode.parentNode.style.color = "red";
+        }
+        else {
+            stat.parentNode.parentNode.style.backgroundColor = "";
+            stat.parentNode.parentNode.style.color = "";
+        }
+    }
+
+
+    //$(document).ready(function () {
+    //    $("#content tbody tr").each(function (i, row) {
+    //        var $actualRow = $(row);
+    //        alert("i=" + i + "  row=" + row.childElementCount);
+    //        //        debugger;
+    //        if ($actualRow.find('input[type=checkbox]').prop('checked') == true) {
+    //            alert("yes");
+    //            $actualRow.css("background-color", "RED");
+    //        }
+    //        else {
+    //            //   alert("no");
+    //            $actualRow.css("background-color", "green");
+    //        }
+    //    });
+    //});
+
+</script>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,427 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    @{
+        ViewBag.Title = "P850U";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+        <link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+        <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+        <script src="~/Scripts/moment.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+        <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script type="text/javascript" src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+
+
+
+
+    <link href="~/Content/myCSS/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="~/Content/myCSS/font-awesome.min.css" rel="stylesheet" media="all">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+    <link href="~/Content/myCSS/select2.min.css" rel="stylesheet" media="all">
+    <link href="~/Content/myCSS/daterangepicker.css" rel="stylesheet" media="all">
+
+    <link href="~/Content/myCSS/main.css" rel="stylesheet" media="all">
+
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+
+
+
+
+    <style>
+        hr.light {
+            width: 70%;
+            margin: 0 auto;
+            border: 0px none white;
+            border-top: 1px solid lightgrey;
+        }
+
+        a.classname {
+            background: url(../Images/category_3145.png) no-repeat top left;
+            display: block;
+            width: 150px;
+            height: 150px;
+            text-indent: -9999px; /* hides the link text */
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
+        <div class="wrapper wrapper--w790">
+            <div class="card card-5">
+                <div class="card-heading">
+                    <h4 class="title">UPS MODEL: P850U</h4>
+                </div>
+                <div class="card-body">
+                    <form>
+
+                        <div class="form-row m-b-55">
+                            <div class="name">OUTPUT</div>
+                            <div class="value">
+                                <div class="row row-refine">
+                                    <div class="col-3">
+                                        <div class="input-group-desc">
+                                            <select id="cbPHSout" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 110px; ">
+                                                <option value="Select">Select</option>
+                                                <option value="1">1</option>
+                                                <option value="3">3</option>
+                                            </select>
+                                            <label class="label--desc">Phase Out</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="input-group-desc">
+                                            <select id="cbVout" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 150px; ">
+                                                <option value="Select">Select</option>
+                                                <option value="120">120 V</option>
+                                                <option value="208">208 V</option>
+                                                <option value="240">240/120 V</option>
+                                                <option value="380">380 V</option>
+                                                <option value="400">400 V</option>
+                                                <option value="480">480 V</option>
+                                                <option value="575">575 V</option>
+                                                <option value="600">600 V</option>
+                                            </select>
+                                            <label class="label--desc">Output Voltage</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="name">KVA</div>
+                            <div class="value">
+                                <select id="cbKVA" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 110px; ">
+                                    <option value="Select">Select</option>
+                                    <option value="5">5</option>
+                                    <option value="7.5">7.5</option>
+                                    <option value="10">10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                    <option value="30">30</option>
+                                    <option value="40">40</option>
+                                    <option value="50">50</option>
+                                    <option value="60">60</option>
+                                    <option value="80">80</option>
+                                    <option value="100">100</option>
+                                    <option value="150">150</option>
+                                    <option value="200">200</option>
+                                    <option value="250">250</option>
+                                    <option value="500">500</option>
+                                    <option value="700">700</option>
+                                </select>
+
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="name">DC BUS</div>
+                            <div class="value">
+                                <select id="cbDCbus" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 130px; ">
+                                    <option value="Select">Select</option>
+                                    <option value="120">120 V</option>
+                                    <option value="125">125 V</option>
+                                    <option value="240">240 V</option>
+                                    <option value="380">380 V</option>
+                                    <option value="400">400 V</option>
+                                    <option value="480">480 V</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row m-b-55">
+                            <div class="name">INPUT</div>
+                            <div class="value">
+                                <div class="row row-refine">
+                                    <div class="col-3">
+                                        <div class="input-group-desc">
+                                            <select id="cbPHSin" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 110px; ">
+                                                <option value="Select">Select</option>
+                                                <option value="1">1</option>
+                                                <option value="3">3</option>
+                                            </select>
+                                            <label class="label--desc">Phase In</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="input-group-desc">
+                                            <select id="cbVin" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 150px; ">
+                                                <option value="Select">Select</option>
+                                                <option value="120">120 V</option>
+                                                <option value="208">208 V</option>
+                                                <option value="240">240/120 V</option>
+                                                <option value="380">380 V</option>
+                                                <option value="400">400 V</option>
+                                                <option value="480">480 V</option>
+                                                <option value="575">575 V</option>
+                                                <option value="600">600 V</option>
+
+                                            </select>
+                                            <label class="label--desc">Input Voltage</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="input-checkbox-group">
+                                <div class="input-checkbox">
+                                    <label for="yes" style="color: RED;">Use bypass</label>
+                                    <input id="chkbypass" type="checkbox" />
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row m-b-55" id="divbypass" style="display:none;">
+                            <div class="name" style="color: RED;">BYPASS</div>
+                            <div class="value">
+                                <div class="row row-refine">
+                                    <div class="col-3">
+                                        <div class="input-group-desc">
+                                            <select id="cbPHSbps" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 110px; ">
+                                                <option value="Select">Select</option>
+                                                <option value="1">1</option>
+                                                <option value="3">3</option>
+                                            </select>
+                                            <label class="label--desc">bypass Phase</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="input-group-desc">
+                                            <select id="cbVinbps" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 150px; ">
+                                                <option value="Select">Select</option>
+                                                <option value="120">120 V</option>
+                                                <option value="208">208 V</option>
+                                                <option value="240">240/120 V</option>
+                                                <option value="380">380 V</option>
+                                                <option value="400">400 V</option>
+                                                <option value="480">480 V</option>
+                                                <option value="575">575 V</option>
+                                                <option value="600">600 V</option>
+
+                                            </select>
+                                            <label class="label--desc">Bypass Input Voltage</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row m-b-55">
+                            <div class="name">INFO.</div>
+                            <div class="value">
+                                <div class="row row-refine">
+                                    <div class="col-3">
+                                        <div class="input-group-desc">
+                                            <select id="cbpf" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 110px; ">
+                                                <option value="0.8">0.8</option>
+                                                <option value="1">1</option>
+                                            </select>
+                                            <label class="label--desc">Power Factor</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="input-group-desc">
+                                            <select id="cbfreq" class="selectpicker form-control" style="background-color: #cefa29; color: black; width: 110px; ">
+                                                <option value="60">60 Hertz</option>
+                                                <option value="50">50 Hertz</option>
+
+                                            </select>
+                                            <label class="label--desc">Frequency</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row m-b-55">
+                            <div class="name">BATTERY</div>
+                            <div class="value">
+                                <div class="row row-refine">
+                                    <div class="col-3">
+                                        <div class="input-group-desc">
+                                            <input class="input--style-4" type="text" id="batt_capa" style="background-color: #cefa29; color: black; width: 100px;text-align:center  ; " value="0">
+                                            <label class="label--desc">Capacity</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-9">
+                                        <div class="input-group-desc">
+                                            <input class="input--style-4" type="text" id="batt_tc" style="background-color: #cefa29; color: black; width: 100px; text-align:center  ;" value="8">
+                                            <label class="label--desc">Battery Charging Time</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+
+                            <button type="button" class="btn btn-success" id="ups_valida">Next Step</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/MYjs/select2.min.js"></script>
+    <script src="~/Content/MYjs/moment.min.js"></script>
+    <script src="~/Content/MYjs/daterangepicker.js"></script>
+    <script src="~/Content/MYjs/jquery.min.js"></script>
+    @*<script src="~/Content/MYjs/global.js"></script>*@
+
+    @*<script src="~/Content/MYjs/jquery.min.js" type="4004acd0bb178f53ba3033ab-text/javascript"></script>
+        <script src="~/Content/MYjs/select2.min.js" type="4004acd0bb178f53ba3033ab-text/javascript"></script>
+        <script src="~/Content/MYjs/moment.min.js" type="4004acd0bb178f53ba3033ab-text/javascript"></script>
+        <script src="~/Content/MYjs/daterangepicker.js" type="4004acd0bb178f53ba3033ab-text/javascript"></script>
+        <script src="~/Content/MYjs/global.js" type="4004acd0bb178f53ba3033ab-text/javascript"></script>*@
+
+
+    <script type="text/javascript">
+
+
+        $(function () {
+
+            $("#chkbypass").click(function () {
+                // alert("debut,,,,,,,,,,,");
+                if ($(this).is(":checked")) {
+                    $("#divbypass").show();
+
+
+                } else {
+                    $("#divbypass").hide();
+                    bps = 0;
+                }
+            });
+
+            // $("#cbPHSout").change(function () {  $("#divbypass").show(); });
+
+
+            $("#ups_valida").on('click', function (e) {
+                // debugger;
+                // alert("debut...........");
+                var bps = 1;
+                var j_phsout = $("#cbPHSout").val(), j_vout = $("#cbVout").val(), j_kva = $("#cbKVA").val(), j_dcbus = $("#cbDCbus").val();
+                var j_phsin = $("#cbPHSin").val(), j_vin = $("#cbVin").val(), j_phsbps = $("#cbPHSbps").val(), j_vinbps = $("#cbVinbps").val();
+                var j_pf = $("#cbpf").val(), j_freq = $("#cbfreq").val(), j_batt_capa = $("#batt_capa").val(), j_batt_tc = $("#batt_tc").val();
+                var valid_err = "";
+
+                if ($("#chkbypass").is(":checked")) bps = 1;
+                else bps = 0;
+
+                //  alert("bps=" + bps + "  err=" + valid_err);
+                if (j_phsout == "Select") valid_err = " Invalid Output Phase....";
+                else {
+                    if (j_vout == "Select") valid_err = " Invalid Output Voltage ....";
+                    else {
+                        if (j_kva == "Select") valid_err = " Invalid KVA ....";
+                        else {
+                            if (j_dcbus == "Select") valid_err = " Invalid DCBus ....";
+                            else {
+                                if (j_phsin == "Select") valid_err = " Invalid INPUT Phase ....";
+                                else {
+                                    if (j_vin == "Select") valid_err = " Invalid INPUT Voltage ....";
+                                    else {
+                                        if (bps == 1) {
+                                            if (j_phsbps == "Select" || j_vinbps == "Select") valid_err = " Invalid BYPASS info: Phase / Input Voltage ....";
+                                        }
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+
+                if (valid_err == "") {
+
+                    alert("Good validation.............");
+                    //   var urlo = $("#GetMsgPath").val();
+                    //   var errmsg = "N";
+                    ////   debugger;
+                    //   $.getJSON(urlo, { pxx: j_pxx, phs: j_phs, vdc: j_vdc, idc: j_idc, vf: j_vf, battt: j_battt, lhrtz: j_hrtz, lriple: j_riple },
+                    //              function (lst_chconfigs) {
+
+                    //                  $.each(lst_chconfigs, function (index, itemData) {
+                    //                      {
+                    //                          var errmdg = itemData.msgerror;
+                    //                          if (errmdg != "") {
+                    //                              errmsg = "Y";
+                    //                              alert(errmdg);
+
+                    //                          }
+                    //                          else {
+
+
+                    //                              $("#cal_cellnb").val(itemData.tCellN_Text);
+                    //                              $("#cal_vac").val(itemData.tVac_Text);
+                    //                              $("#vpcfloat").val(itemData.tvpcF_Text);
+                    //                              $("#vfloat").val(itemData.tVFLOAT_Text);
+                    //                              $("#vpcequal").val(itemData.tvpcEq_Text);
+                    //                              $("#vequal").val(itemData.tVEQL_Text);
+                    //                              $("#vdcmin").val(itemData.tvdcMin_Text);
+                    //                              $("#idcmin").val(itemData.tIdcMin_Text);
+                    //                              $("#vdcmax").val(itemData.tVdcMax_Text);
+                    //                              $("#idcmax").val(itemData.tIdcMax_Text);
+                    //                          }
+
+                    //                      }
+                    //                  });
+                    //                  if (errmsg == "N") {
+                    //                      $("#ch_values").show();
+                    //                      $("#ch_values_tbl").show();
+                    //                      $("#options_tbl tr>td").remove();
+                    //                  }
+
+
+
+                    //              });
+                }
+                else alert(valid_err);
+
+
+
+            });
+
+
+
+
+        });
+
+
+
+
+
+
+    </script>
+
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/moment.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+</body>
+</html >
+
+
+
